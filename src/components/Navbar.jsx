@@ -45,7 +45,7 @@ function Navbar() {
           <div className="text-xs   ">글을 사랑하는사람들의 모임</div>
             <div className="flex justify-center align-middle">
               <span
-                className="inset-0 bg-blue-500    w-48 h-8"
+                className="inset-0 bg-blue-500    w-48 h-10"
                 style={{
                   clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)',
                 }}

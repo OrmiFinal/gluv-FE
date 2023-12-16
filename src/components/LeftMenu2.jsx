@@ -5,7 +5,7 @@ import Margin from './Margin';
 function LeftMenu2() {
   return (
     <div className='w-72 h-full flex justify-center items-center'>
-      <div className='mt-12 w-64 h-[500px] mx-4 border-[1px] border-black flex flex-col items-center text-center'>
+      <div className='mt-4 w-64 h-[500px] mx-4 border-[1px] border-black flex flex-col items-center text-center'>
 
         {/* 상단 여백 적용 */}
         <Margin top="5" />
@@ -21,8 +21,8 @@ function LeftMenu2() {
             asdasd
           </div>
           <Margin top="3" />
-          <div>독서 토론 모임</div>
-          <div className='text-sm'>모임명</div>
+          <div className=' font-bold'>독서 토론 모임</div>
+          <div className='font-mono  text-sm'>모임명</div>
         </div>
 
         {/* 수평 선 */}
@@ -30,27 +30,26 @@ function LeftMenu2() {
 
         {/* 모집 정보 */}
         <div className='w-48'>
-          <div className='text-lg'>모집명</div>
+          <div className='text-lg font-bold'>모집명</div>
           <div className="flex flex-col"> 
             <div className='flex justify-between'>
-              <div>최대인원</div>
-              <div>6명</div>
+              <div className='font-mono'>최대인원</div>
+              <div className='font-mono'>6명</div>
             </div>
             <div className='flex justify-between'>
-              <div>현재인원</div>
-              <div>4명</div>
+              <div  className='font-mono'>현재인원</div>
+              <div  className='font-mono'>4명</div>
             </div>
             <div className='flex justify-between'>
-              <div>신청인원</div>
-              <div>1명</div>
+              <div className='font-mono'>신청인원</div>
+              <div className='font-mono'>1명</div>
             </div>
           </div>
-          <div>독서 토론 모임</div>
         </div>
 
         {/* 리더 정보 */}
         <Margin top="2" />
-        <div>내역할: 리더</div>
+        <div className='   font-mono '>내역할: 리더</div>
         <Margin top="1" />
 
         {/* 버튼 */}

@@ -35,7 +35,7 @@ function RecruitmentPostDetailPage() {
                 <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
                 <div className='font-bold text-lg'>작성자</div>
                   <Margin left="1" />
-                  <div className='text-sm text-gray-600 '>5시간전</div>
+                  <div className='text-sm font-mono text-gray-600 '>5시간전</div>
 
               </div>
               <div className='flex flex-col items-center p-2'>
