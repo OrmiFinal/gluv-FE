@@ -136,9 +136,7 @@ function RecruitmentPostDetailPage() {
                   text="댓글 목록"
                   btnstyle="py-1 px-1 h-min"
                 />
-</div>
-            
-
+            </div>
           </div>
         </div>
       </div>
