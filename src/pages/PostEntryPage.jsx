@@ -13,10 +13,16 @@ function PostEntryPage() {
   });
 
 
+  const handleContentChange = (newContent) => {
+    setFormData({ ...formData, content: newContent });
+    // You can perform additional actions with the new content if needed
+  };
 
 
   const handleChange = (e, field) => {
     setFormData({ ...formData, [field]: e.target.value });
+
+  console.log(formData)
   };
 
   const handleSave = () => {
@@ -92,7 +98,7 @@ function PostEntryPage() {
             
               
                 <div className='flex'>
-                <EditorComponent />
+                <EditorComponent content={formData.content} onChange={handleContentChange} />
  
                 {/* <textarea
                   className='border p-2 w-full h-[350px]  rounded-md'  
@@ -114,7 +120,7 @@ function PostEntryPage() {
               <DynamicColorButton
                 color="blue"
                 text="작성"
-                btnstyle="py-1 px-1"
+                btnstyle="py-1 px-1 "
                 onClick={handleSave}
               />
             </div>
