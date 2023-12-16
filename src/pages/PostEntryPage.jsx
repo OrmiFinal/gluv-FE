@@ -53,7 +53,7 @@ function PostEntryPage() {
            
             <div className='text-xl font-bold mb-4'>게시물작성</div>
             
-            <div className='w-full border p-4 mb-4'>
+            <div className='w-full border py-4 pl-0 pr-4 mb-4'>
               <div className='d-flex '> {/* 가운데 정렬 부분 */}
                 <div className='flex w-full'>
        

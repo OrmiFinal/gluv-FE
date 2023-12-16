@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { motion, useAnimation } from 'framer-motion';
+import Margin from '../Margin';
 
 
 /**
@@ -38,7 +39,12 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect }) => {
   };
 
   return (
-    <div className="relative flex flex-col items-center w-60">
+    <div>
+      <div className='text-sm text-left'> 카테고리</div>
+      <Margin plustailwind="h-2" />
+    <div className="relative flex flex-col w-60">
+      
+       
       <motion.button
         className=" bg-light-100 border text-black py-2 px-4  w-[30vw] rounded-xl focus:outline-none flex items-center relative z-[1000]"
         onClick={() => {
@@ -76,6 +82,7 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect }) => {
           )}
         </motion.div>
       </div>
+    </div>
     </div>
   );
 };

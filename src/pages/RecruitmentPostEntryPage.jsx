@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import EditorComponent from '../components/ui/EditorComponent';
 import InputField from '../components/InputField';
+import SelectButton from '../components/ui/SelectButton';
 
 function RecruitmentPostEntryPage() {
   const [formData, setFormData] = useState({
@@ -64,6 +65,14 @@ function RecruitmentPostEntryPage() {
     // Add logic for saving the form data
   };
 
+    
+  const handleCategorySelect = (selectedCategory) => {
+    // 선택된 카테고리를 상태에 업데이트
+    setFormData({ ...formData, selectedCategory });
+    // 선택된 카테고리 콘솔에 출력
+    console.log('Selected formData:', formData);
+  };
+
   const handleRegister = () => {
     console.log('Register clicked. Form data:', formData);
     // Add logic for registering the form data
@@ -82,7 +91,27 @@ function RecruitmentPostEntryPage() {
               <div className="grid grid-cols-2 gap-4">
                 <InputField label="대상모임" id="targetAudience" value={formData.targetAudience} onChange={handleChange} />
                 <InputField label="최대인원" id="maxParticipants" value={formData.maxParticipants} onChange={handleChange} />
-                <InputField label="카테고리" id="category" value={formData.category} onChange={handleChange} />
+                <div>
+                <Margin plustailwind="h-1" />
+                <SelectButton
+                className="text-sm text-left"
+                btnTitle="카테고리 선택"
+                btnoptions={[
+                  'notice',
+                  'free',
+                  'qna',
+                  'ads',
+                  'creation-novel',
+                  'creation-poem',
+                  'creation-essay',
+                  'comm-novel',
+                  'comm-poem',
+                  'comm-essay'
+                ]}
+                
+                onOptionSelect={handleCategorySelect}
+              />
+              </div>
                 <InputField label="지역" id="address" value={formData.address} onChange={handleChange} />
               </div>
             </div>
@@ -105,7 +134,7 @@ function RecruitmentPostEntryPage() {
 
             </div>
 
-            
+
             <div className="w-full p-4 mb-4">
               <input
                 className='w-full border-b p-2 mb-4 rounded-md'
