@@ -1,8 +1,6 @@
-
 import React, { useState } from 'react';
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
-
 
 function PostEntryPage() {
   const [formData, setFormData] = useState({
@@ -12,7 +10,7 @@ function PostEntryPage() {
     month: '',
     dayOfMonth: '',
     dayOfWeek: '',
-    weekOfMonth: '', // Added weekOfMonth field
+    weekOfMonth: '',
     creationDate: null,
     targetAudience: '',
     maxParticipants: '',
@@ -29,6 +27,7 @@ function PostEntryPage() {
     const [month, day, year, dayOfWeek] = formattedDate.split(' ');
     return { month, day, year, dayOfWeek };
   };
+
   const handleDateChange = (date) => {
     const formattedInfo = formatDateInfo(date);
   
@@ -50,7 +49,6 @@ function PostEntryPage() {
       weekOfMonth: weekOfMonth,
     });
   };
-  
 
   const handleSave = () => {
     // Handle the logic for saving the form data
@@ -78,7 +76,6 @@ function PostEntryPage() {
             <div className='text-xl font-bold mb-4'>기본정보 </div>
             
             <div className='w-full border p-4 mb-4'>
-
               <div className='d-flex '> {/* 가운데 정렬 부분 */}
                 <div className='flex'>
                   <div className='text-center'>개시판</div>
@@ -91,8 +88,20 @@ function PostEntryPage() {
                 </div>
               </div>
             </div>
+            <div className='text-xl font-bold w-[120px] mb-4'>글작성 </div>
+            <div className='w-full border p-4 mb-4'>
+              
+                <div className='flex'>
+                 
+                <textarea
+                  className='border p-2 w-full h-[350px]  rounded-md'  
+                  value={formData.content}  
+                  onChange={(e) => handleChange(e, 'content')}  
+                />
 
-
+                </div>
+       
+            </div>
 
             <div className='w-full border p-4 flex justify-end items-end'>
               <DynamicColorButton
@@ -115,4 +124,4 @@ function PostEntryPage() {
   );
 }
 
-export default PostEntryPage
+export default PostEntryPage;
