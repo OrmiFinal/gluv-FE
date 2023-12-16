@@ -33,19 +33,24 @@ function Navbar() {
 
   return (
     <div className="border-bottom">
+
       <nav className="   flex-col justify-between m-2">
+     
 
         {/* Logo */}
+        
         <div className="flex items-center justify-between w-full px-4">
+          
           <Link className="navbar-brand relative inline-block">
+          <div className="text-xs   ">글을 사랑하는사람들의 모임</div>
             <div className="flex justify-center align-middle">
               <span
-                className="inset-0 bg-blue-500 w-24 h-6"
+                className="inset-0 bg-blue-500    w-48 h-8"
                 style={{
-                  clipPath: 'polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%)',
+                  clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)',
                 }}
               ></span>
-              <span className="absolute font-bold text-2xl text-white left-[10px] bottom-[2px] z-10">GLUV</span>
+              <span className="absolute font-bold text-4xl text-white left-[30px] bottom-[2px] z-10">GLUV</span>
             </div>
           </Link>
 <div className="flex justify-center items-center">
