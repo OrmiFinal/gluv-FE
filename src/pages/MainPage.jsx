@@ -1,4 +1,5 @@
 import React from 'react';
+import BookBanner from './BookBanner';
 
 const RecentPostList = ({ category }) => {
   const postData = [
@@ -155,65 +156,50 @@ function MainPage() {
         <div className="w-9/12">
           {/* 배너 이미지 */}
           <div className="max-w-screen-xl mx-auto rounded-lg overflow-hidden relative">
-            <div className="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-              <div className="swiper-wrapper" >
-                <div className="swiper-slide swiper-slide-active" style={{ width: '1224px' }}>
-                  <div className="relative">
-                    <a target="_blank" href="/community/view/3014">
-                      <div className="overflow-hidden flex relative w-full">
-                        <img
-                          src="https://d2ydhf803uk5ck.cloudfront.net/uploads/images/Qr7JGVM8-gmF.jpeg"
-                          className="w-inherit"
-                          draggable="false"
-                          style={{ height: '320px', objectFit: 'cover' }}
-                          alt="Image Alt Text"
-                        />
-                      </div>
-                    </a>
-                  </div>
+          <h2 className="font-bold text-black px-4 mt-2 mb-0 flex items-center md:px-0 md:mb-0 w-full">
+          <span className="font-bold">신간 도서</span>
+          </h2>
+          <BookBanner />
+            {/* 슬라이더 */}
+          <div className="absolute w-full top-10 z-10 px-24 pointer-events-none">
+            <div className="flex max-w-screen-xl mx-auto">
+              <div className="ml-auto flex bg-black bg-opacity-30 rounded-full px-2 py-2 items-center text-body2 pointer-events-auto">
+                <div className="flex">
+                  <button type="button" className="cursor-pointer flex rounded-full flex justify-center items-center">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.4386 16L21.0386 22.6L19.1533 24.4853L10.668 16L19.1533 7.51465L21.0386 9.39998L14.4386 16Z" fill="white"></path>
+                    </svg>
+                  </button>
                 </div>
-                {/* 다른 이미지들에 대한 swiper-slide 추가 */}
-              </div>
-            </div>
-            <div className="absolute w-full top-10 z-10 px-24 pointer-events-none">
-              <div className="flex max-w-screen-xl mx-auto">
-                <div className="ml-auto flex bg-black bg-opacity-30 rounded-full px-2 py-2 items-center text-body2 pointer-events-auto">
-                  <div className="flex">
-                    <button type="button" className="cursor-pointer flex rounded-full flex justify-center items-center">
-                      <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.4386 16L21.0386 22.6L19.1533 24.4853L10.668 16L19.1533 7.51465L21.0386 9.39998L14.4386 16Z" fill="white"></path>
-                      </svg>
-                    </button>
-                  </div>
-                  <span className="font-bold text-white">1</span>
-                  <span className="h-3 w-px bg-gray-200 mx-1.5"></span>
-                  <span className="font-bold text-white text-opacity-60">3</span>
-                  <div className="flex">
-                    <button type="button" className="cursor-pointer flex rounded-full flex justify-center items-center rotate-180">
-                      <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.4386 16L21.0386 22.6L19.1533 24.4853L10.668 16L19.1533 7.51465L21.0386 9.39998L14.4386 16Z" fill="white"></path>
-                      </svg>
-                    </button>
-                  </div>
+                <span className="font-bold text-white">1</span>
+                <span className="h-3 w-px bg-gray-200 mx-1.5"></span>
+                <span className="font-bold text-white text-opacity-60">3</span>
+                <div className="flex">
+                  <button type="button" className="cursor-pointer flex rounded-full flex justify-center items-center rotate-180">
+                    <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.4386 16L21.0386 22.6L19.1533 24.4853L10.668 16L19.1533 7.51465L21.0386 9.39998L14.4386 16Z" fill="white"></path>
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className='flex-row max-w-screen-xl min-w-0'>
-          <hr className="my-4 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
-            {/* 최신 모집글 */}
-            <div className="flex w-full relative">
-              {/* 최신 모집글 라벨 */}
-              <h2 className="font-bold text-black px-4 mb-3 flex items-center md:px-0 md:mb-4 w-full">
-                <span className="font-bold">최신 모집글</span>
-                <a className="text-gray-600 text-body1 md:text-subtitle font-medium ml-auto flex items-center" href="/library">
-                  <span>더보기</span>
-                </a>
-              </h2>
-              {/* 최신 모집글 리스트 */}
-            </div>
-            <RecentRecruitCardList className="mb-10"></RecentRecruitCardList >
+        </div>
+        <div className='flex-row max-w-screen-xl min-w-0'>
+        <hr className="my-4 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
+          {/* 최신 모집글 */}
+          <div className="flex w-full relative">
+            {/* 최신 모집글 라벨 */}
+            <h2 className="font-bold text-black px-4 mb-3 flex items-center md:px-0 md:mb-4 w-full">
+              <span className="font-bold">최신 모집글</span>
+              <a className="text-gray-600 text-body1 md:text-subtitle font-medium ml-auto flex items-center" href="/library">
+                <span>더보기</span>
+              </a>
+            </h2>
+            {/* 최신 모집글 리스트 */}
           </div>
+          <RecentRecruitCardList className="mb-10"></RecentRecruitCardList >
+        </div>
         </div>
         {/* 화제의 게시글 */}
         <div className="w-3/12" 
