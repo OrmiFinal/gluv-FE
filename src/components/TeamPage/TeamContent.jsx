@@ -98,15 +98,15 @@ const TeamContent = () => {
             <div className='flex'>
             <Margin left="4" />
             <DynamicColorButton
-              color="red"
-              text="등록하기"
+         
+              text="모집글가기"
               btnstyle="py-2 px-2 self-end"
               onClick={handleRegister}
             />
             <Margin left="4" />
             <DynamicColorButton
-              color="red"
-              text="저장하기"
+              color="blue"
+              text="채팅방입장"
               btnstyle="py-2 px-2 self-end"
               onClick={handleSave}
             />

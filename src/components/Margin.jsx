@@ -2,10 +2,10 @@ import React from 'react';
 
 function Margin({ top, right, bottom, left, plustailwind }) {
   const marginClass = ` 
-    ${top !== null ? `mt-${top}` : ''} 
-    ${right !== null ? `mr-${right}` : ''} 
-    ${bottom !== null ? `mb-${bottom}` : ''} 
-    ${left !== null ? `ml-${left}` : ''} 
+    ${top !== undefined ? `mt-${top}` : ''} 
+    ${right !== undefined ? `mr-${right}` : ''} 
+    ${bottom !== undefined ? `mb-${bottom}` : ''} 
+    ${left !== undefined ? `ml-${left}` : ''} 
     ${plustailwind || ''}`;
 
   return (

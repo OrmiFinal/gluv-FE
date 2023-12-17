@@ -90,19 +90,19 @@ function Navbar() {
         <Margin plustailwind="h-8"></Margin>
         <div className="flex px-4 w-full">
           <Link to="/submenu1" className=" font-bold text-lg mx-2 bold">
-          공지상황 
+          공지사항 
           </Link>
           <Link to="/submenu2" className="font-mono text-lg mx-2">
           질문/답변
           </Link>
           <Link to="/submenu2" className="font-mono text-lg mx-2">
-          자유게시판
+          자유 게시판
           </Link>
           <Link to="/submenu2" className="font-mono text-lg mx-2">
           커뮤니티
           </Link>
           <Link to="/submenu2" className="font-mono text-lg mx-2">
-          창장게시판/모임모집
+          창작 게시판/모임모집
           </Link>
           {/* Add additional submenus here as needed */}
         </div>

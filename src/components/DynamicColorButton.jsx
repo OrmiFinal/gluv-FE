@@ -11,7 +11,7 @@ function DynamicColorButton({ color, text, btnstyle, onClick }) {
         return 'border border-sky-400 bg-black text-white';
       // 추가적인 색상에 대한 케이스를 필요에 따라 추가할 수 있습니다.
       default:
-        return 'border border-gray-400 bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-800';
+        return ' border border-gray-400 bg-gray-200 hover:bg-gray-300 text-gray-700 hover:text-gray-800';
     }
   };
 
