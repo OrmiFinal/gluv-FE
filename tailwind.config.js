@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Spoqa Han Sans Neo', 'Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
         mono: ['Inconsolata', 'monospace'],
         custom: ['YourSelectedFont', 'sans'],

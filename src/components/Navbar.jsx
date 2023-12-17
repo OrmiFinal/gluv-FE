@@ -67,7 +67,7 @@ function Navbar() {
     </div>
         {/* Submenus */}
         <Margin plustailwind="h-8"></Margin>
-        <div className="flex w-full">
+        <div className="flex w-full pb-4">
           <Link to="/submenu1" className="font-bold text-lg px-3 bold">
             공지사항 
           </Link>
@@ -90,8 +90,7 @@ function Navbar() {
           </Link>
           {/* Add additional submenus here as needed */}
         </div>
-        <div className="mx-2 border-r-2 h-6 self-center"></div>
-        <Margin top="40" plustailwind="h-2"></Margin>
+        <hr className="border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
       </nav>
     </div>
   );
