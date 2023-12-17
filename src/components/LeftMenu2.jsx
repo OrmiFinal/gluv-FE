@@ -5,7 +5,7 @@ import Margin from './Margin';
 function LeftMenu2() {
   return (
     <div className='w-72 h-full flex justify-center items-center'>
-      <div className='mt-4 w-64 h-[500px] mx-4 border-[1px] border-black flex flex-col items-center text-center'>
+      <div className='mt-4 w-64 h-[500px] mx-4 border-[1px]  rounded-md bg-gray-100 flex flex-col items-center text-center'>
 
         {/* 상단 여백 적용 */}
         <Margin top="5" />
@@ -26,8 +26,7 @@ function LeftMenu2() {
         </div>
 
         {/* 수평 선 */}
-        <div className='w-full h-[1px] mt-2 bg-black'></div>
-
+        <div className='w-full h-[1px] mt-2  bg-dark-600'></div>
         {/* 모집 정보 */}
         <div className='w-48'>
           <div className='text-lg font-bold'>모집명</div>
