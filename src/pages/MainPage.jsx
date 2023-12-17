@@ -135,12 +135,6 @@ function MainPage() {
   const translateValue = -1224; // X 축 방향으로 -1224px만큼 이동
   const transitionDuration = 0; // 변화를 즉시 적용
 
-  const imgStyle = {
-    transform: `translate3d(${translateValue}px, 0, 0)`,
-    transitionDuration: `${transitionDuration}ms`,
-    fontFamily: 'Spoqa Han Sans Neo, sans-serif',
-  };
-
   // 인기 게시글 데이터 (예시)
   const popularPosts = [
     { id: 1, title: '게시글 제목 1' },
@@ -156,13 +150,13 @@ function MainPage() {
   ];
 
   return (
-    <main className='h-full' style={{textStyle}}>
+    <main className='h-full' style={textStyle}>
       <div className='flex h-full'>
         <div className="w-9/12">
           {/* 배너 이미지 */}
           <div className="max-w-screen-xl mx-auto rounded-lg overflow-hidden relative">
             <div className="swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-              <div className="swiper-wrapper" style={{imgStyle}}>
+              <div className="swiper-wrapper" >
                 <div className="swiper-slide swiper-slide-active" style={{ width: '1224px' }}>
                   <div className="relative">
                     <a target="_blank" href="/community/view/3014">

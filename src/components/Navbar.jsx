@@ -7,6 +7,28 @@ import LogoutButton from "./ui/LogoutButton";
 
 import NotificationClickButton from "./ui/NotificationClickButton";
 
+function Logo() {
+  const logoContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+  };
+
+  const logoTextStyle = {
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    color: '#000000',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    marginRight: '10px',
+  };
+
+  return (
+    <div style={logoContainerStyle}>
+      <span style={logoTextStyle}>GLUV</span>
+    </div>
+  );
+}
+
 function Navbar() {
   const textStyle = {
     fontFamily: 'Spoqa Han Sans Neo, sans-serif',
@@ -28,45 +50,37 @@ function Navbar() {
 
   return (
     <div className="border-bottom" style={textStyle}>
-      <nav className="   flex-col justify-between m-2">
-        {/* Logo */}
-        <div className="flex items-center justify-between w-full px-4">
+      <nav className="flex-col justify-between my-2">
+        {/* 로고 */}
+        <div className="flex items-center justify-between w-full pl-0 pr-4 my-4">
           <Link className="navbar-brand relative inline-block">
-          <div className="text-xs">글을 사랑하는사람들의 모임</div>
             <div className="flex justify-center align-middle">
-              <span
-                className="inset-0 bg-blue-500    w-48 h-10"
-                style={{
-                  clipPath: 'polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%)',
-                }}
-              ></span>
-              <span className="absolute font-bold text-4xl text-white left-[30px] bottom-[2px] z-10">GLUV</span>
+              <Logo></Logo>
+              <span className="absolute font-bold text-xl text-black"></span>
             </div>
           </Link>
-    <div className="flex justify-center items-center">
-      {/* Notification */}
-      <Link to="/notification/" className="text-sm mt font-mono  ">
-        <div className="text-sm font-mono">
-          <NotificationClickButton />
+        <div className="flex justify-center items-center gap-4">
+          {/* Notification */}
+          <Link to="/notification/" className="text-sm mt font-mono  ">
+            <div className="text-sm font-mono">
+              <NotificationClickButton className="m-4 p-4"/>
+            </div>
+          </Link>
+          {/* Login/Logout */}
+          {currentUser ? (
+            <span className="text-sm font-mono" onClick={logoutBtn}>
+              <LogoutButton /> 
+            </span>
+            ) : (
+            <Link to="/login" className="text-sm mt font-mono  ">
+              <div>
+                <LoginButton/>
+              </div>
+            </Link>
+            )}
         </div>
-      </Link>
-      <Margin left="3"></Margin>
-        {/* Login/Logout */}
-      {currentUser ? (
-        <span className="text-sm font-mono" onClick={logoutBtn}>
-          <LogoutButton /> 
-        </span>
-      ) : (
-        <Link to="/login" className="text-sm mt font-mono  ">
-          <div>
-            <LoginButton />
-          </div>
-        </Link>
-      )}
-    </div>
     </div>
         {/* Submenus */}
-        <Margin plustailwind="h-8"></Margin>
         <div className="flex w-full pb-4">
           <Link to="/submenu1" className="font-bold text-lg px-3 bold">
             공지사항 
@@ -91,6 +105,7 @@ function Navbar() {
           {/* Add additional submenus here as needed */}
         </div>
         <hr className="border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
+        <Margin plustailwind="h-1"></Margin>
       </nav>
     </div>
   );
