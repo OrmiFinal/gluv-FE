@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 
@@ -8,6 +8,7 @@ import useWindowSize from '../../hooks/useWindowSzie';
 import Contour from '../ui/Contour';
 import TitleComponent from './TitleComponent'; // Adjust the path as needed
 import BulletinBoard from './BulletinBoard';
+import { ModelContext } from '../../context/ModelContextProvider';
 
 
 function RecruitmentContent() {
@@ -173,7 +174,7 @@ const jsonData = [
   const combinedClasses = Object.entries(inputClasses)
     .map(([size, classValue]) => (screenSize === size ? classValue : ''))
     .join(' ');
-
+    const { selectedCategory } = useContext(ModelContext);
   return (
     <div className="flex items-center justify-center bg-gray-100">
       <div className='w-[65vw] bg-white rounded-md  shadow-md p-6'>
@@ -182,7 +183,7 @@ const jsonData = [
           <Margin top="3" />
           <div className='m-3'>
             {/* 모임 상세 내용 제목 */}
-            <div className='text-2xl font-bold mb-4 '>자유게시판</div>
+            <div className='text-2xl font-bold mb-4 '>{selectedCategory.category}</div>
             <Contour></Contour>
 
             <Margin top="2" plustailwind="h-3"/>

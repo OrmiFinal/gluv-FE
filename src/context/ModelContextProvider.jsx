@@ -5,15 +5,21 @@ import axios from "axios";
 export const ModelContext = createContext();
 
 export const ModelContextProvider = ({ children }) => {
-  const [openMiniChatModel, setMiniOpenChatModel] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState({
+    category: '',
+    subcategory: '',
+  });
+  
 
 
-  const toggleMiniChatModel = () => {
-    setMiniOpenChatModel((prev) => !prev);
+  const ToggleMiniChatModel = ({content}) => {
+
+    setSelectedCategory(content);
+    console.log('asdad'+selectedCategory.category)
   };
 
   return (
-    <ModelContext.Provider value={{ openMiniChatModel, toggleMiniChatModel }}>
+    <ModelContext.Provider value={{ selectedCategory, ToggleMiniChatModel }}>
       {children}
     </ModelContext.Provider>
   );

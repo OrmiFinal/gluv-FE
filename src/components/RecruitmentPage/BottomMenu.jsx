@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import { ModelContext } from '../../context/ModelContextProvider';
+import Contour from '../ui/Contour';
 
 function BottomMenu() {
-  const [selectedCategory, setSelectedCategory] = useState({
-    category: '',
-    subcategory: '',
-  });
+    const { selectedCategory, ToggleMiniChatModel } = useContext(ModelContext);
+
   const [expandedSubcategories, setExpandedSubcategories] = useState({});
+
 
   const categories = [
     { name: '공지사항', subcategories: [] },
@@ -21,19 +22,40 @@ function BottomMenu() {
   ];
 
   const handleCategoryClick = (index) => {
+    console.log(expandedSubcategories)
+
+    
     setExpandedSubcategories((prev) => ({
-      ...prev,
-      [index]: !prev[index],
+   
+      [index]: true,
     }));
+
+    ToggleMiniChatModel({content:{   category: categories[index].name,
+        subcategory: ''}
+     
+    })
+
+
   };
 
-  const handleSubcategoryClick = (event, categoryIndex, subcategory) => {
+  const handleSubcategoryClick = (categoryIndex, subcategory) => {
+    ToggleMiniChatModel({content:{   category: categories[categoryIndex].name,
+        subcategory: subcategory}
+     
+    })
+    
+
+    setExpandedSubcategories(  ({
+   
+        [categoryIndex]: "true",
+      }));
+  
     // 클릭한 하위 카테고리에 대한 동작을 추가할 수 있습니다.
     console.log(
       `Clicked on category: ${categories[categoryIndex].name} - Subcategory: ${subcategory}`
     );
 
-    // 이벤트 전파를 막습니다.
+
     event.stopPropagation();
   };
 
@@ -44,7 +66,7 @@ function BottomMenu() {
           <div
             key={index}
             className={`p-2 cursor-pointer ${
-              expandedSubcategories[index] ? 'bg-gray-200' : ''
+              expandedSubcategories[index] ?  '  bg-zinc-200 ' : ''
             }`}
             onClick={() => handleCategoryClick(index)}
           >
@@ -53,14 +75,21 @@ function BottomMenu() {
               category.subcategories.length > 0 && (
                 <div className='flex flex-col justify-center items-center'>
                   {category.subcategories.map((subcategory, subIndex) => (
+                     <div className='w-full'>
+                         <div className='text-xl  border-t  my-1 border-gray-300 w-[180px] '/>
+
                     <div
                       key={subIndex}
-                      className='cursor-pointer w-full h-full'
-                      onClick={(event) =>
-                        handleSubcategoryClick(event, index, subcategory)
+                      className='cursor-pointer hover:bg-zinc-100 w-full px-8'
+                      onClick={() =>
+                        handleSubcategoryClick(index, subcategory)
                       }
                     >
                       {subcategory}
+                      
+                    </div>
+                   
+
                     </div>
                   ))}
                 </div>
