@@ -35,6 +35,7 @@ const My = ({children}) => {
   return (
     <div className="flex">
       <LeftMenu2 />
+    
       <div>{children}</div>
 
 

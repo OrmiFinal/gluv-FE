@@ -1,8 +1,13 @@
 import React from 'react'
+import RecruitmentContent from '../components/RecruitmentPage/RecruitmentContent'
+import RecruitmentLeftMenu from '../components/RecruitmentPage/RecruitmentLeftMenu'
 
 function RecruitmentPage() {
   return (
-    <div>RecruitmentPage</div>
+    <div className='flex w-screen'>
+    <RecruitmentLeftMenu/>
+    <RecruitmentContent/>
+    </div>
   )
 }
 
