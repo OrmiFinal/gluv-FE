@@ -1,6 +1,7 @@
 import React from 'react'
 import Margin from './Margin'
 import DynamicColorButton from './DynamicColorButton'
+import Contour from './ui/Contour'
 
 function LeftMenu() {
   return (
@@ -24,40 +25,38 @@ function LeftMenu() {
 
 
         <DynamicColorButton color="blue" text="프로필수정" />
-        <Margin top="3" />
+
       </div>
-
-      {/* 수평 선 */}
-      <div className='w-full h-[1px] mt-2  bg-dark-600'></div>
-
+      <Margin top="3" />
+        {/* 수평 선 */}
+        <Contour ></Contour>
+   
       {/* 모집 정보 */}
-      <div className='w-48'>
-        <div className='text-lg font-bold'>모집명</div>
+      <div className='w-48 flex flex-col justify-start  h-32'>
+        <div className='text-lg   font-semibold  self-start'>자기소개</div>
+        <div className="self-start"> 
+          자기 소개 api 받기
+        </div>
+      </div>
+      <Contour ></Contour>
+
+      <div className='w-48 flex flex-col justify-start'>
+        <div className='text-lg   font-semibold'>활동</div>
         <div className="flex flex-col"> 
           <div className='flex justify-between'>
-            <div className='font-mono'>최대인원</div>
+            <div className='font-mono'>받은 좋아요</div>
             <div className='font-mono'>6명</div>
           </div>
           <div className='flex justify-between'>
-            <div  className='font-mono'>현재인원</div>
+            <div  className='font-mono'>작성 게시글</div>
             <div  className='font-mono'>4명</div>
           </div>
-          <div className='flex justify-between'>
-            <div className='font-mono'>신청인원</div>
-            <div className='font-mono'>1명</div>
-          </div>
+       
         </div>
       </div>
 
-      {/* 리더 정보 */}
-      <Margin top="2" />
-      <div className='   font-mono '>내역할: 리더</div>
-      <Margin top="1" />
-
-      {/* 버튼 */}
-     
-      <Margin top="1" />
-      <DynamicColorButton color="red" text="탈퇴하기" />
+      <Margin top="3" />
+   
     </div>
   </div>
   )

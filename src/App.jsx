@@ -46,7 +46,7 @@ const My = ({children}) => {
 
 const Profile = ({children}) => {
   return (
-    <div>
+    <div className="flex">
       <LeftMenu />
       {children}
     </div>
