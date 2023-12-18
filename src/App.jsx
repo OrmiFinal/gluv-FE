@@ -26,7 +26,7 @@ const SiteLayout = () => {
     <div>
       <Navbar />
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
@@ -35,10 +35,7 @@ const My = ({children}) => {
   return (
     <div className="flex">
       <LeftMenu2 />
-    
       <div>{children}</div>
-
-
     </div>
   );
 };
@@ -55,7 +52,7 @@ const Profile = ({children}) => {
 
 // 페이지 정보 정의
 const pages = [
-  { path: "/MainPage", component: MainPage, layoutType: "Non" },
+  { path: "/", component: MainPage, layoutType: "Non" },
   { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
   { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
   { path: "/PostDetailPage", component: PostDetailPage, layoutType: "Non" },
@@ -83,7 +80,7 @@ const router = createBrowserRouter([
             <My key={path}>{React.createElement(component)}</My>
           ) : (
             // Handle other layout types as needed
-           React.createElement(component)
+            React.createElement(component)
           )}
         </React.Fragment>
       ),
@@ -94,8 +91,6 @@ const router = createBrowserRouter([
     element: <NotFound />,
   },
 ]);
-
-
 
 function App() {
   return (
