@@ -32,33 +32,22 @@ const logoTextStyle = {
 }
 
 function Navbar() {
-
-  const { closeForm,openForm } = useContext(OpenModalContext);
+  const { closeForm, openForm } = useContext(OpenModalContext);
 
   const textStyle = {
     fontFamily: 'Spoqa Han Sans Neo, sans-serif',
   };
 
-
   const { currentUser, logout } = useContext(AuthContext);
-  
   const gotoLogin = () => {
     openForm("loginForm"); // Replace "loginForm" with the desired form category
   };
-
-  
-
-
-
-
 
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
   const toggleNotification = () => {
     // 알람 토글 로직 구현
     setIsNotificationEnabled((prev) => !prev);
   };
-  
-
 
   return (
     <div className="border-bottom" style={textStyle}>
@@ -71,9 +60,6 @@ function Navbar() {
               <span className="absolute font-bold text-xl text-black"></span>
             </div>
           </Link>
-
-      
-      
         <div className="flex justify-center items-center gap-4">
           {/* Notification */}
           <Link to="/notification/" className="text-sm mt font-mono  ">
@@ -83,7 +69,7 @@ function Navbar() {
           </Link>
           {/* Login/Logout */}
           {currentUser ? (
-            <span className="text-sm font-mono" onClick={logoutBtn}>
+            <span className="text-sm font-mono" onClick={logout}>
               <LogoutButton /> 
             </span>
             ) : (
