@@ -41,7 +41,7 @@ function Navbar() {
 
 
   const { currentUser, logout } = useContext(AuthContext);
-  
+  console.log(currentUser?currentUser:"currentUser 가없음")
   const gotoLogin = () => {
     openForm("loginForm"); // Replace "loginForm" with the desired form category
   };
@@ -83,7 +83,7 @@ function Navbar() {
           </Link>
           {/* Login/Logout */}
           {currentUser ? (
-            <span className="text-sm font-mono" onClick={logoutBtn}>
+            <span className="text-sm font-mono" onClick={logout()}>
               <LogoutButton /> 
             </span>
             ) : (
