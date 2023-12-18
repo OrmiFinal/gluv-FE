@@ -5,21 +5,24 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
-  );
+  const [currentUser, setCurrentUser] = useState(() => {
+    const user = localStorage.getItem("user");
+    console.log(user);
+    return JSON.parse(user) || null;
+  });
+  
 
   const login = async (inputs) => {
     try {
-      console.log(inputs);
       const res = await axios.post("http://127.0.0.1:8000/users/login/", inputs);
-      console.log(res.data);
-      setCurrentUser(res.data);
-
+      const token = res.data
+      setCurrentUser(token);
+      return true
     } catch (error) {
       console.error("Login failed:", error.message);
+      return false
     }
-    return res
+    return false
   };
 
   const logout = () => {
@@ -31,27 +34,32 @@ export const AuthContextProvider = ({ children }) => {
     try {
       console.log(inputs.formData);
       const res = await axios.post("http://127.0.0.1:8000/users/signup/", inputs.formData);
-      setCurrentUser(res.data);
+      // 성공적으로 로그인한 경우
+      if (res.status === 200) {
+        setCurrentUser(res.data);
+        return { success: true, data: res.data };
+      } else {
+        return { success: false, error: "Unexpected status code" };
+      }
     } catch (error) {
-      console.error("Registration failed:", error.message);
+      // 로그인에 실패한 경우
+      console.error("Login failed:", error.message);
+      return { success: false, error: error.message };
     }
   };
 
   const isLogin = () => {
     const user = JSON.parse(localStorage.getItem("user")) || false;
-    console.log("user")
-    console.log(user)
-
-    return user == false?false: true
+    return user ? true : false;
   };
 
   useEffect(() => {
-    if (currentUser && currentUser.access_token) {
+    if (currentUser && currentUser.access) {
       console.log(currentUser)
       localStorage.setItem("user", JSON.stringify({
-        access_token: currentUser.access_token,
-        refresh_token: currentUser.refresh_token,
-        user: currentUser.use 
+        access_token: currentUser.access,
+        refresh_token: currentUser.refresh,
+        // user: currentUser 
       }));
     }
   }, [currentUser]);
