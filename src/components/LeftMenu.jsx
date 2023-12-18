@@ -9,7 +9,7 @@ function LeftMenu() {
     <div className='mt-4 w-64 h-[500px] mx-4 border-[1px]  rounded-md bg-gray-100 flex flex-col items-center text-center'>
 
       {/* 상단 여백 적용 */}
-      <Margin top="5"   plustailwind="h-5" />
+      <Margin top="5" />
 
       {/* 프로필 정보 */}
       <div>
@@ -23,18 +23,18 @@ function LeftMenu() {
         </div>
         <Margin top="3" />
 
-        <Margin top="5"   plustailwind="h-5" />
+
         <DynamicColorButton color="blue" text="프로필수정" />
-        <Margin top="5"   plustailwind="h-5" />
+
       </div>
       <Margin top="3" />
         {/* 수평 선 */}
         <Contour ></Contour>
    
       {/* 모집 정보 */}
-      <div className='w-48 flex flex-col justify-start   h-32'>
+      <div className='w-48 flex flex-col justify-start  h-32'>
         <div className='text-lg   font-semibold  self-start'>자기소개</div>
-        <div className="self-start font-mono"> 
+        <div className="self-start"> 
           자기 소개 api 받기
         </div>
       </div>
