@@ -6,9 +6,18 @@ import LoginButton from "./ui/LoginButton";
 import LogoutButton from "./ui/LogoutButton";
 
 import NotificationClickButton from "./ui/NotificationClickButton";
-import LogtinForm from "./Login/LogtinForm";
+import { OpenModalContext } from "../context/OpenModalProvider";
 
 function Navbar() {
+
+  const { closeForm,openForm } = useContext(OpenModalContext);
+
+
+  const gotoLogin = () => {
+    openForm("loginForm"); // Replace "loginForm" with the desired form category
+  };
+
+
   const { currentUser, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -23,14 +32,9 @@ function Navbar() {
 
   // 유즈컨텐트로 관리해야함
 
-  const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
 
 
 
-  const toggleNotification = () => {
-    // 알람 토글 로직 구현
-    setIsNotificationEnabled((prev) => !prev);
-  };
 
   return (
     <div className="border-bottom">
@@ -60,7 +64,7 @@ function Navbar() {
 
       {/* Notification */}
           <div className="text-sm font-mono">
-        <button onClick={toggleNotification}>
+        <button >
            <NotificationClickButton />
  
         </button>
@@ -75,7 +79,7 @@ function Navbar() {
         </span>
       ) : (
         <div className="text-sm mt font-mono  "
-        onClick={setIsNotificationEnabled}
+        onClick={gotoLogin}
         >
           <div>
             <LoginButton />
@@ -83,8 +87,7 @@ function Navbar() {
           </div>
         </div>
       )}
-      {isNotificationEnabled?(<LogtinForm onClose={setIsNotificationEnabled} ></LogtinForm>):(<></>)}
-
+    
    
     </div>
 

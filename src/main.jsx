@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ModelContextProvider } from "./context/ModelContextProvider";
 import { BottomMenuProvider } from "./context/BottomMenu";
 import "./index.css";
+import { OpenModalProvider } from "./context/OpenModalProvider";
 
 const queryClient = new QueryClient();
 
@@ -16,8 +17,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <AuthContextProvider>
         <ModelContextProvider>
           <BottomMenuProvider>
+          <OpenModalProvider>
             <ReactQueryDevtools initialIsOpen={true} position='bottom' />
             <App />
+            </OpenModalProvider>
             </BottomMenuProvider>
         </ModelContextProvider>
       </AuthContextProvider>

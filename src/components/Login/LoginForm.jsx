@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
+import { OpenModalContext } from '../../context/OpenModalProvider';
 
-function LogtinForm({onClose}) {
+function LoginForm() {
+  const { closeForm, openForm } = useContext(OpenModalContext);
+
+  const onClose = () => {
+    // 로그인 성공 시 로직 추가
+
+    closeForm(); // Replace "loginForm" with the desired form category
+  };
+
+  const gotoRegister = () => {
+    openForm("registerForm"); // Replace "loginForm" with the desired form category
+  };
+
   return (
     <ModalPortal>
       <PortalBg onClose={onClose}>
@@ -44,11 +57,18 @@ function LogtinForm({onClose}) {
                 <button
                   type='submit'
                   className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
+                  onClick={onClose}
                 >
                   로그인
                 </button>
               </div>
             </form>
+            <button
+              className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
+              onClick={gotoRegister}
+            >
+              등록하기
+            </button>
           </div>
         </div>
       </PortalBg>
@@ -56,4 +76,4 @@ function LogtinForm({onClose}) {
   );
 }
 
-export default LogtinForm;
+export default LoginForm;

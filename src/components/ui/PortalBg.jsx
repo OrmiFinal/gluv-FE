@@ -1,7 +1,14 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import { OpenModalContext } from '../../context/OpenModalProvider';
 
 
-function PortalBg({ onClose, children }) {
+function PortalBg({  children }) {
+  const { closeForm } = useContext(OpenModalContext);
+
+  const onClose = () => {
+    closeForm(); // Replace "loginForm" with the desired form category
+  };
+
   return (
     <div>
 
