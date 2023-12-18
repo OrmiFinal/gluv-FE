@@ -6,6 +6,7 @@ import LoginButton from "./ui/LoginButton";
 import LogoutButton from "./ui/LogoutButton";
 
 import NotificationClickButton from "./ui/NotificationClickButton";
+import LogtinForm from "./Login/LogtinForm";
 
 function Navbar() {
   const { currentUser, logout } = useContext(AuthContext);
@@ -73,13 +74,16 @@ function Navbar() {
           <LogoutButton /> 
         </span>
       ) : (
-        <Link to="/login" className="text-sm mt font-mono  ">
+        <div className="text-sm mt font-mono  "
+        onClick={setIsNotificationEnabled}
+        >
           <div>
             <LoginButton />
+           
           </div>
-        </Link>
+        </div>
       )}
-     
+      {isNotificationEnabled?(<LogtinForm onClose={setIsNotificationEnabled} ></LogtinForm>):(<></>)}
 
    
     </div>
