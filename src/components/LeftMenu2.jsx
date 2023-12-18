@@ -1,6 +1,7 @@
 import React from 'react';
 import DynamicColorButton from './DynamicColorButton';
 import Margin from './Margin';
+import Contour from './ui/Contour';
 
 function LeftMenu2() {
   return (
@@ -24,9 +25,9 @@ function LeftMenu2() {
           <div className=' font-bold'>독서 토론 모임</div>
           <div className='font-mono  text-sm'>모임명</div>
         </div>
-
+        <Margin top="3" />
         {/* 수평 선 */}
-        <div className='w-full h-[1px] mt-2  bg-dark-600'></div>
+        <Contour ></Contour>
         {/* 모집 정보 */}
         <div className='w-48'>
           <div className='text-lg font-bold'>모집명</div>

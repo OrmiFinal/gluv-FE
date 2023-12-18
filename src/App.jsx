@@ -12,7 +12,7 @@ import ProfileEditingPage from './pages/ProfileEditingPage.jsx';
 import RecruitmentPage from './pages/RecruitmentPage.jsx';
 import RecruitmentPostDetailPage from './pages/RecruitmentPostDetailPage.jsx';
 import RecruitmentPostEntryPage from './pages/RecruitmentPostEntryPage.jsx';
-import TeamCreationPage from './pages/TeamCreationPage.jsx';
+import TeamSearchPage from './pages/TeamSearchPage.jsx';
 import TeamMemberManagementPage from './pages/TeamMemberManagementPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
@@ -43,7 +43,7 @@ const My = ({children}) => {
 
 const Profile = ({children}) => {
   return (
-    <div>
+    <div className="flex">
       <LeftMenu />
       {children}
     </div>
@@ -61,7 +61,7 @@ const pages = [
   { path: "/RecruitmentPage", component: RecruitmentPage, layoutType: "Non" },
   { path: "/RecruitmentPostDetailPage", component: RecruitmentPostDetailPage, layoutType: "Non" },
   { path: "/RecruitmentPostEntryPage", component: RecruitmentPostEntryPage, layoutType: "Non" },
-  { path: "/TeamCreationPage", component: TeamCreationPage, layoutType: "Profile" },
+  { path: "/TeamSearchPage", component: TeamSearchPage, layoutType: "Profile" },
   { path: "/TeamMemberManagementPage", component: TeamMemberManagementPage, layoutType: "Profile" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
 ];

@@ -6,14 +6,16 @@ import LoginButton from "./ui/LoginButton";
 import LogoutButton from "./ui/LogoutButton";
 
 import NotificationClickButton from "./ui/NotificationClickButton";
+import { OpenModalContext } from "../context/OpenModalProvider";
 
 function Logo() {
-  const logoContainerStyle = {
+  
+const logoContainerStyle = {
     display: 'flex',
     alignItems: 'center',
   };
-
-  const logoTextStyle = {
+  
+const logoTextStyle = {
     fontSize: '2.5rem',
     fontWeight: 'bold',
     color: '#000000',
@@ -30,23 +32,34 @@ function Logo() {
 }
 
 function Navbar() {
+
+  const { closeForm,openForm } = useContext(OpenModalContext);
+
   const textStyle = {
     fontFamily: 'Spoqa Han Sans Neo, sans-serif',
   };
-  
+
+
   const { currentUser, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-  const logoutBtn = () => {
-    logout();
-    navigate('/home');
+  
+  const gotoLogin = () => {
+    openForm("loginForm"); // Replace "loginForm" with the desired form category
   };
 
-  // 유즈컨텐트로 관리해야함
+  
+
+
+
+
+
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
   const toggleNotification = () => {
     // 알람 토글 로직 구현
     setIsNotificationEnabled((prev) => !prev);
   };
+  
+
 
   return (
     <div className="border-bottom" style={textStyle}>
@@ -59,6 +72,9 @@ function Navbar() {
               <span className="absolute font-bold text-xl text-black"></span>
             </div>
           </Link>
+
+      
+      
         <div className="flex justify-center items-center gap-4">
           {/* Notification */}
           <Link to="/notification/" className="text-sm mt font-mono  ">
@@ -79,6 +95,9 @@ function Navbar() {
             </Link>
             )}
         </div>
+
+
+
     </div>
         {/* Submenus */}
         <div className="flex w-full pb-4">
