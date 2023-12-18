@@ -41,7 +41,6 @@ function Navbar() {
 
 
   const { currentUser, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
   
   const gotoLogin = () => {
     openForm("loginForm"); // Replace "loginForm" with the desired form category
@@ -88,11 +87,13 @@ function Navbar() {
               <LogoutButton /> 
             </span>
             ) : (
-            <Link to="/login" className="text-sm mt font-mono  ">
+            <div  className="text-sm mt font-mono  "
+            onClick={gotoLogin}
+            >
               <div>
                 <LoginButton/>
               </div>
-            </Link>
+            </div>
             )}
         </div>
 

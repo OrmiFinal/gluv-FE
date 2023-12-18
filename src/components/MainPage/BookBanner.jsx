@@ -23,17 +23,20 @@ const BookBanner = () => {
     return (
         <div className="grid grid-cols-3 gap-14 pt-6 items-center justify-center">
             {bookData.map((book, index) => (
-                <div className="flex-col relative justify-center items-center">
-                    <img className="" 
-                        src={book.imageUrl} 
-                        alt={book.title}
-                        style={{ height: '240px', objectFit: 'cover' }}/>
-                    <div className="p-6 text-center">
-                        <h2 className="text-xl font-bold">{book.title}</h2>
-                        <p className="text-sm">{book.author}</p>
-                        <p className="text-sm overflow-hidden max-h-24">{book.description}</p>
-                    </div>
-                </div>
+               <div className="flex flex-col items-center justify-center">
+               <img
+                 className="text-center self-center"
+                 src={book.imageUrl}
+                 alt={book.title}
+                 style={{ height: '240px', objectFit: 'cover' }}
+               />
+               <div className="text-center">
+                 <h2 className="text-xl font-bold">{book.title}</h2>
+                 <p className="text-sm">{book.author}</p>
+                 <p className="text-sm overflow-hidden max-h-24">{book.description}</p>
+               </div>
+             </div>
+             
             ))}
         </div>
         
