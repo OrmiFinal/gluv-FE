@@ -21,7 +21,7 @@ function PortalBg({  children }) {
         }}
       >
  
-        <div className='bg-white '>{children}</div>
+        <div className='bg-white z-50 '>{children}</div>
       </section>
 
 
