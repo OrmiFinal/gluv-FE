@@ -16,6 +16,7 @@ import TeamSearchPage from './pages/TeamSearchPage.jsx';
 import TeamMemberManagementPage from './pages/TeamMemberManagementPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
+import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
@@ -64,6 +65,7 @@ const pages = [
   { path: "/TeamSearchPage", component: TeamSearchPage, layoutType: "Profile" },
   { path: "/TeamMemberManagementPage", component: TeamMemberManagementPage, layoutType: "Profile" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
+  { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
 ];
 
 const router = createBrowserRouter([
