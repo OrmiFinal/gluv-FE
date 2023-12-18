@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
-
+import DynamicColorButton from '../DynamicColorButton'
 function LoginForm() {
   const { closeForm, openForm } = useContext(OpenModalContext);
 
@@ -19,14 +19,14 @@ function LoginForm() {
   return (
     <ModalPortal>
       <PortalBg onClose={onClose}>
-        <div className='flex items-center justify-center'>
-          <div className='bg-white p-6 rounded-md w-96'>
-            <h2 className='text-2xl font-bold mb-4'>로그인</h2>
+        <div className='flex items-center justify-center '>
+          <div className='bg-white p-6 rounded-md w-96 z-50'>
+            <h2 className='text-2xl font-bold mb-4 z-50'>로그인</h2>
             <form>
               <div className='mb-4'>
                 <label
                   htmlFor='email'
-                  className='block text-gray-600 text-sm font-medium mb-2'
+                  className='block text-gray-600 text-sm font-medium mb-2 z-50'
                 >
                   이메일:
                 </label>
@@ -34,7 +34,7 @@ function LoginForm() {
                   type='email'
                   id='email'
                   name='email'
-                  className='border p-2 w-full rounded-md'
+                  className='border p-2 w-full rounded-md z-50'
                   placeholder='이메일을 입력하세요.'
                 />
               </div>
@@ -54,21 +54,26 @@ function LoginForm() {
                 />
               </div>
               <div className='flex items-center justify-center'>
-                <button
-                  type='submit'
-                  className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-                  onClick={onClose}
-                >
-                  로그인
-                </button>
+              
+              <DynamicColorButton
+                color="black"
+                tabIndex={0} 
+                text="로그인"
+                btnstyle="py-1 px-1 w-full "
+                onClick={onClose}
+              />
+
               </div>
             </form>
-            <button
-              className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-              onClick={gotoRegister}
-            >
-              등록하기
-            </button>
+            <div
+            role="button"
+            tabIndex={0}  // 키보드 접근성을 위해 tabIndex 속성을 추가합니다.
+            className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+            onClick={gotoRegister}
+          >
+            등록하기
+
+</div>
           </div>
         </div>
       </PortalBg>
