@@ -64,8 +64,8 @@ function Navbar() {
     <div className="border-bottom" style={textStyle}>
       <nav className="flex-col justify-between my-2">
         {/* 로고 */}
-        <div className="flex items-center justify-between w-full pl-0 pr-4 my-4">
-          <Link className="navbar-brand relative inline-block">
+        <div className="flex items-center justify-between w-full pl-0 pr-4 my-4 ">
+          <Link className="navbar-brand relative inline-block mx-5">
             <div className="flex justify-center align-middle">
               <Logo></Logo>
               <span className="absolute font-bold text-xl text-black"></span>

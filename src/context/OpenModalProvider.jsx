@@ -10,7 +10,7 @@ import LoginRegister from "../components/Login/LoginRegister.jsx";
 export const OpenModalContext = createContext();
 
 export const OpenModalProvider = ({ children }) => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   const openForm = (category) => {
     setSelectedCategory(category);

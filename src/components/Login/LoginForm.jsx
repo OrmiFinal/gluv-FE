@@ -1,79 +1,91 @@
-import React, { useContext } from 'react';
+// LoginForm.js
+
+import React, { useContext, useState } from 'react';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
-import DynamicColorButton from '../DynamicColorButton'
+import DynamicColorButton from '../DynamicColorButton';
+import LoginInput from './LoginInput'; // Import the new component
+import { AuthContext } from '../../context/AuthContext';
+
 function LoginForm() {
   const { closeForm, openForm } = useContext(OpenModalContext);
+  const { login } = useContext(AuthContext);
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const { email, password } = formData;
 
   const onClose = () => {
-    // 로그인 성공 시 로직 추가
-
-    closeForm(); // Replace "loginForm" with the desired form category
+    closeForm();
   };
 
   const gotoRegister = () => {
-    openForm("registerForm"); // Replace "loginForm" with the desired form category
+    openForm('registerForm');
+  };
+
+  const handleLogin = async () => {
+    console.log(formData);
+    login(formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
     <ModalPortal>
       <PortalBg onClose={onClose}>
-        <div className='flex items-center justify-center '>
+        <div className='flex items-center justify-center'>
           <div className='bg-white p-6 rounded-md w-96 z-50'>
             <h2 className='text-2xl font-bold mb-4 z-50'>로그인</h2>
-            <form>
-              <div className='mb-4'>
-                <label
-                  htmlFor='email'
-                  className='block text-gray-600 text-sm font-medium mb-2 z-50'
-                >
-                  이메일:
-                </label>
-                <input
-                  type='email'
-                  id='email'
-                  name='email'
-                  className='border p-2 w-full rounded-md z-50'
-                  placeholder='이메일을 입력하세요.'
-                />
-              </div>
-              <div className='mb-4'>
-                <label
-                  htmlFor='password'
-                  className='block text-gray-600 text-sm font-medium mb-2'
-                >
-                  비밀번호:
-                </label>
-                <input
-                  type='password'
-                  id='password'
-                  name='password'
-                  className='border p-2 w-full rounded-md'
-                  placeholder='비밀번호를 입력하세요.'
-                />
-              </div>
-              <div className='flex items-center justify-center'>
-              
-              <DynamicColorButton
-                color="black"
-                tabIndex={0} 
-                text="로그인"
-                btnstyle="py-1 px-1 w-full "
-                onClick={onClose}
+            <div>
+              {/* Use the new LoginInput component */}
+              <LoginInput
+                label='이메일'
+                type='email'
+                id='email'
+                name='email'
+                value={email}
+                onChange={handleChange}
+                placeholder='이메일을 입력하세요.'
               />
 
-              </div>
-            </form>
-            <div
-            role="button"
-            tabIndex={0}  // 키보드 접근성을 위해 tabIndex 속성을 추가합니다.
-            className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
-            onClick={gotoRegister}
-          >
-            등록하기
+              <LoginInput
+                label='비밀번호'
+                type='password'
+                id='password'
+                name='password'
+                value={password}
+                onChange={handleChange}
+                placeholder='비밀번호를 입력하세요.'
+              />
 
-</div>
+              <div className='flex items-center justify-center'>
+                {/* Handle click event directly */}
+                <DynamicColorButton
+                  color='black'
+                  tabIndex={0}
+                  text='로그인'
+                  btnstyle='py-1 px-1 w-full '
+                  onClick={handleLogin}
+                />
+              </div>
+            </div>
+            <div
+              role='button'
+              tabIndex={0}
+              className='text-sky-300 py-2 px-4 rounded-md transition duration-300'
+              onClick={gotoRegister}
+            >
+              등록하기
+            </div>
           </div>
         </div>
       </PortalBg>

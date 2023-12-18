@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
+import DynamicColorButton from '../DynamicColorButton';
 
 function PasswordChangeForm({ onClose }) {
   const { openForm } = useContext(OpenModalContext);
@@ -133,26 +134,40 @@ function PasswordChangeForm({ onClose }) {
                 )}
               </div>
               <div className='flex items-center justify-center space-x-4'>
-                <button
-                  type='submit'
-                  className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-                >
-                  비밀번호 변경
-                </button>
-                <button
-                  className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-                  onClick={gotoLoginForm}
-                >
-                  로그인 가기
-                </button>
-                <button
-                  className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-                  onClick={gotoRegisterForm}
-                >
-                  회원가입 돌아가기
-                </button>
+              <DynamicColorButton
+                color="black"
+                tabIndex={0} 
+                text="회원가입"
+                btnstyle="py-1 px-1 w-full "
+           
+              />
+
+             
               </div>
             </form>
+
+            <div className='flex  justify-around'>
+
+            <div
+            role="button"
+            tabIndex={0}  // 키보드 접근성을 위해 tabIndex 속성을 추가합니다.
+            className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+            onClick={gotoLoginForm}
+          >
+              로그인 가기
+</div>
+               
+
+                <div
+            role="button"
+            tabIndex={0}  // 키보드 접근성을 위해 tabIndex 속성을 추가합니다.
+            className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+            onClick={gotoRegisterForm}
+          >
+              회원가입 돌아가기
+
+</div>
+            </div>
           </div>
         </div>
       </PortalBg>

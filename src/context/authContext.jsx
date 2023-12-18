@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (inputs) => {
     try {
       console.log(inputs);
-      const res = await axios.post("http://127.0.0.1:8000/accounts/login/", inputs);
+      const res = await axios.post("http://127.0.0.1:8000/users/login/", inputs);
       console.log(res.data);
       setCurrentUser(res.data);
 
@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
   const registerUser = async (inputs) => {
     try {
       console.log(inputs.formData);
-      const res = await axios.post("http://localhost:8000/accounts/join/", inputs.formData);
+      const res = await axios.post("http://127.0.0.1:8000/users/signup/", inputs.formData);
       setCurrentUser(res.data);
     } catch (error) {
       console.error("Registration failed:", error.message);
@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify({
         access_token: currentUser.access_token,
         refresh_token: currentUser.refresh_token,
-        user: currentUser.user
+        user: currentUser.use 
       }));
     }
   }, [currentUser]);
