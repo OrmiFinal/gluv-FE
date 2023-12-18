@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
+import DynamicColorButton from '../DynamicColorButton';
 
 function LoginRegister({ onClose }) {
   const [email, setEmail] = useState('');
@@ -83,36 +84,47 @@ function LoginRegister({ onClose }) {
   return (
     <ModalPortal>
       <PortalBg onClose={onClose}>
-        <div className='flex items-center justify-center'>
-          <div className='bg-white p-6 rounded-md w-96'>
-            <h2 className='text-2xl font-bold mb-4'>회원가입</h2>
+        <div className='flex items-center justify-center z-50'>
+          <div className='bg-white p-6 rounded-md w-96 z-50'>
+            <h2 className='text-2xl font-bold mb-4 z-50'>회원가입</h2>
             <form onSubmit={handleSubmit}>
               {renderInput('이메일', 'email', email, handleEmailChange, emailError)}
               {renderInput('닉네임', 'nickname', nickname, handlenicknameChange, nicknameError)}
               {renderInput('비밀번호', 'password', password, handlePasswordChange, passwordError)}
               {renderInput('비밀번호 확인', 'confirmPassword', confirmPassword, handleConfirmPasswordChange, confirmPasswordError)}
               <div className='flex items-center justify-center'>
-                <button
-                  type='submit'
-                  className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-                >
-                  회원가입
-                </button>
+              <DynamicColorButton
+                color="black"
+                tabIndex={0} 
+                text="회원가입"
+                btnstyle="py-1 px-1 w-full "
+           
+              />
               </div>
             </form>
-            <button
-              className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-              onClick={gotoRegister}
-            >
-              로그인 가기
-            </button>
+            <div className='flex justify-around'>
+            <div
+            role="button"
+            tabIndex={0}  // 키보드 접근성을 위해 tabIndex 속성을 추가합니다.
+            className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+            onClick={gotoRegister}
+          >
+             로그인으로
 
-            <button
-              className='bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300'
-              onClick={gotoPasswordChangeForm}
-            >
+</div>
+<div
+            role="button"
+            tabIndex={0}  // 키보드 접근성을 위해 tabIndex 속성을 추가합니다.
+            className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+            onClick={gotoPasswordChangeForm}
+          >
               비밀번호 찾기
-            </button>
+
+</div>
+</div>
+
+          
+
           </div>
         </div>
       </PortalBg>

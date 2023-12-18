@@ -8,6 +8,7 @@ const EditorComponent = ({ content, onChange }) => {
       <ReactQuill
         theme="snow"
         style={{ width: "100%", height: "400px", zIndex: "1" }}
+        className='z-10'
         value={content}
         onChange={(newContent) => onChange(newContent)}
         placeholder="내용을 작성해주세요."
