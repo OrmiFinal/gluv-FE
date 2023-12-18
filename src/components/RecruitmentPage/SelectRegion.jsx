@@ -3,7 +3,16 @@ import React, { useState } from 'react';
 
 const SelectRegion = () => {
   const [showRegions, setShowRegions] = useState(false);
-  const regions = ["경남", "서울", "경북", "인천", "대구", "광주", "대전", "울산"];
+  const regions = [   '서울',
+  '경기',
+  '강원',
+  '충청북도',
+  '충청남도',
+  '전라북도',
+  '전라남도',
+  '경상북도',
+  '경상남도',
+  '제주특별자치도'];
 
   return (
     <div className="container mx-auto mt-8">
