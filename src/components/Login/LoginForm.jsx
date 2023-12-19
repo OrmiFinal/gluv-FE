@@ -28,8 +28,15 @@ function LoginForm() {
   };
 
   const handleLogin = async () => {
-    console.log(formData);
-    login(formData);
+    try {
+      const result = await login(formData);
+      // 로그인이 성공하면 Modal을 닫습니다.
+      if(result === true){
+        closeForm();
+      }
+    } catch (error) {
+      console.error("Login failed:", error.message);
+    }
   };
 
   const handleChange = (e) => {

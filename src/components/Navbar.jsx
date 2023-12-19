@@ -33,21 +33,19 @@ const logoTextStyle = {
 }
 
 function Navbar() {
-
-  const { closeForm,openForm } = useContext(OpenModalContext);
+  const { closeForm, openForm } = useContext(OpenModalContext);
 
   const textStyle = {
     fontFamily: 'Spoqa Han Sans Neo, sans-serif',
   };
 
-
   const { currentUser, logout } = useContext(AuthContext);
 
-  
-  console.log(currentUser?currentUser:"currentUser 가없음")
+
   const gotoLogin = () => {
     openForm("loginForm"); // Replace "loginForm" with the desired form category
   };
+
 
   const gotoAlertForm = () => {
     openForm("alertForm"); // Replace "loginForm" with the desired form category
@@ -61,13 +59,13 @@ function Navbar() {
 
 
 
+
+
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
   const toggleNotification = () => {
     // 알람 토글 로직 구현
     setIsNotificationEnabled((prev) => !prev);
   };
-  
-
 
   return (
     <div className="border-bottom" style={textStyle}>
@@ -80,9 +78,6 @@ function Navbar() {
               <span className="absolute font-bold text-xl text-black"></span>
             </div>
           </Link>
-
-      
-      
         <div className="flex justify-center items-center gap-4">
           {/* Notification */}
           <div to="/notification/" className="text-sm mt font-mono  "
@@ -93,9 +88,11 @@ function Navbar() {
             </div>
           </div>
           {/* Login/Logout */}
-          {!currentUser ? (
+
+          {currentUser ? (
             <div className="flex">
             <span className="text-sm font-mono " onClick={logout}>
+
               <LogoutButton /> 
             </span>
             <Margin left="2"></Margin>

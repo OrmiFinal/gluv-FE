@@ -17,9 +17,9 @@ function RecentPostList ({ category }){
           <a className="text-body1 text-gray-600 font-medium ml-auto" href="/community?category=1">더보기</a>
         </div><hr className="border-t-gray-200 border-t-2 mb-5"/>
         <ul className="flex flex-col gap-4">
-        {postData.map((card) => (
-          <li>
-          <a key={card.id} className="flex leading-5" href="/community/view/3177?category=1">
+        {postData.map((card,index) => (
+          <li key={index}>
+          <a  className="flex leading-5" href="/community/view/3177?category=1">
             <div className="flex mr-2 min-w-0">
               <div className="font-medium whitespace-nowrap overflow-hidden mr-2 text-subtitle overflow-ellipsis">{card.title}</div>
             </div>
