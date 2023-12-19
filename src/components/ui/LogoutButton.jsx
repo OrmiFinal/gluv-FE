@@ -9,8 +9,11 @@ const LogoutButton = ({ onClick }) => {
   };
 
   return (
-    <button onClick={onClick} style={textStyle} className='flex flex-col justify-center items-center'>
-      <FaSignOutAlt/>로그아웃
+
+    <button className='flex flex-col items-center justify-center text-center' onClick={onClick}>
+      <FaSignOutAlt className='w-5' />
+      <div>로그아웃</div>
+
     </button>
   );
 };
