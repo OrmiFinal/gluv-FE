@@ -137,7 +137,7 @@ function PasswordChangeForm({ onClose }) {
               <DynamicColorButton
                 color="black"
                 tabIndex={0} 
-                text="회원가입"
+                text="비밀번호 찾기"
                 btnstyle="py-1 px-1 w-full "
            
               />
@@ -154,8 +154,8 @@ function PasswordChangeForm({ onClose }) {
             className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
             onClick={gotoLoginForm}
           >
-              로그인 가기
-</div>
+             로그인
+          </div>
                
 
                 <div
