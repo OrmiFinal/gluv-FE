@@ -13,6 +13,7 @@ import RecruitmentPage from './pages/RecruitmentPage.jsx';
 import RecruitmentPostDetailPage from './pages/RecruitmentPostDetailPage.jsx';
 import RecruitmentPostEntryPage from './pages/RecruitmentPostEntryPage.jsx';
 import TeamSearchPage from './pages/TeamSearchPage.jsx';
+import TeamManagementPage from './pages/TeamManagementPage.jsx';
 import TeamMemberManagementPage from './pages/TeamMemberManagementPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
@@ -63,7 +64,8 @@ const pages = [
   { path: "/RecruitmentPostDetailPage", component: RecruitmentPostDetailPage, layoutType: "Non" },
   { path: "/RecruitmentPostEntryPage", component: RecruitmentPostEntryPage, layoutType: "Non" },
   { path: "/TeamSearchPage", component: TeamSearchPage, layoutType: "Profile" },
-  { path: "/TeamMemberManagementPage", component: TeamMemberManagementPage, layoutType: "Profile" },
+  { path: "/TeamManagementPage", component: TeamManagementPage, layoutType: "Profile" },
+  { path: "/TeamMemberManagementPage", component: TeamMemberManagementPage, layoutType: "Non" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
 ];
