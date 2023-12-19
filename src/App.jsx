@@ -14,7 +14,8 @@ import RecruitmentPostDetailPage from './pages/RecruitmentPostDetailPage.jsx';
 import RecruitmentPostEntryPage from './pages/RecruitmentPostEntryPage.jsx';
 import TeamSearchPage from './pages/TeamSearchPage.jsx';
 import TeamManagementPage from './pages/TeamManagementPage.jsx';
-import TeamMemberManagementPage from './pages/TeamMemberManagementPage.jsx';
+import EnrollmentMemberPage from './pages/EnrollmentMemberPage.jsx';
+import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
@@ -22,6 +23,7 @@ import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
 import LeftMenu2 from "./components/LeftMenu2.jsx";
+import LeftMenu3 from "./components/LeftMenu3.jsx";
 
 const SiteLayout = () => {
   return (
@@ -52,6 +54,15 @@ const Profile = ({children}) => {
   );
 };
 
+const Enroll = ({children}) => {
+  return (
+    <div className="flex">
+      <LeftMenu3 />
+      {children}
+    </div>
+  );
+};
+
 // 페이지 정보 정의
 const pages = [
   { path: "/", component: MainPage, layoutType: "Non" },
@@ -65,7 +76,8 @@ const pages = [
   { path: "/RecruitmentPostEntryPage", component: RecruitmentPostEntryPage, layoutType: "Non" },
   { path: "/TeamSearchPage", component: TeamSearchPage, layoutType: "Profile" },
   { path: "/TeamManagementPage", component: TeamManagementPage, layoutType: "Profile" },
-  { path: "/TeamMemberManagementPage", component: TeamMemberManagementPage, layoutType: "Non" },
+  { path: "/unEnrollmentMemberPage", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
+  { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
 ];
@@ -82,7 +94,10 @@ const router = createBrowserRouter([
             <Profile key={path}>{React.createElement(component)}</Profile>
           ) : layoutType === "My" ? (
             <My key={path}>{React.createElement(component)}</My>
-          ) : (
+          ) : 
+          layoutType === "Enroll" ? (
+            <Enroll key={path}>{React.createElement(component)}</Enroll>
+          ) :(
             // Handle other layout types as needed
             React.createElement(component)
           )}

@@ -4,9 +4,9 @@ import Margin from '../components/Margin';
 import BulletinBoard from '../components/RecruitmentPage/BulletinBoard';
 import Contour from '../components/ui/Contour';
 import TitleComponent from '../components/RecruitmentPage/TitleComponent';
-import TeamBox from '../components/TeamBox';
+import EnrollTeamBox from '../components/EnrollTeamBox';
 
-function TeamManagementPage() {
+function EnrollmentMemberPage() {
   const profileDataList = [
     {
       profilePicture: '프로필사진의_이미지_경로1.jpg',
@@ -43,22 +43,18 @@ function TeamManagementPage() {
           <Margin top="3" />
           <div className='m-3'>
             <div className='flex'>
-              <TitleComponent title="활동중인 모집" isFontBold={"fontBold"} plustailwind="text-sm font-mono " />
-              <Margin left="3" />
-              <TitleComponent title="신청중인 모임" isFontBold={"fontBold"} plustailwind="text-sm font-mono " />
+            <div className='  text-2xl font-bold '> 신청 요청 관리</div>
             </div>
             <Contour />
             <Margin top="2" plustailwind="h-3" />
             <Margin top="3" plustailwind="h-3" />
             <div className='border p-2 flex flex-col rounded-md'>
-              <div className='m-8 ml-6'>
               {profileDataList.map((profileData, index) => (
-                <div key={index} >
-                  <TeamBox profileData={profileData} />
+                <div key={index}>
+                  <EnrollTeamBox profileData={profileData} />
                   <Margin top="3" plustailwind="h-3" />
                 </div>
               ))}
-              </div>
             </div>
             <Margin top="2" plustailwind="h-4" />
             <Contour />
@@ -73,4 +69,4 @@ function TeamManagementPage() {
   );
 }
 
-export default TeamManagementPage;
+export default EnrollmentMemberPage;
