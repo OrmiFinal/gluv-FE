@@ -7,6 +7,7 @@ import LogoutButton from "./ui/LogoutButton";
 
 import NotificationClickButton from "./ui/NotificationClickButton";
 import { OpenModalContext } from "../context/OpenModalProvider";
+import ProfileButton from "./ui/ProfileButton";
 
 function Logo() {
   
@@ -41,11 +42,19 @@ function Navbar() {
 
 
   const { currentUser, logout } = useContext(AuthContext);
+
+  
   console.log(currentUser?currentUser:"currentUser 가없음")
   const gotoLogin = () => {
     openForm("loginForm"); // Replace "loginForm" with the desired form category
   };
 
+  const gotoAlertForm = () => {
+    openForm("alertForm"); // Replace "loginForm" with the desired form category
+  };
+  const gotoProfleForm = () => {
+    openForm("profleForm"); // Replace "loginForm" with the desired form category
+  };
   
 
 
@@ -76,16 +85,24 @@ function Navbar() {
       
         <div className="flex justify-center items-center gap-4">
           {/* Notification */}
-          <Link to="/notification/" className="text-sm mt font-mono  ">
+          <div to="/notification/" className="text-sm mt font-mono  "
+          onClick={gotoAlertForm}
+          >
             <div className="text-sm font-mono">
               <NotificationClickButton className="m-4 p-4"/>
             </div>
-          </Link>
+          </div>
           {/* Login/Logout */}
-          {currentUser ? (
-            <span className="text-sm font-mono" onClick={logout()}>
+          {!currentUser ? (
+            <div className="flex">
+            <span className="text-sm font-mono " onClick={logout}>
               <LogoutButton /> 
             </span>
+            <Margin left="2"></Margin>
+             <span className="text-sm font-mono " onClick={gotoProfleForm}>
+             <ProfileButton /> 
+           </span>
+           </div>
             ) : (
             <div  className="text-sm mt font-mono  "
             onClick={gotoLogin}
