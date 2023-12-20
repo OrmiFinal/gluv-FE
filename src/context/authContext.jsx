@@ -14,6 +14,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (inputs) => {
     try {
+      
       const res = await axios.post("http://127.0.0.1:8000/users/login/", inputs);
       const token = res.data
       setCurrentUser(token);
@@ -31,9 +32,10 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const registerUser = async (inputs) => {
+    
     try {
-      console.log(inputs.formData);
-      const res = await axios.post("http://127.0.0.1:8000/users/signup/", inputs.formData);
+      console.log(inputs);
+      const res = await axios.post("http://127.0.0.1:8000/users/signup/", inputs);
       // 성공적으로 로그인한 경우
       if (res.status === 200) {
         setCurrentUser(res.data);

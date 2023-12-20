@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 
-const SelectRegion = ({ onRegionSelect }) => {
+const SelectRegion = ({ onRegionSelect ,plustailwind}) => {
   const [showRegions, setShowRegions] = useState(false);
   const regions = [
     '서울', '경기', '충남', '충북' ,'강원' ,'경남', '경북', '제주', '전남' ,'전북'
@@ -10,9 +10,10 @@ const SelectRegion = ({ onRegionSelect }) => {
     onRegionSelect(selectedRegion);
     setShowRegions(false);
   };
+  
 
   return (
-    <div className="container mx-auto mt-8  w-48">
+    <div className="container mx-auto mt-8  w-48 ">
       <div className="button-container mb-4"></div>
       {showRegions && (
         <div className="region-list border border-gray-300 p-4">
