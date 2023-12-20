@@ -10,7 +10,7 @@ export const ModelContextProvider = ({ children }) => {
     subcategory: '',
   });
   
-
+  const [content, setContent] = useState({});
 
   const ToggleMiniChatModel = ({content}) => {
 
@@ -19,7 +19,7 @@ export const ModelContextProvider = ({ children }) => {
   };
 
   return (
-    <ModelContext.Provider value={{ selectedCategory, ToggleMiniChatModel }}>
+    <ModelContext.Provider value={{ selectedCategory, ToggleMiniChatModel,setContent ,content}}>
       {children}
     </ModelContext.Provider>
   );
