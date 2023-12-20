@@ -15,7 +15,7 @@ export const FetchNoticeData = async () => {
             },
         });
 
-        console.log("Notice Data:", res.data);
+       
 
         // rest of the code...
         return res.data;
@@ -32,8 +32,7 @@ export const FetchCreatePost = async ({ title, content, category }) => {
             console.error("Access token not available");
             return null;
         }
-        console.log(accessToken);
-        console.log("통신전");
+   
 
         const res = await axios.post("http://localhost:8000/posts/", {
             title: title,
@@ -45,9 +44,7 @@ export const FetchCreatePost = async ({ title, content, category }) => {
             }
         });
 
-        console.log("통신후");
-        console.log("Create Data:", res.data);
-
+  
         // rest of the code...
         return res.data;
     } catch (error) {
@@ -55,3 +52,36 @@ export const FetchCreatePost = async ({ title, content, category }) => {
         return null;
     }
 };
+
+
+export const FetchAllContext = async ({ search, category, order_by, order, page, author }) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const accessToken = user?.access_token || "";
+        if (!accessToken) {
+            console.error("Access token not available");
+            return null;
+        }
+
+        const res = await axios.get("http://localhost:8000/posts/", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+            params: {
+                search: search,
+                category: category,
+                order_by: order_by,
+                order: order,
+                page: page,
+                author: author
+            }
+        });
+
+        // rest of the code...
+        return res.data;
+    } catch (error) {
+        console.error("Fetching notice failed:", error.message);
+        return null;
+    }
+};
+

@@ -19,7 +19,7 @@ import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
-import Chating from './pages/Chating.jsx';
+import Chatting from './pages/Chatting.jsx';
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
@@ -83,7 +83,7 @@ const pages = [
   { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
-  { path: "/Chating", component: Chating, layoutType: "Non" },
+  { path: "/Chatting", component: Chatting, layoutType: "Non" },
 ];
 
 const router = createBrowserRouter([
