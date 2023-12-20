@@ -35,29 +35,29 @@ function ProfileForm() {
 
   useEffect(() => {
     const decodedToken = getDecodedToken();
-
     if (decodedToken) {
-      const token = localStorage.getItem('user');
+      const tokenObject = JSON.parse(localStorage.getItem('user'));
+      const accessToken = tokenObject.access_token;
       const userId = decodedToken.user_id;
-      console.log(userId)
-      axios.get(`http://127.0.0.1:8000/users/${userId}/profile`,{
+      console.log(userId);
+      axios.get(`http://127.0.0.1:8000/users/${userId}/profile`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
-        .then(response => {
-          const data = response.data;
-          setProfileData({
-            profilePicture: data.profilePicture,
-            nickname: data.nickname,
-            email: data.email,
-          });
-        })
-        .catch(error => {
-          console.error('Failed to fetch user profile:', error);
+      .then(response => {
+        const data = response.data;
+        setProfileData({
+          profilePicture: data.profilePicture,
+          nickname: data.nickname,
+          email: data.email,
         });
+      })
+      .catch(error => {
+        console.error('Failed to fetch user profile:', error);
+      });
     }
-  }, []); 
+  }, []);
 
   return (
     <ModalPortal>
