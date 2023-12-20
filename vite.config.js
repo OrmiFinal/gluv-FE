@@ -1,13 +1,20 @@
+// vite.config.js
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     port: 3001,
     proxy: {
-      '/api': 'http://localhost:8000', 
+      '/api': {
+        target: 'http://localhost:8000', 
+        changeOrigin: true, // 변경된 Origin을 설정
+      },
+      '/socket.io': {
+        target: 'ws://localhost:8000',
+        ws: true
+      }
     },
   },
 });
