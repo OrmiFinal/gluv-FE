@@ -54,29 +54,63 @@ export const FetchCreatePost = async ({ title, content, category }) => {
 };
 
 
-export const FetchAllContext = async ({ search, category, order_by, order, page, author }) => {
+
+export const FetchAllContext = async ({ search, category,subcategory ,order_by, order, page, author }) => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
         const accessToken = user?.access_token || "";
+        console.log("category")
+        console.log("category")
+        console.log("category")
+        console.log("category")
+        console.log(category)
+        console.log(subcategory)
         if (!accessToken) {
             console.error("Access token not available");
             return null;
         }
+  
+        let URLvalue;
 
-        const res = await axios.get("http://localhost:8000/posts/", {
+        if (category === "공지상황") {
+            URLvalue = "creation";
+        } else if(category === "질문게시판"){
+            URLvalue = "qna";
+        } 
+        else if (category === "자유게시판") {
+            if (subcategory === "소설") {
+                URLvalue = "comm-novel";
+            } else if (subcategory === "시") {
+                URLvalue = "comm-poem";
+            } else if (subcategory === "수필") {
+                URLvalue = "comm-essay";
+            } else {
+                URLvalue = "comm";
+            }
+        }
+        else if (category === "창작게시판") {
+            if (subcategory === "소설") {
+                URLvalue = "creation-novel";
+            } else if (subcategory === "시") {
+                URLvalue = "creation-poem";
+            } else if (subcategory === "수필") {
+                URLvalue = "creation-essay";
+            } else {
+                URLvalue = "creation";
+            }
+        }
+        console.log("URLvalue")
+        console.log("URLvalue")
+        console.log(URLvalue)
+        console.log(URLvalue)
+        console.log(URLvalue)
+        console.log(URLvalue)
+        const res = await axios.get(`http://localhost:8000/posts/?category=${URLvalue}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
-            params: {
-                search: search,
-                category: category,
-                order_by: order_by,
-                order: order,
-                page: page,
-                author: author
-            }
         });
-
+      
         // rest of the code...
         return res.data;
     } catch (error) {
@@ -84,4 +118,3 @@ export const FetchAllContext = async ({ search, category, order_by, order, page,
         return null;
     }
 };
-

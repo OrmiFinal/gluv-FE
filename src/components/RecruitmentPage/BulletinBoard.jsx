@@ -19,7 +19,7 @@ function BulletinBoard({ data }) {
           <span className=" w-[15vw] font-lato">날짜</span>
           <span className=" w-[5vw] font-lato">조회수</span>
         </div>
-        {data.map((item, index) => (
+        {data && data.map((item, index) => (
           <div key={index} className="flex items-center justify-start border p-2 rounded-md w-full hover:bg-gray-100">
             <span className='font-semibold text-sm w-[15vw]'>{item.id}</span>
             <span className='font-lato text-sm w-[23vw]'>{item.title}</span>

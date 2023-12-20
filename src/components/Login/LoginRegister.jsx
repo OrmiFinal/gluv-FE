@@ -35,7 +35,7 @@ function LoginRegister() {
     openForm('passwordChangeForm');
   }
   const handleLogin = async () => {
-    console.log(formData);
+
     await registerUser(formData);
   };
 

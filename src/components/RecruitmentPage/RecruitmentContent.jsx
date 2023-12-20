@@ -9,18 +9,41 @@ import Contour from '../ui/Contour';
 import TitleComponent from './TitleComponent'; // Adjust the path as needed
 import BulletinBoard from './BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
-import { FetchNoticeData } from '../../api/post';
+import { FetchAllContext, FetchNoticeData } from '../../api/post';
 
 function RecruitmentContent() {
   const { screenSize } = useWindowSize();
   const [posturl, setPostUrl] = useState({
-    category: "",
+    category: "공지상황",
     subcategorie: "",
   });
+  const { selectedCategory,content } = useContext(ModelContext);
  
+  const [postData, setPostData] = useState([]);
+
   const [noticeData, setNoticeData] = useState([]);
 
-  const { selectedCategory } = useContext(ModelContext);
+  useEffect(() => {
+    const fetchNoticeData = async () => {
+      try {
+        const response = await FetchNoticeData();
+  
+        if (response && response.results) {
+          // Filter out null values from content.results
+          const filteredContentResults = content.results.filter(result => result !== null);
+  
+          // Combine noticeData and filteredContentResults using the spread operator
+          setNoticeData([...response.results, ...filteredContentResults]);
+        }
+      } catch (error) {
+        console.error('Error fetching notice data:', error.message);
+      }
+    };
+  
+    fetchNoticeData();
+  }, [content.results]);
+
+
   const categories = [
     { name: '공지사항', subcategories: [] },
     { name: '질문게시판', subcategories: [] },
@@ -34,13 +57,18 @@ function RecruitmentContent() {
     },
   ];
 
+  
   useEffect(() => {
     const fetchNoticeData = async () => {
       try {
         const response = await FetchNoticeData();
-        console.log()
+
         if (response && response.results) {
-          setNoticeData(response.results);
+          if(content.results !== null){
+      
+            setNoticeData(response.results+content.results);
+          }
+          setNoticeData(response.results)
         }
       } catch (error) {
         console.error('Error fetching notice data:', error.message);
@@ -53,17 +81,13 @@ function RecruitmentContent() {
 
 
   useEffect(() => {
-   console.log(noticeData)
+
    setPostUrl((prev) => ({
     ...prev,
     category:selectedCategory,
    
   }));
-  console.log("posturl")
-  console.log("posturl")
-  console.log(posturl)
-  console.log("posturl")
-  console.log("posturl")
+  
   }, [noticeData]); // Run the effect only once on component mount
 
   const inputClasses = {
@@ -80,7 +104,8 @@ function RecruitmentContent() {
       category: selectedCategory.category,
       subcategorie: url,
     }));
-    console.log(posturl)
+    fetchData()
+   console.log(fetchData())
 
   };
 
@@ -124,7 +149,10 @@ function RecruitmentContent() {
 
             <Contour></Contour>
             <Margin top="2" plustailwind="h-4" />
-            <BulletinBoard data={noticeData} />
+             <BulletinBoard data={noticeData} />
+         
+        <Margin top="2" plustailwind="h-4" />
+        
             <Margin top="2" plustailwind="h-4" />
 
             <Margin top="2" />
