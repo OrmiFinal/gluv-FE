@@ -14,7 +14,6 @@ const BookBanner = () => {
                 }
 
                 const data = await response.json();
-                console.log(data.data)
                 setBookData(data.data);
             } catch (error) {
                 console.error('Error fetching book data:', error.message);
@@ -28,23 +27,26 @@ const BookBanner = () => {
         <div className="grid grid-cols-3 gap-14 pt-6 items-center justify-center">
             {Array.isArray(bookData) && 
                 bookData.map((book, index) => {
-                    console.log(`Processing book ${index + 1}:`, book);
-                    
                     return(
-                        <div key={index} 
+                        <a href={book.detail_url}>
+                            <div key={index} 
                             className="flex flex-col items-center justify-center">
                             <img
-                                className="text-center self-center"
+                                className="text-center self-center mb-2 md:mb-3"
                                 src={book.book_image}
                                 alt={book.title}
                                 style={{ height: '240px', objectFit: 'cover' }}
                             />
                             <div className="text-center">
-                                <h2 className="text-xl font-bold">{book.title}</h2>
+                                <h2 className="text-sm font-bold">
+                                    {book.title}
+                                </h2>
                                 <p className="text-sm">{book.author}</p>
                                 <p className="text-sm overflow-hidden max-h-24">{book.description}</p>
                             </div>
                         </div>
+                        </a>
+
                     )
                 })}
         </div>
