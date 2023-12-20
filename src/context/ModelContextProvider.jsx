@@ -6,7 +6,7 @@ export const ModelContext = createContext();
 
 export const ModelContextProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState({
-    category: '',
+    category: '공지사항',
     subcategory: '',
   });
   
@@ -15,7 +15,7 @@ export const ModelContextProvider = ({ children }) => {
   const ToggleMiniChatModel = ({content}) => {
 
     setSelectedCategory(content);
-    console.log('asdad'+selectedCategory.category)
+
   };
 
   return (

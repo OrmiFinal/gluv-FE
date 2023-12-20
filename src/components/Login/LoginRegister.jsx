@@ -6,20 +6,19 @@ import PortalBg from '../ui/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import DynamicColorButton from '../DynamicColorButton';
 import LoginInput from './LoginInput';
-import { AuthContext } from '../../context/AuthContext';
-import SelectRegion from '../RecruitmentPage/SelectRegion';
+import SelectButton from '../../components/ui/SelectButton';
+import { AuthContext } from '../../context/authContext';
 
 function LoginRegister() {
   const { closeForm, openForm } = useContext(OpenModalContext);
-  const { login, register } = useContext(AuthContext);
-
+  const { registerUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
     nickname: '',
     selectedRegion: '',
-    error: '', // Add a field for error message
+    error: '',
   });
 
   const { email, password, confirmPassword, nickname, selectedRegion, error } = formData;
@@ -32,13 +31,12 @@ function LoginRegister() {
     openForm('loginForm');
   };
 
-  const gotoPasswordChange = () => {
+  const gotoPassWordChange =()=>{
     openForm('passwordChangeForm');
-  };
-
+  }
   const handleLogin = async () => {
     console.log(formData);
-    login(formData);
+    await registerUser(formData);
   };
 
   const handleRegister = async () => {
@@ -47,7 +45,7 @@ function LoginRegister() {
       console.error("Passwords don't match");
       setFormData({
         ...formData,
-        error: "Passwords don't match", // Set the error in state
+        error: "Passwords don't match",
       });
       return;
     }
@@ -60,7 +58,7 @@ function LoginRegister() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-      error: '', // Clear the error when the user makes changes
+      error: '',
     });
   };
 
@@ -71,14 +69,27 @@ function LoginRegister() {
     });
   };
 
+  const regions = [
+    '서울', '경기', '충남', '충북' ,'강원' ,'경남', '경북', '제주', '전남' ,'전북'
+  ];
+
   return (
     <ModalPortal>
       <PortalBg onClose={onClose}>
         <div className='flex items-center justify-center'>
           <div className='bg-white p-6 rounded-md w-96 z-50'>
-            <h2 className='text-2xl font-bold mb-4 z-50'>로그인</h2>
+            <h2 className='text-2xl font-bold mb-4 z-50'>회원가입</h2>
             <div>
               <div className=''>{error}</div>
+
+              <SelectButton
+                btnTitle={selectedRegion || '지역 선택'}
+                btnoptions={regions}
+                onOptionSelect={handleRegionSelect}
+                title="지역 선택"
+                size="w-[30vw]"
+              />
+
               <LoginInput
                 label='이메일'
                 type='email'
@@ -119,17 +130,16 @@ function LoginRegister() {
                 placeholder='비밀번호를 확인하세요.'
               />
 
-              <SelectRegion onRegionSelect={handleRegionSelect} />
-
-              <div className='flex items-center justify-center'>
-                <DynamicColorButton
-                  color='black'
-                  tabIndex={0}
-                  text='회원가입'
-                  btnstyle='py-1 px-1 w-full '
-                  onClick={handleLogin}
-                />
-              </div>
+              
+            </div>
+            <div className='flex items-center justify-center'>
+              <DynamicColorButton
+                color='black'
+                tabIndex={0}
+                text='회원가입'
+                btnstyle='py-1 px-1 w-full '
+                onClick={handleLogin}
+              />
             </div>
             <div className='flex justify-around'>
               <div
@@ -144,9 +154,9 @@ function LoginRegister() {
                 role='button'
                 tabIndex={0}
                 className='text-sky-300 py-2 px-4 rounded-md transition duration-300'
-                onClick={gotoPasswordChange}
+                onClick={gotoPassWordChange}
               >
-                비밀번호찾기
+                비밀번호 찾기
               </div>
             </div>
           </div>
