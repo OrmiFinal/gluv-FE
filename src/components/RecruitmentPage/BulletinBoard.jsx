@@ -3,6 +3,12 @@ import React from 'react';
 import Margin from '../Margin';
 
 function BulletinBoard({ data }) {
+  const formatDate = (datetimeString) => {
+    const parsedDate = new Date(datetimeString);
+    const formattedDate = parsedDate.toISOString().split('T')[0];
+    return formattedDate;
+  };
+
   return (
     <div>
       <div className='flex flex-col'>
@@ -15,11 +21,11 @@ function BulletinBoard({ data }) {
         </div>
         {data.map((item, index) => (
           <div key={index} className="flex items-center justify-start border p-2 rounded-md w-full hover:bg-gray-100">
-            <span className='font-semibold text-sm w-[15vw]'>{item.title}</span>
-            <span className='font-lato text-sm w-[23vw]'>{item.content}</span>
+            <span className='font-semibold text-sm w-[15vw]'>{item.id}</span>
+            <span className='font-lato text-sm w-[23vw]'>{item.title}</span>
             <span className='font-lato text-sm w-[10vw]'>{item.author}</span>
-            <span className="text-sm w-[15vw] font-lato">{item.date}</span>
-            <span className="text-sm w-[5vw] font-lato">{item.views}</span>
+            <span className="text-sm w-[15vw] font-lato">{formatDate(item.created_at)}</span>
+            <span className="text-sm w-[5vw] font-lato">{item.view_count}</span>
           </div>
         ))}
       </div>
