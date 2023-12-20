@@ -118,3 +118,56 @@ export const FetchAllContext = async ({ search, category,subcategory ,order_by, 
         return null;
     }
 };
+
+
+
+export const FetchPostData = async ({id}) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const accessToken = user?.access_token || "";
+        if (!accessToken) {
+            console.error("Access token not available");
+            return null;
+        }
+   
+        const res = await axios.get(`http://localhost:8000/posts/${id}/`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+     
+
+        // rest of the code...
+        return res.data.data;
+    } catch (error) {
+        console.error("Fetching notice failed:", error.message);
+        return null;
+    }
+};
+
+
+
+
+export const FetchDelectData = async ({id}) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const accessToken = user?.access_token || "";
+        if (!accessToken) {
+            console.error("Access token not available");
+            return null;
+        }
+   
+        const res = await axios.delete(`http://localhost:8000/posts/${id}/`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+     
+
+        // rest of the code...
+        return res.data.data;
+    } catch (error) {
+        console.error("Fetching notice failed:", error.message);
+        return null;
+    }
+};

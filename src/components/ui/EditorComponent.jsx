@@ -5,6 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 const EditorComponent = ({ content, onChange }) => {
   return (
     <div className="h-[400px] w-full flex items-center justify-center z-10">
+      
       <ReactQuill
         theme="snow"
         style={{ width: "100%", height: "400px", zIndex: "1" }}
