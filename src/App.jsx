@@ -83,7 +83,7 @@ const pages = [
   { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
-  { path: "/Chatting", component: Chatting, layoutType: "Non" },
+  { path: "/Chatting/:room_id", component: Chatting, layoutType: "Non" },
 ];
 
 const router = createBrowserRouter([
