@@ -63,9 +63,9 @@ function ProfileForm() {
                   className="rounded-full  w-16 h-16 mb-4"
                 />
                 <Margin top="3" plustailwind="h-5"></Margin>
-                <p className="mb-2 text-sm font-mono">닉네임: {profileData.nickname}</p>
+                <p className="mb-2 text-sm ">닉네임: {profileData.nickname}</p>
                 <Margin top="3" plustailwind="h-2"></Margin>
-                <p className='font-mono text-sm'>Email: {profileData.email}</p>
+                <p className=' text-sm'>Email: {profileData.email}</p>
               </div>
               <Margin top="3" plustailwind="h-5"></Margin>
               <Contour></Contour>
