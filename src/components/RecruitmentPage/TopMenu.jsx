@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react';
 import Contour from '../ui/Contour'
 import Margin from '../Margin'
+import { AuthContext } from '../../context/AuthContext';
 
 function TopMenu() {
+  const [profileData, setProfileData] = useState({
+    profilePicture: '',
+    nickname: '',
+    email: '',
+    profile_image:'',
+  });
+
+  const {getUserInfo} = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getUserInfo();
+        setProfileData({
+          profile_image: data.profile_image || '',
+          nickname: data.nickname || '',
+          email: data.email || '',
+        });
+
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+      }
+    };
+
+    fetchData();
+
+  }, []);
+
+
   return (
     <div>  
     <div className='w-72 h-full flex justify-center items-center'>
@@ -15,15 +45,14 @@ function TopMenu() {
         <div className='flex self-start mx-3 my-4'>
           <div className='flex items-center'>
             <div className='relative overflow-hidden rounded-full bg-black h-12 w-12'>
-              <img
-                src='프로필사진의_이미지_경로.jpg'
+              <img src={profileData.profile_image}
                 alt='프로필 사진'
                 className='h-16 w-16 rounded-full'/>
             </div>
             <Margin left="3"></Margin>
             {/* 사진과 높이가 맞도록 */}
             <div className='flex items-center px-4'>
-              유저 A
+              {profileData.nickname}
             </div>
           </div>
         </div>
