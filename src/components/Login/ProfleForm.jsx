@@ -6,18 +6,6 @@ import { OpenModalContext } from '../../context/OpenModalProvider';
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
 import { AuthContext } from '../../context/AuthContext';
-import {jwtDecode} from 'jwt-decode';
-
-const getDecodedToken = () => {
-
-  const token = localStorage.getItem('user');
-
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    return decodedToken;
-  }
-  return null;
-};
 
 const gotoAlertFormMain = () => {
   openForm('alertFormMain');
@@ -26,7 +14,7 @@ const gotoAlertFormMain = () => {
 
 function ProfileForm() {
   const { openForm } = useContext(OpenModalContext);
-  const { logout, isAuthenticated } = useContext(AuthContext);
+  const { logout, isAuthenticated, getDecodedToken, getUserInfo } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({
     profilePicture: '',
     nickname: '',
@@ -34,36 +22,28 @@ function ProfileForm() {
   });
 
 
- 
-
   const gotoProfile =()=>{
 
   }
 
   useEffect(() => {
-    const decodedToken = getDecodedToken();
-    if (decodedToken) {
-      const tokenObject = JSON.parse(localStorage.getItem('user'));
-      const accessToken = tokenObject.access_token;
-      const userId = decodedToken.user_id;
-      
-      axios.get(`http://127.0.0.1:8000/users/${userId}/profile`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(response => {
-        const data = response.data;
+    const fetchData = async () => {
+      try {
+        // getUserInfo 함수를 호출하고 반환된 데이터를 받아옵니다.
+        const data = await getUserInfo();
         setProfileData({
-          profilePicture: data.profilePicture,
-          nickname: data.nickname,
-          email: data.email,
+          profilePicture: data.profilePicture || '',
+          nickname: data.nickname || '',
+          email: data.email || '',
         });
-      })
-      .catch(error => {
+
+      } catch (error) {
         console.error('Failed to fetch user profile:', error);
-      });
-    }
+      }
+    };
+  
+    fetchData();
+
   }, []);
 
   return (

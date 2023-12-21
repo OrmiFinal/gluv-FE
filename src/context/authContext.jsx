@@ -1,22 +1,23 @@
 // authContext.jsx
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import {jwtDecode} from 'jwt-decode';
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     const user = localStorage.getItem("user");
-    console.log(user);
+    // console.log(user);
     return JSON.parse(user) || null;
   });
- 
-const apiURL = import.meta.env.VITE_APP_API_KEY;
+
+  const apiURL = import.meta.env.VITE_APP_API_KEY;
 
 
   const login = async (inputs) => {
     try {
-      
+
       const res = await axios.post("http://127.0.0.1:8000/users/login/", inputs);
       const token = res.data
       setCurrentUser(token);
@@ -34,12 +35,50 @@ const apiURL = import.meta.env.VITE_APP_API_KEY;
   };
 
 
+  const getDecodedToken = () => {
+    // 디코딩된 토큰을 받아오는 함수
+    // ex) decodedToken.user_id = 유저 pk
+    const token = localStorage.getItem('user');
+  
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      return decodedToken;
+    }
+    return null;
+  };
+
+  const getUserInfo = async () => {
+    const decodedToken = getDecodedToken();
+    if (decodedToken) {
+      const userId = decodedToken.user_id;
+      const tokenObject = JSON.parse(localStorage.getItem('user'));
+      const accessToken = tokenObject.access_token;
+  
+      try {
+        // 유저 프로필 정보 api
+        const response = await axios.get(`http://127.0.0.1:8000/users/${userId}/profile`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+  
+        const data = response.data;
+        setCurrentUser(data);
+  
+        // Promise에서 유저 정보 반환
+        return data;
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+        throw error;
+      }
+    }
+  };
 
 
   const registerUser = async (inputs) => {
-    
+
     try {
-      console.log(apiURL+"apiURL")
+      console.log(apiURL + "apiURL")
       console.log(inputs);
       const res = await axios.post(`http://127.0.0.1:8000/users/signup/`, inputs);
       // 성공적으로 로그인한 경우
@@ -73,9 +112,14 @@ const apiURL = import.meta.env.VITE_APP_API_KEY;
     }
   }, [currentUser]);
 
+  
+
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout, registerUser, isLogin }}>
+    <AuthContext.Provider value={{ currentUser, login, logout, registerUser, isLogin, getDecodedToken, getUserInfo}}>
       {children}
     </AuthContext.Provider>
   );
+
+  
 };
+
