@@ -6,12 +6,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import useWindowSize from '../../hooks/useWindowSzie';
 import Contour from '../ui/Contour';
-import TitleComponent from './TitleComponent'; // Adjust the path as needed
-import BulletinBoard from './BulletinBoard';
+import TitleComponent from '../RecruitmentPage/TitleComponent'; // Adjust the path as needed
+import BulletinBoard from '../RecruitmentPage/BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
 import { FetchAllContext, FetchNoticeData } from '../../api/post';
 
-function RecruitmentContent() {
+function NoticeContent() {
   const { screenSize } = useWindowSize();
   const [posturl, setPostUrl] = useState({
     category: "공지사항",
@@ -173,4 +173,4 @@ function RecruitmentContent() {
   );
 }
 
-export default RecruitmentContent;
+export default NoticeContent;
