@@ -25,7 +25,7 @@ function HotPostList ({ category }){
         <div className='bg-gray-100 rounded-lg p-6 ml-10'>
             <div className="flex items-center mb-3">
                 <h3 className="text-gray-900 text-subtitle font-bold">화제의 게시물</h3>
-                <a className="ml-auto text-gray-600 font-medium text-body1" href="/community/hot">더보기</a>
+                <a className="ml-auto text-gray-600 font-medium text-body1" href="/posts/?order_by=views">더보기</a>
             </div>
             <div className="flex gap-2 whitespace-nowrap flex-wrap flex-row">
                 <button type="button" className="flex gap-2 items-center px-[10px] h-[30px] rounded-full text-[13px] font-medium cursor-pointer select-none" style={{ backgroundColor: 'rgb(51, 51, 51)', color: 'white', border: '1px solid black' }}>실시간</button>

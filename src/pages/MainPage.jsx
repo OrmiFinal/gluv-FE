@@ -33,7 +33,7 @@ function MainPage() {
             {/* 최신 모집글 라벨 */}
             <h2 className="font-bold text-black px-4 mb-3 flex items-center md:px-0 md:mb-4 w-full">
               <span className="font-bold">최신 모집글</span>
-              <a className="text-gray-600 text-body1 md:text-subtitle font-medium ml-auto flex items-center" href="/library">
+              <a className="text-gray-600 text-body1 md:text-subtitle font-medium ml-auto flex items-center" href="/recruits/">
                 <span>더보기</span>
               </a>
             </h2>
@@ -51,9 +51,9 @@ function MainPage() {
       <div>
         <hr className="my-8 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
         <div className='grid grid-cols-3 gap-16 pt-6 px-8'>
-          <RecentPostList category="A"/>
-          <RecentPostList category="B"/>
-          <RecentPostList category="C"/>
+          <RecentPostList category="질문" endPoint='/posts/?category=qna' />
+          <RecentPostList category="자유" endPoint='/posts/?category=comm' />
+          <RecentPostList category="창작" endPoint='/posts/?category=creation' />
         </div>
         <hr className="my-4 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
       </div>

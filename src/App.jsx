@@ -76,10 +76,14 @@ const pages = [
   { path: "/", component: MainPage, layoutType: "Non" },
   // 공지사항 페이지
   { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
-  // 
+  // 커뮤니티 게시글 상세
+  { path: "/posts/:id/", component: PostDetailPage, layoutType: "Non" },
+  // 커뮤니티 게시글 목록
+  // 쿼리는 내부적으로 처리해야함.
+  { path: "/posts/", component: RecruitmentPage, layoutType: "Non" },
+  // ---
   { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
   { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
-  { path: "/PostDetailPage/:id", component: PostDetailPage, layoutType: "Non" },
   { path: "/PostEntryPage", component: PostEntryPage, layoutType: "Non" },
   { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
   { path: "/RecruitmentPage", component: RecruitmentPage, layoutType: "Non" },

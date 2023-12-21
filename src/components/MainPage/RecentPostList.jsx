@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from 'react';
 
-function RecentPostList ({ category }){
-    const postData = [
-      { id: 1, title: 'Title 1', views: '1', likes: '1' , author : 'User-01'},
-      { id: 2, title: 'Title 2', views: '2', likes: '2' , author : 'User-02'},
-      { id: 3, title: 'Title 3', views: '3', likes: '3' , author : 'User-03'},
-    ]
+function RecentPostList ({ category, endPoint }){
+  const [postData, setPost] = useState([]);
+  const baseURL = import.meta.env.VITE_APP_API_KEY;
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            try {
+                const response = await fetch(`${baseURL}${endPoint}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch book data');
+                }
+
+                const data = await response.json();
+                setPost(data.results);
+            } catch (error) {
+                console.error('Error fetching book data:', error.message);
+            }
+        };
+    
+        fetchPost();
+    }, []);
+
     return (
       <div>
         <div className="flex items-start h-10 ">
@@ -14,12 +30,12 @@ function RecentPostList ({ category }){
             <path d="M7 6V8H13V6H14.0035C14.2775 6 14.5 6.2225 14.5 6.4965V14.5035C14.4999 14.6351 14.4475 14.7613 14.3544 14.8544C14.2613 14.9475 14.1351 14.9999 14.0035 15H5.9965C5.86486 14.9999 5.73865 14.9475 5.64557 14.8544C5.55248 14.7613 5.50013 14.6351 5.5 14.5035V6.4965C5.5 6.2225 5.7225 6 5.9965 6H7ZM8 5H12V7H8V5Z" fill="white"></path>
           </svg>
           <h4 className="text-black font-bold text-title">{category} 게시판</h4>
-          <a className="text-body1 text-gray-600 font-medium ml-auto" href="/community?category=1">더보기</a>
+          <a className="text-body1 text-gray-600 font-medium ml-auto" href={`${endPoint}`}> 더보기</a>
         </div><hr className="border-t-gray-200 border-t-2 mb-5"/>
         <ul className="flex flex-col gap-4">
         {postData.map((card,index) => (
           <li key={index}>
-          <a  className="flex leading-5" href="/community/view/3177?category=1">
+          <a className="flex leading-5" href={`/posts/${card.id}`}>
             <div className="flex mr-2 min-w-0">
               <div className="font-medium whitespace-nowrap overflow-hidden mr-2 text-subtitle overflow-ellipsis">{card.title}</div>
             </div>
