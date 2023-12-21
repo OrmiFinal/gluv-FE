@@ -33,6 +33,13 @@ function ProfileForm() {
     email: '',
   });
 
+
+ 
+
+  const gotoProfile =()=>{
+
+  }
+
   useEffect(() => {
     const decodedToken = getDecodedToken();
     if (decodedToken) {
@@ -89,6 +96,7 @@ function ProfileForm() {
                     role="button"
                     tabIndex={0}
                     className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+                    onClick={gotoProfile}
                   >
                     내프로필
                   </div>

@@ -19,6 +19,7 @@ import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -83,7 +84,8 @@ const pages = [
   { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
-  { path: "/Chatting", component: Chatting, layoutType: "Non" },
+  { path: "/Chatting/:room_id", component: Chatting, layoutType: "Non" },
+  { path: "/Profile", component: Profile, layoutType: "Non" },
 ];
 
 const router = createBrowserRouter([
