@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import useWindowSize from '../hooks/useWindowSzie';
+import React, { useState, useContext, useEffect } from 'react';
 import { ModelContext } from '../context/ModelContextProvider';
 import TitleComponent from '../components/RecruitmentPage/TitleComponent';
 import Margin from '../components/Margin';
@@ -7,8 +6,11 @@ import DynamicColorButton from '../components/DynamicColorButton';
 import Contour from '../components/ui/Contour';
 import RecruitmentList from '../components/RecruitmentList';
 import SelectButton from '../components/ui/SelectButton';
+import { FetchAllTeamData } from '../api/team';
+import useWindowSize from '../hooks/useWindowSzie';
+import { FetchRecruitsPost } from '../api/recruits';
 
-// Sample Data
+
 const sampleData = [
   {
     id: 1,
@@ -19,69 +21,77 @@ const sampleData = [
     likes: 30, // 좋아요 수
     imageUrl: "https://example.com/image1.jpg", // 이미지 URL
   },
-  {
-    id: 2,
-    title: "두 번째 모집글",
-    content: "이 모집글은 모든 모집글의 내용입니다.",
-    date: "2023-12-21",
-    views: 120,
-    likes: 25,
-    imageUrl: "https://example.com/image2.jpg",
-  },
-  {
-    id: 3,
-    title: "세 번째 모집글",
-    content: "이 모집글은 모든 모집글의 내용입니다.",
-    date: "2023-12-22",
-    views: 200,
-    likes: 40,
-    imageUrl: "https://example.com/image3.jpg",
-  },
-  {
-    id: 4,
-    title: "네 번째 모집글",
-    content: "이 모집글은 모든 모집글의 내용입니다.",
-    date: "2023-12-23",
-    views: 180,
-    likes: 35,
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  {
-    id: 5,
-    title: "네 번째 모집글",
-    content: "이 모집글은 모든 모집글의 내용입니다.",
-    date: "2023-12-23",
-    views: 180,
-    likes: 35,
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  {
-    id: 6,
-    title: "네 번째 모집글",
-    content: "이 모집글은 모든 모집글의 내용입니다.",
-    date: "2023-12-23",
-    views: 180,
-    likes: 35,
-    imageUrl: "https://example.com/image4.jpg",
-  },
-  // 추가적인 모집글을 필요한 만큼 배열에 추가할 수 있습니다.
-];
 
+]
 function TeamSearchPage() {
   const { screenSize } = useWindowSize();
   const { selectedCategory } = useContext(ModelContext);
 
-  const [formData, setFormData] = useState({
-    introduction: '',
-    targetAudience: '',
-    content: '',
-    region: '',
+  const [teamData, setTeamData] = useState([]);
+  const [recruitsData, setRecruitsData] = useState([]);
+  const [filters, setFilters] = useState({
+    page: 1,
+    search: '',
+    category: '',
+    region:'',
+    order_by: '',
+    order: '',
   });
-
-  const handleCategorySelect = (selectedRegion) => {
-    setFormData({ ...formData, region: selectedRegion });
+  const handleRegionSelect = (selectedRegion) => {
+    setFilters({ ...filters, region: selectedRegion });
     console.log('Selected Region:', selectedRegion);
   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const handleCategorySelect = (selectedCategory) => {
+    setFilters({ ...filters, category: selectedCategory });
+    console.log('Selected Category:', selectedCategory);
+  };
+
+  const handleOrderSelect = (selectedOrder) => {
+    setFilters({ ...filters, order_by: selectedOrder });
+    console.log('Selected Order:', selectedOrder);
+  };
+
+  const handleSortSelect = (selectedSort) => {
+    setFilters({ ...filters, order: selectedSort });
+    console.log('Selected Sort:', selectedSort);
+  };
+
+  const handleSearchChange = (event) => {
+    setFilters({ ...filters, search: event.target.value });
+  };
+
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleSearchClick = () => {
+    fetchData();
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await FetchAllTeamData({ ...filters, page: currentPage });
+        // const RecruitsData = await FetchRecruitsPost({...filters, page: currentPage })
+   
+        if (data) {
+         
+          setTeamData(data);
+          // setTotalPages(data.total_pages);
+        }
+        // if(RecruitsData){
+        //   setRecruitsData(RecruitsData)
+        // }
+      } catch (error) {
+        console.error('Error fetching team data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, [filters, currentPage]);
 
   const inputClasses = {
     xl: 'w-2/3',
@@ -94,27 +104,57 @@ function TeamSearchPage() {
   const combinedClasses = Object.entries(inputClasses)
     .map(([size, classValue]) => (screenSize === size ? classValue : ''))
     .join(' ');
-
+ 
   return (
     <div className="flex items-center justify-center bg-gray-100">
-      <div className='w-[65vw] bg-white rounded-md shadow-md p-6'>
-        <div className='w-full'>
+      <div className="w-[65vw] bg-white rounded-md shadow-md p-6">
+        <div className="w-full">
           <Margin top="3" />
-          <div className='m-3'>
-            <div className='text-2xl font-bold mb-4'>팀원 모집</div>
-            <Margin top="2" plustailwind="h-3"/>
+          <div className="m-3">
+            <div className="text-2xl font-bold mb-4">팀원 모집</div>
+            <Margin top="2" plustailwind="h-3" />
             <Contour></Contour>
-            <div className='flex'>
-              <TitleComponent title="전체" isFontBold={"fontBold"} plustailwind="text-lg font-bold " />
-              <Margin left="4" />
-              <TitleComponent title="독서모임" isFontBold={"fontBold"} plustailwind="text-lg font-roboto " />
-              <Margin left="3" />
-              <TitleComponent title="합평모임" isFontBold={"fontBold"} plustailwind="text-lg font-roboto " />
-              <Margin left="3" />
-              <TitleComponent title="책집필모임" isFontBold={"fontBold"} plustailwind="text-lg font-roboto " />
-              <Margin left="3" />
-              <SelectButton
-                btnTitle="지역 선택"
+            <div className="flex">
+            <TitleComponent
+              title="전체"
+              isFontBold={"fontBold"}
+              plustailwind="text-lg font-bold "
+              onClick={handleCategorySelect}
+              subcategory="전체" // You can modify this as needed
+            />
+              <Margin left="2" plustailwind="w-2" />
+              <TitleComponent
+              title="독서모임"
+              isFontBold={"fontBold"}
+              plustailwind="text-lg font-bold "
+              onClick={handleCategorySelect}
+              subcategory="독서모임" // You can modify this as needed
+            />
+          
+              <Margin left="2" plustailwind="w-2" />
+               <TitleComponent
+              title="합평모임"
+              isFontBold={"fontBold"}
+              plustailwind="text-lg font-bold "
+              onClick={handleCategorySelect}
+              subcategory="합평모임" // You can modify this as needed
+            />
+             
+              <Margin left="2" plustailwind="w-2" />
+              <TitleComponent
+              title="책집필모임"
+              isFontBold={"fontBold"}
+              plustailwind="text-lg font-bold "
+              onClick={handleCategorySelect}
+              subcategory="책집필모임" // You can modify this as needed
+            />
+          
+            </div>
+            <Margin top="1" plustailwind="h-1" />
+            <Contour></Contour>
+            <div className='flex  w-32'>
+            <SelectButton
+                btnTitle="region"
                 btnoptions={[
                   '서울',
                   '경기',
@@ -128,16 +168,36 @@ function TeamSearchPage() {
                   '제주특별자치도'
                 ]}
                 title=" "
-                onOptionSelect={handleCategorySelect}
+                size="15"
+                onOptionSelect={handleRegionSelect}
               />
-              <Margin right="36" plustailwind="w-2" />
+              <SelectButton
+                btnTitle="Order By"
+                btnoptions={[
+                  '조회수',
+                  '좋아요',
+                  '마감일',
+                  '작성일',
+                ]}
+                size="15"
+                title=" "
+                onOptionSelect={handleOrderSelect}
+              />
+              <SelectButton
+                btnTitle="Sort"
+                btnoptions={[
+                  '오름차',
+                  '내림차',
+                ]}
+                title=" "
+                size="15"
+                onOptionSelect={handleSortSelect}
+              />
             </div>
-            <Margin top="1" plustailwind="h-1"/>
-            <Contour></Contour>
-            <div className='border p-2 rounded-md'>
-              <RecruitmentList data={sampleData} />
+            <div className="border p-2 rounded-md">
+              <RecruitmentList data={teamData ? teamData : sampleData} />
             </div>
-            <Margin top="2" plustailwind="h-4"/>
+            <Margin top="2" plustailwind="h-4" />
             <Contour></Contour>
             <div>
               <div className={`flex items-center text-center ${screenSize === 'sm' ? 'justify-start' : 'justify-center'}`}>
@@ -145,16 +205,31 @@ function TeamSearchPage() {
                 <input
                   className={`border p-2 rounded-md ${combinedClasses}`}
                   placeholder='검색 입력...'
+                  value={filters.search}
+                  onChange={handleSearchChange}
                 />
                 <DynamicColorButton
                   color="blue"
-                  text="검색"
+                  text="Search"
                   btnstyle="py-2 px-2 ml-2"
+                  onClick={handleSearchClick}
                 />
               </div>
+      
             </div>
             <div className='flex justify-between items-center'>
-              {/* 필요에 따라 내용을 추가합니다. */}
+              <div>
+              {Array.from({ length: Math.min( 4) }, (_, index) => (
+  <span
+    key={index}
+    className={`cursor-pointer mx-1 ${currentPage === index + 1 ? 'font-bold' : ''}`}
+    onClick={() => handlePageClick(index + 1)}
+  >
+    {index + 1}
+  </span>
+))}
+
+              </div>
             </div>
           </div>
         </div>

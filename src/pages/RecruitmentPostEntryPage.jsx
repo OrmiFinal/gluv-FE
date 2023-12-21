@@ -20,6 +20,7 @@ function RecruitmentPostEntryPage() {
     day: '',
     category: '',
     maxAttendance: '',
+
   });
 
   const handleContentChange = (newContent) => {
@@ -109,7 +110,8 @@ function RecruitmentPostEntryPage() {
 
             <div className="w-full border p-4 mb-4">
               <div className="grid grid-cols-2 gap-4">
-               
+              
+             
                 <InputField label="최대인원" id="maxAttendance" value={formData.maxAttendance} onChange={handleChange} />
                 <div>
                   <Margin plustailwind="h-1" />
@@ -117,16 +119,12 @@ function RecruitmentPostEntryPage() {
                     className="text-sm text-left"
                     btnTitle="카테고리 선택"
                     btnoptions={[
-                      'notice',
-                      'free',
-                      'qna',
-                      'ads',
-                      'creation-novel',
-                      'creation-poem',
-                      'creation-essay',
-                      'comm-novel',
-                      'comm-poem',
-                      'comm-essay'
+                     
+'독서모임',
+'합평모임',
+'책집필모임',
+
+                
                     ]}
                     onOptionSelect={handleCategorySelect}
                   />

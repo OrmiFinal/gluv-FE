@@ -42,11 +42,12 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size }) => {
     <div className=''>
       <div className='text-sm text-left'> {title==undefined?"카테고리":title}</div>
       <Margin plustailwind="h-2" />
-    <div className="relative flex flex-col w-60">
+    <div className={`relative flex flex-col w-[${size}vw]`}>
       
-       
+       <div className= {`${size ? `w-[${size}vw]` : 'w-[30vw]'} `}>
       <motion.button
-        className=" bg-light-100 border text-black py-2 px-4  w-[30vw] rounded-xl focus:outline-none flex items-center relative z-[100]"
+       className={`bg-light-100 border text-black py-2 px-4 w-full rounded-xl focus:outline-none flex items-center relative z-[100]`}
+
         onClick={() => {
           setIsOpen(!isOpen);
           isOpen ? handleClose() : handleOpen();
@@ -66,7 +67,7 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size }) => {
             <motion.div
               initial={{ y: -10, opacity: 0 }}
               animate={dropdownControls}
-              className="py-2"
+              className="py-2 aabsolute flex flex-col  items-center  justify-center"
             >
               {options.map((option, index) => (
                 <div
@@ -81,6 +82,7 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size }) => {
             </motion.div>
           )}
         </motion.div>
+        </div>
       </div>
     </div>
     </div>
