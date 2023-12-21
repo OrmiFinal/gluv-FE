@@ -23,7 +23,7 @@ function TeamLeftMenu() {
           </div>
           <Margin top="3" />
           <div className=' font-bold'>독서 토론 모임</div>
-          <div className='font-mono  text-sm'>모임명</div>
+          <div className='  text-sm'>모임명</div>
           
         </div>
         <Margin bottom="1"/>
@@ -35,23 +35,23 @@ function TeamLeftMenu() {
           <div className='text-lg font-bold'>모집명</div>
           <div className="flex flex-col"> 
             <div className='flex justify-between'>
-              <div className='font-mono'>최대인원</div>
-              <div className='font-mono'>6명</div>
+              <div className=''>최대인원</div>
+              <div className=''>6명</div>
             </div>
             <div className='flex justify-between'>
-              <div  className='font-mono'>현재인원</div>
-              <div  className='font-mono'>4명</div>
+              <div  className=''>현재인원</div>
+              <div  className=''>4명</div>
             </div>
             <div className='flex justify-between'>
-              <div className='font-mono'>신청인원</div>
-              <div className='font-mono'>1명</div>
+              <div className=''>신청인원</div>
+              <div className=''>1명</div>
             </div>
           </div>
         </div>
 
         {/* 리더 정보 */}
         <Margin top="2" />
-        <div className='   font-mono '>내역할: 리더</div>
+        <div className='    '>내역할: 리더</div>
         <Margin top="1" />
 
         {/* 버튼 */}

@@ -23,7 +23,7 @@ function AlertForm() {
             {jsonData.map((item, index) => (
               <div key={index} className='relative bg-white rounded-md mt-2'>
                 <h2 className='font-bold'>{item.title}</h2>
-                <p className='font-mono text-sm overflow-hidden whitespace-nowrap overflow-ellipsis'>
+                <p className=' text-sm overflow-hidden whitespace-nowrap overflow-ellipsis'>
                   {item.description}
                 </p>
               </div>

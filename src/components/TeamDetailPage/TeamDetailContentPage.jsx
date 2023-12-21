@@ -51,7 +51,7 @@ const TeamDetailContentPage = () => {
           <div>
             <div className="text-lg font-semibold mb-1">모임명</div>
             <div
-              className="w-full text-base font-mono"
+              className="w-full text-base "
           
             >
               {formData.introduction || '모임명 예시'}
@@ -61,7 +61,7 @@ const TeamDetailContentPage = () => {
           <div className="mt-4">
             <div className="text-sm font-semibold mb-1">모임 소개 예시</div>
             <div
-              className="w-full h-[150px]  border-[1px] border-gray-200  p-2 text-base font-mono"
+              className="w-full h-[150px]  border-[1px] border-gray-200  p-2 text-base "
             >
               {formData.address || '모임 소개 예시'}
             </div>
@@ -70,7 +70,7 @@ const TeamDetailContentPage = () => {
           <div className="mt-4">
             <div className="text-lg font-semibold mb-2">모임 주소</div>
             <div
-              className="w-full text-base font-mono"
+              className="w-full text-base "
             >
               {formData.address || '모임 주소 예시'}
             </div>
@@ -83,17 +83,17 @@ const TeamDetailContentPage = () => {
           <div className="mt-4">
             <div className="text-lg font-semibold mb-2">모임 날짜</div>
             <div
-              className="w-full   text-base font-mono"
+              className="w-full   text-base "
             >
                 <div className='flex'>
 
                 <div
-                className="w-[100px]  text-base font-mono"
+                className="w-[100px]  text-base "
               >
                 {formData.month || '3월'}
               </div>
               <div
-                className="w-[100px] text-base font-mono"
+                className="w-[100px] text-base "
               >
                 {formData.month || '3일'}
               </div>
@@ -109,12 +109,12 @@ const TeamDetailContentPage = () => {
             <div className="text-lg font-semibold mb-1">모임 시간</div>
             <div className="flex space-x-2">
               <div
-                className="w-[100px] text-base font-mono"
+                className="w-[100px] text-base "
               >
                 {formData.month || '3부터'}
               </div>
               <div
-                className="w-[100px] text-base font-mono"
+                className="w-[100px] text-base "
               >
                 {formData.dayOfMonth || '2까지'}
               </div>
@@ -128,7 +128,7 @@ const TeamDetailContentPage = () => {
             <div className="text-lg font-semibold my-1">모임 최대 인원</div>
             <div className="flex space-x-2">
               <div
-                className="w-[100px] text-base font-mono flex"
+                className="w-[100px] text-base  flex"
               >
               <div> '20'  </div> 
               <div> /</div> 

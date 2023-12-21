@@ -54,16 +54,16 @@ function RecruitmentPostDetailPage() {
                 <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
                 <div className='font-bold text-lg'>{data.author}</div>
                 <Margin left="1"  plustailwind="w-3" />
-                <div className='text-sm font-mono text-gray-600 '>{NowformatDate(data.created_at)}</div>
+                <div className='text-sm  text-gray-600 '>{NowformatDate(data.created_at)}</div>
               </div>
               <div className='flex flex-col items-center p-2'>
                 <div className='flex'>
-                  <div className='text-sm font-mono'>좋아요:</div>
-                  <div className='text-sm font-mono'>{data.likes}</div>
+                  <div className='text-sm '>좋아요:</div>
+                  <div className='text-sm '>{data.likes}</div>
                 </div>
                 <div className='flex'>
-                  <div className='text-sm font-mono'>조회수:</div>
-                  <div className='text-sm font-mono'>{data.view_count}</div>
+                  <div className='text-sm '>조회수:</div>
+                  <div className='text-sm '>{data.view_count}</div>
                 </div>
               </div>
             </div>
@@ -81,12 +81,12 @@ function RecruitmentPostDetailPage() {
               </div>
               <div className='flex flex-col items-center p-2'>
                 <div className='flex'>
-                  <div className='text-sm font-mono'>작성일:</div>
-                  <div className='text-sm font-mono'>{formatDate(data.created_at)}</div>
+                  <div className='text-sm '>작성일:</div>
+                  <div className='text-sm '>{formatDate(data.created_at)}</div>
                 </div>
                 <div className='flex'>
-                  <div className='text-sm font-mono'>수정일:</div>
-                  <div className='text-sm font-mono'>{formatDate(data.updated_at)}</div>
+                  <div className='text-sm '>수정일:</div>
+                  <div className='text-sm '>{formatDate(data.updated_at)}</div>
                 </div>
               </div>
             </div>
@@ -183,7 +183,7 @@ const InfoItem = ({ title, content }) => (
   <div className='flex justify-start items-center'>
     <div className='font-bold text-lg'>{title}</div>
     <Margin left="1" />
-    <div className='text-sm font-mono text-gray-600'>{content}</div>
+    <div className='text-sm  text-gray-600'>{content}</div>
   </div>
 );
 

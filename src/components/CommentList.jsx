@@ -10,7 +10,7 @@ const CommentList = ({ comments }) => {
           <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
           <div>
             <strong className=' font-semibold'>{comment.user}</strong>
-            <p className='font-mono'>{comment.content}</p>
+            <p className=''>{comment.content}</p>
           </div>
         </div>
       ))}
