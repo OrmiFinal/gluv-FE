@@ -40,7 +40,7 @@ const useWindowSize = () => {
       default:
         break;
     }
-    console.log(size)
+
     return size;
   };
 

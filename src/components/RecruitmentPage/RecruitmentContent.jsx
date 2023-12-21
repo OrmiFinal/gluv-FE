@@ -9,29 +9,71 @@ import Contour from '../ui/Contour';
 import TitleComponent from './TitleComponent'; // Adjust the path as needed
 import BulletinBoard from './BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
-import { FetchAllContext, FetchNoticeData } from '../../api/post';
+import { FetchAllContext,FetchNoticeData } from '../../api/post';
 
 function RecruitmentContent() {
   const { screenSize } = useWindowSize();
   const [posturl, setPostUrl] = useState({
-    category: "공지사항",
+    category: "공지상황",
     subcategorie: "",
+    page:""
   });
-  const { selectedCategory,content } = useContext(ModelContext);
 
+  
+  const { selectedCategory,content,ToggleMiniChatModel } = useContext(ModelContext);
+ 
   const [postData, setPostData] = useState([]);
+ 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const itemsPerPage = 10; // 페이지당 아이템 수
 
+
+  const [postPage, setPostPage] = useState(1);
   const [noticeData, setNoticeData] = useState([]);
 
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+    ToggleMiniChatModel({
+      content: {  page: currentPage },
+    });
+
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+    ToggleMiniChatModel({
+      content: {  page: currentPage},
+    });
+  };
+
+  
+  
   useEffect(() => {
     const fetchNoticeData = async () => {
       try {
         const response = await FetchNoticeData();
   
         if (response && response.results) {
+          // Filter out null values from content.results
           const filteredContentResults = content.results.filter(result => result !== null);
+  
+          // Combine noticeData and filteredContentResults using the spread operator
           setNoticeData([...response.results, ...filteredContentResults]);
         }
+        const totalItems = content.count || 0;
+        setTotalPages(Math.ceil(totalItems / itemsPerPage));
+
       } catch (error) {
         console.error('Error fetching notice data:', error.message);
       }
@@ -54,6 +96,13 @@ function RecruitmentContent() {
     },
   ];
 
+  const handleSearchClick = () => {
+    ToggleMiniChatModel({
+      content: {  search: inputValue },
+    });
+  };
+
+
   
   useEffect(() => {
     const fetchNoticeData = async () => {
@@ -62,8 +111,10 @@ function RecruitmentContent() {
 
         if (response && response.results) {
           if(content.results !== null){
-      
-            setNoticeData(response.results+content.results);
+      if(response.results !== null && response.results !== undefined){
+        setNoticeData(response.results+content.results);
+      }
+            
           }
           setNoticeData(response.results)
         }
@@ -79,10 +130,10 @@ function RecruitmentContent() {
 
   useEffect(() => {
 
-  setPostUrl((prev) => ({
+   setPostUrl((prev) => ({
     ...prev,
     category:selectedCategory,
-  
+   
   }));
   
   }, [noticeData]); // Run the effect only once on component mount
@@ -99,10 +150,10 @@ function RecruitmentContent() {
     
     setPostUrl((prev) => ({
       category: selectedCategory.category,
-      subcategorie: url,
+    
     }));
-    fetchData()
-  console.log(fetchData())
+
+
 
   };
 
@@ -135,7 +186,7 @@ function RecruitmentContent() {
                       plustailwind="text-lg font-roboto"
                       onClick={() => SubCategory(subcategory)}
                     />
-                              <Margin left="2" />
+                               <Margin left="2" />
                   </React.Fragment>
                 ))
               ))}
@@ -146,8 +197,8 @@ function RecruitmentContent() {
 
             <Contour></Contour>
             <Margin top="2" plustailwind="h-4" />
-            <BulletinBoard data={noticeData} />
-        
+             <BulletinBoard data={noticeData} />
+         
         <Margin top="2" plustailwind="h-4" />
         
             <Margin top="2" plustailwind="h-4" />
@@ -157,18 +208,38 @@ function RecruitmentContent() {
               <div className='w-20 h-10 border border-black'></div>
               <Margin left="2" />
               <input
-                className={`border p-2 rounded-md ${combinedClasses}`}
-                placeholder='검색 입력...'
-              />
-              <DynamicColorButton
-                color="blue"
-                text="검색"
-                btnstyle="py-2 px-2 ml-2"
-              />
-            </div>
+        className="border p-2 rounded-md"
+        placeholder="검색 입력..."
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <DynamicColorButton
+        color="blue"
+        text="검색"
+        btnstyle="py-2 px-2 ml-2"
+        onClick={handleSearchClick}
+      />
+       </div>
           </div>
         </div>
+        <div className='flex justify-center items-center'>
+        <div>
+      {/* 페이지네이션 버튼 */}
+      <button onClick={handlePrevPage}>뒤로가기</button>
+      <div>{currentPage}</div>
+      <button onClick={handleNextPage}>다음으로가기</button>
+
+      {/* 실제로 현재 페이지에 따라 데이터를 보여주는 로직이 필요 */}
+      {/* 이 부분은 실제 백엔드 API 호출 등으로 대체되어야 합니다. */}
+      <div>
+        {/* 예시: 현재 페이지에 해당하는 데이터만 보여줌 */}
+        {postData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map(post => (
+          <div key={post.id}>{post.title}</div>
+        ))}
       </div>
+    </div>
+    </div>
+       </div>
     </div>
   );
 }
