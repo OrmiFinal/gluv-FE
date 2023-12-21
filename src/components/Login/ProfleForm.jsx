@@ -39,7 +39,7 @@ function ProfileForm() {
       const tokenObject = JSON.parse(localStorage.getItem('user'));
       const accessToken = tokenObject.access_token;
       const userId = decodedToken.user_id;
-      console.log(userId);
+      
       axios.get(`http://127.0.0.1:8000/users/${userId}/profile`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
