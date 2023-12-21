@@ -80,10 +80,10 @@ function Navbar() {
           </Link>
         <div className="flex justify-center items-center gap-4">
           {/* Notification */}
-          <div to="/notification/" className="text-sm mt font-mono  "
+          <div to="/notification/" className="text-sm mt   "
           onClick={gotoAlertForm}
           >
-            <div className="text-sm font-mono">
+            <div className="text-sm ">
               <NotificationClickButton className="m-4 p-4"/>
             </div>
           </div>
@@ -91,17 +91,17 @@ function Navbar() {
 
           {currentUser ? (
             <div className="flex">
-            <span className="text-sm font-mono " onClick={logout}>
+            <span className="text-sm  " onClick={logout}>
 
               <LogoutButton /> 
             </span>
             <Margin left="2"></Margin>
-             <span className="text-sm font-mono " onClick={gotoProfleForm}>
-             <ProfileButton /> 
-           </span>
-           </div>
+              <span className="text-sm  " onClick={gotoProfleForm}>
+              <ProfileButton /> 
+            </span>
+            </div>
             ) : (
-            <div  className="text-sm mt font-mono  "
+            <div  className="text-sm mt   "
             onClick={gotoLogin}
             >
               <div>
@@ -110,13 +110,10 @@ function Navbar() {
             </div>
             )}
         </div>
-
-
-
     </div>
         {/* Submenus */}
         <div className="flex w-full pb-4">
-          <Link to="/submenu1" className="font-bold text-lg px-3 bold">
+          <Link to="/posts/notices/" className="font-bold text-lg px-3 bold">
             공지사항 
           </Link>
           <Link to="/submenu2" className="font-medium text-lg px-3">

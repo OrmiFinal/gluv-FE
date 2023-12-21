@@ -21,6 +21,9 @@ import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import Chatting from './pages/Chatting.jsx';
+import NoticePage from './pages/NoticePage.jsx';
+
+
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
@@ -69,7 +72,11 @@ const Enroll = ({children}) => {
 
 // 페이지 정보 정의
 const pages = [
+  // 메인 페이지
   { path: "/", component: MainPage, layoutType: "Non" },
+  // 공지사항 페이지
+  { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
+  // 
   { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
   { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
   { path: "/PostDetailPage/:id", component: PostDetailPage, layoutType: "Non" },
@@ -86,6 +93,8 @@ const pages = [
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
   { path: "/Chatting/:room_id", component: Chatting, layoutType: "Non" },
   { path: "/Profile", component: Profile, layoutType: "Non" },
+  
+  
 ];
 
 const router = createBrowserRouter([
