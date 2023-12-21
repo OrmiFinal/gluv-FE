@@ -106,14 +106,14 @@ function Navbar() {
           <Link to="/posts/notices/" className="font-bold text-lg px-3 bold">
             공지사항 
           </Link>
-          <Link to="/posts/?category=qna/" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=qna" className="font-medium text-lg px-3">
             질문·답변
           </Link>
-          <Link to="/posts/?category=comm/" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=comm" className="font-medium text-lg px-3">
             자유 게시판
           </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
-          <Link to="/posts/?category=qna/comm/creation/" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=creation" className="font-medium text-lg px-3">
             <span className="font-bold">창작 게시판</span>
           </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
