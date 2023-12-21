@@ -16,7 +16,7 @@ function ProfileForm() {
   const { openForm } = useContext(OpenModalContext);
   const { logout, isAuthenticated, getDecodedToken, getUserInfo } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({
-    profilePicture: '',
+    profile_image: '',
     nickname: '',
     email: '',
   });
@@ -32,7 +32,7 @@ function ProfileForm() {
         // getUserInfo 함수를 호출하고 반환된 데이터를 받아옵니다.
         const data = await getUserInfo();
         setProfileData({
-          profilePicture: data.profilePicture || '',
+          profile_image: data.profile_image,
           nickname: data.nickname || '',
           email: data.email || '',
         });
@@ -57,8 +57,7 @@ function ProfileForm() {
               </div>
               <Margin top="3" plustailwind="h-5"></Margin>
               <div className="flex flex-col justify-center items-center">
-                <img
-                  src={profileData.profilePicture}
+                <img src={profileData.profile_image}
                   alt="프로필 사진"
                   className="rounded-full  w-16 h-16 mb-4"
                 />
