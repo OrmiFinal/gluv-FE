@@ -7,7 +7,7 @@ import { OpenModalContext } from '../../context/OpenModalProvider';
 import DynamicColorButton from '../DynamicColorButton';
 import LoginInput from './LoginInput';
 import SelectButton from '../../components/ui/SelectButton';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../context/AuthContext';
 
 function LoginRegister() {
   const { closeForm, openForm } = useContext(OpenModalContext);
