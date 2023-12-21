@@ -26,7 +26,7 @@ function AlertFormMain() {
               {jsonData.map((item, index) => (
                 <div key={index} className='mb-4'>
                   <h3 className='text-xl font-bold'>{item.title}</h3>
-                  <p className='font-mono  overflow-hidden'>{item.description}</p>
+                  <p className='overflow-hidden'>{item.description}</p>
                 </div>
               ))}
             </div>

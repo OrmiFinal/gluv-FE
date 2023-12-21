@@ -34,18 +34,15 @@ const logoTextStyle = {
 
 function Navbar() {
   const { closeForm, openForm } = useContext(OpenModalContext);
+  const { currentUser, logout } = useContext(AuthContext);
 
   const textStyle = {
     fontFamily: 'Spoqa Han Sans Neo, sans-serif',
   };
 
-  const { currentUser, logout } = useContext(AuthContext);
-
-
   const gotoLogin = () => {
     openForm("loginForm"); // Replace "loginForm" with the desired form category
   };
-
 
   const gotoAlertForm = () => {
     openForm("alertForm"); // Replace "loginForm" with the desired form category
@@ -53,13 +50,6 @@ function Navbar() {
   const gotoProfleForm = () => {
     openForm("profleForm"); // Replace "loginForm" with the desired form category
   };
-  
-
-
-
-
-
-
 
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
   const toggleNotification = () => {
@@ -80,10 +70,10 @@ function Navbar() {
           </Link>
         <div className="flex justify-center items-center gap-4">
           {/* Notification */}
-          <div to="/notification/" className="text-sm mt font-mono  "
+          <div to="/notification/" className="text-sm mt"
           onClick={gotoAlertForm}
           >
-            <div className="text-sm font-mono">
+            <div className="text-sm ">
               <NotificationClickButton className="m-4 p-4"/>
             </div>
           </div>
@@ -91,17 +81,17 @@ function Navbar() {
 
           {currentUser ? (
             <div className="flex">
-            <span className="text-sm font-mono " onClick={logout}>
+            <span className="text-sm" onClick={logout}>
 
               <LogoutButton /> 
             </span>
             <Margin left="2"></Margin>
-             <span className="text-sm font-mono " onClick={gotoProfleForm}>
-             <ProfileButton /> 
-           </span>
-           </div>
+              <span className="text-sm" onClick={gotoProfleForm}>
+              <ProfileButton /> 
+            </span>
+            </div>
             ) : (
-            <div  className="text-sm mt font-mono  "
+            <div  className="text-sm mt"
             onClick={gotoLogin}
             >
               <div>
@@ -110,30 +100,24 @@ function Navbar() {
             </div>
             )}
         </div>
-
-
-
     </div>
         {/* Submenus */}
         <div className="flex w-full pb-4">
-          <Link to="/submenu1" className="font-bold text-lg px-3 bold">
+          <Link to="/posts/notices/" className="font-bold text-lg px-3 bold">
             공지사항 
           </Link>
-          <Link to="/submenu2" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=qna/" className="font-medium text-lg px-3">
             질문·답변
           </Link>
-          <Link to="/submenu2" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=comm/" className="font-medium text-lg px-3">
             자유 게시판
           </Link>
-          <Link to="/submenu2" className="font-medium text-lg px-3">
-            커뮤니티
-          </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
-          <Link to="/submenu2" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=qna/comm/creation/" className="font-medium text-lg px-3">
             <span className="font-bold">창작 게시판</span>
           </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
-          <Link to="/submenu2" className="font-medium text-lg px-3">
+          <Link to="/recruits/" className="font-medium text-lg px-3">
             <span className="font-bold">모임 모집 게시판</span>
           </Link>
           {/* Add additional submenus here as needed */}

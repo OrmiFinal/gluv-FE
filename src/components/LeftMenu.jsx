@@ -34,7 +34,7 @@ function LeftMenu() {
       {/* 모집 정보 */}
       <div className='w-48 flex flex-col justify-start   h-32'>
         <div className='text-lg   font-semibold  self-start'>자기소개</div>
-        <div className="self-start font-mono"> 
+        <div className="self-start "> 
           자기 소개 api 받기
         </div>
       </div>
@@ -44,12 +44,12 @@ function LeftMenu() {
         <div className='text-lg   font-semibold'>활동</div>
         <div className="flex flex-col"> 
           <div className='flex justify-between'>
-            <div className='font-mono'>받은 좋아요</div>
-            <div className='font-mono'>6명</div>
+            <div className=''>받은 좋아요</div>
+            <div className=''>6명</div>
           </div>
           <div className='flex justify-between'>
-            <div  className='font-mono'>작성 게시글</div>
-            <div  className='font-mono'>4명</div>
+            <div  className=''>작성 게시글</div>
+            <div  className=''>4명</div>
           </div>
        
         </div>

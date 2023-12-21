@@ -43,9 +43,9 @@ function TeamManagementPage() {
           <Margin top="3" />
           <div className='m-3'>
             <div className='flex'>
-              <TitleComponent title="활동중인 모집" isFontBold={"fontBold"} plustailwind="text-sm font-mono " />
+              <TitleComponent title="활동중인 모집" isFontBold={"fontBold"} plustailwind="text-sm  " />
               <Margin left="3" />
-              <TitleComponent title="신청중인 모임" isFontBold={"fontBold"} plustailwind="text-sm font-mono " />
+              <TitleComponent title="신청중인 모임" isFontBold={"fontBold"} plustailwind="text-sm  " />
             </div>
             <Contour />
             <Margin top="2" plustailwind="h-3" />
