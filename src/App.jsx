@@ -85,7 +85,7 @@ const pages = [
   { path: "/TeamPage", component: TeamPage, layoutType: "Non" },
   { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
   { path: "/Chatting/:room_id", component: Chatting, layoutType: "Non" },
-  { path: "/Profile", component: Profile, layoutType: "Non" },
+  { path: "/UserEdit", component: ProfilePage, layoutType: "Non" },
 ];
 
 const router = createBrowserRouter([
