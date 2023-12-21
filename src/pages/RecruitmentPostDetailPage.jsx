@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
+import Margin from '../components/Margin.jsx';
+import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import useWindowSize from '../hooks/useWindowSzie.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { FetchPostData ,FetchDelectData} from '../api/post.js';
 import { Link ,useNavigate} from "react-router-dom"; 
+import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
 function RecruitmentPostDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [ApiComment, setAPiComment] = useState({
+    recurit_id: id,
+    page: 0,
+    content: '',
+    to_user: '',
+  });
+  
   const [comments, setComments] = useState([
     { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
-    // Add other comments as needed
+   
   ]);
-  const navigate = useNavigate();
+
+  const handleUserClick = (user) => {
+    // Do something with the user information, e.g., navigate to the user's profile
+    console.log(`Clicked on user: ${user}`);
+    setAPiComment((prev) => ({
+      ...prev,
+      to_user: user,
+    }));
+  };
+  
+
+ 
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -26,9 +45,56 @@ function RecruitmentPostDetailPage() {
       }
     };
 
+    const getCommnet = async () => {
+      try {
+        const commentData = await FetchAllCommentsData({ id });
+        console.log("commentData")
+        console.log("commentData")
+        console.log("commentData")
+        console.log(commentData)
+        console.log("commentData")
+        console.log("commentData")
+        console.log("commentData")
+        setComments(commentData);
+      } catch (error) {
+        console.error('Error fetching post data:', error);
+      }
+    };
+  
+    getCommnet()
     getPost();
    
   }, []);
+
+
+  const navigate = useNavigate();
+
+
+
+const CreateComments = async () => {
+  try {
+    const commentData = await FetchCreateComments({
+      post_id: id, // Assuming 'id' is the post ID
+      recurit_id: ApiComment.recurit_id,
+      page: ApiComment.page,
+      content: ApiComment.content,
+      to_user: ApiComment.to_user || null,
+    });
+    // Update comments state with the new comment
+    setComments([...comments, commentData]);
+  } catch (error) {
+    console.error('Error creating comment:', error);
+  }
+};
+
+// Remove the immediate invocation of CreateComments
+// CreateComments();
+
+// ...
+
+
+
+   
 
   const delectPost = async () => {
     try {
@@ -38,6 +104,8 @@ function RecruitmentPostDetailPage() {
       console.error('Error fetching post data:', error);
     }
   };
+
+  
 
 const delectClick = async()=>{
   delectPost({id});
@@ -173,24 +241,36 @@ const delectClick = async()=>{
               <div className='text-2xl font-bold mb-4'>댓글</div>
               
               <div className='flex items-center justify-center'>
-                <input
-                  className='border p-2 w-3/4 rounded-md'
-                  placeholder='댓글 입력...'
-                />
-                <DynamicColorButton
-                  color="black"
-                  text="댓글 달기"
-                  btnstyle="py-2 px-2 ml-2"
-                />
-              </div>
+              <div className='flex'
+  
+>
+  <input
+    className='border p-2 w-3/4 rounded-md'
+    placeholder='댓글 입력...'
+    value={ApiComment.content}
+    onChange={(e) => setAPiComment({ ...ApiComment, content: e.target.value })}
+  />
+  <DynamicColorButton
+    color="black"
+    text="댓글 달기"  
+    btnstyle="py-2 px-2 ml-2"
+    onClick={() => {
+      // Handle the click event and call CreateComments
+      CreateComments();
+    }}
+  />
+</div>
+
+
             </div>
             
             <div className='flex justify-between items-center'>
-              <CommentList comments={comments} />
+            <CommentList comments={comments} onUserClick={handleUserClick} />
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

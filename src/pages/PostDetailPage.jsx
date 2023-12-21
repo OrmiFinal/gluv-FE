@@ -1,21 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
+import Margin from '../components/Margin.jsx';
+import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import useWindowSize from '../hooks/useWindowSzie.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
-import { FetchPostData } from '../api/post.js';
-
-function RecruitmentPostDetailPage() {
+import { FetchPostData ,FetchDelectData} from '../api/post.js';
+import { Link ,useNavigate} from "react-router-dom"; 
+import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
+function PostDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [ApiComment, setAPiComment] = useState({
+    recurit_id: id,
+    page: 0,
+    content: '',
+    to_user: '',
+  });
+  
   const [comments, setComments] = useState([
     { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
-    // Add other comments as needed
+   
   ]);
 
+  const handleUserClick = (user) => {
+    // Do something with the user information, e.g., navigate to the user's profile
+    console.log(`Clicked on user: ${user}`);
+    setAPiComment((prev) => ({
+      ...prev,
+      to_user: user,
+    }));
+  };
+  
+
+ 
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -26,11 +45,75 @@ function RecruitmentPostDetailPage() {
       }
     };
 
+    const getCommnet = async () => {
+      try {
+        const commentData = await FetchAllCommentsData({ id });
+        console.log("commentData")
+        console.log("commentData")
+        console.log("commentData")
+        console.log(commentData)
+        console.log("commentData")
+        console.log("commentData")
+        console.log("commentData")
+        setComments(commentData);
+      } catch (error) {
+        console.error('Error fetching post data:', error);
+      }
+    };
+  
+    getCommnet()
     getPost();
    
   }, []);
- console.log(data)
-    console.log(data)
+
+
+  const navigate = useNavigate();
+
+
+
+const CreateComments = async () => {
+  try {
+    const commentData = await FetchCreateComments({
+      post_id: id, // Assuming 'id' is the post ID
+      recurit_id: ApiComment.recurit_id,
+      page: ApiComment.page,
+      content: ApiComment.content,
+      to_user: ApiComment.to_user || null,
+    });
+    // Update comments state with the new comment
+    setComments([...comments, commentData]);
+  } catch (error) {
+    console.error('Error creating comment:', error);
+  }
+};
+
+// Remove the immediate invocation of CreateComments
+// CreateComments();
+
+// ...
+
+
+
+   
+
+  const delectPost = async () => {
+    try {
+      const postData = await FetchDelectData({ id });
+      setData(postData);
+    } catch (error) {
+      console.error('Error fetching post data:', error);
+    }
+  };
+
+  
+
+const delectClick = async()=>{
+  delectPost({id});
+  navigate('/RecruitmentPage')
+}
+
+  console.log(data)
+  console.log(data)
   if (!data) {
     // You can render a loading spinner or message here
     return <div>Loading...</div>;
@@ -39,9 +122,10 @@ function RecruitmentPostDetailPage() {
   return (
     <div className="flex items-center justify-center">
       <div className='w-[80vw] rounded-md  p-6'>
-        <div className='flex items-center justify-center w-[60px] h-[30px] bg-gray-200 text-sm font-roboto rounded-md text-center'>
-          {data.category}
-        </div>
+      <div className='flex items-center justify-center w-[60px] h-[30px] bg-gray-200 text-sm font-roboto rounded-md text-center overflow-hidden'>
+  {data.category}
+</div>
+
 
         <Margin top="1" />
         <div className='w-full'>
@@ -54,7 +138,7 @@ function RecruitmentPostDetailPage() {
                 <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
                 <div className='font-bold text-lg'>{data.author}</div>
                 <Margin left="1"  plustailwind="w-3" />
-                <div className='text-sm font-mono text-gray-600 '>{NowformatDate(data.created_at)}</div>
+                <div className='text-sm font-mono text-gray-600  ' >{NowformatDate(data.created_at)}</div>
               </div>
               <div className='flex flex-col items-center p-2'>
                 <div className='flex'>
@@ -74,9 +158,7 @@ function RecruitmentPostDetailPage() {
               <div className='flex items-center'>
                 <div className='grid grid-cols-2 gap-3'>
                   <InfoItem title="카테고리" content={data.category} />
-                  <InfoItem title="지역" content={data.location} />
-                  <InfoItem title="최대인원" content={data.maxParticipants} />
-                  <InfoItem title="현재인원" content={data.currentParticipants} />
+               
                 </div>
               </div>
               <div className='flex flex-col items-center p-2'>
@@ -99,7 +181,9 @@ function RecruitmentPostDetailPage() {
             </div>
             
             <Margin top="3" plustailwind="h-3 w-1"  />
-            <div className='border p-2 w-full h-[350px] overflow-scroll rounded-md'></div>
+            <div className="h-[400px] w-full flex   z-10">
+      <div dangerouslySetInnerHTML={{ __html: data.content }} />
+    </div>
             
             <Margin top="2" />
             <div className='flex justify-center'>
@@ -133,6 +217,7 @@ function RecruitmentPostDetailPage() {
                 <DynamicColorButton
                   color="red"
                   text="삭제하기"
+                  onClick = {delectClick}
                   btnstyle="py-1 px-2 flex-shrink-0"
                 />
               </div>
@@ -156,24 +241,36 @@ function RecruitmentPostDetailPage() {
               <div className='text-2xl font-bold mb-4'>댓글</div>
               
               <div className='flex items-center justify-center'>
-                <input
-                  className='border p-2 w-3/4 rounded-md'
-                  placeholder='댓글 입력...'
-                />
-                <DynamicColorButton
-                  color="black"
-                  text="댓글 달기"
-                  btnstyle="py-2 px-2 ml-2"
-                />
-              </div>
+              <div className='flex'
+  
+>
+  <input
+    className='border p-2 w-3/4 rounded-md'
+    placeholder='댓글 입력...'
+    value={ApiComment.content}
+    onChange={(e) => setAPiComment({ ...ApiComment, content: e.target.value })}
+  />
+  <DynamicColorButton
+    color="black"
+    text="댓글 달기"  
+    btnstyle="py-2 px-2 ml-2"
+    onClick={() => {
+      // Handle the click event and call CreateComments
+      CreateComments();
+    }}
+  />
+</div>
+
+
             </div>
             
             <div className='flex justify-between items-center'>
-              <CommentList comments={comments} />
+            <CommentList comments={comments} onUserClick={handleUserClick} />
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
@@ -182,7 +279,7 @@ function RecruitmentPostDetailPage() {
 const InfoItem = ({ title, content }) => (
   <div className='flex justify-start items-center'>
     <div className='font-bold text-lg'>{title}</div>
-    <Margin left="1" />
+    <Margin left="1" plustailwind="w-3" />
     <div className='text-sm font-mono text-gray-600'>{content}</div>
   </div>
 );
@@ -222,5 +319,4 @@ const NowformatDate = (dateString) => {
 };
 
 
-
-export default RecruitmentPostDetailPage;
+export default PostDetailPage
