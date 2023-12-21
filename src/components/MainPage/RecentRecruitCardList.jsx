@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 function RecentRecruitCardList()  {
   const [recruitData, setRecruitData] = useState([]);
+  const baseURL = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
     const fetchRecruitData = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/recruits/hot/');
+            const response = await fetch(`${baseURL}/recruits/hot/`);
             if (!response.ok) {
                 throw new Error('Failed to fetch book data');
             }
@@ -46,8 +47,9 @@ function RecentRecruitCardList()  {
         {Array.isArray(recruitData) &&  
           recruitData.map((card) => (
             <div key={card.id} className="w-1/4 max-w-sm overflow-hidden flex-shrink-0 px-4">
-              <a className="bg-gray-200 mb-2 rounded-lg md:rounded-lg overflow-hidden flex items-center justify-center cursor-pointer relative md:mb-3" href="/announcement/view/1879"><span>
-                <img draggable="false" sizes="100vw"  src="/" decoding="async" data-nimg="fill" style={{ height: '200px', objectFit: 'cover' }}/>
+              <a className="bg-gray-200 mb-2 rounded-lg md:rounded-lg overflow-hidden flex items-center justify-center cursor-pointer relative md:mb-3" href={`/recruits/${card.id}/`}><span>
+                {/* 이미지 URL 추가 필요 */}
+                <img draggable="false" sizes="100vw"  src={`${baseURL}/${card.imageUrl}`} decoding="async" data-nimg="fill" style={{ height: '200px', objectFit: 'cover' }}/>
                 </span>
               </a>
               <div className="flex flex-col gap-2">
@@ -73,13 +75,11 @@ function RecentRecruitCardList()  {
                   </div>
                 </div>
                 <h3 className="text-sm md:text-subtitle font-bold leading-4 md:leading-5 flex">
-                  <a className="line-clamp-2" href="/announcement/view/1880">{card.title}</a>
+                  <a className="line-clamp-2" href={`/recruits/${card.id}/`}>{card.title}</a>
                 </h3>
                 <div className="flex items-center justify-between">
                   <div className="text-body3 leading-[14.4px] text-gray-600 flex gap-1.5">
-                    <p className="line-clamp-1">Team : id({card.team})</p>
-                    <div className="h-3 w-px bg-gray-200"></div>
-                      <span className="">D-166</span>
+                    <p className="line-clamp-1">{card.name}</p>
                   </div>
                   <div className="flex">
                   </div>
