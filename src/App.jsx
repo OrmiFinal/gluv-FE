@@ -22,7 +22,7 @@ import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import NoticePage from './pages/NoticePage.jsx';
-
+import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
 
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -112,7 +112,11 @@ const pages = [
 
   // 모임 상세 페이지 (UI 문제 있습니다)
   { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
+  
   // 모임 정보 수정(리더만 가능)
+  // 모임 정보 수정 페이지
+  { path: "/recruits/:id/edit", component: RecruitPostEditPage, layoutType: "Non" },
+  
   // 모임 정보 수정 페이지 
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
   // 구성원 관리
