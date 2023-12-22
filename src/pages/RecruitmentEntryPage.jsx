@@ -32,6 +32,7 @@ function RecruitmentPostEntryPage() {
     setFormData({ ...formData, [field]: e.target.value });
     console.log(formData);
   };
+  
 
 
   const regions = [
@@ -183,6 +184,7 @@ function RecruitmentPostEntryPage() {
               <DynamicColorButton color="blue" text="작성" btnstyle="" onClick={handleSave} />
             </div>
           </div>
+        
         </div>
       </div>
     </div>
