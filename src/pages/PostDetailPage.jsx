@@ -7,9 +7,6 @@ import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { FetchPostData ,FetchDelectData} from '../api/post.js';
 import { Link ,useNavigate} from "react-router-dom"; 
-import { checkIfLike, likePost, unlikePost } from '../api/likes.js';
-import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
-import { submitReport } from '../api/report.js';
 function PostDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
@@ -18,46 +15,6 @@ function PostDetailPage() {
     { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
     // Add other comments as needed
   ]);
-
-  const [inserComment, setInserComment] = useState('');
-
-  const handleInputChange = (event) => {
-    setInserComment(event.target.value);
-  };
-
-  const [Count, setCount] = useState(1);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  
-
-
-  const [isLiked, setIsLiked] = useState(false);
-  const postId =id;  // Replace with the actual post ID
-
-  useEffect(() => {
-    // Check if the post is liked when the component mounts
-    checkIfLiked();
-  }, []);
-
-
-
-
-
-  const checkIfLiked = async () => {
-    try {
-      const liked = await checkIfLike(postId);
-      setIsLiked(liked);
-    } catch (error) {
-      console.error('Error checking if liked:', error);
-    }
-    
-  };
-
-  const commentFetch =async()=>{
-    let a = await FetchAllCommentsData({id:id,page:currentPage});
-    setComments({a})
-    setCount(a.count)
-  }
   const navigate = useNavigate();
   useEffect(() => {
     const getPost = async () => {
@@ -69,69 +26,9 @@ function PostDetailPage() {
       }
     };
 
-   
-    commentFetch()
-
     getPost();
    
-  }, [currentPage]);
-
-  useEffect(() => {
-   
-   
-    commentFetch()
-
-   
-   
-  }, [currentPage]);
-
-
-
-
-
-  const CreatComment = async () => {
-    console.log("asd")
-    try {
-      await FetchCreateComments({
-        post_id: id,
-        content: inserComment,
-      });
-      await commentFetch(); // Fetch and update comments after creating a new comment
-    } catch (error) {
-      console.error('Error creating comment:', error);
-    }
-  };
-
-  const handleLikeClick = async () => {
-    try {
-      await likePost(postId);
-      setIsLiked(true);
-    } catch (error) {
-      console.error('Error liking the post:', error);
-    }
-  };
-
-  const handleUnlikeClick = async () => {
-    try {
-      await unlikePost(postId);
-      setIsLiked(false);
-    } catch (error) {
-      console.error('Error unliking the post:', error);
-    }
-    console.log("comments")
-    console.log(comments.a.count)
-  };
-  const ReportClick = async()=>{
-    console.log("data")
-    console.log("data")
-    console.log(data)
-    let a=await submitReport({user_id:data.author,content:`포스트${id}를 신고 당했습니다.`})
-    console.log(a)
-  }
-
-  const handlePageClick = (page) => {
-    setCurrentPage(page+1);
-  };
+  }, []);
 
   const delectPost = async () => {
     try {
@@ -147,7 +44,8 @@ const delectClick = async()=>{
   navigate('/posts')
 }
 
-
+  console.log(data)
+  console.log(data)
   if (!data) {
     // You can render a loading spinner or message here
     return <div>Loading...</div>;
@@ -221,40 +119,32 @@ const delectClick = async()=>{
             
             <Margin top="2" />
             <div className='flex justify-center'>
-             
-                {isLiked ? (
-                   <DynamicColorButton
-                   color="blue"
-                   text="좋아요"
-                   btnstyle="py-2 px-4"
-                   onClick={handleUnlikeClick}
-                 />
-      
-      ) : (
-        <DynamicColorButton
-        className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
-        onClick={handleLikeClick}
-        text="좋아요 취소"
-        color="red"
-      >
-      
-      </DynamicColorButton>
-      )}
-
-
+              <DynamicColorButton
+                color="blue"
+                text="좋아요"
+                btnstyle="py-2 px-4"
+              />
               <Margin left="4" />
               <DynamicColorButton
                 color="red"
                 text="신고"
                 btnstyle="py-2 px-4 mr-2"
-                onClick={ReportClick}
               />
             </div>
 
             <Margin top="4" />
-            <div className={`w-full border  p-4 flex ${['lg', 'xl', 'xxl'].includes(screenSize) ? 'justify-between items-start' : 'flex-col items-start'}`}>
+            <div className={`w-full border p-4 flex ${['lg', 'xl', 'xxl'].includes(screenSize) ? 'justify-between items-start' : 'flex-col items-start'}`}>
               <div className='flex'>
-               
+                <DynamicColorButton
+                  text="신청 현황"
+                  btnstyle="py-1 px-2 flex-shrink-0"
+                />
+                <Margin left="1" />
+                <DynamicColorButton
+                  color="blue"
+                  text="수정하기"
+                  btnstyle="py-1 px-2 flex-shrink-0"
+                />
                 <Margin left="1" />
                 <DynamicColorButton
                   color="red"
@@ -265,7 +155,11 @@ const delectClick = async()=>{
               </div>
               {['lg', 'xl', 'xxl'].includes(screenSize) ? (<></>) : (<Margin top="3" />)}
               <div className='flex flex-wrap'>
-             
+                <DynamicColorButton
+                  color="blue"
+                  text="신청하기"
+                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                />
                 <Margin left="1" />
                 <DynamicColorButton
                   text="목록으로"
@@ -279,38 +173,22 @@ const delectClick = async()=>{
               <div className='text-2xl font-bold mb-4'>댓글</div>
               
               <div className='flex items-center justify-center'>
-              <input
-        className='border p-2 w-3/4 rounded-md'
-        placeholder='댓글 입력...'
-        value={inserComment}
-        onChange={handleInputChange}
-      />
+                <input
+                  className='border p-2 w-3/4 rounded-md'
+                  placeholder='댓글 입력...'
+                />
                 <DynamicColorButton
                   color="black"
                   text="댓글 달기"
                   btnstyle="py-2 px-2 ml-2"
-                  onClick={CreatComment}
                 />
               </div>
             </div>
             
             <div className='flex justify-between items-center'>
-              <CommentList comments={comments.a?comments.a.results:[]} />
-
-            
-
-
+              <CommentList comments={comments} />
             </div>
           </div>
-          <div className='flex w-full justify-center items-center'>
-              {Array.from({ length: Math.ceil(comments.a ? comments.a.count / 5 : 1) }, (_, index) => (
-    <span
-      key={index}
-      className={`cursor-pointer mx-1  text-center ${currentPage === index + 1 ? 'font-bold' : ''}`}
-      onClick={() => handlePageClick(index )}
-    >{index+1}</span>
-              ))}
-              </div>
         </div>
       </div>
     </div>
