@@ -23,42 +23,10 @@ export const ModelContextProvider = ({ children }) => {
       ...content,
     }));
   };
-  
-
-  const fetchData = async (  order, order_by,search,page) => {
-    try {
-      const postResponse = await FetchAllContext({
-        search: '',
-        category: selectedCategory.category,
-        subcategory: selectedCategory.subcategory,
-        order: selectedCategory.order,
-        page: selectedCategory.page,
-        order_by: selectedCategory.order_by,
-        search: selectedCategory.search,
-      });
-
-      setContent(postResponse.data);
-
-
-      
-      if (postResponse) {
-        console.log('postResponse', postResponse);
-      }
-    } catch (error) {
-      console.error('Error fetching FetchAllContextdata:', error.message);
-    }
-  };
-
-  useEffect(() => {
-    // selectedCategory가 변경될 때마다 fetchData 호출
-    fetchData();
-    
-
-  }, [selectedCategory]);
 
   return (
     <ModelContext.Provider
-      value={{ selectedCategory, ToggleMiniChatModel, setContent, content, fetchData ,pagecount}}
+      value={{ selectedCategory, ToggleMiniChatModel, setContent, content, pagecount}}
     >
       {children}
     </ModelContext.Provider>

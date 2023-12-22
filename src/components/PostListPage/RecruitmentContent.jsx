@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 function RecruitmentContent() {
   const { screenSize } = useWindowSize();
   const [posturl, setPostUrl] = useState({
-    category: "공지상황",
+    category: "공지사항",
     subcategorie: "",
     page:""
   });
