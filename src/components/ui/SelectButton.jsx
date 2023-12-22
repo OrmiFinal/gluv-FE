@@ -42,11 +42,13 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size }) => {
     <div className=''>
       <div className='text-sm text-left'> {title==undefined?"카테고리":title}</div>
       <Margin plustailwind="h-2" />
-    <div className="relative flex flex-col w-60">
+      <div className={`relative flex flex-col ${size ? `w-${size}` : 'w-60' } `}>
       
        
       <motion.button
-        className=" bg-light-100 border text-black py-2 px-4  w-[30vw] rounded-xl focus:outline-none flex items-center relative z-[100]"
+        className={` bg-light-100 border text-black py-2 px-4 ${size ? `w-${size}` : 'w-[30vw] ' } 
+        
+        rounded-xl focus:outline-none flex items-center relative z-[100]`}
         onClick={() => {
           setIsOpen(!isOpen);
           isOpen ? handleClose() : handleOpen();
