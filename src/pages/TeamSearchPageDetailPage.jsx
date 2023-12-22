@@ -7,29 +7,46 @@ import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { FetchPostData } from '../api/post.js';
 import { FetchRecruits } from '../api/recruits.js';
+import { FetchTeam } from '../api/team.js';
 
 function RecruitmentPostDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [teamData, setTeamData] = useState(null);
   const [comments, setComments] = useState([
     { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
     // Add other comments as needed
   ]);
-
   useEffect(() => {
     const getPost = async () => {
       try {
         const postData = await FetchRecruits({ id });
-        setData(postData);
+        setData((prev) => ({
+          ...prev,
+          ...postData,
+        }));
       } catch (error) {
         console.error('Error fetching post data:', error);
       }
     };
-
+  
+    const getTeam = async () => {
+      try {
+        const teamData = await FetchTeam({ id });
+        setData((prev) => ({
+          ...prev,
+          ...teamData,
+        }));
+      } catch (error) {
+        console.error('Error fetching team data:', error);
+      }
+    };
+  
     getPost();
-   
+    getTeam();
   }, []);
+  
  console.log(data)
     console.log(data)
   if (!data) {
@@ -75,9 +92,9 @@ function RecruitmentPostDetailPage() {
               <div className='flex items-center'>
                 <div className='grid grid-cols-2 gap-3'>
                   <InfoItem title="카테고리" content={data.category} />
-                  <InfoItem title="지역" content={data.location} />
-                  <InfoItem title="최대인원" content={data.maxParticipants} />
-                  <InfoItem title="현재인원" content={data.currentParticipants} />
+                  <InfoItem title="지역" content={data.region} />
+                  <InfoItem title="최대인원" content={data.max_attendance} />
+                  <InfoItem title="현재인원" content={data.current_attendance} />
                 </div>
               </div>
               <div className='flex flex-col items-center p-2'>
@@ -96,11 +113,13 @@ function RecruitmentPostDetailPage() {
 
             <Margin top="4" />
             <div className='text-xl w-ful border-black font-bold mb-4'>
-              모집글 내용
+         
             </div>
             
             <Margin top="3" plustailwind="h-3 w-1"  />
-            <div className='border p-2 w-full h-[350px] overflow-scroll rounded-md'></div>
+            <div className='border p-2 w-full h-[350px] overflow-scroll rounded-md'>
+            <div dangerouslySetInnerHTML={{ __html: data.content }} />
+            </div>
             
             <Margin top="2" />
             <div className='flex justify-center'>
@@ -183,7 +202,7 @@ function RecruitmentPostDetailPage() {
 const InfoItem = ({ title, content }) => (
   <div className='flex justify-start items-center'>
     <div className='font-bold text-lg'>{title}</div>
-    <Margin left="1" />
+    <Margin left="1"  plustailwind='w-3' />
     <div className='text-sm  text-gray-600'>{content}</div>
   </div>
 );

@@ -85,7 +85,7 @@ console.log(page,search,category,order_by,order)
       console.log("FetchRecruitsPost");
       console.log("FetchRecruitsPost");
       console.log(res.data);
-      // rest of the code...
+      // resfvt of the code...
       return res.data;
   } catch (error) {
       console.error("Fetching notice failed:", error.message);
@@ -111,9 +111,11 @@ export const FetchRecruits = async ({id}) => {
           },
       });
    
-
+      console.log("FetchRecruitsPost");
+      console.log("FetchRecruitsPost");
+      console.log(res.data);
       // rest of the code...
-      return res.data.data;
+      return res.data;
   } catch (error) {
       console.error("Fetching notice failed:", error.message);
       return null;
