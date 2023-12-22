@@ -14,7 +14,7 @@ function AlertForm() {
   useEffect(() => {
       const fetchNotiData = async () => {
           try {
-            const response = await Request('get', 'notifications/unread/', {}, {}, {})
+            const response = await Request('get', '/notifications/unread/', {}, {}, {})
             if (!response) {
                 throw new Error('Failed to fetch data');
             }

@@ -80,7 +80,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       console.log(apiURL + "apiURL")
       console.log(inputs);
-      const res = await axios.post(`http://127.0.0.1:8000/users/signup/`, inputs);
+      const res = await axios.post(`/users/signup/`, inputs);
       // 성공적으로 로그인한 경우
       if (res.status === 200) {
         console.log(apiURL)
