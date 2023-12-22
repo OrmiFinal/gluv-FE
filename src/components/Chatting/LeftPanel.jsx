@@ -95,14 +95,6 @@ function LeftPanel({ chatrooms, bgColor, handleChangeRoomID}) {
                     </ul>
                 </div>                
             </div>
-            {/* <div className=''>
-                <h2 className='mb-4'>현재 접속자</h2>
-                <ul>
-                {Array.isArray(currentUsers) && currentUsers.map((user, index) => (
-                    <li key={index}>{user.nickname}</li>
-                ))}
-                </ul>
-            </div> */}
         </div>
     );
 }
