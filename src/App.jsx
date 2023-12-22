@@ -19,7 +19,7 @@ import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
+import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import NoticePage from './pages/NoticePage.jsx';
 
@@ -108,7 +108,7 @@ const pages = [
   { path: "/users/myposts/", component: ProfileEditingPage, layoutType: "Profile" },
 
   // 유저 정보 수정페이지
-  { path: "/users/edit/", component: ProfilePage, layoutType: "Non" },
+  { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
 
   // 모임 상세 페이지 (UI 문제 있습니다)
   { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
