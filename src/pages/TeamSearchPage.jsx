@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
-import TitleComponent from '../components/RecruitmentPage/TitleComponent';
+import TitleComponent from '../components/PostListPage/TitleComponent';
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import Contour from '../components/ui/Contour';

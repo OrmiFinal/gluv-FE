@@ -2,11 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import useWindowSize from '../hooks/useWindowSzie';
 import { ModelContext } from '../context/ModelContextProvider';
-import TitleComponent from '../components/RecruitmentPage/TitleComponent';
+import TitleComponent from '../components/PostListPage/TitleComponent';
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import Contour from '../components/ui/Contour';
-import BulletinBoard from '../components/RecruitmentPage/BulletinBoard';
+import BulletinBoard from '../components/PostListPage/BulletinBoard';
 import { FetchNoticeData } from '../api/post';
 
 function ProfileEditingPage() {

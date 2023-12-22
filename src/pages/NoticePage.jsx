@@ -1,5 +1,5 @@
 import React from 'react'
-import RecruitmentLeftMenu from '../components/RecruitmentPage/RecruitmentLeftMenu'
+import RecruitmentLeftMenu from '../components/PostListPage/RecruitmentLeftMenu'
 import NoticeContent from '../components/NoticePage/NoticeContent'
 
 function NoticePage() {

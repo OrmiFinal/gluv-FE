@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
+import Margin from '../components/Margin.jsx';
+import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import useWindowSize from '../hooks/useWindowSzie.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { FetchPostData ,FetchDelectData} from '../api/post.js';
 import { Link ,useNavigate} from "react-router-dom"; 
-function RecruitmentPostDetailPage() {
+function PostDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -41,7 +41,7 @@ function RecruitmentPostDetailPage() {
 
 const delectClick = async()=>{
   delectPost({id});
-  navigate('/RecruitmentPage')
+  navigate('/PostListPage')
 }
 
   console.log(data)
@@ -239,4 +239,4 @@ const NowformatDate = (dateString) => {
 };
 
 
-export default RecruitmentPostDetailPage
+export default PostDetailPage

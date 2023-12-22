@@ -9,8 +9,8 @@ import TeamSearchPageDetailPage from './pages/TeamSearchPageDetailPage.jsx';
 import PostEntryPage from './pages/PostEntryPage.jsx';
 import ProfileEntryPage from './pages/ProfileEditingPage.jsx';
 import ProfileEditingPage from './pages/ProfileEditingPage.jsx';
-import RecruitmentPage from './pages/RecruitmentPage.jsx';
-import RecruitmentPostDetailPage from './pages/RecruitmentPostDetailPage.jsx';
+import PostListPage from './pages/PostListPage.jsx';
+import PostDetailPage from './pages/PostDetailPage.jsx';
 import RecruitmentPostEntryPage from './pages/RecruitmentPostEntryPage.jsx';
 import TeamSearchPage from './pages/TeamSearchPage.jsx';
 import TeamManagementPage from './pages/TeamManagementPage.jsx';
@@ -80,14 +80,14 @@ const pages = [
   { path: "/TeamSearchPageDetailPage/:id/", component: TeamSearchPageDetailPage, layoutType: "Non" },
   // 커뮤니티 게시글 목록
   // 쿼리는 내부적으로 처리해야함.
-  { path: "/posts/", component: RecruitmentPage, layoutType: "Non" },
+  { path: "/posts/", component: PostListPage, layoutType: "Non" },
   // ---
   { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
   { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
   { path: "/PostEntryPage", component: PostEntryPage, layoutType: "Non" },
   { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
-  { path: "/RecruitmentPage", component: RecruitmentPage, layoutType: "Non" },
-  { path: "/RecruitmentPostDetailPage/:id", component: RecruitmentPostDetailPage, layoutType: "Non" },
+  { path: "/PostListPage", component: PostListPage, layoutType: "Non" },
+  { path: "/PostDetailPage/:id", component: PostDetailPage, layoutType: "Non" },
   { path: "/RecruitmentPostEntryPage", component: RecruitmentPostEntryPage, layoutType: "Non" },
   { path: "/TeamSearchPage", component: TeamSearchPage, layoutType: "Profile" },
   { path: "/TeamManagementPage", component: TeamManagementPage, layoutType: "Profile" },

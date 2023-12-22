@@ -21,7 +21,7 @@ function BulletinBoard({ data }) {
         </div>
 
 {data && data.map((item, index) => (
-  <Link to={`/RecruitmentPostDetailPage/${item.id}`} className="font-bold text-lg px-3 bold">
+  <Link to={`/PostDetailPage/${item.id}`} className="font-bold text-lg px-3 bold">
     <div key={index} className="flex items-center justify-start border p-2 rounded-md w-full hover:bg-gray-100">
       <span className='font-semibold text-sm w-[15vw]'>{item.id}</span>
       <span className='font-lato text-sm w-[23vw]'>{item.title}</span>

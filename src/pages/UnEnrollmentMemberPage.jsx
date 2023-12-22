@@ -1,9 +1,9 @@
 import React from 'react';
 import DynamicColorButton from '../components/DynamicColorButton';
 import Margin from '../components/Margin';
-import BulletinBoard from '../components/RecruitmentPage/BulletinBoard';
+import BulletinBoard from '../components/PostListPage/BulletinBoard';
 import Contour from '../components/ui/Contour';
-import TitleComponent from '../components/RecruitmentPage/TitleComponent';
+import TitleComponent from '../components/PostListPage/TitleComponent';
 
 import EnrollTeamBox2 from '../components/EnrollTeamBox2';
 
