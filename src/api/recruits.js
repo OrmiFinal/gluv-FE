@@ -59,7 +59,7 @@ export const createRecruitsPost = async ({
 
 
 
-export const FetchRecruitsPost = async ({ page = 1, search = "", category = "", order_by = "", order = "" }) => {
+export const FetchRecruitsPost = async ({ page = 1, search = "", category = "", order_by = "", order = "" ,region=""}) => {
   try {
       const user = JSON.parse(localStorage.getItem("user"));
       const accessToken = user?.access_token || "";
@@ -67,7 +67,9 @@ export const FetchRecruitsPost = async ({ page = 1, search = "", category = "", 
           console.error("Access token not available");
           return null;
       }
+
       const queryString = `?page=${page}&search=${search}&category=${category}&order_by=${order_by}&order=${order}`;
+
       const apiUrl = `http://localhost:8000/recruits/${queryString}`;
 
       const res = await axios.get(apiUrl, {
