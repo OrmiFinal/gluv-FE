@@ -12,7 +12,7 @@ import { ModelContext } from '../../context/ModelContextProvider'
 import Pagination from './Pagination.jsx';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
-import useWindowSize from '../../hooks/useWindowSzie';
+import useWindowSize from '../../hooks/useWindowSize';
 import BulletinBoard from './BulletinBoard';
 
 function Content() {

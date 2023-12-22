@@ -11,21 +11,20 @@ export const createRecruitsPost = async ({
   week,
   day,
   category,
-  introduce= "설명도 필요 없는 엄청난 팀",
+  introduce= "모임 설명",
   maxAttendance
 }) => {
   try {
-    // Retrieve user information from local storage
+    
     const user = JSON.parse(localStorage.getItem("user"));
     const accessToken = user?.access_token || "";
-    console.log(region)
-    // Check if access token is available
+    
     if (!accessToken) {
       console.error("Access token not available");
       return null;
     }
 
-    // Make a POST request to create a recruit post
+
     const response = await axios.post(
        "http://localhost:8000/recruits/",
       {
@@ -49,13 +48,10 @@ export const createRecruitsPost = async ({
       }
     );
 
-    // Log the response data for debugging (you can remove this in production)
-    console.log("Recruits post created successfully:", response.data);
 
-    // Return the data from the response
     return response.data;
   } catch (error) {
-    // Handle errors during the create
+
     console.error("Creating recruits post failed:", error.response?.data || error.message);
     return null;
   }
@@ -71,9 +67,6 @@ export const FetchRecruitsPost = async ({ page = 1, search = "", category = "", 
           console.error("Access token not available");
           return null;
       }
-      console.log("asdasd")
-      console.log("page,search,category,order_by,order")
-console.log(page,search,category,order_by,order)
       const queryString = `?page=${page}&search=${search}&category=${category}&order_by=${order_by}&order=${order}`;
       const apiUrl = `http://localhost:8000/recruits/${queryString}`;
 
@@ -82,9 +75,6 @@ console.log(page,search,category,order_by,order)
               Authorization: `Bearer ${accessToken}`,
           },
       });
-      console.log("FetchRecruitsPost");
-      console.log("FetchRecruitsPost");
-      console.log(res.data);
       // resfvt of the code...
       return res.data;
   } catch (error) {
@@ -111,9 +101,7 @@ export const FetchRecruits = async ({id}) => {
           },
       });
    
-      console.log("FetchRecruitsPost");
-      console.log("FetchRecruitsPost");
-      console.log(res.data);
+
       // rest of the code...
       return res.data;
   } catch (error) {

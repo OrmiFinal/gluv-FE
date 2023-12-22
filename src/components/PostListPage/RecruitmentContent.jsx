@@ -4,7 +4,7 @@ import DynamicColorButton from '../DynamicColorButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import useWindowSize from '../../hooks/useWindowSzie';
+import useWindowSize from '../../hooks/useWindowSize';
 import Contour from '../ui/Contour';
 import TitleComponent from './TitleComponent'; // Adjust the path as needed
 import BulletinBoard from './BulletinBoard';
