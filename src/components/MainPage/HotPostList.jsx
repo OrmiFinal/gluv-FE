@@ -40,7 +40,8 @@ function HotPostList ({ category }){
                         <a className="text-body1 whitespace-nowrap flex py-2" href={`/posts/${post.id}`}>
                         <span className="font-bold text-gray-900 mr-3">1</span>
                         <span className="text-black mr-1.5 break-all font-medium min-w-0 overflow-hidden overflow-ellipsis">{post.title}</span>
-                        <span className="text-key font-medium">{post.view_count} views</span>
+                        {/* <span className="text-key font-medium">{post.category}</span> */}
+                        <span className="mt-1 text-key text-[10px]">{post.view_count} views</span>
                         </a>
                         </li>
                 ))}

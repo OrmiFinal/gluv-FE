@@ -7,13 +7,13 @@ import MyPostPage from './pages/MyPostPage.jsx';
 import MyTeamPage from './pages/MyTeamPage.jsx';
 import RecruitmentDetailPage from './pages/RecruitmentDetailPage.jsx';
 import PostEntryPage from './pages/PostEntryPage.jsx';
-import ProfileEntryPage from './pages/ProfileEditingPage.jsx';
-import ProfileEditingPage from './pages/ProfileEditingPage.jsx';
+import MyPostsPage from './pages/MyPostsPage.jsx';
 import PostListPage from './pages/PostListPage.jsx';
 import PostDetailPage from './pages/PostDetailPage.jsx';
 import RecruitmentEntryPage from './pages/RecruitmentEntryPage.jsx';
 import RecruitmentListPage from './pages/RecruitmentListPage.jsx';
-import TeamManagementPage from './pages/TeamManagementPage.jsx';
+import MyTeamsPage from './pages/MyTeamsPage.jsx';
+import MyAppliedTeamsPage from './pages/MyAppliedTeamsPage.jsx';
 import EnrollmentMemberPage from './pages/EnrollmentMemberPage.jsx';
 import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
@@ -102,11 +102,11 @@ const pages = [
   { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Non" },
   // { path: "/users/profile/edit", component: ProfileEditingPage, layoutType: "Non" },
   // 활동 중인 모임
-  { path: "/users/myteams/", component: TeamManagementPage, layoutType: "Profile" },
-  // 신청 중인 모임 (작성 필요)
-  // { path: "/users/appliedteams/", component: TeamManagementPage, layoutType: "Profile" },
+  { path: "/users/myteams/", component: MyTeamsPage, layoutType: "Profile" },
+  // 신청 중인 모임
+  { path: "/users/myappliedteams/", component: MyAppliedTeamsPage, layoutType: "Profile" },
   // 내가 적은 게시물
-  { path: "/users/myposts/", component: ProfileEditingPage, layoutType: "Profile" },
+  { path: "/users/myposts/", component: MyPostsPage, layoutType: "Profile" },
 
   // 유저 정보 수정페이지
   { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },

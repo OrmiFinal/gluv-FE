@@ -17,19 +17,7 @@ export const FetchAllTeamData = async ({ page = 1, search = "", category = "", o
                 Authorization: `Bearer ${accessToken}`,
             },
         });
-        console.log("apiUrl")
-        console.log("apiUrl")
-        console.log("apiUrl")
-        console.log("apiUrl")
-        console.log(apiUrl)
-        console.log("apiUrl")
-        console.log("apiUrl")
-        console.log("결과")
-        console.log("결과")
-        console.log("결과")
-        console.log("결과")
-        console.log(res);
-        // rest of the code...
+
         return res.data;
     } catch (error) {
         console.error("Fetching notice failed:", error.message);
@@ -55,11 +43,7 @@ export const FetchTeam = async ({id}) => {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
-     
-        console.log("FetchTeamsPost");
-        console.log("FetchTeamsPost");
-        console.log(res.data);
-        // rest of the code...
+
         return res.data;
     } catch (error) {
         console.error("Fetching notice failed:", error.message);
