@@ -99,7 +99,9 @@ const pages = [
   // 모집 게시글 상세 페이지
   { path: "/recruits/:id/", component: RecruitmentDetailPage, layoutType: "Non" },
 
-  // 유저 프로필
+  // 유저 프로필 수정
+  { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Non" },
+  // { path: "/users/profile/edit", component: ProfileEditingPage, layoutType: "Non" },
   // 활동 중인 모임
   { path: "/users/myteams/", component: TeamManagementPage, layoutType: "Profile" },
   // 신청 중인 모임 (작성 필요)
@@ -162,7 +164,7 @@ const pages = [
 //  { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
 
 // // 유저수정페이지
-// { path: "/UserEdit", component: ProfilePage, layoutType: "Non" },
+
 
 
 // //팀 페이지 -팀상세페이지
