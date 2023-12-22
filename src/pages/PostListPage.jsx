@@ -1,12 +1,12 @@
-import React from 'react'
-import RecruitmentContent from '../components/PostListPage/RecruitmentContent'
+import {React, useState} from 'react'
+import Content from '../components/PostListPage/Content'
 import RecruitmentLeftMenu from '../components/PostListPage/RecruitmentLeftMenu'
 
 function PostListPage() {
   return (
-    <div className='flex w-screen'>
+    <div className='flex'>
     <RecruitmentLeftMenu/>
-    <RecruitmentContent/>
+    <Content />
     </div>
   )
 }

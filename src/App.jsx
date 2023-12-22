@@ -21,7 +21,6 @@ import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
-import NoticePage from './pages/NoticePage.jsx';
 import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
 
 import Footer from "./components/Footer.jsx";
@@ -75,12 +74,12 @@ const pages = [
   // 메인 페이지
   { path: "/", component: MainPage, layoutType: "Non" },
 
-  // 공지사항 페이지 - 우선 남겨놓지만 게시글 상세 페이지와 동일해야 합니다.
-  { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
+  // 공지사항 페이지 
+  { path: "/posts/notices/", component: PostListPage, layoutType: "Non" },
 
-  // 필요 없는 듯 합니다
-  { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
-  { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
+  // // 필요 없는 듯 합니다
+  // { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
+  // { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
 
   
   // 자유게시판(커뮤니티) 게시글
@@ -134,8 +133,6 @@ const pages = [
 
 
 // { path: "/", component: MainPage, layoutType: "Non" },
-// // 공지사항 페이지
-// { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
 // // 커뮤니티 게시글 상세
 
 
