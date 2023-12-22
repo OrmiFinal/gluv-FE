@@ -9,7 +9,7 @@ import { FetchPostData } from '../api/post.js';
 import { FetchRecruits } from '../api/recruits.js';
 import { FetchTeam } from '../api/team.js';
 
-function TeamSearchPageDetailPage() {
+function RecruitmentDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -243,4 +243,4 @@ const NowformatDate = (dateString) => {
 
 
 
-export default TeamSearchPageDetailPage;
+export default RecruitmentDetailPage;

@@ -23,7 +23,7 @@ const sampleData = [
   },
 
 ]
-function TeamSearchPage() {
+function RecruitmentListPage() {
   const { screenSize } = useWindowSize();
   
 
@@ -240,4 +240,4 @@ function TeamSearchPage() {
   );
 }
 
-export default TeamSearchPage;
+export default RecruitmentListPage;

@@ -5,14 +5,14 @@ import React from "react";
 import MainPage from './pages/MainPage.jsx';
 import MyPostPage from './pages/MyPostPage.jsx';
 import MyTeamPage from './pages/MyTeamPage.jsx';
-import TeamSearchPageDetailPage from './pages/TeamSearchPageDetailPage.jsx';
+import RecruitmentDetailPage from './pages/RecruitmentDetailPage.jsx';
 import PostEntryPage from './pages/PostEntryPage.jsx';
 import ProfileEntryPage from './pages/ProfileEditingPage.jsx';
 import ProfileEditingPage from './pages/ProfileEditingPage.jsx';
 import PostListPage from './pages/PostListPage.jsx';
 import PostDetailPage from './pages/PostDetailPage.jsx';
-import RecruitmentPostEntryPage from './pages/RecruitmentPostEntryPage.jsx';
-import TeamSearchPage from './pages/TeamSearchPage.jsx';
+import RecruitmentEntryPage from './pages/RecruitmentEntryPage.jsx';
+import RecruitmentListPage from './pages/RecruitmentListPage.jsx';
 import TeamManagementPage from './pages/TeamManagementPage.jsx';
 import EnrollmentMemberPage from './pages/EnrollmentMemberPage.jsx';
 import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
@@ -77,19 +77,21 @@ const pages = [
   // 공지사항 페이지
   { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
   // 커뮤니티 게시글 상세
-  { path: "/TeamSearchPageDetailPage/:id/", component: TeamSearchPageDetailPage, layoutType: "Non" },
-  // 커뮤니티 게시글 목록
-  // 쿼리는 내부적으로 처리해야함.
+
   { path: "/posts/", component: PostListPage, layoutType: "Non" },
   // ---
   { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
   { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
   { path: "/PostEntryPage", component: PostEntryPage, layoutType: "Non" },
-  { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
   { path: "/PostListPage", component: PostListPage, layoutType: "Non" },
   { path: "/PostDetailPage/:id", component: PostDetailPage, layoutType: "Non" },
-  { path: "/RecruitmentPostEntryPage", component: RecruitmentPostEntryPage, layoutType: "Non" },
-  { path: "/TeamSearchPage", component: TeamSearchPage, layoutType: "Profile" },
+  { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
+
+  { path: "/RecruitmentEntryPage", component: RecruitmentEntryPage, layoutType: "Non" },
+  { path: "/RecruitmentDetailPage/:id", component: RecruitmentDetailPage, layoutType: "Non" },
+  { path: "/RecruitmentListPage", component: RecruitmentListPage, layoutType: "Profile" },
+
+  
   { path: "/TeamManagementPage", component: TeamManagementPage, layoutType: "Profile" },
   { path: "/unEnrollmentMemberPage", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
   { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
