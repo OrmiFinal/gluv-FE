@@ -7,13 +7,13 @@ import MyPostPage from './pages/MyPostPage.jsx';
 import MyTeamPage from './pages/MyTeamPage.jsx';
 import RecruitmentDetailPage from './pages/RecruitmentDetailPage.jsx';
 import PostEntryPage from './pages/PostEntryPage.jsx';
-import ProfileEntryPage from './pages/ProfileEditingPage.jsx';
-import ProfileEditingPage from './pages/ProfileEditingPage.jsx';
+import MyPostsPage from './pages/MyPostsPage.jsx';
 import PostListPage from './pages/PostListPage.jsx';
 import PostDetailPage from './pages/PostDetailPage.jsx';
 import RecruitmentEntryPage from './pages/RecruitmentEntryPage.jsx';
 import RecruitmentListPage from './pages/RecruitmentListPage.jsx';
-import TeamManagementPage from './pages/TeamManagementPage.jsx';
+import MyTeamsPage from './pages/MyTeamsPage.jsx';
+import MyAppliedTeamsPage from './pages/MyAppliedTeamsPage.jsx';
 import EnrollmentMemberPage from './pages/EnrollmentMemberPage.jsx';
 import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
@@ -21,8 +21,7 @@ import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
-import NoticePage from './pages/NoticePage.jsx';
-
+import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
 
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
@@ -75,12 +74,12 @@ const pages = [
   // 메인 페이지
   { path: "/", component: MainPage, layoutType: "Non" },
 
-  // 공지사항 페이지 - 우선 남겨놓지만 게시글 상세 페이지와 동일해야 합니다.
-  { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
+  // 공지사항 페이지 
+  { path: "/posts/notices/", component: PostListPage, layoutType: "Non" },
 
-  // 필요 없는 듯 합니다
-  { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
-  { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
+  // // 필요 없는 듯 합니다
+  // { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
+  // { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
 
   
   // 자유게시판(커뮤니티) 게시글
@@ -99,20 +98,26 @@ const pages = [
   // 모집 게시글 상세 페이지
   { path: "/recruits/:id/", component: RecruitmentDetailPage, layoutType: "Non" },
 
-  // 유저 프로필
+  // 유저 프로필 수정
+  { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Non" },
+  // { path: "/users/profile/edit", component: ProfileEditingPage, layoutType: "Non" },
   // 활동 중인 모임
-  { path: "/users/myteams/", component: TeamManagementPage, layoutType: "Profile" },
-  // 신청 중인 모임 (작성 필요)
-  // { path: "/users/appliedteams/", component: TeamManagementPage, layoutType: "Profile" },
+  { path: "/users/myteams/", component: MyTeamsPage, layoutType: "Profile" },
+  // 신청 중인 모임
+  { path: "/users/myappliedteams/", component: MyAppliedTeamsPage, layoutType: "Profile" },
   // 내가 적은 게시물
-  { path: "/users/myposts/", component: ProfileEditingPage, layoutType: "Profile" },
+  { path: "/users/myposts/", component: MyPostsPage, layoutType: "Profile" },
 
   // 유저 정보 수정페이지
   { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
 
   // 모임 상세 페이지 (UI 문제 있습니다)
   { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
+  
   // 모임 정보 수정(리더만 가능)
+  // 모임 정보 수정 페이지
+  { path: "/recruits/:id/edit", component: RecruitPostEditPage, layoutType: "Non" },
+  
   // 모임 정보 수정 페이지 
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
   // 구성원 관리
@@ -128,8 +133,6 @@ const pages = [
 
 
 // { path: "/", component: MainPage, layoutType: "Non" },
-// // 공지사항 페이지
-// { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
 // // 커뮤니티 게시글 상세
 
 
@@ -158,7 +161,7 @@ const pages = [
 //  { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
 
 // // 유저수정페이지
-// { path: "/UserEdit", component: ProfilePage, layoutType: "Non" },
+
 
 
 // //팀 페이지 -팀상세페이지

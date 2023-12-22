@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Margin from '../components/Margin.jsx';
 import DynamicColorButton from '../components/DynamicColorButton.jsx';
-import useWindowSize from '../hooks/useWindowSzie.jsx';
+import useWindowSize from '../hooks/useWindowSize.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { Link, useParams } from 'react-router-dom';

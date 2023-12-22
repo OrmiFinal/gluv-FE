@@ -7,7 +7,7 @@ import Contour from '../components/ui/Contour';
 import RecruitmentList from '../components/RecruitmentList';
 import SelectButton from '../components/ui/SelectButton';
 import { FetchAllTeamData } from '../api/team';
-import useWindowSize from '../hooks/useWindowSzie';
+import useWindowSize from '../hooks/useWindowSize';
 import { FetchRecruitsPost } from '../api/recruits';
 import { Link } from 'react-router-dom';
 
