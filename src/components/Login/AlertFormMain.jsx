@@ -10,7 +10,7 @@ function AlertFormMain() {
   useEffect(() => {
       const fetchNotiData = async () => {
           try {
-            const response = await Request('get', 'notifications/', {}, {}, {})
+            const response = await Request('get', '/notifications/', {}, {}, {})
             if (!response) {
                 throw new Error('Failed to fetch data');
             }
@@ -29,7 +29,7 @@ function AlertFormMain() {
     <ModalPortal>
       <PortalBg>
         <div className='flex items-center justify-center'>
-          <div className='bg-white p-6 rounded-md w-[70vw] h-[60vw] z-50   overflow-scroll'>
+          <div className='bg-white p-6 rounded-md w-[70vw] h-[60vw] z-50 overflow-scroll'>
             <div className='relative bg-white p-8 rounded-md'>
               <h2 className='text-2xl font-bold mb-4'>전체 알림</h2>
               {notiData.map((item, index) => (

@@ -1,18 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';  // axios 라이브러리 추가
 import ModalPortal from '../ui/ModalPortal';
 import PortalBgRight from '../ui/PortalBgRight';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
 import { AuthContext } from '../../context/AuthContext';
-
-const gotoAlertFormMain = () => {
-  openForm('alertFormMain');
-};
-
+import { useNavigate } from 'react-router-dom';
 
 function ProfileForm() {
+  // const navigate = useNavigate();
+
   const { openForm } = useContext(OpenModalContext);
   const { logout, isAuthenticated, getDecodedToken, getUserInfo } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({
@@ -21,9 +18,12 @@ function ProfileForm() {
     email: '',
   });
 
-
   const gotoProfile =()=>{
-
+    // 수정해야함
+    // 최근 React에서 된다고 하는 것 같으나 BrowserRouter 내에 존재해야 사용가능함.
+    // withRouter 나 다른 모듈들을 사용해야할 것으로 보임
+    // navigate('/users/profile/edit/');
+    window.location.href = '/users/profile/edit/';
   }
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function ProfileForm() {
     <ModalPortal>
       <PortalBgRight>
         <div>
-          <div className='bg-white p-6   w-72 z-50'>
+          <div className='bg-white p-6   w-72 z-50 rounded-md'>
             <div className="flex flex-col justify-center items-center">
               <div className="modal-header">
                 <h3 className="text-lg font-bold">내 프로필</h3>
@@ -61,28 +61,28 @@ function ProfileForm() {
                   alt="프로필 사진"
                   className="rounded-full  w-16 h-16 mb-4"
                 />
+                <Margin top="3" plustailwind="h-2"></Margin>
+                <p className='text-sm'>Email: {profileData.email}</p>
                 <Margin top="3" plustailwind="h-5"></Margin>
                 <p className="mb-2 text-sm ">닉네임: {profileData.nickname}</p>
-                <Margin top="3" plustailwind="h-2"></Margin>
-                <p className=' text-sm'>Email: {profileData.email}</p>
               </div>
               <Margin top="3" plustailwind="h-5"></Margin>
               <Contour></Contour>
               <div className="modal-footer">
-                <Margin top="3" plustailwind="h-3"></Margin>
+                <Margin top="0" plustailwind="h-1"></Margin>
                 <div className='flex'>
                   <div
                     role="button"
                     tabIndex={0}
-                    className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+                    className='text-black py-2 px-4 rounded-md transition duration-300 border mx-2'
                     onClick={gotoProfile}
                   >
-                    내프로필
+                    프로필 수정
                   </div>
                   <div
                     role="button"
                     tabIndex={0}
-                    className='  text-sky-300 py-2 px-4 rounded-md transition duration-300'
+                    className='text-black py-2 px-4 rounded-md transition duration-300 border mx-2'
                     onClick={logout}
                   >
                     로그아웃
