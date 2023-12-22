@@ -19,7 +19,7 @@ import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
-import ProfileEditPage from './pages/ProfileEditPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import NoticePage from './pages/NoticePage.jsx';
 
@@ -74,55 +74,53 @@ const Enroll = ({children}) => {
 const pages = [
   // 메인 페이지
   { path: "/", component: MainPage, layoutType: "Non" },
-
-  // 공지사항 페이지 - 우선 남겨놓지만 게시글 상세 페이지와 동일해야 합니다.
+  // 공지사항 페이지
   { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
 
-  // 필요 없는 듯 합니다
+
+  
+  // ---
   { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
   { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
 
-  
-  // 자유게시판(커뮤니티) 게시글
-  // 게시글 목록
-  { path: "/posts/", component: PostListPage, layoutType: "Non" },
-  // 게시글 작성 페이지
-  { path: "/posts/create/", component: PostEntryPage, layoutType: "Non" },
-  // 게시글 상세 페이지
-  { path: "/posts/:id/", component: PostDetailPage, layoutType: "Non" },
+  // 포스트 페이지
+  // 커뮤니티 게시글 상세
+ 
+  { path: "/posts/create", component: PostEntryPage, layoutType: "Non" },
+  { path: "/posts", component: PostListPage, layoutType: "Non" },
+  { path: "/posts/:id", component: PostDetailPage, layoutType: "Non" },
 
-  // 모집 게시글
-  // 모집 게시글 목록
+// 구성원 등록 상세페이지
+  { path: "/recruits/create", component: RecruitmentEntryPage, layoutType: "Non" },
+  { path: "/recruits/:id", component: RecruitmentDetailPage, layoutType: "Non" },
   { path: "/recruits/", component: RecruitmentListPage, layoutType: "Profile" },
-  // 모집 게시글 작성 페이지 (폼에 문제 있습니다)
-  { path: "/recruits/create/", component: RecruitmentEntryPage, layoutType: "Non" },
-  // 모집 게시글 상세 페이지
-  { path: "/recruits/:id/", component: RecruitmentDetailPage, layoutType: "Non" },
+  
+// 유저가 검색한 모임페이지
+  // 모임 관리 -활동중인 모집 신청중인 모임
+  { path: "/teams", component: TeamManagementPage, layoutType: "Profile" },
+  // 모임 검색페이지 -> 유저서치
+  { path: "/teams/:id", component: TeamPage, layoutType: "Non" },
 
-  // 유저 프로필
-  // 활동 중인 모임
-  { path: "/users/myteams/", component: TeamManagementPage, layoutType: "Profile" },
-  // 신청 중인 모임 (작성 필요)
-  // { path: "/users/appliedteams/", component: TeamManagementPage, layoutType: "Profile" },
-  // 내가 적은 게시물
-  { path: "/users/myposts/", component: ProfileEditingPage, layoutType: "Profile" },
 
-  // 유저 정보 수정페이지
-  { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
-
-  // 모임 상세 페이지 (UI 문제 있습니다)
-  { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
-  // 모임 정보 수정(리더만 가능)
-  // 모임 정보 수정 페이지 
-  { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
-  // 구성원 관리
+// 모임 관리  - 구성원 관리
   { path: "/teams/:id/members/", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
-  // 신청 인원 관리
   { path: "/teams/:id/apply/", component: EnrollmentMemberPage, layoutType: "Enroll" },
 
-  // 채팅쪽은 확인 필요합니다.
+  //    모임 관리  = 내가 적은 게시물
+  { path: "/teams/my", component: ProfileEditingPage, layoutType: "Profile" },
+  // 모임 정보 상세페이지 
+  { path: "/teams/:id/info", component: TeamDetailPage, layoutType: "Non" },
+
+
+
+  // 유저수정페이지
+  { path: "/users/profile", component: ProfilePage, layoutType: "Non" },
+
+
+
+ 
   // 채팅페이지
-  { path: "/chatroom/:room_id/", component: Chatting, layoutType: "Non" },
+  { path: "/chatroom/:room_id", component: Chatting, layoutType: "Non" },
   
 ];
 

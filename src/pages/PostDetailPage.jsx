@@ -76,15 +76,7 @@ function PostDetailPage() {
    
   }, [currentPage]);
 
-  useEffect(() => {
-   
-   
-    commentFetch()
-
-   
-   
-  }, [currentPage]);
-
+  
 
 
 

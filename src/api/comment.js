@@ -19,7 +19,7 @@ export const FetchAllCommentsData = async ({id,page=1}) => {
 console.log("res.dataFetchAllCommentsData")       
 console.log("res.dataFetchAllCommentsData")       
 console.log("res.dataFetchAllCommentsData") 
-console.log(res.data.results)
+console.log(res.data)
         // rest of the code...
         return res.data;
     } catch (error) {
@@ -29,7 +29,50 @@ console.log(res.data.results)
 };
 
 
-export const FetchCreateComments = async ({ post_id, recurit_id, content, to_user }) => {
+
+export const FetchAllReqCommentsData = async ({id,page=1}) => {
+    try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const accessToken = user?.access_token || "";
+        if (!accessToken) {
+            console.error("Access token not available");
+            return null;
+        }
+        console.log("id,page")
+        console.log("id,page")
+        console.log("id,page")
+        console.log("id,page")
+        console.log("id,page")
+        console.log("id,page")
+        console.log("id,page")
+        console.log("id,page")
+     console.log(id,page)
+     console.log("id,page")
+     console.log("id,page")
+     console.log("id,page")
+     console.log("id,page")
+        const res = await axios.get(`http://localhost:8000/comments/?recruits=${id}&page=${page}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+             
+console.log("res.req")       
+console.log("res.req")       
+console.log("res.req") 
+console.log(res.data)
+        // rest of the code...
+        return res.data;
+    } catch (error) {
+        console.error("Fetching notice failed:", error.message);
+        return null;
+    }
+};
+
+
+
+export const FetchCreateComments = async ({ post_id, recruits, content, to_user }) => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       const accessToken = user?.access_token || "";
@@ -40,10 +83,10 @@ export const FetchCreateComments = async ({ post_id, recurit_id, content, to_use
   
       // post_id를 숫자로 변환
       const numericPostId = Number(post_id);
-  
+      const numericRecuritId= Number(recruits);
       const res = await axios.post("http://localhost:8000/comments/", {
         "post_id": numericPostId,
-        "recurit_id": recurit_id,  // recurit_id가 이미 숫자라면 변환 필요 없음
+        "recruits": numericRecuritId,  // recruits가 이미 숫자라면 변환 필요 없음
         "content": content,
         "to_user": to_user
       }, {
