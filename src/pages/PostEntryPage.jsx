@@ -66,10 +66,8 @@ function PostEntryPage() {
                   <SelectButton
                     btnTitle="카테고리 선택"
                     btnoptions={[
-                      'notice',
-                      'free',
+                      'notice',       
                       'qna',
-                      'ads',
                       'creation-novel',
                       'creation-poem',
                       'creation-essay',

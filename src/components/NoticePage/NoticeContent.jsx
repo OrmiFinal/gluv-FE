@@ -6,8 +6,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import useWindowSize from '../../hooks/useWindowSzie';
 import Contour from '../ui/Contour';
-import TitleComponent from '../RecruitmentPage/TitleComponent'; // Adjust the path as needed
-import BulletinBoard from '../RecruitmentPage/BulletinBoard';
+import TitleComponent from '../PostListPage/TitleComponent'; // Adjust the path as needed
+import BulletinBoard from '../PostListPage/BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
 import { FetchAllContext, FetchNoticeData } from '../../api/post';
 

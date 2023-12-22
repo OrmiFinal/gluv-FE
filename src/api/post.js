@@ -55,7 +55,7 @@ export const FetchCreatePost = async ({ title, content, category }) => {
 
 
 
-export const FetchAllContext = async ({ search, category,subcategory ,order_by, order, page, author }) => {
+export const FetchAllContext = async ({ search, category,subcategory ,order_by, order, page=1}) => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
         const accessToken = user?.access_token || "";
@@ -63,8 +63,8 @@ export const FetchAllContext = async ({ search, category,subcategory ,order_by, 
         console.log("category")
         console.log("category")
         console.log("category")
-        console.log(category)
-        console.log(subcategory)
+        console.log(order)
+        console.log(order_by)
         if (!accessToken) {
             console.error("Access token not available");
             return null;
@@ -73,7 +73,7 @@ export const FetchAllContext = async ({ search, category,subcategory ,order_by, 
         let URLvalue;
 
         if (category === "공지상황") {
-            URLvalue = "creation";
+            URLvalue = "notice";
         } else if(category === "질문게시판"){
             URLvalue = "qna";
         } 
@@ -101,18 +101,23 @@ export const FetchAllContext = async ({ search, category,subcategory ,order_by, 
         }
         console.log("URLvalue")
         console.log("URLvalue")
-        console.log(URLvalue)
-        console.log(URLvalue)
-        console.log(URLvalue)
-        console.log(URLvalue)
-        const res = await axios.get(`http://localhost:8000/posts/?category=${URLvalue}`, {
+        console.log("URLvalue")
+        console.log(`${page}`)
+
+        
+        const res = await axios.get(`http://localhost:8000/posts/?category=${URLvalue}&order_by=${order_by}&order=${order}&search=${search}&count=5&page=${page}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
+        console.log("res")
+        console.log("res")
+        console.log("res")
+        console.log("res")
+       console.log(res)
       
         // rest of the code...
-        return res.data;
+        return res;
     } catch (error) {
         console.error("Fetching notice failed:", error.message);
         return null;

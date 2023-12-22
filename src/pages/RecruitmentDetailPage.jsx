@@ -1,51 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
+import Margin from '../components/Margin.jsx';
+import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import useWindowSize from '../hooks/useWindowSzie.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
-import { FetchPostData ,FetchDelectData} from '../api/post.js';
-import { Link ,useNavigate} from "react-router-dom"; 
-function RecruitmentPostDetailPage() {
+import { FetchPostData } from '../api/post.js';
+import { FetchRecruits } from '../api/recruits.js';
+import { FetchTeam } from '../api/team.js';
+
+function RecruitmentDetailPage() {
   const { screenSize } = useWindowSize();
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [teamData, setTeamData] = useState(null);
   const [comments, setComments] = useState([
     { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
     // Add other comments as needed
   ]);
-  const navigate = useNavigate();
   useEffect(() => {
     const getPost = async () => {
       try {
-        const postData = await FetchPostData({ id });
-        setData(postData);
+        const postData = await FetchRecruits({ id });
+        setData((prev) => ({
+          ...prev,
+          ...postData,
+        }));
       } catch (error) {
         console.error('Error fetching post data:', error);
       }
     };
-
+  
+    const getTeam = async () => {
+      try {
+        const teamData = await FetchTeam({ id });
+        setData((prev) => ({
+          ...prev,
+          ...teamData,
+        }));
+      } catch (error) {
+        console.error('Error fetching team data:', error);
+      }
+    };
+  
     getPost();
-   
+    getTeam();
   }, []);
-
-  const delectPost = async () => {
-    try {
-      const postData = await FetchDelectData({ id });
-      setData(postData);
-    } catch (error) {
-      console.error('Error fetching post data:', error);
-    }
-  };
-
-const delectClick = async()=>{
-  delectPost({id});
-  navigate('/RecruitmentPage')
-}
-
-  console.log(data)
-  console.log(data)
+  
+ console.log(data)
+    console.log(data)
   if (!data) {
     // You can render a loading spinner or message here
     return <div>Loading...</div>;
@@ -54,10 +57,9 @@ const delectClick = async()=>{
   return (
     <div className="flex items-center justify-center">
       <div className='w-[80vw] rounded-md  p-6'>
-      <div className='flex items-center justify-center w-[60px] h-[30px] bg-gray-200 text-sm font-roboto rounded-md text-center overflow-hidden'>
-  {data.category}
-</div>
-
+        <div className='flex items-center justify-center w-[60px] h-[30px] bg-gray-200 text-sm font-roboto rounded-md text-center'>
+          {data.category}
+        </div>
 
         <Margin top="1" />
         <div className='w-full'>
@@ -70,7 +72,7 @@ const delectClick = async()=>{
                 <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
                 <div className='font-bold text-lg'>{data.author}</div>
                 <Margin left="1"  plustailwind="w-3" />
-                <div className='text-sm  text-gray-600  ' >{NowformatDate(data.created_at)}</div>
+                <div className='text-sm  text-gray-600 '>{NowformatDate(data.created_at)}</div>
               </div>
               <div className='flex flex-col items-center p-2'>
                 <div className='flex'>
@@ -90,7 +92,9 @@ const delectClick = async()=>{
               <div className='flex items-center'>
                 <div className='grid grid-cols-2 gap-3'>
                   <InfoItem title="카테고리" content={data.category} />
-               
+                  <InfoItem title="지역" content={data.region} />
+                  <InfoItem title="최대인원" content={data.max_attendance} />
+                  <InfoItem title="현재인원" content={data.current_attendance} />
                 </div>
               </div>
               <div className='flex flex-col items-center p-2'>
@@ -109,13 +113,13 @@ const delectClick = async()=>{
 
             <Margin top="4" />
             <div className='text-xl w-ful border-black font-bold mb-4'>
-              모집글 내용
+         
             </div>
             
             <Margin top="3" plustailwind="h-3 w-1"  />
-            <div className="h-[400px] w-full flex   z-10">
-      <div dangerouslySetInnerHTML={{ __html: data.content }} />
-    </div>
+            <div className='border p-2 w-full h-[350px] overflow-scroll rounded-md'>
+            <div dangerouslySetInnerHTML={{ __html: data.content }} />
+            </div>
             
             <Margin top="2" />
             <div className='flex justify-center'>
@@ -149,7 +153,6 @@ const delectClick = async()=>{
                 <DynamicColorButton
                   color="red"
                   text="삭제하기"
-                  onClick = {delectClick}
                   btnstyle="py-1 px-2 flex-shrink-0"
                 />
               </div>
@@ -199,7 +202,7 @@ const delectClick = async()=>{
 const InfoItem = ({ title, content }) => (
   <div className='flex justify-start items-center'>
     <div className='font-bold text-lg'>{title}</div>
-    <Margin left="1" plustailwind="w-3" />
+    <Margin left="1"  plustailwind='w-3' />
     <div className='text-sm  text-gray-600'>{content}</div>
   </div>
 );
@@ -239,4 +242,5 @@ const NowformatDate = (dateString) => {
 };
 
 
-export default RecruitmentPostDetailPage
+
+export default RecruitmentDetailPage;
