@@ -84,9 +84,36 @@ console.log(page,search,category,order_by,order)
       });
       console.log("FetchRecruitsPost");
       console.log("FetchRecruitsPost");
-      console.log(res);
+      console.log(res.data);
       // rest of the code...
       return res.data;
+  } catch (error) {
+      console.error("Fetching notice failed:", error.message);
+      return null;
+  }
+};
+
+
+
+
+export const FetchRecruits = async ({id}) => {
+  try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const accessToken = user?.access_token || "";
+      if (!accessToken) {
+          console.error("Access token not available");
+          return null;
+      }
+ 
+      const res = await axios.get(`http://localhost:8000/recruits/${id}/`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`,
+          },
+      });
+   
+
+      // rest of the code...
+      return res.data.data;
   } catch (error) {
       console.error("Fetching notice failed:", error.message);
       return null;

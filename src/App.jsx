@@ -5,7 +5,7 @@ import React from "react";
 import MainPage from './pages/MainPage.jsx';
 import MyPostPage from './pages/MyPostPage.jsx';
 import MyTeamPage from './pages/MyTeamPage.jsx';
-import PostDetailPage from './pages/PostDetailPage.jsx';
+import TeamSearchPageDetailPage from './pages/TeamSearchPageDetailPage.jsx';
 import PostEntryPage from './pages/PostEntryPage.jsx';
 import ProfileEntryPage from './pages/ProfileEditingPage.jsx';
 import ProfileEditingPage from './pages/ProfileEditingPage.jsx';
@@ -77,7 +77,7 @@ const pages = [
   // 공지사항 페이지
   { path: "/posts/notices/", component: NoticePage, layoutType: "Non" },
   // 커뮤니티 게시글 상세
-  { path: "/posts/:id/", component: PostDetailPage, layoutType: "Non" },
+  { path: "/TeamSearchPageDetailPage/:id/", component: TeamSearchPageDetailPage, layoutType: "Non" },
   // 커뮤니티 게시글 목록
   // 쿼리는 내부적으로 처리해야함.
   { path: "/posts/", component: RecruitmentPage, layoutType: "Non" },

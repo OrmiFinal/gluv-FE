@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
+import Margin from '../components/Margin.jsx';
+import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import useWindowSize from '../hooks/useWindowSzie.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { FetchPostData } from '../api/post.js';
+import { FetchRecruits } from '../api/recruits.js';
 
 function RecruitmentPostDetailPage() {
   const { screenSize } = useWindowSize();
@@ -19,7 +20,7 @@ function RecruitmentPostDetailPage() {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const postData = await FetchPostData({ id });
+        const postData = await FetchRecruits({ id });
         setData(postData);
       } catch (error) {
         console.error('Error fetching post data:', error);

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ModelContext } from '../context/ModelContextProvider';
+
 import TitleComponent from '../components/RecruitmentPage/TitleComponent';
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
@@ -73,11 +73,15 @@ function TeamSearchPage() {
       try {
         const data = await FetchRecruitsPost({ ...filters, page: currentPage });
         // const RecruitsData = await FetchRecruitsPost({...filters, page: currentPage })
-   
+        console.log("fetchData")
+        console.log("fetchData")
+        console.log(data)
         if (data) {
-          
-          setTeamData(data);
-          setTotalPages(data.total_pages);
+          console.log("fetchDataindata")
+          console.log("fetchDataindata")
+          console.log(data)
+          setTeamData(data.results);
+          // setTotalPages(data.total_pages);
         }
         // if(RecruitsData){
         //   // setRecruitsData(RecruitsData)
