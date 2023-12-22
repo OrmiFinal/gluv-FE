@@ -204,7 +204,7 @@ function RecruitmentListPage() {
             <Contour></Contour>
             <div>
               <div className={`flex items-center text-center ${screenSize === 'sm' ? 'justify-start' : 'justify-center'}`}>
-                <Link  to="/RecruitmentEntryPage">
+                <Link  to="/recruits/create">
                 <div className='w-20 h-10 border border-black'>등록하기</div>
                 </Link>
                 <input

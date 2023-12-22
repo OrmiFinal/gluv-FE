@@ -98,7 +98,7 @@ const TeamContent = () => {
             </div>
             <div className='flex'>
             <Margin left="4" />
-            <Link to="/RecruitmentDetailPage/1">
+            <Link to="/recruits/1">
             <DynamicColorButton
          
               text="모집글가기"

@@ -46,7 +46,7 @@ function TeamManagementPage() {
             <div className='flex'>
               <TitleComponent title="활동중인 모집" isFontBold={"fontBold"} plustailwind="text-sm  " />
               <Margin left="4" plustailwind="w-2"/>
-              <Link to="/unEnrollmentMemberPage">
+              <Link to="/teams/1/members/">
               <TitleComponent title="신청중인 모임" isFontBold={"fontBold"} plustailwind="text-sm  " />
               </Link>
             </div>
@@ -56,7 +56,7 @@ function TeamManagementPage() {
             <div className='border p-2 flex flex-col rounded-md'>
               <div className='m-8 ml-6'>
               {profileDataList.map((profileData, index) => (
-                <Link to="/TeamPage">
+                <Link to="/teams/1">
                 <div key={index} >
                   <TeamBox profileData={profileData} />
                   <Margin top="3" plustailwind="h-3" />

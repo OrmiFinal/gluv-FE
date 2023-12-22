@@ -23,7 +23,7 @@ const RecruitmentList = ({ data }) => {
       {splitData.map((chunk, index) => (
         <div key={index} className="flex mb-4">
           {chunk.map((recruitment) => (
-            <Link key={recruitment.id} to={`/RecruitmentDetailPage/${recruitment.id}`} className="w-full">
+            <Link key={recruitment.id} to={`/recruits/${recruitment.id}`} className="w-full">
               <div className="bg-white rounded-lg shadow-lg p-6 mr-4">
                 <div className="flex justify-between">
                   <div className="font-bold text-sm mb-2">{recruitment.title}</div>

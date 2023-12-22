@@ -206,7 +206,7 @@ function RecruitmentContent() {
 
             <Margin top="2" />
             <div className={`flex items-center text-center ${screenSize === 'sm' ? 'justify-start' : 'justify-center'}`}>
-            <Link to="/PostEntryPage"><div className='w-20 h-10 border border-black'
+            <Link to="/posts/create"><div className='w-20 h-10 border border-black'
              >글작성</div></Link> 
               
               <Margin left="2" />

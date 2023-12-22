@@ -41,7 +41,7 @@ function PostDetailPage() {
 
 const delectClick = async()=>{
   delectPost({id});
-  navigate('/PostListPage')
+  navigate('/posts')
 }
 
   console.log(data)

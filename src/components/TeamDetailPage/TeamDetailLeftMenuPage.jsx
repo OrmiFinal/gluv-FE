@@ -11,7 +11,7 @@ function TeamDetailLeftMenuPage() {
          
         </div>
         <Contour />
-        <Link to="/UserEdit">
+        <Link to="/users/profile">
         <div className='menu-item cursor-pointer'>
           기본 설정
          
@@ -19,21 +19,21 @@ function TeamDetailLeftMenuPage() {
         </Link>
         
         <Contour />
-        <Link to="/UnEnrollmentMemberPage">
+        <Link to="/teams/:id/member/">
         <div className='menu-item cursor-pointer'>
           구성원 관리
   
         </div>
         <Contour />
         </Link>
-        <Link to="/EnrollmentMemberPage">
+        <Link to="/teams/:id/apply/">
         <div className='menu-item  cursor-pointer'>
           신청인원 관리
          
         </div>
         </Link>
         <Contour />
-        <Link to="/TeamManagementPage">
+        <Link to="/recruits">
         <div className='menu-item  cursor-pointer'>
           모임 삭제
     

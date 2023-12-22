@@ -164,7 +164,7 @@ function RecruitmentDetailPage() {
                   btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
                 />
                 <Margin left="1" />
-                <Link to="/RecruitmentListPage">
+                <Link to="/recruits">
                 <DynamicColorButton
                   text="목록으로"
                   btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
