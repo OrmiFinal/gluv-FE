@@ -56,6 +56,9 @@ export const FetchTeam = async ({id}) => {
             },
         });
      
+        console.log("FetchTeamsPost");
+        console.log("FetchTeamsPost");
+        console.log(res.data);
         // rest of the code...
         return res.data;
     } catch (error) {
