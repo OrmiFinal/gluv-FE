@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContext.jsx';
 import editImage from '../assets/editImage.png';
 import axios from "axios";
 import { Request } from '../api/api.js';
 
 
-function ProfilePage() {
+function ProfileEditPage() {
   const { getUserInfo } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({
     id:'',
@@ -259,4 +259,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default ProfileEditPage;

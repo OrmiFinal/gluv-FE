@@ -19,7 +19,7 @@ import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
+import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import NoticePage from './pages/NoticePage.jsx';
 
@@ -114,7 +114,7 @@ const pages = [
 
 
   // 유저수정페이지
-  { path: "/users/profile", component: ProfilePage, layoutType: "Non" },
+  { path: "/users/profile/edit", component: ProfileEditPage, layoutType: "Non" },
 
 
 
