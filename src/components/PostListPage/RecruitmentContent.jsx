@@ -10,6 +10,7 @@ import TitleComponent from './TitleComponent'; // Adjust the path as needed
 import BulletinBoard from './BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
 import { FetchAllContext,FetchNoticeData } from '../../api/post';
+import { Link } from 'react-router-dom';
 
 function RecruitmentContent() {
   const { screenSize } = useWindowSize();
@@ -205,7 +206,9 @@ function RecruitmentContent() {
 
             <Margin top="2" />
             <div className={`flex items-center text-center ${screenSize === 'sm' ? 'justify-start' : 'justify-center'}`}>
-              <div className='w-20 h-10 border border-black'></div>
+            <Link to="/posts/create"><div className='w-20 h-10 border border-black'
+             >글작성</div></Link> 
+              
               <Margin left="2" />
               <input
         className="border p-2 rounded-md"

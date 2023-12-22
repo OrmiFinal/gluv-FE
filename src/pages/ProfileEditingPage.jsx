@@ -58,7 +58,7 @@ function ProfileEditingPage() {
             <Margin top="2" />
             <div className='border p-2 flex rounded-md'>
               <TitleComponent title="활동중인 모임" isFontBold={"fontBold"} plustailwind="text-lg font-bold " />
-              <Margin left="4" />
+              <Margin left="4" plustailwind="w-2"/>
               <TitleComponent title="게시물" isFontBold={"fontBold"} plustailwind="text-lg font-roboto " />
               <Margin left="3" />
               <TitleComponent title="댓글" isFontBold={"fontBold"} plustailwind="text-lg font-roboto " />

@@ -9,6 +9,7 @@ import SelectButton from '../components/ui/SelectButton';
 import { FetchAllTeamData } from '../api/team';
 import useWindowSize from '../hooks/useWindowSzie';
 import { FetchRecruitsPost } from '../api/recruits';
+import { Link } from 'react-router-dom';
 
 
 const sampleData = [
@@ -203,7 +204,9 @@ function RecruitmentListPage() {
             <Contour></Contour>
             <div>
               <div className={`flex items-center text-center ${screenSize === 'sm' ? 'justify-start' : 'justify-center'}`}>
-                <div className='w-20 h-10 border border-black'></div>
+                <Link  to="/recruits/create">
+                <div className='w-20 h-10 border border-black'>등록하기</div>
+                </Link>
                 <input
                   className={`border p-2 rounded-md ${combinedClasses}`}
                   placeholder='검색 입력...'

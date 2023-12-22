@@ -4,7 +4,7 @@ import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import useWindowSize from '../hooks/useWindowSzie.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { FetchPostData } from '../api/post.js';
 import { FetchRecruits } from '../api/recruits.js';
 import { FetchTeam } from '../api/team.js';
@@ -164,10 +164,12 @@ function RecruitmentDetailPage() {
                   btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
                 />
                 <Margin left="1" />
+                <Link to="/recruits">
                 <DynamicColorButton
                   text="목록으로"
                   btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
                 />
+                </Link>
               </div>
             </div>
 
