@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../context/AuthContext';
 import editImage from '../assets/editImage.png';
 import axios from "axios";
+import { Request } from '../api/api.js';
 
 
 function ProfilePage() {
@@ -20,12 +22,14 @@ function ProfilePage() {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const REGION_CHOICES = ['서울','경기','충남','충북','강원','전남','전북','경북','경남','제주']
 
+  
   let isValid = false;
- 
   useEffect(() => {
     const fetchData = async () => {
+      
       try {
         const data = await getUserInfo();
         setProfileData({
@@ -72,18 +76,29 @@ function ProfilePage() {
   };
   
   const handleShowPasswordFields = () => {
-    setShowPasswordFields(true);
+    setShowPasswordFields((prevShowPasswordFields) => !prevShowPasswordFields);
   };
   
-  const testValidPassword = () => {
-    // 패스워드 검증 url이 필요합니다.
-    console.log(profileData.password)
-
-  // 테스트 진행
-
-  isValid = true;
-
-  }
+  const testValidPassword = async () => {
+    try {
+      const data = { password: profileData.password };
+      const postResult = await Request('post', '/users/verify/', {}, {}, data);
+  
+      if(postResult){
+        alert('비밀번호 검증에 성공했습니다!');
+        isValid = true;
+      }else{
+        alert('비밀번호 검증에 실패했습니다. 비밀번호가 다릅니다.');
+        isValid = false;
+        
+      }
+      
+    } catch (error) {
+      console.error("비밀번호 검증에 실패했습니다:", error);
+      // 실패 시 처리
+      isValid = false;
+    }
+  };
 
   const handleSubmit = () => {
     const formData = new FormData();
@@ -98,46 +113,80 @@ function ProfilePage() {
     formData.append('nickname', profileData.nickname);
     formData.append('region', profileData.region);
     formData.append('profile_content', profileData.profile_content);
+
+    if(isValid){
+      console.log(isValid);
+      console.log(newPassword);
+      console.log(confirmPassword);
+      if(newPassword != confirmPassword){
+        setPasswordError('새 비밀번호와 확인 비밀번호가 일치하지 않습니다.');
+        return;
+      }
+      formData.append('password', profileData.password);
+    }
   
-    axios
-      .put('http://127.0.0.1:8000/users/profile/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        alert('프로필이 업데이트되었습니다.');
-        setProfileData({
-          profile_image: response.data.profile_image,
-          nickname: response.data.nickname,
-          region: response.data.region,
-          profile_content: response.data.profile_content,
-        });
-      })
-      .catch((error) => {
-        
-        console.error('프로필 업데이트에 실패했습니다:', error);
-      });
+    try {
+      // API 호출 및 업데이트
+      const updateUser = Request('patch', '/users/profile/', {'Content-Type': 'multipart/form-data'}, {}, formData);
+  
+      if (updateUser) {
+        alert("프로필이 수정되었습니다.");
+  
+        if (updateUser.profile_image) {
+          setProfileData({
+            ...profileData,
+            profile_image: updateUser.profile_image,
+          });
+        }
+      }
+    } catch (error) {
+      console.error('프로필 업데이트에 실패했습니다:', error);
+    }
+  
   };
 
   return (
-    <div>
-      <h2>프로필 수정</h2>
-      <img src={profileData.profile_image} alt="프로필 사진"   style={{maxWidth: '200px',  maxHeight: '200px', }}/>
-      <input type="file" onChange={handleImageChange} accept="image/*" />
-      <div>
-        <p>닉네임:</p>
-        <input type="text" value={profileData.nickname} onChange={(e) => setProfileData({ ...profileData, nickname: e.target.value })} />
+    <div className="max-w-2xl mx-auto p-4">
+      <div className="flex items-center justify-center flex-col">
+        <h2 className="text-3xl font-bold mb-4">프로필 수정</h2>
+        <div className="mb-4">
+          <img
+            src={profileData.profile_image}
+            alt="프로필 사진"
+            className="w-64 h-64 rounded-full"
+          />
+        </div>
+        <div className="mb-4">
+          <input
+            type="file"
+            onChange={handleImageChange}
+            accept="image/*"
+            
+          />
+        </div>
       </div>
-      <div>
-        <p>Email: {profileData.email}</p>
+      <div className="mb-4">
+        <p className="text-lg font-semibold">닉네임:</p>
+        <input
+          type="text"
+          value={profileData.nickname}
+          onChange={(e) =>
+            setProfileData({ ...profileData, nickname: e.target.value })
+          }
+          className="border p-2 w-full"
+        />
       </div>
-      <div>
-        <p>지역:</p>
+      <div className="mb-4">
+        <p className="text-lg font-semibold">Email: {profileData.email}</p>
+      </div>
+      <div className="mb-4">
+        <p className="text-lg font-semibold">지역:</p>
         <select
           value={profileData.region}
-          onChange={(e) => setProfileData({ ...profileData, region: e.target.value })}
+          onChange={(e) =>
+            setProfileData({ ...profileData, region: e.target.value })
+          }
+          className="border p-2 w-full"
         >
           <option value="">선택 지역 없음</option>
           {REGION_CHOICES.map((region) => (
@@ -147,42 +196,65 @@ function ProfilePage() {
           ))}
         </select>
       </div>
-      <div>
-        <p>소개글:</p>
-        <textarea value={profileData.profile_content} onChange={(e) => setProfileData({ ...profileData, profile_content: e.target.value })} />
+      <div className="mb-4">
+        <p className="text-lg font-semibold">소개글:</p>
+        <textarea
+          value={profileData.profile_content}
+          onChange={(e) =>
+            setProfileData({ ...profileData, profile_content: e.target.value })
+          }
+          className="border p-2 w-full"
+        />
       </div>
-      <div>
-        <button onClick={handleShowPasswordFields}>비밀번호 변경</button>
+      <div className="mb-4">
+        <button
+          onClick={handleShowPasswordFields}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          비밀번호 변경
+        </button>
         {showPasswordFields && (
-          <div>
-            <p>현재 비밀번호:</p>
+          <div className="mt-4">
+            <p className="text-lg font-semibold">현재 비밀번호:</p>
             <input
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
+              className="border p-2 w-full"
             />
-            <button onClick={testValidPassword}>현재 비밀번호 확인</button>
-            <p>새 비밀번호:</p>
+            <button
+              onClick={testValidPassword}
+              className="bg-green-500 text-white px-4 py-2 rounded mt-2  mb-4"
+            >
+              현재 비밀번호 확인
+            </button>
+            <p className="text-lg font-semibold">새 비밀번호:</p>
             <input
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
+              className="border p-2 w-full"
             />
-            <p>새 비밀번호 확인:</p>
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-            
+            <p className="text-lg font-semibold">새 비밀번호 확인:</p>
+            <div>
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={`border p-2 w-full ${passwordError ? 'border-red-500' : ''}`}
+              />
+              <p className="text-red-500">{passwordError}</p>
+              {/* 나머지 UI 요소들 */}
+            </div>
           </div>
-          
         )}
       </div>
-      <p>
-        프로필 수정
-        <img src={editImage} alt="편집 버튼" onClick={handleSubmit} />
-      </p>
+      <div className="cursor-pointer mb-4 border p-4" onClick={handleSubmit}>
+        <div className="flex items-center">
+          <img src={editImage} alt="편집 버튼" className="w-6 h-6 mr-4" />
+          <p className="text-lg font-semibold">프로필 수정</p> 
+        </div>
+      </div>
     </div>
   );
 }
