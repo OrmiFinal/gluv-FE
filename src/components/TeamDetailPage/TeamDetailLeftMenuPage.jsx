@@ -1,5 +1,6 @@
 import React from 'react';
 import Contour from '../ui/Contour';
+import { Link } from 'react-router-dom';
 
 function TeamDetailLeftMenuPage() {
   return (
@@ -7,24 +8,38 @@ function TeamDetailLeftMenuPage() {
       <div className='  w-52 h-[230px] border-[1px] rounded-md bg-gray-100 flex flex-col p-4'>
         <div className='menu-item  cursor-pointer'>
           메뉴
-          <Contour />
+         
         </div>
+        <Contour />
+        <Link to="/UserEdit">
         <div className='menu-item cursor-pointer'>
           기본 설정
-          <Contour />
+         
         </div>
+        </Link>
+        
+        <Contour />
+        <Link to="/UnEnrollmentMemberPage">
         <div className='menu-item cursor-pointer'>
           구성원 관리
-          <Contour />
+  
         </div>
+        <Contour />
+        </Link>
+        <Link to="/EnrollmentMemberPage">
         <div className='menu-item  cursor-pointer'>
           신청인원 관리
-          <Contour />
+         
         </div>
+        </Link>
+        <Contour />
+        <Link to="/TeamManagementPage">
         <div className='menu-item  cursor-pointer'>
           모임 삭제
-          <Contour />
+    
         </div>
+        </Link>
+        <Contour />
       </div>
     </div>
   );

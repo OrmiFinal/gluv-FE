@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 import Contour from '../ui/Contour';
+import { Link } from 'react-router-dom';
 
 const TeamContent = () => {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ const TeamContent = () => {
       <div className="mt-9 w-full p-6 rounded-md">
         <div className="text-lg font-bold mb-3">모집 상세 내용</div>
         <Contour></Contour>
-        <Margin top="2" />
+      
         <div className="w-full border-[1px] p-4 rounded-md">
           <div>
             <div className="text-sm font-semibold mb-1">모임 소개</div>
@@ -97,12 +98,14 @@ const TeamContent = () => {
             </div>
             <div className='flex'>
             <Margin left="4" />
+            <Link to="/RecruitmentDetailPage/1">
             <DynamicColorButton
          
               text="모집글가기"
               btnstyle="py-2 px-2 self-end"
               onClick={handleRegister}
             />
+            </Link>
             <Margin left="4" />
             <DynamicColorButton
               color="blue"

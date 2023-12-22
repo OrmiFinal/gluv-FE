@@ -24,7 +24,9 @@ function LeftMenu() {
         <Margin top="3" />
 
         <Margin top="5"   plustailwind="h-5" />
+        <Link to="/UserEdit">
         <DynamicColorButton color="blue" text="프로필수정" />
+        </Link>
         <Margin top="5"   plustailwind="h-5" />
       </div>
       <Margin top="3" />

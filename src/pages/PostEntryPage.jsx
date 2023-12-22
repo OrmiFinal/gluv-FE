@@ -4,6 +4,7 @@ import DynamicColorButton from '../components/DynamicColorButton';
 import EditorComponent from '../components/ui/EditorComponent';
 import SelectButton from '../components/ui/SelectButton';
 import { FetchCreatePost } from '../api/post';
+import { Link } from 'react-router-dom';
 
 function PostEntryPage() {
   const [formData, setFormData] = useState({
@@ -88,19 +89,20 @@ function PostEntryPage() {
                 placeholder='글제목'
                 onChange={(e) => handleChange(e, 'introduction')}
               />
-              <div className='text-xl font-bold w-[120px] mb-4'>글작성 </div>
+              <div className='text-xl font-bold w-[120px] text-black mb-4'>글작성 </div>
               <div className='flex'>
                 <EditorComponent content={formData.content} onChange={handleContentChange} />
               </div>
             </div>
             <Margin top="3" plustailwind="h-10" />
             <div className='w-full border p-4 flex justify-end items-end'>
+            <Link to="/PostListPage">
               <DynamicColorButton
                 color="red"
                 text="취소"
                 btnstyle="py-1 px-1 mr-2"
                 onClick={handleBack}
-              />
+              /></Link> 
               <DynamicColorButton
                 color="blue"
                 text="작성"

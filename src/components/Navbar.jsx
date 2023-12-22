@@ -117,7 +117,7 @@ function Navbar() {
             <span className="font-bold">창작 게시판</span>
           </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
-          <Link to="/recruits/" className="font-medium text-lg px-3">
+          <Link to="/RecruitmentListPage/" className="font-medium text-lg px-3">
             <span className="font-bold">모임 모집 게시판</span>
           </Link>
           {/* Add additional submenus here as needed */}

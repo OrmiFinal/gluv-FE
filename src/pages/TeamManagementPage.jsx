@@ -5,6 +5,7 @@ import BulletinBoard from '../components/PostListPage/BulletinBoard';
 import Contour from '../components/ui/Contour';
 import TitleComponent from '../components/PostListPage/TitleComponent';
 import TeamBox from '../components/TeamBox';
+import { Link } from 'react-router-dom';
 
 function TeamManagementPage() {
   const profileDataList = [
@@ -44,8 +45,10 @@ function TeamManagementPage() {
           <div className='m-3'>
             <div className='flex'>
               <TitleComponent title="활동중인 모집" isFontBold={"fontBold"} plustailwind="text-sm  " />
-              <Margin left="3" />
+              <Margin left="4" plustailwind="w-2"/>
+              <Link to="/unEnrollmentMemberPage">
               <TitleComponent title="신청중인 모임" isFontBold={"fontBold"} plustailwind="text-sm  " />
+              </Link>
             </div>
             <Contour />
             <Margin top="2" plustailwind="h-3" />
@@ -53,10 +56,12 @@ function TeamManagementPage() {
             <div className='border p-2 flex flex-col rounded-md'>
               <div className='m-8 ml-6'>
               {profileDataList.map((profileData, index) => (
+                <Link to="/TeamPage">
                 <div key={index} >
                   <TeamBox profileData={profileData} />
                   <Margin top="3" plustailwind="h-3" />
                 </div>
+                </Link>
               ))}
               </div>
             </div>
