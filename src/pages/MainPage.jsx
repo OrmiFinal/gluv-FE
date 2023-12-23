@@ -3,7 +3,6 @@ import BookBanner from '../components/MainPage/BookBanner';
 import RecentRecruitCardList from '../components/MainPage/RecentRecruitCardList';
 import RecentPostList from '../components/MainPage/RecentPostList';
 import HotPostList from './../components/MainPage/HotPostList';
-import SliderBookBtn from '../components/MainPage/SliderBookBtn';
 import Margin from '../components/Margin';
 
 function MainPage() {
@@ -21,7 +20,7 @@ function MainPage() {
           {/*타이틀*/}
           <div className='flex justify-between w-full'>
             <Margin left="3"></Margin>
-          <span className="font-bold w-32">신간 도서</span>  <SliderBookBtn/>
+          <span className="font-bold w-32">신간 도서</span>  
           </div>
           </h2>
           <BookBanner />
