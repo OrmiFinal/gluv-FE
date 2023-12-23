@@ -182,14 +182,11 @@ const delectClick = async()=>{
                 </div>
               </div>
             </div>
-
             <Contour />
-            
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
                 <div className='grid grid-cols-2 gap-3'>
                   <InfoItem title="카테고리" content={data.category} />
-               
                 </div>
               </div>
               <div className='flex flex-col items-center p-2'>
@@ -203,102 +200,95 @@ const delectClick = async()=>{
                 </div>
               </div>
             </div>
-            
             <Contour />
 
             <Margin top="4" />
             <div className='text-xl w-ful border-black font-bold mb-4'>
-              모집글 내용
+              내용
             </div>
+            <Contour />
             
             <Margin top="3" plustailwind="h-3 w-1"  />
             <div className="h-[400px] w-full flex   z-10">
-      <div dangerouslySetInnerHTML={{ __html: data.content }} />
-    </div>
-            
-            <Margin top="2" />
-            <div className='flex justify-center'>
-             
+      <div dangerouslySetInnerHTML={{ __html: data.content }} /></div>
+
+            <Margin top="4" />
+            <div className={`w-full border p-4 flex`}>
+              <div className='flex w-1/2'>
                 {isLiked ? (
-                   <DynamicColorButton
-                   color="blue"
-                   text="좋아요"
-                   btnstyle="py-2 px-4"
-                   onClick={handleUnlikeClick}
-                 />
-      
-      ) : (
-        <DynamicColorButton
-        className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
-        onClick={handleLikeClick}
-        text="좋아요 취소"
-        color="red"
-      >
-      
-      </DynamicColorButton>
-      )}
-
-
-              <Margin left="4" />
+                    <DynamicColorButton
+                    color="blue"
+                    text="좋아요"
+                    btnstyle="py-2 px-4"
+                    onClick={handleUnlikeClick}
+                  />
+                  ) : (
+                    <DynamicColorButton
+                    className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
+                    onClick={handleLikeClick}
+                    text="좋아요 취소"
+                    color="red"
+                  >
+                  
+                  </DynamicColorButton>
+                )}
               <DynamicColorButton
                 color="red"
                 text="신고"
-                btnstyle="py-2 px-4 mr-2"
+                btnstyle="py-2 px-4 mx-2"
                 onClick={ReportClick}
               />
             </div>
+              <div className='flex w-1/2 justify-end'>
+                <div className='ml-auto'>
+                  <DynamicColorButton
+                    color="red"
+                    text="삭제하기"
+                    onClick = {delectClick}
+                    btnstyle="py-1 px-2 flex-shrink-0"
+                  />
+                </div>
+                <div className=''>
+                  <Margin left="2" />
+                  <Link to="/posts/notices/">
+                  <DynamicColorButton
+                    text="목록으로"
+                    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                  />
+                  </Link>
+                </div>
+              </div>
+              
+            <Margin left="4" />
 
-            <Margin top="4" />
-            <div className={`w-full border  p-4 flex  flex-col items-start`}>
-              <div className='flex'>
-               
-                <Margin left="1" />
-                <DynamicColorButton
-                  color="red"
-                  text="삭제하기"
-                  onClick = {delectClick}
-                  btnstyle="py-1 px-2 flex-shrink-0"
-                />
-              </div>
-            
-              <div className='flex flex-wrap'>
-             
-                <Margin left="1" />
-                <Link to="/posts/notices/">
-                <DynamicColorButton
-                  text="목록으로"
-                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
-                />
-                </Link>
-              </div>
+              
             </div>
-
             <div>
               <Margin top="4" />
-              <div className='text-2xl font-bold mb-4'>댓글</div>
-              
+              <Contour />
               <div className='flex items-center justify-center'>
-              <input
-        className='border p-2 w-3/4 rounded-md'
-        placeholder='댓글 입력...'
-        value={inserComment}
-        onChange={handleInputChange}
-      />
+                <div className='text-2xl font-bold px-2'></div>
+                <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
+                <input
+                  className='border p-3 grow rounded-md'
+                  placeholder='댓글 입력...'
+                  value={inserComment}
+                  onChange={handleInputChange}
+                />
                 <DynamicColorButton
                   color="black"
                   text="댓글 달기"
-                  btnstyle="py-2 px-2 ml-2"
+                  btnstyle="ml-2"
                   onClick={CreatComment}
                 />
               </div>
+              <Margin top="4" />
+              <Contour />
             </div>
+
             
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center  px-4'>
               <CommentList comments={comments.a?comments.a.results:[]} />
-
-            
-
-
             </div>
           </div>
           <div className='flex w-full justify-center items-center'>
