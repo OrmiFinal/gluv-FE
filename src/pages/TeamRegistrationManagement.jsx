@@ -9,6 +9,7 @@ import TeamManagementBackDesin from '../components/TeamManagementBackDesin';
 
 import TeamApply from '../components/TeamApply';
 import { AuthContext } from '../context/AuthContext';
+import {TeamContextProvider} from '../components/TeamPage/TeamContext';
 
 function TeamRegistrationManagement() {
   const { id } = useParams();
@@ -45,7 +46,8 @@ function TeamRegistrationManagement() {
   };
 
   return (
-    <div className='flex'>
+    <TeamContextProvider>
+       <div className='flex'>
       <TeamLeftMenu />
 
       <div className='flex items-center justify-center bg-gray-100'>
@@ -84,6 +86,7 @@ function TeamRegistrationManagement() {
         </TeamManagementBackDesin>
       </div>
     </div>
+    </TeamContextProvider>
   );
 }
 
