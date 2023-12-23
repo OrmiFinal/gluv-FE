@@ -25,10 +25,9 @@ import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
 
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
-import ProfileLeftMenu from "./components/ProfileLeftMenu.jsx"; // Import LeftMenu component
-import MyLeftMenu from "./components/MyLeftMenu.jsx";
-import EnrollLeftMenu from "./components/EnrollLeftMenu.jsx";
-import TeamsLeftMenu from "./components/TeamsLeftMenu.jsx";
+import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
+import LeftMenu2 from "./components/LeftMenu2.jsx";
+import LeftMenu3 from "./components/LeftMenu3.jsx";
 
 
 
@@ -45,26 +44,17 @@ const SiteLayout = () => {
 const My = ({children}) => {
   return (
     <div className="flex">
-      <MyLeftMenu />
+      <LeftMenu2 />
       <div>{children}</div>
     </div>
   );
 };
 
-
-const Teams = ({children}) => {
-  return (
-    <div className="flex">
-      <TeamsLeftMenu />
-      <div>{children}</div>
-    </div>
-  );
-};
 
 const Profile = ({children}) => {
   return (
     <div className="flex">
-      <ProfileLeftMenu />
+      <LeftMenu />
       {children}
     </div>
   );
@@ -73,7 +63,7 @@ const Profile = ({children}) => {
 const Enroll = ({children}) => {
   return (
     <div className="flex">
-      <EnrollLeftMenu />
+      <LeftMenu3 />
       {children}
     </div>
   );
@@ -98,84 +88,41 @@ const pages = [
   // 게시글 작성 페이지
   { path: "/posts/create/", component: PostEntryPage, layoutType: "Non" },
   // 게시글 상세 페이지
-  // 모든 가능이 정상작동합니다.
-  // /users/myteams/  내가 작성한 게시물에서 들어올 수 있어야 합니다.
   { path: "/posts/:id/", component: PostDetailPage, layoutType: "Non" },
 
   // 모집 게시글
   // 모집 게시글 목록
   { path: "/recruits/", component: RecruitmentListPage, layoutType: "Profile" },
   // 모집 게시글 작성 페이지 (폼에 문제 있습니다)
-  // /recruits/create/ 가 롤백 실패하였습니다. 
-  // !!! 파일 위치를 찾지못하여 다시 만들어야 합니다.
   { path: "/recruits/create/", component: RecruitmentEntryPage, layoutType: "Non" },
-
   // 모집 게시글 상세 페이지
-  // !!! 댓글에서 전체 댓글로 불러오는 버그가 있고 정상작동합니다.
   { path: "/recruits/:id/", component: RecruitmentDetailPage, layoutType: "Non" },
 
-  // !!! 유저 프로필 수정
-  // ??? 왼쪽 네비바 추가 미니링크바 추가
-  // 여기에서 팀검색등으로 링크를 추가해야할것 같습니다
-  // 1) 활동중인모임 ->/users/myteams/
-  // 2) 신청중인모임 ->모임 상세 페이지 /users/myappliedteams/
-  // 3) 내가적은 게시물 -> /users/myposts/ 로이동합니다. -> 게시물로이동합니다.
-  //  로 가져야 합니다.
+  // 유저 프로필 수정
+  { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Non" },
+  // { path: "/users/profile/edit", component: ProfileEditingPage, layoutType: "Non" },
+  // 활동 중인 모임
+  { path: "/users/myteams/", component: MyTeamsPage, layoutType: "Profile" },
+  // 신청 중인 모임
+  { path: "/users/myappliedteams/", component: MyAppliedTeamsPage, layoutType: "Profile" },
+  // 내가 적은 게시물
+  { path: "/users/myposts/", component: MyPostsPage, layoutType: "Profile" },
 
-  { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Teams" },
+  // 유저 정보 수정페이지
+  { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
 
-
-  // !!! 활동 중인 모임
-  { path: "/users/myteams/", component: MyTeamsPage, layoutType: "Teams" },
-  // !!! 신청 중인 모임
-  { path: "/users/myappliedteams/", component: MyAppliedTeamsPage, layoutType: "Teams" },
-  // !!! 내가 적은 게시물
-  { path: "/users/myposts/", component: MyPostsPage, layoutType: "Teams" },
-
-
-
-
-  // // 유저 정보 수정페이지 (두개있음)
-  //  // ??? 왼쪽 네비바 추가 미니링크바 추가 두개가 있는버그 이쪽이 버그인것 같아요
-  // { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
-
-
-
-  // !!! 모임 상세 페이지 (UI 문제 있습니다)
-  // 네비바에 문제가 있습니다 users/profile/edit 네비바와 같이 사용하면 좋을것 같습니다.
-  //  채팅방가기 모집글가기 내가 가입한 모임이면 갈 수 있도록 하는것이 좋을것 같습니다.
-  // /users/myteams/ 활동중인 모임 이나 /users/myappliedteams/ 신청중인 모임에서 들어가져야 합니다.
-  // 게시물로 가기를 누르면  /recruits/:id/ 로 이동을 하여야 합니다.
-  //  관리자가 수정 페이지 클릭시 /teams/:id/edit/ 로이동하여야합니다.
-  { path: "/teams/:id/", component: TeamPage, layoutType: "Teams" },
+  // 모임 상세 페이지 (UI 문제 있습니다)
+  { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
   
-
-
-  //!!! 모임 정보 수정(리더만 가능)
+  // 모임 정보 수정(리더만 가능)
   // 모임 정보 수정 페이지
   { path: "/recruits/:id/edit", component: RecruitPostEditPage, layoutType: "Non" },
   
-  // !!! 모임 정보 수정 페이지 
-  // 모임의 디테일 페이지로
-  // 사이드메뉴에 각각 
-  //구성원 관리
-  //신청인원 관리
-  //모임 삭제
-  // 가있습니다.
-  // -> 활동중인 모임으로 왔을때 나오는 페이지입니다.
+  // 모임 정보 수정 페이지 
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
-
-
-  // -> 아래 두페이지는 edit 페이지에서 연결 되어야하는 페이지입니다.
-
-  //!!!  구성원 관리
-  // api 연결 및 
-  //teams/:id/edit 와 같은 왼쪽 네비바
+  // 구성원 관리
   { path: "/teams/:id/members/", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
-
-  // !!! 신청 인원 관리
-  // api 연결 및 
-  //teams/:id/edit 와 같은 왼쪽 네비바
+  // 신청 인원 관리
   { path: "/teams/:id/apply/", component: EnrollmentMemberPage, layoutType: "Enroll" },
 
   // 채팅쪽은 확인 필요합니다.
@@ -241,21 +188,13 @@ const router = createBrowserRouter([
           ) : 
           layoutType === "Enroll" ? (
             <Enroll key={path}>{React.createElement(component)}</Enroll>
-          )
-          : 
-          layoutType === "Teams" ? (
-            <Teams key={path}>{React.createElement(component)}</Teams>
           ) :(
-
             // Handle other layout types as needed
             React.createElement(component)
           )}
         </React.Fragment>
       ),
     })),
-
-    
-
   },
   {
     path: "*",

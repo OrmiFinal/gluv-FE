@@ -3,7 +3,7 @@ import DynamicColorButton from './DynamicColorButton';
 import Margin from './Margin';
 import Contour from './ui/Contour';
 
-function MyLeftMenu() {
+function LeftMenu2() {
   return (
     <div className='w-72 h-full flex justify-center items-center'>
       <div className='mt-4 w-64 h-[500px] mx-4 border-[1px]  rounded-md bg-gray-100 flex flex-col items-center text-center'>
@@ -61,4 +61,4 @@ function MyLeftMenu() {
   );
 }
 
-export default MyLeftMenu;
+export default LeftMenu2;

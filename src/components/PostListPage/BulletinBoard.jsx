@@ -5,9 +5,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 function BulletinBoard({ data }) {
   const formatDate = (datetimeString) => {
-    const parsedDate = new Date(datetimeString);
-    const formattedDate = parsedDate.toISOString().split('T')[0];
-    return formattedDate;
+    try {
+      const parsedDate = new Date(datetimeString);
+
+      if (isNaN(parsedDate)) {
+        throw new Error('Invalid date');
+      }
+
+      const formattedDate = parsedDate.toISOString().split('T')[0];
+      return formattedDate;
+    } catch (error) {
+      console.error(`Error formatting date: ${error.message}`);
+      return 'Invalid Date';
+    }
   };
 
   return (
@@ -23,8 +33,8 @@ function BulletinBoard({ data }) {
         </div>
 
         {data && data.map((item, index) => (
-          <Link to={`/posts/${item.id}`} className="">
-            <div key={index} className="flex items-center justify-start border rounded-md w-full hover:bg-gray-100 px-3 py-2">
+          <Link to={`/posts/${item.id}`} className="" key={index}>
+            <div className="flex items-center justify-start border rounded-md w-full hover:bg-gray-100 px-3 py-2">
               <span className='text-sm w-[15vw]'>{item.id}</span>
               <span className='text-sm w-[23vw] text-left'>{item.title}</span>
               <span className='text-sm w-[10vw] text-center'>{item.nickname}</span>

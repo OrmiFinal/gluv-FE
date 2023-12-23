@@ -7,16 +7,11 @@ function TeamDetailLeftMenuPage() {
     <div className='w-72 h-full flex   mt-20 my-4'>
       <div className='  w-52 h-[230px] border-[1px] rounded-md bg-gray-100 flex flex-col p-4'>
         <div className='menu-item  cursor-pointer'>
-
-
-
-
-  
           메뉴
          
         </div>
         <Contour />
-        <Link to="/users/profile/edit/">
+        <Link to="/users/profile">
         <div className='menu-item cursor-pointer'>
           기본 설정
          
@@ -24,7 +19,7 @@ function TeamDetailLeftMenuPage() {
         </Link>
         
         <Contour />
-        <Link to="/teams/:id/members/">
+        <Link to="/teams/:id/member/">
         <div className='menu-item cursor-pointer'>
           구성원 관리
   
@@ -38,12 +33,12 @@ function TeamDetailLeftMenuPage() {
         </div>
         </Link>
         <Contour />
-
+        <Link to="/recruits">
         <div className='menu-item  cursor-pointer'>
-          모임 삭제 (함수)
-     
+          모임 삭제
+    
         </div>
-   
+        </Link>
         <Contour />
       </div>
     </div>

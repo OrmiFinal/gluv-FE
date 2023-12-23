@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import DatePicker from 'react-datepicker';
-import { Link ,useNavigate} from "react-router-dom";
 import 'react-datepicker/dist/react-datepicker.css';
 import EditorComponent from '../components/ui/EditorComponent';
 import InputField from '../components/InputField';
@@ -23,7 +22,7 @@ function RecruitmentPostEntryPage() {
     maxAttendance: '',
 
   });
-  const navigate = useNavigate();
+
   const handleContentChange = (newContent) => {
     setFormData({ ...formData, content: newContent });
     // You can perform additional actions with the new content if needed
@@ -33,7 +32,6 @@ function RecruitmentPostEntryPage() {
     setFormData({ ...formData, [field]: e.target.value });
     console.log(formData);
   };
-  
 
 
   const regions = [
@@ -97,12 +95,8 @@ function RecruitmentPostEntryPage() {
     });
   };
 
-
- 
-
   const handleBack = () => {
-
-    navigate('/recruits')
+    console.log('Register clicked. Form data:', formData);
   };
 
   return (
@@ -189,7 +183,6 @@ function RecruitmentPostEntryPage() {
               <DynamicColorButton color="blue" text="작성" btnstyle="" onClick={handleSave} />
             </div>
           </div>
-        
         </div>
       </div>
     </div>

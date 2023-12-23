@@ -96,9 +96,7 @@ const TeamContent = () => {
               2020.03.01
             </div>
             </div>
-            </div>
-            <div className='flex w-full items-end'>
-            
+            <div className='flex'>
             <Margin left="4" />
             <Link to="/recruits/1">
             <DynamicColorButton
@@ -115,17 +113,10 @@ const TeamContent = () => {
               btnstyle="py-2 px-2 self-end"
               onClick={handleSave}
             />
-            <Link to="/teams/:id/edit/">
-           <DynamicColorButton
-              color="blue"
-              text="수정 페이지"
-              btnstyle="py-2 px-2 self-end text-sm"
-           
-            />
-            </Link>
+            </div>
           </div>
-        </div></div>
-   
+        </div>
+      </div>
     </div>
   );
 };
