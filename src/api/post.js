@@ -8,9 +8,21 @@ export const FetchNoticeData = async (page) => {
 };
 
 export const FetchPost = async (endPoint, params) => {
+    console.log(params)
+    console.log(params)
     if(endPoint === '/posts/notices/'){
         return await Request('get', endPoint, {}, params, {})   
     }
+    console.log("params")
+    console.log("params")
+    console.log(params.category)
+    if (params.category.slice(-1) === '/') {
+        params.category = params.category.slice(0, -1);
+    }
+    console.log("params")
+    console.log("params")
+    console.log(params.category)
+
     if(params.category === 'qna'){
         return await Request('get', '/posts/', {}, params, {})    
     }else if(params.category === 'comm'){
