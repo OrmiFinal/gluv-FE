@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (inputs) => {
     try {
 
-      const res = await axios.post("http://127.0.0.1:8000/users/login/", inputs);
+      const res = await axios.post(`${apiURL}/users/login/`, inputs);
       const token = res.data
       setCurrentUser(token);
       return true
@@ -56,7 +56,7 @@ export const AuthContextProvider = ({ children }) => {
   
       try {
         // 유저 프로필 정보 api
-        const response = await axios.get(`http://127.0.0.1:8000/users/${userId}/profile`, {
+        const response = await axios.get(`${apiURL}/users/${userId}/profile`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -79,7 +79,7 @@ export const AuthContextProvider = ({ children }) => {
 
     try {
   
-      const res = await axios.post(`http://127.0.0.1:8000/users/signup/`, inputs);
+      const res = await axios.post(`${apiURL}/users/signup/`, inputs);
       // 성공적으로 로그인한 경우
       if (res.status === 200) {
    

@@ -7,7 +7,7 @@ import BulletinBoard from "../PostListPage/BulletinBoard";
 
 function MainContents() {
   const [postDataList, setPostDataList] = useState([]);
-
+      // fetch 수정
   useEffect(() => {
     const fetchTeamData = async () => {
       try {

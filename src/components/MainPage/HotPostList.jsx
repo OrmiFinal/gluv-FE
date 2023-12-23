@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function HotPostList ({ category }){
     const [postData, setPost] = useState([]);
-
+      // fetch 수정
     useEffect(() => {
         const fetchPost = async () => {
             try {

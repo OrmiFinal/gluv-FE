@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import TeamBox from "../TeamBox";
+import TeamBox from "../TeamManagement/TeamBox";
 import Margin from "../Margin";
 import Contour from "../ui/Contour";
 
@@ -36,7 +36,7 @@ function MainContents() {
       console.error("Fetching data failed:", error.message);
     }
   };
-
+      // fetch 수정
   useEffect(() => {
     const fetchTeamData = async () => {
       try {

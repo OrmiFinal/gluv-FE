@@ -28,7 +28,7 @@ const EditForm = ({recruitPost, scheduleID}) => {
         setPostContent(recruitPost.content)
         setSelectedRegion(recruitPost.region)
     }, [recruitPost]);
-
+      // fetch 수정
     const fetchTeamInfo = async (team_id) => {
         try {
             const response = await Request('get', `/teams/${team_id}/`, {}, {}, {})

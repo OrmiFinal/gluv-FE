@@ -10,12 +10,14 @@ import TitleComponent from '../RecruitmentPage/TitleComponent'; // Adjust the pa
 import BulletinBoard from '../RecruitmentPage/BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
 import { SendAuthRequest } from '../../api/post';
+import { useLocation } from 'react-router-dom';
 
 function Content({ category }) {
     const { screenSize } = useWindowSize();
     const [postData, setPostData] = useState([]);
 
     useEffect(() => {
+      // fetch 수정
         const fetchPost = async () => {
             const location = useLocation();
             const queryParams = new URLSearchParams(location.search);

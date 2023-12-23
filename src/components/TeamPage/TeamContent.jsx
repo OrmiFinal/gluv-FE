@@ -6,7 +6,7 @@ import DynamicColorButton from "../DynamicColorButton";
 import Contour from "../ui/Contour";
 import { Link, useParams } from "react-router-dom";
 
-import { TeamContext } from './TeamContext';
+import { TeamContext } from '../../context/TeamContext';
 
 const TeamContent = () => {
   const teamContext = useContext(TeamContext);

@@ -1,6 +1,10 @@
 import axios from "axios";
 import { Request } from "./api";
 
+const baseURL = import.meta.env.VITE_APP_API_KEY;
+
+
+
 export const FetchAllTeamData = async ({ page = 1, search = "", category = "", order_by = "", order = "" }) => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
@@ -11,7 +15,7 @@ export const FetchAllTeamData = async ({ page = 1, search = "", category = "", o
         }
         
         const queryString = `?page=${page}&search=${search}&category='${category}'&order_by=${order_by}&order=${order}`;
-        const apiUrl = `http://localhost:8000/teams/${queryString}`;
+        const apiUrl = `${baseURL}/teams/${queryString}`;
 
         const res = await axios.get(apiUrl, {
             headers: {
@@ -41,7 +45,7 @@ export const FetchAllTeamData = async ({ page = 1, search = "", category = "", o
             return null;
         }
         
-        const res = await axios.delete(`http://localhost:8000/teams/${id}/leave/`, {
+        const res = await axios.delete(`${baseURL}/teams/${id}/leave/`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -62,7 +66,7 @@ export const FetchAllTeamData = async ({ page = 1, search = "", category = "", o
             return null;
         }
    
-        const res = await axios.delete(`http://localhost:8000/teams/${id}/`, {
+        const res = await axios.delete(`${baseURL}/teams/${id}/`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -85,7 +89,7 @@ export const getTeamMembers = async ({ id }) => {
         return null;
     }
 
-    const apiUrl2 = `http://localhost:8000/teams/${id}/members/`;
+    const apiUrl2 = `${baseURL}/teams/${id}/members/`;
    
     try {
         const res = await axios.get(apiUrl2, {
@@ -116,7 +120,7 @@ export const applyToTeam = async ({id,userId}) => {
     }
   
     const response = await axios.patch(
-      `http://localhost:8000/teams/${id}/join/`,
+      `${baseURL}/teams/${id}/join/`,
       { user: userId },
       {
         headers: {

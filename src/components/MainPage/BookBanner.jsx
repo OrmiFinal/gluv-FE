@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const BookBanner = () => {
     const [bookData, setBookData] = useState([]);
-
+      // fetch 수정
     useEffect(() => {
         const fetchBookData = async () => {
             try {

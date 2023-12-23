@@ -1,6 +1,6 @@
 import React from 'react'
-import Contour from './ui/Contour'
-import Margin from './Margin'
+import Contour from '../ui/Contour'
+import Margin from '../Margin'
 
 function TeamManagementFooter() {
   return (

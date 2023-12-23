@@ -12,8 +12,9 @@ import { ModelContext } from '../../context/ModelContextProvider'
 import Pagination from './Pagination.jsx';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
-import useWindowSize from '../../hooks/useWindowSize';
+
 import BulletinBoard from './BulletinBoard';
+import useWindowSize from '../../context/useWindowSize.jsx';
 
 function Content() {
     const [searchParams, setSearchParams]=useSearchParams();

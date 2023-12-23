@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 import Margin from '../components/Margin';
 import Contour from '../components/ui/Contour';
 
-import TeamManagementBackDesin from '../components/TeamManagementBackDesin';
+import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
 
-import TeamApply from '../components/TeamApply';
 import { AuthContext } from '../context/AuthContext';
-import {TeamContextProvider} from '../components/TeamPage/TeamContext';
-import TeamManagementFooter from '../components/TeamManagementFooter';
+import {TeamContextProvider} from '../context/TeamContext';
+import TeamManagementFooter from '../components/TeamManagement/TeamManagementFooter';
+import TeamApply from '../components/TeamManagement/TeamApply';
 
 function TeamRegistrationManagement() {
   const { id } = useParams();

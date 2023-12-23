@@ -7,7 +7,7 @@ import DynamicColorButton from '../DynamicColorButton';
 import { Request } from '../../api/api';
 import EditForm from './EditForm';
 import { FetchTeam } from "../../api/team";
-import { TeamContext } from '../TeamPage/TeamContext';
+import { TeamContext } from '../../context/TeamContext';
 
 const EditPage = () => {
   const teamContext = useContext(TeamContext);
@@ -20,7 +20,7 @@ const EditPage = () => {
       if(!teamContext.teamData.recruit_id){
         return
       }
-
+      // fetch 수정
       try {
         const response = await Request('get', `/recruits/${teamContext.teamData.recruit_id}/`, {}, {}, {})
   

@@ -8,12 +8,14 @@ import { useParams } from 'react-router-dom';
 import Margin from '../components/Margin';
 import Contour from '../components/ui/Contour';
 
-import TeamManagementBackDesin from '../components/TeamManagementBackDesin';
-import TeamBoxLeader from '../components/TeamBoxLeader';
-import TeamBoxCrew from '../components/TeamBoxCrew';
+import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
+import TeamBoxLeader from '../components/TeamManagement/TeamBoxLeader';
+
 import { AuthContext } from '../context/AuthContext';
-import {TeamContextProvider} from '../components/TeamPage/TeamContext';
-import TeamManagementFooter from '../components/TeamManagementFooter';
+
+import TeamManagementFooter from '../components/TeamManagement/TeamManagementFooter';
+import TeamBoxCrew from '../components/TeamManagement/TeamBoxCrew';
+import { TeamContextProvider } from '../context/TeamContext';
 
 function TeamManagement() {
   const { id } = useParams();

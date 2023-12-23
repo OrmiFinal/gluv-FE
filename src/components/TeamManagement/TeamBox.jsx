@@ -1,5 +1,5 @@
 import React from "react";
-import Margin from "./Margin";
+import Margin from "../Margin";
 import { Link } from "react-router-dom";
 
 function TeamBox({ teamData }) {

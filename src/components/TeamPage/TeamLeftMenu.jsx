@@ -5,7 +5,8 @@ import Contour from "../ui/Contour";
 import { Link, useParams } from "react-router-dom";
 import { FetchTeam, TeamLeave, TeamDelete } from "../../api/team";
 import { FetchCheckRecruitsApplied } from "../../api/recruits";
-import { TeamContext } from './TeamContext';
+import { TeamContext } from "../../context/TeamContext";
+
 
 function TeamLeftMenu() {
   const teamContext = useContext(TeamContext);

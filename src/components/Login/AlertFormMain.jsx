@@ -8,6 +8,7 @@ function AlertFormMain() {
   const { closeForm } = useContext(OpenModalContext);
   const [notiData, setNotiData] = useState([]);
   useEffect(() => {
+          // fetch 수정
       const fetchNotiData = async () => {
           try {
             const response = await Request('get', '/notifications/', {}, {}, {})

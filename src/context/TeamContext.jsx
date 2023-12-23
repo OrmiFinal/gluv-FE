@@ -1,6 +1,7 @@
 import { React, createContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FetchTeam } from "../../api/team";
+import { FetchTeam } from "../api/team";
+
 
 const TeamContext = createContext();
 

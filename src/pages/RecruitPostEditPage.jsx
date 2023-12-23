@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 import EditPage from '../components/Recruit/EditPage'
-import {TeamContextProvider} from '../components/TeamPage/TeamContext';
+import {TeamContextProvider} from '../context/TeamContext';
 
 function RecruitPostEditPage() {
     return (

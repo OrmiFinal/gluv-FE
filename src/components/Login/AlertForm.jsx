@@ -12,6 +12,7 @@ function AlertForm() {
 
   const [notiData, setNotiData] = useState([]);
   useEffect(() => {
+          // fetch 수정
       const fetchNotiData = async () => {
           try {
             const response = await Request('get', '/notifications/unread/', {}, {}, {})

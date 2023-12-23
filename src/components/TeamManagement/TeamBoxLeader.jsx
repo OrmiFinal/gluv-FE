@@ -1,9 +1,9 @@
 import React from 'react';
-import Margin from './Margin';
-import DynamicColorButton from './DynamicColorButton';
-import crew from '../assets/crew.png';
-import leader from '../assets/leader.png';
-import { applyToTeam, changeTeamLeader, kickTeamMember } from '../api/team';
+import Margin from '../Margin';
+import DynamicColorButton from '../DynamicColorButton';
+import crew from '../../assets/crew.png';
+import leader from '../../assets/leader.png';
+import { applyToTeam, changeTeamLeader, kickTeamMember } from '../../api/team';
 import { async } from 'rxjs';
 
 function TeamBoxLeader({ profileData,  postiId,setPageReload }) {
