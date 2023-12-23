@@ -71,6 +71,7 @@ function Content() {
         const params = {
           category : searchParams.get('category'),
           page : currentPage,
+          search: inputValue
         }
         const response = await FetchPost(endPoint, params);
         if (response && response.results) {
@@ -85,7 +86,7 @@ function Content() {
     };
   
     fetchNoticeData();
-  }, [currentPage, category]);
+  }, [currentPage, inputValue,category]);
 
   const handleSearchClick = () => {
   };

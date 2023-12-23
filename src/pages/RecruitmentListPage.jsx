@@ -69,34 +69,26 @@ function RecruitmentListPage() {
   };
 
   const handleSearchClick = () => {
-    
+    setFilters({ ...filters, search: event.target.value });
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await FetchRecruitsPost({ ...filters, page: currentPage });
         // const RecruitsData = await FetchRecruitsPost({...filters, page: currentPage })
-        console.log("fetchData")
-        console.log("fetchData")
-        console.log(data)
+    
         if (data) {
-          console.log("fetchDataindata")
-          console.log("fetchDataindata")
-          console.log(data)
+         
           setTeamData(data.results);
           setCount(data.count);
           // setTotalPages(data.total_pages);
         }
-        // if(RecruitsData){
-        //   // setRecruitsData(RecruitsData)
-        // }
-        console.log()
+    
       } catch (error) {
         console.error('Error fetching team data:', error.message);
       }
     };
-    console.log("Count")
-    console.log("Count")
+
 console.log(Count)
     fetchData();
   }, [filters, currentPage]);
@@ -208,9 +200,7 @@ console.log(Count)
             <Contour></Contour>
             <div>
               <div className={`flex items-center text-center ${false === 'sm' ? 'justify-start' : 'justify-center'}`}>
-                <Link  to="/recruits/create">
-                <div className='w-20 h-10 border border-black'>등록하기</div>
-                </Link>
+              
                 <input
                   className={`border p-2 rounded-md ${combinedClasses}`}
                   placeholder='검색 입력...'
@@ -223,6 +213,14 @@ console.log(Count)
                   btnstyle="py-2 px-2 ml-2"
                   onClick={handleSearchClick}
                 />
+                  <Link  to="/recruits/create">
+                  <DynamicColorButton
+                  color="black"
+                  text="등록하기"
+                  btnstyle="py-2 px-2 ml-2"
+                  />
+               
+                </Link>
               </div>
       
             </div>
