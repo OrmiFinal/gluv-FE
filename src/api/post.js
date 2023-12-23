@@ -59,12 +59,7 @@ export const FetchAllContext = async ({ search, category,subcategory ,order_by, 
     try {
         const user = JSON.parse(localStorage.getItem("user"));
         const accessToken = user?.access_token || "";
-        console.log("category")
-        console.log("category")
-        console.log("category")
-        console.log("category")
-        console.log(order)
-        console.log(order_by)
+      
         if (!accessToken) {
             console.error("Access token not available");
             return null;
@@ -99,23 +94,14 @@ export const FetchAllContext = async ({ search, category,subcategory ,order_by, 
                 URLvalue = "creation";
             }
         }
-        console.log("URLvalue")
-        console.log("URLvalue")
-        console.log("URLvalue")
-        console.log(`${page}`)
-
+     
         
         const res = await axios.get(`http://localhost:8000/posts/?category=${URLvalue}&order_by=${order_by}&order=${order}&search=${search}&count=5&page=${page}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
-        console.log("res")
-        console.log("res")
-        console.log("res")
-        console.log("res")
-       console.log(res)
-      
+    
         // rest of the code...
         return res;
     } catch (error) {
