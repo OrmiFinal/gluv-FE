@@ -2,7 +2,7 @@ import React from 'react';
 import Margin from './Margin';
 import Contour from './ui/Contour';
 
-function UnEnollBackDesin({ children }) {
+function TeamManagementBackDesin({ children }) {
   return (
     <div>
       <div className='w-[65vw] bg-white rounded-md shadow-md p-6 '>
@@ -32,4 +32,4 @@ function UnEnollBackDesin({ children }) {
   );
 }
 
-export default UnEnollBackDesin;
+export default TeamManagementBackDesin;

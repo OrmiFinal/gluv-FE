@@ -3,31 +3,19 @@ import Margin from './Margin';
 import DynamicColorButton from './DynamicColorButton';
 import crew from '../assets/crew.png';
 import leader from '../assets/leader.png';
-import { applyToTeam, changeTeamLeader, kickTeamMember, putTeamLeader } from '../api/team';
-import { async } from 'rxjs';
+import { TeamLeave, applyToTeam, kickTeamMember } from '../api/team';
 
-function EnrollTeamBoxLeader({ profileData,  postiId }) {
+function TeamBoxCrew({ profileData,  postiId,isMe }) {
   const { profilePicture,  is_leader, user } = profileData;
 
-  // is_leader true 일때  파티장 변경 ??? 할줄모르겠어요 -> 새로운파티장 넣기 -> 파티장삭제요청
-  const AcceptanceBtn = async() => {
-    console.log('모임장 이전');
-
-    await changeTeamLeader({id:postiId , newLeaderId:user})
-     await putTeamLeader({id:postiId , newLeaderId:user})
 
 
-  };
-
+  // 나가기버튼
   const RefuseBtn = async () => {
-    console.log('강퇴');
-    try {
-      await kickTeamMember({ postid: postiId, userId: user });
-      console.log('Successfully kicked the team member');
-    
-    } catch (error) {
-      console.error('Failed to kick the team member:', error.message);
-    }
+    try{
+    await TeamLeave({id:postiId})
+    window.location.reload();}
+    catch{}
   };
   
 
@@ -45,15 +33,15 @@ function EnrollTeamBoxLeader({ profileData,  postiId }) {
       </div>
       <Margin left='3' plustailwind='w-3' />
       <div className={` w-72 rounded-lg h-20 flex justify-center items-center ${is_leader ? 'border-red-200 border-2' : 'border-blue-200 border-2'}`}>
-        {is_leader ? '현재 팀장입니다' : '팀원 입니다'}{user}
+        {is_leader ? '현재 팀장입니다' : '팀원 입니다'}
       </div>
       <Margin left='3' plustailwind='w-6' />
       <div className='flex flex-col justify-center items-center'>
-        <DynamicColorButton btnstyle='w-24 h-8' color='blue' text='모임장 이전' onClick={AcceptanceBtn} />
-        <DynamicColorButton btnstyle='w-24 h-8 mt-2' color='red' text='강퇴' onClick={RefuseBtn}></DynamicColorButton>
+  {user==isMe?(<DynamicColorButton btnstyle='w-24 h-8 mt-2' color='red' text='나가기' onClick={RefuseBtn}></DynamicColorButton>):(<></>)}
+
       </div>
     </div>
   );
 }
 
-export default EnrollTeamBoxLeader;
+export default TeamBoxCrew;

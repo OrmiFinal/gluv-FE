@@ -14,8 +14,8 @@ import RecruitmentEntryPage from './pages/RecruitmentEntryPage.jsx';
 import RecruitmentListPage from './pages/RecruitmentListPage.jsx';
 import MyTeamsPage from './pages/MyTeamsPage.jsx';
 import MyAppliedTeamsPage from './pages/MyAppliedTeamsPage.jsx';
-import EnrollmentMemberPage from './pages/EnrollmentMemberPage.jsx';
-import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
+import TeamRegistrationManagement from './pages/TeamRegistrationManagement.jsx';
+import TeamManagement from './pages/TeamManagement.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
@@ -121,9 +121,13 @@ const pages = [
   // 모임 정보 수정 페이지 
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
   // 구성원 관리
-  { path: "/teams/:id/members/", component: UnEnrollmentMemberPage, layoutType: "Non" },
+
+
+
+
+  { path: "/teams/:id/members/", component: TeamManagement, layoutType: "Non" },
   // 신청 인원 관리
-  { path: "/teams/:id/apply/", component: EnrollmentMemberPage, layoutType: "Non" },
+  { path: "/teams/:id/apply/", component:  TeamRegistrationManagement , layoutType: "Non" },
 
   // 채팅쪽은 확인 필요합니다.
   // 채팅페이지
