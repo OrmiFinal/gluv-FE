@@ -4,10 +4,10 @@ import Margin from './Margin';
 import Contour from './ui/Contour';
 import { Link } from 'react-router-dom';
 
-function LeftMenu4() {
+function TeamsLeftMenu() {
   return (
     <div>
-     <div className='w-72 h-full flex   mt-20 my-4'>
+     <div className='w-72 h-full flex  ml-8 mt-20 my-4'>
       <div className='  w-52 h-[230px] border-[1px] rounded-md bg-gray-100 flex flex-col p-4'>
         <div className='menu-item  cursor-pointer'>
           메뉴
@@ -51,4 +51,4 @@ function LeftMenu4() {
   );
 }
 
-export default LeftMenu4;
+export default TeamsLeftMenu;

@@ -4,7 +4,7 @@ import DynamicColorButton from './DynamicColorButton'
 import Contour from './ui/Contour'
 import { Link } from 'react-router-dom'
 
-function LeftMenu() {
+function ProfileLeftMenu() {
   return (
     <div className='w-72 h-full flex justify-center items-center'>
     <div className='mt-4 w-64 h-[500px] mx-4 border-[1px]  rounded-md bg-gray-100 flex flex-col items-center text-center'>
@@ -65,4 +65,4 @@ function LeftMenu() {
   )
 }
 
-export default LeftMenu
+export default ProfileLeftMenu

@@ -25,10 +25,10 @@ import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
 
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
-import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
-import LeftMenu2 from "./components/LeftMenu2.jsx";
-import LeftMenu3 from "./components/LeftMenu3.jsx";
-import LeftMenu4 from "./components/LeftMenu4.jsx";
+import ProfileLeftMenu from "./components/ProfileLeftMenu.jsx"; // Import LeftMenu component
+import MyLeftMenu from "./components/MyLeftMenu.jsx";
+import EnrollLeftMenu from "./components/EnrollLeftMenu.jsx";
+import TeamsLeftMenu from "./components/TeamsLeftMenu.jsx";
 
 
 
@@ -45,7 +45,7 @@ const SiteLayout = () => {
 const My = ({children}) => {
   return (
     <div className="flex">
-      <LeftMenu2 />
+      <MyLeftMenu />
       <div>{children}</div>
     </div>
   );
@@ -55,7 +55,7 @@ const My = ({children}) => {
 const Teams = ({children}) => {
   return (
     <div className="flex">
-      <LeftMenu4 />
+      <TeamsLeftMenu />
       <div>{children}</div>
     </div>
   );
@@ -64,7 +64,7 @@ const Teams = ({children}) => {
 const Profile = ({children}) => {
   return (
     <div className="flex">
-      <LeftMenu />
+      <ProfileLeftMenu />
       {children}
     </div>
   );
@@ -73,7 +73,7 @@ const Profile = ({children}) => {
 const Enroll = ({children}) => {
   return (
     <div className="flex">
-      <LeftMenu3 />
+      <EnrollLeftMenu />
       {children}
     </div>
   );
@@ -146,7 +146,8 @@ const pages = [
   //  채팅방가기 모집글가기 내가 가입한 모임이면 갈 수 있도록 하는것이 좋을것 같습니다.
   // /users/myteams/ 활동중인 모임 이나 /users/myappliedteams/ 신청중인 모임에서 들어가져야 합니다.
   // 게시물로 가기를 누르면  /recruits/:id/ 로 이동을 하여야 합니다.
-  { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
+  //  관리자가 수정 페이지 클릭시 /teams/:id/edit/ 로이동하여야합니다.
+  { path: "/teams/:id/", component: TeamPage, layoutType: "Teams" },
   
 
 
@@ -161,7 +162,7 @@ const pages = [
   //신청인원 관리
   //모임 삭제
   // 가있습니다.
-
+  // -> 활동중인 모임으로 왔을때 나오는 페이지입니다.
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
 
 
