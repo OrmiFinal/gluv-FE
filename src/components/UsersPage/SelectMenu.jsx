@@ -19,11 +19,7 @@ function SelectMenu() {
           신청중인 모임
         </div>
       </Link>
-      <Link to="/users/myposts/">
-        <div className={`text-2xl border-black cursor-pointer text-base ml-4 ${isActive("/users/myposts/") ? "font-bold underline" : ""}`}>
-          내가 쓴 글
-        </div>
-      </Link>
+    
     </div>
   );
 }

@@ -1,19 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 import Contour from '../ui/Contour';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { FetchTeam } from '../../api/team';
 
 const TeamContent = () => {
   const [formData, setFormData] = useState({
-    introduction: '',
-    address: '',
-    date: '',
-    month: '',
-    creationDate: null,
+    name:  '',
+    category: '',
+    day:  '',
+    week:  '',
+    max_attendance:  '',
+    frequency:  1,
+    location:  '무관',
+    is_leader: false
   });
+
+  const { id } = useParams();
+
+
+  const fetchTeamData = async () => {
+    try {
+      const teamData = await FetchTeam({ id });
+
+      
+      if (teamData) {
+        setFormData({
+          name: teamData.name || '',
+          category: teamData.category || '',
+          day: teamData.day || '',
+          week: teamData.week || '무관',
+          max_attendance: teamData.max_attendance || '',
+          frequency: teamData.frequency || 1,
+          location: teamData.location || '무관',
+          is_leader: teamData.s_leader
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching team data:', error.message);
+    }
+  };
+
+  useEffect(() => {
+    
+
+    fetchTeamData();
+  }, [id]); 
+
 
   const handleChange = (e, field) => {
     setFormData({ ...formData, [field]: e.target.value });
@@ -41,7 +77,7 @@ const TeamContent = () => {
               // 기존 코드에서 제공한 예시 텍스트 대신 formData.introduction을 사용
               // formData.introduction 값이 없는 경우 기본 텍스트를 사용하려면 || 연산자를 활용할 수 있습니다.
             >
-              {formData.introduction || '모임 소개 예시'}
+              {formData.introduction || '아직 소개가 없습니다.'}
             </div>
           </div>
           <div className="mt-4">
@@ -49,17 +85,17 @@ const TeamContent = () => {
             <div
               className="w-full h-[35px]  p-2 text-base "
             >
-              {formData.address || '모임 주소 예시'}
+              {formData.location }
             </div>
           </div>
           <Margin top="2" />
           <Contour></Contour>
           <div className="mt-4">
-            <div className="text-sm font-semibold mb-1">모임 날짜</div>
+            <div className="text-sm font-semibold mb-1">참여인원</div>
             <div
               className="w-full h-[40px]  p-2 text-base "
             >
-              {formData.date || '모임 날짜 예시'}
+              {formData.max_attendance }
             </div>
           </div>
           <Margin top="2" />
@@ -70,18 +106,19 @@ const TeamContent = () => {
               <div
                 className="w-[100px] h-[40px]  p-2 text-base "
               >
-                {formData.month || '3월'}
-              </div>
-              <div
-                className="w-[100px] h-[40px] p-2 text-base "
-              >
-                {formData.dayOfMonth || '2일'}
+            {formData.day} day
               </div>
               <div
                 className="w-[100px] h-[40px]  p-2 text-base "
               >
-                {formData.dayOfWeek || '14시'}
+                {formData.week }week
               </div>
+              <div
+                className="w-[100px] h-[40px] p-2 text-base "
+              >
+               {formData.frequency}주기
+              </div>
+             
             </div>
           </div>
 
@@ -89,16 +126,18 @@ const TeamContent = () => {
        
           <div className="w-full h-[40px] flex items-end  justify-between">
             <div className='flex'>
-            <div className="self-end  w-24">모임 생성일</div>
+            <div className="self-end  w-24">모임 시작일</div>
             <div
               className="self-end "
             >
-              2020.03.01
+               {formData.start_time || '아직 정해진것이 없습니다.'}
             </div>
             </div>
-            <div className='flex'>
-            <Margin left="4" />
-            <Link to="/recruits/1">
+            </div>
+            <div className='flex w-full  justify-around items-center'>
+            
+   
+            <Link to={`/recruits/${id}`}>
             <DynamicColorButton
          
               text="모집글가기"
@@ -106,17 +145,24 @@ const TeamContent = () => {
               onClick={handleRegister}
             />
             </Link>
-            <Margin left="4" />
+   
             <DynamicColorButton
               color="blue"
               text="채팅방입장"
               btnstyle="py-2 px-2 self-end"
               onClick={handleSave}
             />
-            </div>
+            <Link to="/teams/:id/edit/">
+           <DynamicColorButton
+              color="blue"
+              text="수정 페이지"
+              btnstyle="py-2 px-2 self-end text-sm"
+           
+            />
+            </Link>
           </div>
-        </div>
-      </div>
+        </div></div>
+   
     </div>
   );
 };
