@@ -14,7 +14,9 @@ function TeamBoxCrew({ profileData,  postiId,isMe }) {
   const RefuseBtn = async () => {
     try{
     await TeamLeave({id:postiId})
-    window.location.reload();}
+    window.location.reload();
+  
+    setPageReload((prev)=>{prev+1})}
     catch{}
   };
   
@@ -33,7 +35,7 @@ function TeamBoxCrew({ profileData,  postiId,isMe }) {
       </div>
       <Margin left='3' plustailwind='w-3' />
       <div className={` w-72 rounded-lg h-20 flex justify-center items-center ${is_leader ? 'border-red-200 border-2' : 'border-blue-200 border-2'}`}>
-        {is_leader ? '현재 팀장입니다' : '팀원 입니다'}
+       {user} {is_leader ? '현재 팀장입니다' : '팀원 입니다'}
       </div>
       <Margin left='3' plustailwind='w-6' />
       <div className='flex flex-col justify-center items-center'>

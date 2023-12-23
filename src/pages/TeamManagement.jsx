@@ -16,6 +16,8 @@ import { AuthContext } from '../context/AuthContext';
 function TeamManagement() {
   const { id } = useParams();
   const [teamMembers, setTeamMembers] = useState([]);
+  const [pageReload, setPageReload] = useState(false);
+
   const { getDecodedToken } = useContext(AuthContext);
   const [userId, setUserId] = useState(null);
 
@@ -36,7 +38,7 @@ function TeamManagement() {
     }
 
     fetchTeamMembers();
-  }, [id, getDecodedToken]);
+  }, [id, getDecodedToken,pageReload]);
 
   const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
   {/* 단순 확인용 버튼 나중에 지워야합니다! */}
@@ -69,11 +71,12 @@ function TeamManagement() {
             <TeamBoxLeader
               profileData={member}
               postiId={id}
+              setPageReload={setPageReload}
             />
           ) : (
             <TeamBoxCrew
               profileData={member}
-         
+              setPageReload={setPageReload}
               postiId={id}
               isMe={userId}
             />
