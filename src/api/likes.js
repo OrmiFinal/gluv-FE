@@ -42,12 +42,27 @@ export const unlikePost = async (postId) => {
 };
 
 
+export const likeRecruit = async (postId) => {
+  try {
+    await axiosInstance.post('/likes/like_post/', { recruit_id: postId });
+  } catch (error) {
+    console.error('Error liking the post:', error);
+    throw error;
+  }
+};
 
-
+export const unlikeRecruit = async (postId) => {
+  try {
+    await axiosInstance.post('/likes/unlike_post/', { recruit_id: postId });
+  } catch (error) {
+    console.error('Error unliking the post:', error);
+    throw error;
+  }
+};
 
 export const checkIfReLike = async (postId) => {
     try {
-      const response = await axiosInstance.get(`/likes/is_liked/?recruits=${postId}`);
+      const response = await axiosInstance.get(`/likes/is_liked/?recruit_id=${postId}`);
     
       return response.data.is_liked;
     } catch (error) {
