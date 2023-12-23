@@ -119,8 +119,9 @@ function TeamLeftMenu() {
         </div>
         <Margin top="1" />
 
-        {/* 버튼 */}
-        <DynamicColorButton color="blue" text="모임정보수정" />
+        <Link to={`/teams/${id}/edit`}>
+          <DynamicColorButton color="blue" text="모임정보수정" />
+        </Link>
         <Margin top="1" />
         <DynamicColorButton color="red" text="탈퇴하기" />
       </div>
