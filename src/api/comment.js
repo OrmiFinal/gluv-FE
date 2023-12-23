@@ -38,30 +38,14 @@ export const FetchAllReqCommentsData = async ({id,page=1}) => {
             console.error("Access token not available");
             return null;
         }
-        console.log("id,page")
-        console.log("id,page")
-        console.log("id,page")
-        console.log("id,page")
-        console.log("id,page")
-        console.log("id,page")
-        console.log("id,page")
-        console.log("id,page")
-     console.log(id,page)
-     console.log("id,page")
-     console.log("id,page")
-     console.log("id,page")
-     console.log("id,page")
+    
         const res = await axios.get(`http://localhost:8000/comments/?recruits=${id}&page=${page}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
 
-             
-console.log("res.req")       
-console.log("res.req")       
-console.log("res.req") 
-console.log(res.data)
+
         // rest of the code...
         return res.data;
     } catch (error) {

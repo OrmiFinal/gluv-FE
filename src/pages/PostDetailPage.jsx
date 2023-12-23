@@ -118,15 +118,12 @@ function PostDetailPage() {
     } catch (error) {
       console.error('Error unliking the post:', error);
     }
-    console.log("comments")
-    console.log(comments.a.count)
+
   };
   const ReportClick = async()=>{
-    console.log("data")
-    console.log("data")
-    console.log(data)
+
     let a=await submitReport({user_id:data.author,content:`포스트${id}를 신고 당했습니다.`})
-    console.log(a)
+
   }
 
   const handlePageClick = (page) => {

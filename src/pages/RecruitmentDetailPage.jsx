@@ -96,20 +96,13 @@ function RecruitmentDetailPage() {
   
   const AmIReClikc=()=>{
     RecruitApplication()
-    console.log("AmIRecruit.IRecruit.user")
-    console.log("AmIRecruit.IRecruit.user")
-    console.log("AmIRecruit.IRecruit.user")
-    console.log(AmIRecruit.IRecruit)
+
     const isUserInArray = AmIRecruit.IRecruit.some(item => item.user = 2);
 
     let a = isUserInArray ? "신청중입니다": "신청 상태가 없는 상태 입니다" ;
 
     alert( a)
-    console.log("AmIRecruit")
-    //AmIRecruit.IRecruit.length 가 undefined 가아니고 ,  내아이디 == AmIRecruit.IRecruit.user 같은것중에서, AmIRecruit.IRecruit.is_approved 가 false 인지 true 인지 만일 위조건중 하나라도 틀리면 false
-    console.log(AmIRecruit.IRecruit.is_approved)
-    console.log("AmIRecruit")
-    console.log(AmIRecruit)
+
     
   }
 
