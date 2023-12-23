@@ -78,13 +78,11 @@ export const AuthContextProvider = ({ children }) => {
   const registerUser = async (inputs) => {
 
     try {
-      console.log(apiURL + "apiURL")
-      console.log(inputs);
+  
       const res = await axios.post(`http://127.0.0.1:8000/users/signup/`, inputs);
       // 성공적으로 로그인한 경우
       if (res.status === 200) {
-        console.log(apiURL)
-        setCurrentUser(res.data);
+   
         return { success: true, data: res.data };
       } else {
         return { success: false, error: "Unexpected status code" };

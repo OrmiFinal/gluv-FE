@@ -5,6 +5,7 @@ import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 function TeamDetailPage() {
   return (
     <div className='flex'>
+   
     <TeamLeftMenu></TeamLeftMenu>
     <TeamDetailContentPage></TeamDetailContentPage>
     </div>

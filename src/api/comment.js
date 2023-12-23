@@ -15,11 +15,6 @@ export const FetchAllCommentsData = async ({id,page=1}) => {
             },
         });
 
-             
-console.log("res.dataFetchAllCommentsData")       
-console.log("res.dataFetchAllCommentsData")       
-console.log("res.dataFetchAllCommentsData") 
-console.log(res.data)
         // rest of the code...
         return res.data;
     } catch (error) {
