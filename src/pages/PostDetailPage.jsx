@@ -267,7 +267,7 @@ const delectClick = async()=>{
               <div className='flex flex-wrap'>
              
                 <Margin left="1" />
-                <Link to="/posts">
+                <Link to="/posts/notices/">
                 <DynamicColorButton
                   text="목록으로"
                   btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
