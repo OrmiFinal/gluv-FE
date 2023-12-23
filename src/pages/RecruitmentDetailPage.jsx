@@ -6,13 +6,13 @@ import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { Link, useParams } from 'react-router-dom';
 import { FetchPostData } from '../api/post.js';
-import { FetchRecruits } from '../api/recruits.js';
+import { FetchDelectRecruits, FetchRecruits } from '../api/recruits.js';
 import { FetchAllReqCommentsData, FetchCreateComments } from '../api/comment.js';
 import { FetchTeam } from '../api/team.js';
 import { submitReport } from '../api/report.js';
 import { likePost, unlikePost } from '../api/likes.js';
 import { checkRecruitApplication } from '../api/applyRecruit';
-import { applyForRecruit } from '../api/applyRecruit';
+import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
 
 function RecruitmentDetailPage() {
 
@@ -100,10 +100,18 @@ function RecruitmentDetailPage() {
   
   const AmIReClikc=()=>{
     RecruitApplication()
-    let a = AmIRecruit.IRecruit==undefined ?AmIRecruit.IRecruit:"신청 상태가 없는"
-    alert( a+"상태 입니다")
-    console.log("AmIRecruit")
+    console.log("AmIRecruit.IRecruit.user")
+    console.log("AmIRecruit.IRecruit.user")
+    console.log("AmIRecruit.IRecruit.user")
     console.log(AmIRecruit.IRecruit)
+    const isUserInArray = AmIRecruit.IRecruit.some(item => item.user = 2);
+
+    let a = isUserInArray ? "신청중입니다": "신청 상태가 없는 상태 입니다" ;
+
+    alert( a)
+    console.log("AmIRecruit")
+    //AmIRecruit.IRecruit.length 가 undefined 가아니고 ,  내아이디 == AmIRecruit.IRecruit.user 같은것중에서, AmIRecruit.IRecruit.is_approved 가 false 인지 true 인지 만일 위조건중 하나라도 틀리면 false
+    console.log(AmIRecruit.IRecruit.is_approved)
     console.log("AmIRecruit")
     console.log(AmIRecruit)
     
@@ -111,10 +119,23 @@ function RecruitmentDetailPage() {
 
  const RecruitBtn=async()=>{
     applyForRecruit(id)
+    RecruitApplication()
   }
- 
+  const UnRecruitBtn=async()=>{
+    cancelRecruitApplication(id)
+    RecruitApplication()
+  }
 
+ const RecruitDelectBtn=async()=>{
+  FetchDelectRecruits(id)
+}
 
+const gotoListBtn = () => {
+  
+  navigate('/recruits')
+};
+  
+  
   const handlePageClick = (page) => {
     setCurrentPage(page+1);
   };
@@ -274,11 +295,15 @@ function RecruitmentDetailPage() {
             <Margin top="4" />
             <div className={`w-full border p-4 flex  justify-between items-start`}>
               <div className='flex'>
-                <DynamicColorButton
-                  text="신청 현황"
-                  btnstyle="py-1 px-2 flex-shrink-0"
-                  onClick={AmIReClikc}
-                />
+              
+              <DynamicColorButton
+    color="blue"
+    text="신청확인"
+    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+    onClick={AmIReClikc}
+  /> 
+
+
                 <Margin left="1" />
            
                 <Margin left="1" />
@@ -286,21 +311,30 @@ function RecruitmentDetailPage() {
                   color="red"
                   text="삭제하기"
                   btnstyle="py-1 px-2 flex-shrink-0"
+                  onClick={RecruitDelectBtn}
                 />
               </div>
              
               <div className='flex flex-wrap'>
-                <DynamicColorButton
-                  color="blue"
-                  text="신청하기"
-                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
-                  onClick={RecruitBtn}
-                />
+              <DynamicColorButton
+    color="blue"
+    text="신청하기"
+    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+    onClick={RecruitBtn}
+  /> 
+  
+  <DynamicColorButton
+    color="blue"
+    text="신청해제"
+    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+    onClick={UnRecruitBtn}
+  />
                 <Margin left="1" />
                 <Link to="/recruits">
                 <DynamicColorButton
                   text="목록으로"
                   btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                  onClick={gotoListBtn}
                 />
                 </Link>
               </div>
