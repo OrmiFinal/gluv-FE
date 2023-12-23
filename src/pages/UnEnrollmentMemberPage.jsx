@@ -1,7 +1,7 @@
 // UnEnrollmentMemberPage.js
 
 import React, { useState, useEffect, useContext } from 'react';
-import EnrollTeamBox2 from '../components/EnrollTeamBox2';
+
 import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 import { getTeamMembers } from '../api/team';
 import { useParams } from 'react-router-dom';
@@ -9,6 +9,8 @@ import Margin from '../components/Margin';
 import Contour from '../components/ui/Contour';
 import { AuthContext } from '../context/authContext';
 import UnEnollBackDesin from '../components/UnEnollBackDesin';
+import EnrollTeamBoxLeader from '../components/EnrollTeamBoxLeader';
+import EnrollTeamBoxCrew from '../components/EnrollTeamBoxCrew';
 
 function UnEnrollmentMemberPage() {
   const { id } = useParams();
@@ -36,10 +38,10 @@ function UnEnrollmentMemberPage() {
   }, [id, getDecodedToken]);
 
   const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
-
+  {/* 단순 확인용 버튼 나중에 지워야합니다! */}
   const asd = () => {
     console.log(teamMembers);
-    console.log(IamLeader);
+    console.log(id);
   };
 
   return (
@@ -52,58 +54,47 @@ function UnEnrollmentMemberPage() {
               <div className='text-2xl font-bold '> 구성원 관리</div>
             </div>
             <Contour />
+            {/* 단순 확인용 버튼 나중에 지워야합니다! */}
             <button onClick={asd}>Log Team Members</button>
             <Margin top='2' plustailwind='h-3' />
             <Margin top='3' plustailwind='h-3' />
-            {IamLeader ? (
+    
+  {teamMembers && teamMembers.length > 0 && teamMembers
+    .filter(member => member.is_approved)
+    .map((member, index) => (
+      <div key={index}>
+        {member.is_approved ? (
+          IamLeader ? (
+            <EnrollTeamBoxLeader
+              profileData={member}
+              postiId={id}
+            />
+          ) : (
+            <EnrollTeamBoxCrew
+              profileData={member}
+         
+              postiId={id}
+              isMe={userId}
+            />
+          )
+        ) : null}
+      </div>
+    ))}
+</div>
 
-              // 내가팀장일떄 발생
-              <div className='border p-2 flex flex-col rounded-md'>
-                {teamMembers && teamMembers.length > 0 && teamMembers
-                  .filter(member => member.is_approved)
-                  .map((member, index) => (
-                    <div key={index}>
-                      {member.is_approved ? (
-                        <EnrollTeamBox2
-                          profileData={member}
-                          role={member.is_leader ? '리더!' : '팀원!'}
-                          postiId={id}
-                        />
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  ))}
-              </div>
-            ) : (
-              // 내가 팀장이나리때발생
-              <div className='border p-2 flex flex-col rounded-md'>
-                {teamMembers && teamMembers.length > 0 && teamMembers
-                  .filter(member => member.is_approved)
-                  .map((member, index) => (
-                    <div key={index}>
-                      {member.is_approved ? (
-                        <EnrollTeamBox2
-                          profileData={member}
-                          role={member.is_leader ? '리더!' : '팀원!'}
-                          postiId={id}
-                        />
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  ))}
-              </div>
-            )}
+       
+          
+        
+        
             <Margin top='3' plustailwind='h-3' />
             <Margin top='2' plustailwind='h-4' />
             <Contour />
             <Margin top='2' />
-          
-          </div>
+           
         </UnEnollBackDesin>
       </div>
     </div>
+    
   );
 }
 

@@ -5,26 +5,17 @@ import crew from '../assets/crew.png';
 import leader from '../assets/leader.png';
 import { applyToTeam, kickTeamMember } from '../api/team';
 
-function EnrollTeamBox2({ profileData, aa, postiId }) {
+function EnrollTeamBoxCrew({ profileData,  postiId,isMe }) {
   const { profilePicture,  is_leader, user } = profileData;
 
-  // is_leader true 일때  파티장 변경 ??? 할줄모르겠어요 -> 새로운파티장 넣기 -> 파티장삭제요청
-  const AcceptanceBtn = () => {
-    console.log('모임장 이전');
-  console.log(profilePicture)
-  };
 
-  // 리더 킥! (팀장일때만 하니까 리더킥만 있으면 됩니다!) 에러가뜹니다 '../api/team'; 에있습니다
+
+  // 나가기버튼
   const RefuseBtn = async () => {
     console.log('강퇴');
-    try {
-      await kickTeamMember({ id: postiId, userToKickId: user });
-      console.log('Successfully kicked the team member');
-      aa(); // Assuming 'aa' is a function to refresh or update the component
-    } catch (error) {
-      console.error('Failed to kick the team member:', error.message);
-    }
+ 
   };
+  
 
   // Define a dynamic class for the profile image style
   const profileImageStyle = is_leader ? '프로필_이미지_스타일_leader' : '프로필_이미지_스타일_member';
@@ -44,11 +35,11 @@ function EnrollTeamBox2({ profileData, aa, postiId }) {
       </div>
       <Margin left='3' plustailwind='w-6' />
       <div className='flex flex-col justify-center items-center'>
-        <DynamicColorButton btnstyle='w-24 h-8' color='blue' text='모임장 이전' onClick={AcceptanceBtn} />
-        <DynamicColorButton btnstyle='w-24 h-8 mt-2' color='red' text='강퇴' onClick={RefuseBtn}></DynamicColorButton>
+  {user==isMe?(<DynamicColorButton btnstyle='w-24 h-8 mt-2' color='red' text='나가기' onClick={RefuseBtn}></DynamicColorButton>):(<></>)}
+
       </div>
     </div>
   );
 }
 
-export default EnrollTeamBox2;
+export default EnrollTeamBoxCrew;

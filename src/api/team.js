@@ -163,25 +163,25 @@ export const applyToTeam = async ({ id }) => {
 
 
 //킥
-export const kickTeamMember = async ({ id, userToKickId }) => {
+export const kickTeamMember = async ({ postid, userId }) => {
   try {
     const user = JSON.parse(localStorage.getItem('user'));
     const accessToken = user?.access_token || '';
     console.log("id, userToKickId")
-console.log(id, userToKickId)
+console.log(postid, userId)
     if (!accessToken) {
       console.error('Access token not available');
       return null;
     }
 
-    const apiUrl = `http://localhost:8000/teams/${id}/kick/`;
+    const apiUrl = `http://localhost:8000/teams/${postid}/kick/`;
 
     const res = await axios.delete(apiUrl, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
       data: {
-        user_to_kick_id: userToKickId,
+        user_id: userId,
       },
     });
 
