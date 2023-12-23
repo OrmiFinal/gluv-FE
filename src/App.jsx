@@ -121,9 +121,9 @@ const pages = [
   // 모임 정보 수정 페이지 
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
   // 구성원 관리
-  { path: "/teams/:id/members/", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
+  { path: "/teams/:id/members/", component: UnEnrollmentMemberPage, layoutType: "Non" },
   // 신청 인원 관리
-  { path: "/teams/:id/apply/", component: EnrollmentMemberPage, layoutType: "Enroll" },
+  { path: "/teams/:id/apply/", component: EnrollmentMemberPage, layoutType: "Non" },
 
   // 채팅쪽은 확인 필요합니다.
   // 채팅페이지
