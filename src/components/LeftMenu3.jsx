@@ -79,12 +79,12 @@ function LeftMenu() {
           <div className='text-lg font-semibold'>활동</div>
           <div className="flex flex-col">
             <div className='flex justify-between'>
-              <div className=''>받은 좋아요</div>
-              <div className=''>{userInfo?.received_likes || '0'}명</div>
-            </div>
-            <div className='flex justify-between'>
               <div className=''>작성 게시글</div>
               <div className=''>{userInfo?.written_posts || '0'}명</div>
+            </div>
+            <div className='flex justify-between'>
+              <div className=''>작성한 댓글</div>
+              <div className=''>{userInfo?.received_likes || '0'}명</div>
             </div>
           </div>
         </div>
