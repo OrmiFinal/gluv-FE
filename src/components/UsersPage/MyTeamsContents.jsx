@@ -73,12 +73,10 @@ function MainContents() {
       <div className="border p-2 flex flex-col rounded-md h-[520px]">
         <div className="m-8 ml-6">
           {teamDataList.map((teamData) => (
-            
-              <div>
+              <div key={teamData.id}>
                 <TeamBox teamData={teamData} />
                 <Margin top="3" plustailwind="h-3" />
               </div>
-            
           ))}
         </div>
       </div>

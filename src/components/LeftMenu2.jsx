@@ -3,6 +3,14 @@ import DynamicColorButton from './DynamicColorButton';
 import Margin from './Margin';
 import Contour from './ui/Contour';
 
+
+
+
+// 사용되지 않는 듯 합니다
+
+
+
+
 function LeftMenu2() {
   return (
     <div className='w-72 h-full flex justify-center items-center'>
@@ -33,7 +41,7 @@ function LeftMenu2() {
           <div className='text-lg font-bold'>모집명</div>
           <div className="flex flex-col"> 
             <div className='flex justify-between'>
-              <div className=''>최대인원</div>
+              <div className=''>최대인원111111</div>
               <div className=''>6명</div>
             </div>
             <div className='flex justify-between'>
