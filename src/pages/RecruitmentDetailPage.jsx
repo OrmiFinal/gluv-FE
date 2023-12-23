@@ -10,13 +10,12 @@ import { FetchDelectRecruits, FetchRecruits } from '../api/recruits.js';
 import { FetchAllReqCommentsData, FetchCreateComments } from '../api/comment.js';
 import { FetchTeam } from '../api/team.js';
 import { submitReport } from '../api/report.js';
-import { likePost, unlikePost } from '../api/likes.js';
+import { checkIfReLike, likeRecruit, unlikeRecruit } from '../api/likes.js';
 import { checkRecruitApplication } from '../api/applyRecruit';
 import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
 
 function RecruitmentDetailPage() {
 
- 
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [teamData, setTeamData] = useState(null);
@@ -36,23 +35,11 @@ function RecruitmentDetailPage() {
   };
   const postId = id
 
+  
 
   const RecruitApplication = async () => {
     try {
       const IRecruit = await checkRecruitApplication(id );
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log(IRecruit)
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log("IRecruit")
       setAmIRecruit((prev) => ({
 
         IRecruit,
@@ -63,6 +50,15 @@ function RecruitmentDetailPage() {
       console.error('Error fetching post data:', error);
     }
   };
+  
+  useEffect(() => {
+    const checkLike = async () => {
+      const liked = await checkIfReLike(id);
+      setIsLiked(liked)
+    };
+    checkLike()
+  }, [isLiked]);
+
 
 
   useEffect(() => {
@@ -143,14 +139,13 @@ const gotoListBtn = () => {
   const commentFetch =async()=>{
     let a = await FetchAllReqCommentsData({id:id,page:currentPage}); // 하드코드
     setComments({a})
-   
   }
 
 
 
   const handleLikeClick = async () => {
     try {
-      await likePost(postId);
+      await likeRecruit(postId);
       setIsLiked(true);
     } catch (error) {
       console.error('Error liking the post:', error);
@@ -159,7 +154,7 @@ const gotoListBtn = () => {
 
   const handleUnlikeClick = async () => {
     try {
-      await unlikePost(postId);
+      await unlikeRecruit(postId);
       setIsLiked(false);
     } catch (error) {
       console.error('Error unliking the post:', error);
@@ -266,9 +261,9 @@ const gotoListBtn = () => {
             <div className='flex justify-center'>
             {isLiked ? (
                    <DynamicColorButton
-                   color="blue"
-                   text="좋아요"
-                   btnstyle="py-2 px-4"
+                   color="red"
+                   text="추천 취소"
+                   btnstyle="py-2 px-4 text-sm"
                    onClick={handleUnlikeClick}
                  />
       
@@ -276,8 +271,8 @@ const gotoListBtn = () => {
         <DynamicColorButton
         className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
         onClick={handleLikeClick}
-        text="좋아요 취소"
-        color="red"
+        text="추천"
+        color="blue"
       >
       
       </DynamicColorButton>
