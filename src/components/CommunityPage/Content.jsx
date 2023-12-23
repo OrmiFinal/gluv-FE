@@ -20,7 +20,11 @@ function Content({ category }) {
             const location = useLocation();
             const queryParams = new URLSearchParams(location.search);
             const category = queryParams.get('category');
-            console.log(cat)
+            console.log(category)
+            console.log(category)
+            console.log(category)
+            console.log(category) 
+            // console.log(cat)
             try {
                 const response = await SendAuthRequest(
                     `/posts/?category=${category}`, 

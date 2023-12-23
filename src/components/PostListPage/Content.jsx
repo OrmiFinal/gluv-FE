@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSearchParams } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ import BulletinBoard from './BulletinBoard';
 function Content() {
     const [searchParams, setSearchParams]=useSearchParams();
 
+    
     const location = useLocation();
     const endPoint = location.pathname;
     
@@ -51,6 +52,10 @@ function Content() {
     const handleInputChange = (event) => {
       setInputValue(event.target.value);
     };
+
+    const navigate = useNavigate();
+   
+
 
     useEffect(() => {
       const parseParams = async () => {
@@ -86,6 +91,7 @@ function Content() {
   };
 
   const handleWritePost = () => {
+    navigate('/posts/create')
   };
 
     return (
@@ -112,12 +118,14 @@ function Content() {
                   text="검색"
                   btnstyle="py-2 px-2 mr-4"
                   onClick={handleSearchClick}/>
+   
                 <DynamicColorButton
                   color="black"
                   text="글 작성"
                   btnstyle="py-2 px-2 ml-2"
                   onClick={handleWritePost}/>
               </div>
+          
           </div>
           <div className='flex justify-center items-center'>
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}></Pagination>

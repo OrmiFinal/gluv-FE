@@ -7,7 +7,7 @@ import Contour from '../components/ui/Contour';
 import RecruitmentList from '../components/RecruitmentList';
 import SelectButton from '../components/ui/SelectButton';
 import { FetchAllTeamData } from '../api/team';
-import useWindowSize from '../hooks/useWindowSize';
+
 import { FetchRecruitsPost } from '../api/recruits';
 import { Link } from 'react-router-dom';
 
@@ -25,8 +25,7 @@ const sampleData = [
 
 ]
 function RecruitmentListPage() {
-  const { screenSize } = useWindowSize();
-  
+
 
   const [teamData, setTeamData] = useState([]);
   const [recruitsData, setRecruitsData] = useState([]);
@@ -36,6 +35,9 @@ function RecruitmentListPage() {
 
     
   });
+  const [Count, setCount] = useState(1);
+
+  
   const handleRegionSelect = (selectedRegion) => {
     setFilters({ ...filters, region: selectedRegion });
     console.log('Selected Region:', selectedRegion);
@@ -82,6 +84,7 @@ function RecruitmentListPage() {
           console.log("fetchDataindata")
           console.log(data)
           setTeamData(data.results);
+          setCount(data.count);
           // setTotalPages(data.total_pages);
         }
         // if(RecruitsData){
@@ -92,7 +95,9 @@ function RecruitmentListPage() {
         console.error('Error fetching team data:', error.message);
       }
     };
-
+    console.log("Count")
+    console.log("Count")
+console.log(Count)
     fetchData();
   }, [filters, currentPage]);
 
@@ -105,7 +110,7 @@ function RecruitmentListPage() {
   };
 
   const combinedClasses = Object.entries(inputClasses)
-    .map(([size, classValue]) => (screenSize === size ? classValue : ''))
+    .map(([size, classValue]) => (false === size ? classValue : ''))
     .join(' ');
  
   return (
@@ -155,45 +160,44 @@ function RecruitmentListPage() {
             </div>
             <Margin top="1" plustailwind="h-1" />
             <Contour></Contour>
-            <div className='flex  w-32'>
+            <div className='flex  justify-around'>
             <SelectButton
                 btnTitle="region"
                 btnoptions={[
                   '서울',
                   '경기',
                   '강원',
-                  '충청북도',
-                  '충청남도',
-                  '전라북도',
-                  '전라남도',
-                  '경상북도',
-                  '경상남도',
-                  '제주특별자치도'
+                  '충남',
+                  '충북', 
+                  '전남',
+                  '전북',
+                  '경남',
+                  '제주',
+            
                 ]}
                 title=" "
-                size="15"
+                size="32"
                 onOptionSelect={handleRegionSelect}
               />
               <SelectButton
                 btnTitle="Order By"
                 btnoptions={[
-                  '조회수',
-                  '좋아요',
-                  '마감일',
-                  '작성일',
+                  'views',
+                  'create_at',
+                
                 ]}
-                size="15"
+                size="32"
                 title=" "
                 onOptionSelect={handleOrderSelect}
               />
               <SelectButton
                 btnTitle="Sort"
                 btnoptions={[
-                  '오름차',
-                  '내림차',
+                  'desc',
+                  'asc',
                 ]}
                 title=" "
-                size="15"
+                size="32"
                 onOptionSelect={handleSortSelect}
               />
             </div>
@@ -203,7 +207,7 @@ function RecruitmentListPage() {
             <Margin top="2" plustailwind="h-4" />
             <Contour></Contour>
             <div>
-              <div className={`flex items-center text-center ${screenSize === 'sm' ? 'justify-start' : 'justify-center'}`}>
+              <div className={`flex items-center text-center ${false === 'sm' ? 'justify-start' : 'justify-center'}`}>
                 <Link  to="/recruits/create">
                 <div className='w-20 h-10 border border-black'>등록하기</div>
                 </Link>
@@ -223,16 +227,21 @@ function RecruitmentListPage() {
       
             </div>
             <div className='flex justify-between items-center'>
-              <div>
-              {Array.from({ length: Math.min( 4) }, (_, index) => (
-  <span
-    key={index}
-    className={`cursor-pointer mx-1 ${currentPage === index + 1 ? 'font-bold' : ''}`}
-    onClick={() => handlePageClick(index + 1)}
-  >
-    {index + 1}
-  </span>
-))}
+              <div className=' w-full '>
+             
+
+              <div className="flex justify-center items-center w-full text-center">
+  {Array.from({ length: Math.ceil(Count ? Count / 5 : 1) }, (_, index) => (
+    <span
+      key={index}
+      className={`cursor-pointer mx-1  text-center ${currentPage === index + 1 ? 'font-bold' : ''}`}
+      onClick={() => handlePageClick(index + 1)}
+    >
+      {index + 1}
+    </span>
+  ))}
+</div>
+
 
               </div>
             </div>
