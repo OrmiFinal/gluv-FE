@@ -132,45 +132,6 @@ const pages = [
 ];
 
 
-// { path: "/", component: MainPage, layoutType: "Non" },
-// // 커뮤니티 게시글 상세
-
-
-// // ---
-// { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
-// { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
-// // 포스트 페이지
-// { path: "/PostEntryPage", component: PostEntryPage, layoutType: "Non" },
-// { path: "/PostListPage", component: PostListPage, layoutType: "Non" },
-// { path: "/PostDetailPage/:id", component: PostDetailPage, layoutType: "Non" },
-
-// // 게시물 상세페이지
-// { path: "/RecruitmentEntryPage", component: RecruitmentEntryPage, layoutType: "Non" },
-// { path: "/RecruitmentDetailPage/:id", component: RecruitmentDetailPage, layoutType: "Non" },
-// { path: "/RecruitmentListPage", component: RecruitmentListPage, layoutType: "Profile" },
-
-
-// // 모임 관리
-// // 모임 관리 -활동중인 모집 신청중인 모임
-// { path: "/TeamManagementPage", component: TeamManagementPage, layoutType: "Profile" },
-// // 모임 관리  - 구성원 관리
-// { path: "/unEnrollmentMemberPage", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
-// { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
-
-//  // 모임 관리  = 내가 적은 게시물
-//  { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
-
-// // 유저수정페이지
-
-
-
-// //팀 페이지 -팀상세페이지
-// { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
-
-// // 채팅체이지
-// { path: "/Chatting/:room_id", component: Chatting, layoutType: "Non" },
-
-// ];
 
 
 const router = createBrowserRouter([

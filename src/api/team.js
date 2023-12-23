@@ -130,7 +130,7 @@ export const getTeamMembers = async ({ id }) => {
 
 
 // 수락하는팀
-export const applyToTeam = async ({ id }) => {
+export const applyToTeam = async ({ id ,userId}) => {
   try {
     const user = JSON.parse(localStorage.getItem('user'));
     const accessToken = user?.access_token || '';
@@ -144,10 +144,12 @@ export const applyToTeam = async ({ id }) => {
 
     const res = await axios.post(
       apiUrl,
-      {},
+  
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
+        }, data: {
+          user_id: userId,
         },
       }
     );

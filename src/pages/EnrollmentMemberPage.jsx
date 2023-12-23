@@ -1,73 +1,87 @@
-import React from 'react';
-import Margin from '../components/Margin';
-
-import Contour from '../components/ui/Contour';
-
-import EnrollTeamBox from '../components/EnrollTeamBox';
+import React, { useState, useEffect, useContext } from 'react';
 import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
+import { getTeamMembers } from '../api/team';
+import { useParams } from 'react-router-dom';
+import Margin from '../components/Margin';
+import Contour from '../components/ui/Contour';
+import { AuthContext } from '../context/authContext';
+import UnEnollBackDesin from '../components/UnEnollBackDesin';
+import EnrollTeamBoxLeader from '../components/EnrollTeamBoxLeader';
+import EnrollTeamBoxCrew from '../components/EnrollTeamBoxCrew';
+import EnrollTeamApply from '../components/EnrollTeamApply';
 
 function EnrollmentMemberPage() {
-  const profileDataList = [
-    {
-      profilePicture: '프로필사진의_이미지_경로1.jpg',
-      nickname: '둥그런 닉네임 1',
-      description: '프로필에 대한 설명 또는 추가 정보 1',
-    },
-    {
-      profilePicture: '프로필사진의_이미지_경로2.jpg',
-      nickname: '둥그런 닉네임 2',
-      description: '프로필에 대한 설명 또는 추가 정보 2',
-    },
-    {
-      profilePicture: '프로필사진의_이미지_경로2.jpg',
-      nickname: '둥그런 닉네임 2',
-      description: '프로필에 대한 설명 또는 추가 정보 2',
-    },
-    {
-      profilePicture: '프로필사진의_이미지_경로2.jpg',
-      nickname: '둥그런 닉네임 2',
-      description: '프로필에 대한 설명 또는 추가 정보 2',
-    },
-    {
-      profilePicture: '프로필사진의_이미지_경로2.jpg',
-      nickname: '둥그런 닉네임 2',
-      description: '프로필에 대한 설명 또는 추가 정보 2',
-    },
-    // 추가 프로필 데이터
-  ];
+  const { id } = useParams();
+  const [teamMembers, setTeamMembers] = useState([]);
+  const { getDecodedToken } = useContext(AuthContext);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const members = await getTeamMembers({ id: id });
+        setTeamMembers(members);
+      } catch (error) {
+        console.error('Fetching team members failed:', error.message);
+      }
+    };
+
+   
+    const decodedToken = getDecodedToken();
+    if (decodedToken) {
+      const user_id = decodedToken.user_id;
+      setUserId(user_id);
+    }
+
+    fetchTeamMembers();
+  }, [id, getDecodedToken]);
+
+  const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
+
+
+  const asd = () => {
+    console.log(teamMembers);
+    console.log(id);
+  };
 
   return (
-    <div className="flex">
-      <TeamLeftMenu></TeamLeftMenu>
-      <div className="flex items-center justify-center bg-gray-100">
-        <div className='w-[65vw] bg-white rounded-md shadow-md p-6 '>
-          <div className='w-full'>
-            
-            <Margin top="3" />
-            <div className='m-3'>
-              <div className='flex'>
-              <div className='  text-2xl font-bold '> 신청 요청 관리</div>
-              </div>
-              <Contour />
-              <Margin top="2" plustailwind="h-3" />
-              <Margin top="3" plustailwind="h-3" />
-              <div className='border p-2 flex flex-col rounded-md'>
-                {profileDataList.map((profileData, index) => (
-                  <div key={index}>
-                    <EnrollTeamBox profileData={profileData} />
-                    <Margin top="3" plustailwind="h-3" />
-                  </div>
-                ))}
-              </div>
-              <Margin top="2" plustailwind="h-4" />
-              <Contour />
-              <Margin top="2" />
-              <div className='flex justify-center items-center'>
-                1,2,3,4
-              </div>
+    <div className='flex'>
+      <TeamLeftMenu />
+
+      <div className='flex items-center justify-center bg-gray-100'>
+        <UnEnollBackDesin>
+          <div className='m-3'>
+            <div className='flex'>
+              <div className='text-2xl font-bold '> 구성원 관리</div>
             </div>
+            <Contour />
+
+ 
+            <button onClick={asd}>Log Team Members</button>
+
+            <Margin top='2' plustailwind='h-3' />
+            <Margin top='3' plustailwind='h-3' />
+
+           
+            {teamMembers && teamMembers.length > 0 && teamMembers
+              .filter(member => !member.is_approved   )
+              .map((member, index) => (
+                <div key={index}>
+                  {!member.is_approved && IamLeader && (
+                    <EnrollTeamApply
+                      profileData={member}
+                      postiId={id}
+                    />
+                  )}
+                </div>
+              ))}
+
+            <Margin top='3' plustailwind='h-3' />
+            <Margin top='2' plustailwind='h-4' />
+            <Contour />
+            <Margin top='2' />
           </div>
-        </div>
+        </UnEnollBackDesin>
       </div>
     </div>
   );
