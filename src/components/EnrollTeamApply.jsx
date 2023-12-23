@@ -7,19 +7,12 @@ import { applyToTeam, kickTeamMember } from '../api/team';
 
 function EnrollTeamApply({ profileData,  postiId,isMe }) {
   const { profilePicture,  is_leader, user } = profileData;
-  console.log("profileData")
-  console.log("profileData")
-  console.log("profileData")
-  console.log("profileData")
-console.log(profileData)
 
 
-  // 나가기버튼
-  const RefuseBtn = async () => {
-    console.log('강퇴');
- 
-  };
+
+
   const applyTeamBtn = async()=>{
+    console.log("aa")
     applyToTeam({  id:postiId ,userId:user})
   }
   

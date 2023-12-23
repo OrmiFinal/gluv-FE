@@ -62,6 +62,7 @@ export const FetchTeam = async ({id}) => {
             return null;
         }
    
+        console.log(id)
         const res = await axios.delete(`http://localhost:8000/teams/${id}/leave/`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -129,37 +130,28 @@ export const getTeamMembers = async ({ id }) => {
 
 
 
-// 수락하는팀
-export const applyToTeam = async ({ id ,userId}) => {
+
+export const applyToTeam = async ({id}) => {
   try {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const accessToken = user?.access_token || '';
+    const user = JSON.parse(localStorage.getItem("user"));
+    const accessToken = user?.access_token || "";
 
     if (!accessToken) {
-      console.error('Access token not available');
-      return null;
+        console.error("Access token not available");
+        return null;
     }
-
-    const apiUrl = `http://localhost:8000/teams/${id}/apply/`;
-
-    const res = await axios.post(
-      apiUrl,
-  
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        }, data: {
-          user_id: userId,
-        },
-      }
-    );
-
-    return res.data;
+      const res = await axios.post(`http://localhost:8000/teams/${id}/join/`, {
+          headers: {
+              Authorization: `Bearer ${accessToken}`,
+          },
+      });
+      return res.data;
   } catch (error) {
-    console.error('Applying to team failed:', error.message);
-    return null;
+      console.error("Fetching notice failed:", error.message);
+      return null;
   }
 };
+
 
 
 
@@ -175,7 +167,9 @@ console.log(postid, userId)
       console.error('Access token not available');
       return null;
     }
-
+    console.log("accessToken")
+    console.log("accessToken")
+console.log(accessToken)
     const apiUrl = `http://localhost:8000/teams/${postid}/kick/`;
 
     const res = await axios.delete(apiUrl, {

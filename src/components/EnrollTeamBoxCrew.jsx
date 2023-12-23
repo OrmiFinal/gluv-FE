@@ -3,7 +3,7 @@ import Margin from './Margin';
 import DynamicColorButton from './DynamicColorButton';
 import crew from '../assets/crew.png';
 import leader from '../assets/leader.png';
-import { applyToTeam, kickTeamMember } from '../api/team';
+import { TeamLeave, applyToTeam, kickTeamMember } from '../api/team';
 
 function EnrollTeamBoxCrew({ profileData,  postiId,isMe }) {
   const { profilePicture,  is_leader, user } = profileData;
@@ -12,8 +12,8 @@ function EnrollTeamBoxCrew({ profileData,  postiId,isMe }) {
 
   // 나가기버튼
   const RefuseBtn = async () => {
-    console.log('강퇴');
- 
+    
+    await TeamLeave({id:isMe})
   };
   
 
