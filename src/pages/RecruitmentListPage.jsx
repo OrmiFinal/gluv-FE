@@ -9,7 +9,7 @@ import SelectButton from '../components/ui/SelectButton';
 import { FetchAllTeamData } from '../api/team';
 
 import { FetchRecruitsPost } from '../api/recruits';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const sampleData = [
@@ -37,7 +37,7 @@ function RecruitmentListPage() {
   });
   const [Count, setCount] = useState(1);
 
-  
+  const navigate = useNavigate();
   const handleRegionSelect = (selectedRegion) => {
     setFilters({ ...filters, region: selectedRegion });
     console.log('Selected Region:', selectedRegion);
@@ -108,7 +108,9 @@ console.log(Count)
     md: 'w-2/3',
     sm: 'w-1/2',
   };
-
+const handleWritePost=()=>{
+  navigate('/recruits/create')
+}
   const combinedClasses = Object.entries(inputClasses)
     .map(([size, classValue]) => (false === size ? classValue : ''))
     .join(' ');
@@ -208,9 +210,7 @@ console.log(Count)
             <Contour></Contour>
             <div>
               <div className={`flex items-center text-center ${false === 'sm' ? 'justify-start' : 'justify-center'}`}>
-                <Link  to="/recruits/create">
-                <div className='w-20 h-10 border border-black'>등록하기</div>
-                </Link>
+                
                 <input
                   className={`border p-2 rounded-md ${combinedClasses}`}
                   placeholder='검색 입력...'
@@ -223,7 +223,15 @@ console.log(Count)
                   btnstyle="py-2 px-2 ml-2"
                   onClick={handleSearchClick}
                 />
+                  <DynamicColorButton
+                  color="black"
+                  text="글 작성"
+                  btnstyle="py-2 px-2 ml-2"
+                  onClick={handleWritePost}/>
               </div>
+
+
+              
       
             </div>
             <div className='flex justify-between items-center'>
