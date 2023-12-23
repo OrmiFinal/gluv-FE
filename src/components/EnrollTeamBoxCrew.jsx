@@ -13,7 +13,7 @@ function EnrollTeamBoxCrew({ profileData,  postiId,isMe }) {
   // 나가기버튼
   const RefuseBtn = async () => {
     
-    await TeamLeave({id:isMe})
+    await TeamLeave({id:postiId})
   };
   
 

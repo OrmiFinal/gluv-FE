@@ -3,15 +3,20 @@ import Margin from './Margin';
 import DynamicColorButton from './DynamicColorButton';
 import crew from '../assets/crew.png';
 import leader from '../assets/leader.png';
-import { applyToTeam, kickTeamMember } from '../api/team';
+import { applyToTeam, changeTeamLeader, kickTeamMember, putTeamLeader } from '../api/team';
+import { async } from 'rxjs';
 
 function EnrollTeamBoxLeader({ profileData,  postiId }) {
   const { profilePicture,  is_leader, user } = profileData;
 
   // is_leader true 일때  파티장 변경 ??? 할줄모르겠어요 -> 새로운파티장 넣기 -> 파티장삭제요청
-  const AcceptanceBtn = () => {
+  const AcceptanceBtn = async() => {
     console.log('모임장 이전');
-  console.log(profilePicture)
+
+    await changeTeamLeader({id:postiId , newLeaderId:user})
+     await putTeamLeader({id:postiId , newLeaderId:user})
+
+
   };
 
   const RefuseBtn = async () => {

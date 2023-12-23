@@ -129,28 +129,45 @@ export const getTeamMembers = async ({ id }) => {
 
 
 
-
-
 export const applyToTeam = async ({id}) => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"));
-    const accessToken = user?.access_token || "";
-
-    if (!accessToken) {
-        console.error("Access token not available");
-        return null;
-    }
-      const res = await axios.post(`http://localhost:8000/teams/${id}/join/`, {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const accessToken = user?.access_token || "";
+      if (!accessToken) {
+          console.error("Access token not available");
+          return null;
+      }
+      console.log(accessToken)
+      console.log(accessToken)
+      console.log(accessToken)
+      const res = await axios.put(`http://localhost:8000/teams/${id}/join/`, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
           },
       });
+   
+
+      // rest of the code...
       return res.data;
   } catch (error) {
       console.error("Fetching notice failed:", error.message);
       return null;
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -184,6 +201,57 @@ console.log(accessToken)
     return res.data;
   } catch (error) {
     console.error('Kicking team member failed:', error.message);
+    return null;
+  }
+};
+
+
+export const changeTeamLeader = async ({ id, newLeaderId }) => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const accessToken = user?.access_token || "";
+    if (!accessToken) {
+      console.error("Access token not available");
+      return null;
+    }
+    console.log(id, newLeaderId)
+
+    const response = await axios.patch(
+      `http://localhost:8000/teams/${id}/leader/`,
+      { new_leader_id: newLeaderId },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Changing team leader failed:", error.response?.data || error.message);
+    return null;
+  }
+};
+
+
+export const putTeamLeader = async ({ id }) => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const accessToken = user?.access_token || "";
+    if (!accessToken) {
+      console.error("Access token not available");
+      return null;
+    }
+
+    const response = await axios.put(`http://localhost:8000/teams/${id}/leader/`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Fetching team leader failed:", error.message);
     return null;
   }
 };
