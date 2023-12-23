@@ -47,7 +47,7 @@ function LeftMenu() {
 
       {/* 프로필 정보 */}
       <div>
-        <div className='relative overflow-hidden rounded-full bg-black h-28 w-28'>
+        <div className='relative overflow-hidden rounded-full h-28 w-28'>
           <img
             src={profileData.profile_image}
             alt='프로필 사진'
