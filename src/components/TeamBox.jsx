@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-
 import React from "react";
 import Margin from "./Margin";
+import { Link } from "react-router-dom";
 
 function TeamBox({ teamData }) {
   const { id, image, category, name } = teamData;
@@ -18,7 +17,7 @@ function TeamBox({ teamData }) {
         </div>
       </Link>
       <Margin left="3" />
-      <Link to={`/teams/${id}`} key={id}>
+      <Link to={`/teams/${id}`}>
         <div className="bg-gray-100 w-96 rounded-lg h-20 pt-2 pl-2">
           <p className="text-lg font-bold ml-1">{category}</p>
           <p className="pt-1 ml-1">{name}</p>
