@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Request } from "./api";
 
 export const FetchAllTeamData = async ({ page = 1, search = "", category = "", order_by = "", order = "" }) => {
     try {
@@ -25,30 +26,8 @@ export const FetchAllTeamData = async ({ page = 1, search = "", category = "", o
     }
 };
 
-
-
-
-
-export const FetchTeam = async ({id}) => {
-    try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const accessToken = user?.access_token || "";
-        if (!accessToken) {
-            console.error("Access token not available");
-            return null;
-        }
-   
-        const res = await axios.get(`http://localhost:8000/teams/${id}/`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-        });
-
-        return res.data;
-    } catch (error) {
-        console.error("Fetching notice failed:", error.message);
-        return null;
-    }
+  export const FetchTeam = async ({id}) => {
+    return await Request('get', `/teams/${id}/`, {}, {}, {})
   };
 
 
@@ -61,8 +40,7 @@ export const FetchTeam = async ({id}) => {
             console.error("Access token not available");
             return null;
         }
-   
-        console.log(id)
+        
         const res = await axios.delete(`http://localhost:8000/teams/${id}/leave/`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,

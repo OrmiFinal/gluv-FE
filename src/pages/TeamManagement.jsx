@@ -12,6 +12,7 @@ import TeamManagementBackDesin from '../components/TeamManagementBackDesin';
 import TeamBoxLeader from '../components/TeamBoxLeader';
 import TeamBoxCrew from '../components/TeamBoxCrew';
 import { AuthContext } from '../context/AuthContext';
+import {TeamContextProvider} from '../components/TeamPage/TeamContext';
 
 function TeamManagement() {
   const { id } = useParams();
@@ -48,57 +49,53 @@ function TeamManagement() {
   };
 
   return (
-    <div className='flex'>
-      <TeamLeftMenu />
-      <div className='flex items-center justify-center bg-gray-100'>
-        <TeamManagementBackDesin>
-          <div className='m-3'>
-            <div className='flex'>
-              <div className='text-2xl font-bold '> 구성원 관리</div>
-            </div>
-            <Contour />
-            {/* 단순 확인용 버튼 나중에 지워야합니다! */}
-            <button onClick={asd}>Log Team Members</button>
-            <Margin top='2' plustailwind='h-3' />
-            <Margin top='3' plustailwind='h-3' />
-    
-  {teamMembers && teamMembers.length > 0 && teamMembers
-    .filter(member => member.is_approved)
-    .map((member, index) => (
-      <div key={index}>
-        {member.is_approved ? (
-          IamLeader ? (
-            <TeamBoxLeader
-              profileData={member}
-              postiId={id}
-              setPageReload={setPageReload}
-            />
-          ) : (
-            <TeamBoxCrew
-              profileData={member}
-              setPageReload={setPageReload}
-              postiId={id}
-              isMe={userId}
-            />
-          )
-        ) : null}
+    <TeamContextProvider>
+      <div className='flex'>
+        <TeamLeftMenu />
+          <div className='flex items-center justify-center bg-gray-100'>
+            <TeamManagementBackDesin>
+              <div className='m-3'>
+                <div className='flex'>
+                <div className='text-2xl font-bold '> 구성원 관리</div>
+              </div>
+              <Contour />
+              {/* 단순 확인용 버튼 나중에 지워야합니다! */}
+              <button onClick={asd}>Log Team Members</button>
+              <Margin top='2' plustailwind='h-3' />
+              <Margin top='3' plustailwind='h-3' />
+      
+    {teamMembers && teamMembers.length > 0 && teamMembers
+      .filter(member => member.is_approved)
+      .map((member, index) => (
+        <div key={index}>
+          {member.is_approved ? (
+            IamLeader ? (
+              <TeamBoxLeader
+                profileData={member}
+                postiId={id}
+                setPageReload={setPageReload}
+              />
+            ) : (
+              <TeamBoxCrew
+                profileData={member}
+                setPageReload={setPageReload}
+                postiId={id}
+                isMe={userId}
+              />
+            )
+          ) : null}
+        </div>
+      ))}
+  </div>
+              <Margin top='3' plustailwind='h-3' />
+              <Margin top='2' plustailwind='h-4' />
+              <Contour />
+              <Margin top='2' />
+          </TeamManagementBackDesin>
+        </div>
       </div>
-    ))}
-</div>
-
-       
-          
-        
-        
-            <Margin top='3' plustailwind='h-3' />
-            <Margin top='2' plustailwind='h-4' />
-            <Contour />
-            <Margin top='2' />
-           
-        </TeamManagementBackDesin>
-      </div>
-    </div>
-    
+      
+    </TeamContextProvider>
   );
 }
 

@@ -115,16 +115,10 @@ const pages = [
   { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
   
   // 모임 정보 수정(리더만 가능)
-  // 모집 게시글 수정 페이지
-  { path: "/recruits/:id/edit/", component: RecruitPostEditPage, layoutType: "Non" },
-  
   // 모임 정보 수정 페이지 
-  { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
-  // 구성원 관리
+  { path: "/teams/:id/edit/", component: RecruitPostEditPage, layoutType: "Non" },
 
-
-
-
+  // 
   { path: "/teams/:id/members/", component: TeamManagement, layoutType: "Non" },
   // 신청 인원 관리
   { path: "/teams/:id/apply/", component:  TeamRegistrationManagement , layoutType: "Non" },

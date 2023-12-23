@@ -1,84 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Margin from "../Margin";
 import DynamicColorButton from "../DynamicColorButton";
 import Contour from "../ui/Contour";
 import { Link, useParams } from "react-router-dom";
-import { FetchTeam } from "../../api/team";
+
+import { TeamContext } from './TeamContext';
 
 const TeamContent = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    category: "",
-    day: "",
-    week: "",
-    max_attendance: "",
-    frequency: 1,
-    location: "무관",
-    is_leader: false,
-  });
-
+  const teamContext = useContext(TeamContext);
   const { id } = useParams();
 
-  const fetchTeamData = async () => {
-    try {
-      const teamData = await FetchTeam({ id });
-
-      if (teamData) {
-        setFormData({
-          name: teamData.name || "",
-          category: teamData.category || "",
-          day: teamData.day || "",
-          week: teamData.week || "무관",
-          max_attendance: teamData.max_attendance || "",
-          frequency: teamData.frequency || "",
-          location: teamData.location || "없음",
-          is_leader: teamData.s_leader,
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching team data:", error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchTeamData();
-  }, [id]);
-
-  const handleChange = (e, field) => {
-    setFormData({ ...formData, [field]: e.target.value });
-  };
-
   const handleSave = () => {
-    console.log("Save clicked. Form data:", formData);
+    // console.log("Save clicked. Form data:", formData);
   };
 
   const handleRegister = () => {
-    console.log("Register clicked. Form data:", formData);
+    // console.log("Register clicked. Form data:", formData);
   };
 
   return (
     <div className="flex items-center justify-center w-full m-3 mt-0 h-full">
       <div className="mt-9 w-full p-6 rounded-md">
-        <div className="text-lg font-bold mb-3">모집 상세 내용</div>
+        <div className="text-lg font-bold mb-3">{teamContext.teamData.name}</div>
         <Contour></Contour>
 
         <div className="w-full border-[1px] p-4 rounded-md">
           <div>
-            <div className="text-sm font-semibold mb-1">모임 소개</div>
+            <div className="text-sm font-semibold mb-1">팀 소개</div>
             <div
-              className="w-full h-[150px] border-[1px] p-2 text-base "
-              // 기존 코드에서 제공한 예시 텍스트 대신 formData.introduction을 사용
-              // formData.introduction 값이 없는 경우 기본 텍스트를 사용하려면 || 연산자를 활용할 수 있습니다.
-            >
-              {formData.introduction || "아직 소개가 없습니다."}
+              className="w-full h-[150px] border-[1px] p-2 text-base">
+              {teamContext.teamData.introduction || "아직 소개가 없습니다."}
             </div>
           </div>
           <div className="mt-4">
             <div className="text-sm font-semibold mb-1">모임 주소</div>
             <div className="w-full h-[35px]  p-2 text-base ">
-              {formData.location}
+              {teamContext.teamData.location}
             </div>
           </div>
           <Margin top="2" />
@@ -86,7 +45,7 @@ const TeamContent = () => {
           <div className="mt-4">
             <div className="text-sm font-semibold mb-1">참여인원</div>
             <div className="w-full h-[40px]  p-2 text-base ">
-              {formData.max_attendance}
+              {teamContext.teamData.max_attendance}
             </div>
           </div>
           <Margin top="2" />
@@ -95,13 +54,13 @@ const TeamContent = () => {
             <div className="text-sm font-semibold mb-1">모임 시간</div>
             <div className="flex space-x-2">
               <div className="text-base" style={{ whiteSpace: "nowrap" }}>
-                {formData.frequency}
+                {teamContext.teamData.frequency}
               </div>
               <div className="text-base" style={{ whiteSpace: "nowrap" }}>
-                {formData.week} 주
+                {teamContext.teamData.week} 주
               </div>
               <div className="text-base" style={{ whiteSpace: "nowrap" }}>
-                {formData.day}
+                {teamContext.teamData.day}
               </div>
             </div>
           </div>
@@ -111,7 +70,7 @@ const TeamContent = () => {
           <div className="w-full h-[40px] flex items-end  justify-between">
             <div className="flex">
               <div className="text-sm font-semibold mb-1">모임 시작일</div>
-              <div className="self-end ml-4 mb-4">{formData.start_time || ""}</div>
+              <div className="self-end ml-4 mb-4">{teamContext.teamData.start_time || ""}</div>
             </div>
           </div>
           <div className="flex w-full  justify-end items-center">
