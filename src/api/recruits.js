@@ -137,3 +137,25 @@ export const FetchDelectRecruits = async ({id}) => {
 };
 
 
+export const FetchCheckRecruitsApplied = async ({ id }) => {
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const accessToken = user?.access_token || "";
+    if (!accessToken) {
+      console.error("Access token not available");
+      return null;
+    }
+
+    const res = await axios.get(`http://localhost:8000/recruits/${id}/apply/`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    // rest of the code...
+    return res.data;
+  } catch (error) {
+    console.error("Fetching notice failed:", error.message);
+    return null;
+  }
+};
