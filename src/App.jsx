@@ -14,8 +14,8 @@ import RecruitmentEntryPage from './pages/RecruitmentEntryPage.jsx';
 import RecruitmentListPage from './pages/RecruitmentListPage.jsx';
 import MyTeamsPage from './pages/MyTeamsPage.jsx';
 import MyAppliedTeamsPage from './pages/MyAppliedTeamsPage.jsx';
-import EnrollmentMemberPage from './pages/EnrollmentMemberPage.jsx';
-import UnEnrollmentMemberPage from './pages/UnEnrollmentMemberPage.jsx';
+import TeamRegistrationManagement from './pages/TeamRegistrationManagement.jsx';
+import TeamManagement from './pages/TeamManagement.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
 import TeamDetailPage from './pages/TeamDetailPage.jsx';
@@ -121,9 +121,13 @@ const pages = [
   // 모임 정보 수정 페이지 
   { path: "/teams/:id/edit/", component: TeamDetailPage, layoutType: "Non" },
   // 구성원 관리
-  { path: "/teams/:id/members/", component: UnEnrollmentMemberPage, layoutType: "Non" },
+
+
+
+
+  { path: "/teams/:id/members/", component: TeamManagement, layoutType: "Non" },
   // 신청 인원 관리
-  { path: "/teams/:id/apply/", component: EnrollmentMemberPage, layoutType: "Non" },
+  { path: "/teams/:id/apply/", component:  TeamRegistrationManagement , layoutType: "Non" },
 
   // 채팅쪽은 확인 필요합니다.
   // 채팅페이지
@@ -132,45 +136,6 @@ const pages = [
 ];
 
 
-// { path: "/", component: MainPage, layoutType: "Non" },
-// // 커뮤니티 게시글 상세
-
-
-// // ---
-// { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
-// { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
-// // 포스트 페이지
-// { path: "/PostEntryPage", component: PostEntryPage, layoutType: "Non" },
-// { path: "/PostListPage", component: PostListPage, layoutType: "Non" },
-// { path: "/PostDetailPage/:id", component: PostDetailPage, layoutType: "Non" },
-
-// // 게시물 상세페이지
-// { path: "/RecruitmentEntryPage", component: RecruitmentEntryPage, layoutType: "Non" },
-// { path: "/RecruitmentDetailPage/:id", component: RecruitmentDetailPage, layoutType: "Non" },
-// { path: "/RecruitmentListPage", component: RecruitmentListPage, layoutType: "Profile" },
-
-
-// // 모임 관리
-// // 모임 관리 -활동중인 모집 신청중인 모임
-// { path: "/TeamManagementPage", component: TeamManagementPage, layoutType: "Profile" },
-// // 모임 관리  - 구성원 관리
-// { path: "/unEnrollmentMemberPage", component: UnEnrollmentMemberPage, layoutType: "Enroll" },
-// { path: "/EnrollmentMemberPage", component: EnrollmentMemberPage, layoutType: "Enroll" },
-
-//  // 모임 관리  = 내가 적은 게시물
-//  { path: "/ProfileEditingPage", component: ProfileEditingPage, layoutType: "Profile" },
-
-// // 유저수정페이지
-
-
-
-// //팀 페이지 -팀상세페이지
-// { path: "/TeamDetailPage", component: TeamDetailPage, layoutType: "Non" },
-
-// // 채팅체이지
-// { path: "/Chatting/:room_id", component: Chatting, layoutType: "Non" },
-
-// ];
 
 
 const router = createBrowserRouter([
