@@ -162,6 +162,7 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
     return res.data;
   } catch (error) {
     console.error("Fetching notice failed:", error.message);
-    return null;
+    const res = { data: []};
+    return res.data;
   }
 };
