@@ -13,11 +13,11 @@ const TeamContent = () => {
   const { id } = useParams();
 
   const handleSave = () => {
-    // console.log("Save clicked. Form data:", formData);
+  
   };
 
   const handleRegister = () => {
-    // console.log("Register clicked. Form data:", formData);
+  
   };
 
   return (

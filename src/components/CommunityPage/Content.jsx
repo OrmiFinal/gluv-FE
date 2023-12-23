@@ -53,7 +53,7 @@ function Content({ category }) {
         subcategorie: url,
         }));
         fetchData()
-    console.log(fetchData())
+
 
     };
 

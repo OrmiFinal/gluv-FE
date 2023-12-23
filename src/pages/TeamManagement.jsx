@@ -13,6 +13,7 @@ import TeamBoxLeader from '../components/TeamBoxLeader';
 import TeamBoxCrew from '../components/TeamBoxCrew';
 import { AuthContext } from '../context/AuthContext';
 import {TeamContextProvider} from '../components/TeamPage/TeamContext';
+import TeamManagementFooter from '../components/TeamManagementFooter';
 
 function TeamManagement() {
   const { id } = useParams();
@@ -43,12 +44,9 @@ function TeamManagement() {
 
   const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
   {/* 단순 확인용 버튼 나중에 지워야합니다! */}
-  const asd = () => {
-    console.log(teamMembers);
-    console.log(id);
-  };
 
-  return (
+
+  return (<div>
     <TeamContextProvider>
       <div className='flex'>
         <TeamLeftMenu />
@@ -59,8 +57,8 @@ function TeamManagement() {
                 <div className='text-2xl font-bold '> 구성원 관리</div>
               </div>
               <Contour />
-              {/* 단순 확인용 버튼 나중에 지워야합니다! */}
-              <button onClick={asd}>Log Team Members</button>
+             
+            
               <Margin top='2' plustailwind='h-3' />
               <Margin top='3' plustailwind='h-3' />
       
@@ -96,6 +94,9 @@ function TeamManagement() {
       </div>
       
     </TeamContextProvider>
+<TeamManagementFooter></TeamManagementFooter>
+  
+    </div>
   );
 }
 

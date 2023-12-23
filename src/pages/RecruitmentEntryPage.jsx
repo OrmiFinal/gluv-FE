@@ -30,7 +30,7 @@ function RecruitmentPostEntryPage() {
 
   const handleChange = (e, field) => {
     setFormData({ ...formData, [field]: e.target.value });
-    console.log(formData);
+
   };
 
 
@@ -45,9 +45,9 @@ function RecruitmentPostEntryPage() {
   };
 
   const handleDateChange = (date) => {
-    console.log("Selected date:", date);
+   
     const formattedInfo = formatDateInfo(date);
-    console.log("Formatted info:", formattedInfo);
+   
   
     setFormData({
       ...formData,

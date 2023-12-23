@@ -86,8 +86,7 @@ export const getTeamMembers = async ({ id }) => {
     }
 
     const apiUrl2 = `http://localhost:8000/teams/${id}/members/`;
-    console.log('API URL:', apiUrl2);
-
+   
     try {
         const res = await axios.get(apiUrl2, {
             headers: {
@@ -95,7 +94,7 @@ export const getTeamMembers = async ({ id }) => {
             },
         });
 
-    console.log(res)
+  
         return res.data;
     } catch (error) {
         console.error("Fetching team members failed:", error.message);
@@ -115,8 +114,7 @@ export const applyToTeam = async ({id,userId}) => {
       console.error("Access token not available");
       return null;
     }
-    console.log(id, userId)
-
+  
     const response = await axios.patch(
       `http://localhost:8000/teams/${id}/join/`,
       { user: userId },
@@ -153,20 +151,17 @@ export const applyToTeam = async ({id,userId}) => {
 
 
 //킥
-export const kickTeamMember = async ({ postid, userId }) => {
+export const kickTeamMember = async ({ id, userId }) => {
   try {
     const user = JSON.parse(localStorage.getItem('user'));
     const accessToken = user?.access_token || '';
-    console.log("id, userToKickId")
-console.log(postid, userId)
+   
     if (!accessToken) {
       console.error('Access token not available');
       return null;
     }
-    console.log("accessToken")
-    console.log("accessToken")
-console.log(accessToken)
-    const apiUrl = `http://localhost:8000/teams/${postid}/kick/`;
+   
+    const apiUrl = `http://localhost:8000/teams/${id}/kick/`;
 
     const res = await axios.delete(apiUrl, {
       headers: {
@@ -193,7 +188,7 @@ export const changeTeamLeader = async ({ id, newLeaderId }) => {
       console.error("Access token not available");
       return null;
     }
-    console.log(id, newLeaderId)
+   
 
     const response = await axios.patch(
       `http://localhost:8000/teams/${id}/leader/`,

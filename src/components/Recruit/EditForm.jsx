@@ -32,7 +32,7 @@ const EditForm = ({recruitPost, scheduleID}) => {
     const fetchTeamInfo = async (team_id) => {
         try {
             const response = await Request('get', `/teams/${team_id}/`, {}, {}, {})
-            console.log(response)
+          
 
             setTeamInfo(response);
             setTeamMaxAttenDance(response.max_attendance)

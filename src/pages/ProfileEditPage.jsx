@@ -115,9 +115,7 @@ function ProfileEditPage() {
     formData.append('profile_content', profileData.profile_content);
 
     if(isValid){
-      console.log(isValid);
-      console.log(newPassword);
-      console.log(confirmPassword);
+
       if(newPassword != confirmPassword){
         setPasswordError('새 비밀번호와 확인 비밀번호가 일치하지 않습니다.');
         return;

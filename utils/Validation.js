@@ -16,6 +16,6 @@ export function isValidEmail(email) {
  */
 export function isNumber(value) {
     value = Number(value)
-    console.log( typeof value == 'number' && !isNaN(value))
+   
     return typeof value == 'number' && !isNaN(value);
   }

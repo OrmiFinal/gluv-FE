@@ -10,6 +10,7 @@ import TeamManagementBackDesin from '../components/TeamManagementBackDesin';
 import TeamApply from '../components/TeamApply';
 import { AuthContext } from '../context/AuthContext';
 import {TeamContextProvider} from '../components/TeamPage/TeamContext';
+import TeamManagementFooter from '../components/TeamManagementFooter';
 
 function TeamRegistrationManagement() {
   const { id } = useParams();
@@ -40,12 +41,8 @@ function TeamRegistrationManagement() {
   const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
 
 
-  const asd = () => {
-    console.log(teamMembers);
-    console.log(id);
-  };
-
   return (
+    <div>
     <TeamContextProvider>
        <div className='flex'>
       <TeamLeftMenu />
@@ -54,12 +51,12 @@ function TeamRegistrationManagement() {
         <TeamManagementBackDesin>
           <div className='m-3'>
             <div className='flex'>
-              <div className='text-2xl font-bold '> 구성원 관리</div>
+              <div className='text-2xl font-bold '> 신청인원 관리</div>
             </div>
             <Contour />
 
  
-            <button onClick={asd}>Log Team Members</button>
+           
 
             <Margin top='2' plustailwind='h-3' />
             <Margin top='3' plustailwind='h-3' />
@@ -87,6 +84,8 @@ function TeamRegistrationManagement() {
       </div>
     </div>
     </TeamContextProvider>
+    <TeamManagementFooter></TeamManagementFooter>
+    </div>
   );
 }
 

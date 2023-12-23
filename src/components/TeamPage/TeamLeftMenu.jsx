@@ -9,9 +9,7 @@ import { TeamContext } from './TeamContext';
 
 function TeamLeftMenu() {
   const teamContext = useContext(TeamContext);
-  useEffect(() => {
-    console.log(teamContext)
-  }, [teamContext]);
+ 
 
   
   const [appliedMemberData, setAppliedMemberData] = useState([]);
@@ -43,7 +41,7 @@ function TeamLeftMenu() {
     }
 };
   const teamDelete = async () => {
-    console.log("teamDelete");
+   
     try {
         const result = await TeamDelete({ id });
         window.location.href = "/users/myteams/";

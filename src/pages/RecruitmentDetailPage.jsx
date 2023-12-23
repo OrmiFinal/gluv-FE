@@ -155,11 +155,9 @@ const gotoListBtn = () => {
 
   };
   const ReportClick = async()=>{
-    console.log("data")
-    console.log("data")
-    console.log(data)
-    let a=await submitReport({user_id:data.author,content:`모집글${id}를 신고 당했습니다.`})
-    console.log(a)
+   
+    await submitReport({user_id:data.author,content:`모집글${id}를 신고 당했습니다.`})
+   
   }
 
 
@@ -177,7 +175,6 @@ const gotoListBtn = () => {
 
 const CreatComment = async (e) => {
 
-  console.log("asd")
   try {
     await FetchCreateComments({
       post_id: id,

@@ -23,7 +23,7 @@ const EditPage = () => {
 
       try {
         const response = await Request('get', `/recruits/${teamContext.teamData.recruit_id}/`, {}, {}, {})
-        console.log(response)
+  
         setRecruitPost(response);
         setScheduleID(response.schedule_id)
       } catch (error) {
@@ -35,8 +35,7 @@ const EditPage = () => {
     
     try {
       const teamData = await FetchTeam({ id });
-      console.log(response)
-      // setRecruitPost(response);
+ 
       setScheduleID(response.schedule_id)
     } catch (error) {
         console.error('Error fetching post:', error.message);

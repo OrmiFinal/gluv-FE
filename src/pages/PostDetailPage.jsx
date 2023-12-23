@@ -104,7 +104,7 @@ function PostDetailPage() {
 
 const CreatComment = async (e) => {
 
-  console.log("asd")
+  
   try {
     await FetchCreateComments({
       post_id: id,
