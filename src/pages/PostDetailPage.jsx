@@ -89,18 +89,34 @@ function PostDetailPage() {
 
 
 
-  const CreatComment = async () => {
-    console.log("asd")
-    try {
-      await FetchCreateComments({
-        post_id: id,
-        content: inserComment,
-      });
-      await commentFetch(); // Fetch and update comments after creating a new comment
-    } catch (error) {
-      console.error('Error creating comment:', error);
-    }
+ 
+
+  const [selectedCommentUser, setSelectedCommentUser] = useState(null);
+
+  // Define the click handler
+  const handleCommentClick = (commentUser) => {
+    console.log(commentUser);
+    // Set the selected comment user using the state setter
+    setSelectedCommentUser(commentUser);
   };
+
+
+
+const CreatComment = async (e) => {
+
+  console.log("asd")
+  try {
+    await FetchCreateComments({
+      post_id: id,
+      content: inserComment,
+      to_user: selectedCommentUser || ''
+    });
+    await commentFetch(); // Fetch and update comments after creating a new comment
+  } catch (error) {
+    console.error('Error creating comment:', error);
+  }
+};
+
 
   const handleLikeClick = async () => {
     try {
@@ -264,6 +280,7 @@ const delectClick = async()=>{
               
             </div>
             <div>
+              {selectedCommentUser? selectedCommentUser +"님을 선택을 하였습니다":""}
               <Margin top="4" />
               <Contour />
               <div className='flex items-center justify-center'>
@@ -288,7 +305,8 @@ const delectClick = async()=>{
 
             
             <div className='flex justify-between items-center  px-4'>
-              <CommentList comments={comments.a?comments.a.results:[]} />
+            <CommentList comments={comments} onCommentClick={handleCommentClick} />
+    
             </div>
           </div>
           <div className='flex w-full justify-center items-center'>
