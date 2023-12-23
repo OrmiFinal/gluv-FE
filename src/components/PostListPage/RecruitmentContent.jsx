@@ -4,7 +4,7 @@ import DynamicColorButton from '../DynamicColorButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import useWindowSize from '../../hooks/useWindowSzie';
+import useWindowSize from '../../hooks/useWindowSize';
 import Contour from '../ui/Contour';
 import TitleComponent from './TitleComponent'; // Adjust the path as needed
 import BulletinBoard from './BulletinBoard';
@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 function RecruitmentContent() {
   const { screenSize } = useWindowSize();
   const [posturl, setPostUrl] = useState({
-    category: "공지상황",
+    category: "공지사항",
     subcategorie: "",
     page:""
   });

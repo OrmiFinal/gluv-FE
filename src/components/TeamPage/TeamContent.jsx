@@ -1,30 +1,61 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
-import Contour from '../ui/Contour';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Margin from "../Margin";
+import DynamicColorButton from "../DynamicColorButton";
+import Contour from "../ui/Contour";
+import { Link, useParams } from "react-router-dom";
+import { FetchTeam } from "../../api/team";
 
 const TeamContent = () => {
   const [formData, setFormData] = useState({
-    introduction: '',
-    address: '',
-    date: '',
-    month: '',
-    creationDate: null,
+    name: "",
+    category: "",
+    day: "",
+    week: "",
+    max_attendance: "",
+    frequency: 1,
+    location: "무관",
+    is_leader: false,
   });
+
+  const { id } = useParams();
+
+  const fetchTeamData = async () => {
+    try {
+      const teamData = await FetchTeam({ id });
+
+      if (teamData) {
+        setFormData({
+          name: teamData.name || "",
+          category: teamData.category || "",
+          day: teamData.day || "",
+          week: teamData.week || "무관",
+          max_attendance: teamData.max_attendance || "",
+          frequency: teamData.frequency || "",
+          location: teamData.location || "없음",
+          is_leader: teamData.s_leader,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching team data:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchTeamData();
+  }, [id]);
 
   const handleChange = (e, field) => {
     setFormData({ ...formData, [field]: e.target.value });
   };
 
   const handleSave = () => {
-    console.log('Save clicked. Form data:', formData);
+    console.log("Save clicked. Form data:", formData);
   };
 
   const handleRegister = () => {
-    console.log('Register clicked. Form data:', formData);
+    console.log("Register clicked. Form data:", formData);
   };
 
   return (
@@ -32,7 +63,7 @@ const TeamContent = () => {
       <div className="mt-9 w-full p-6 rounded-md">
         <div className="text-lg font-bold mb-3">모집 상세 내용</div>
         <Contour></Contour>
-      
+
         <div className="w-full border-[1px] p-4 rounded-md">
           <div>
             <div className="text-sm font-semibold mb-1">모임 소개</div>
@@ -41,25 +72,21 @@ const TeamContent = () => {
               // 기존 코드에서 제공한 예시 텍스트 대신 formData.introduction을 사용
               // formData.introduction 값이 없는 경우 기본 텍스트를 사용하려면 || 연산자를 활용할 수 있습니다.
             >
-              {formData.introduction || '모임 소개 예시'}
+              {formData.introduction || "아직 소개가 없습니다."}
             </div>
           </div>
           <div className="mt-4">
             <div className="text-sm font-semibold mb-1">모임 주소</div>
-            <div
-              className="w-full h-[35px]  p-2 text-base "
-            >
-              {formData.address || '모임 주소 예시'}
+            <div className="w-full h-[35px]  p-2 text-base ">
+              {formData.location}
             </div>
           </div>
           <Margin top="2" />
           <Contour></Contour>
           <div className="mt-4">
-            <div className="text-sm font-semibold mb-1">모임 날짜</div>
-            <div
-              className="w-full h-[40px]  p-2 text-base "
-            >
-              {formData.date || '모임 날짜 예시'}
+            <div className="text-sm font-semibold mb-1">참여인원</div>
+            <div className="w-full h-[40px]  p-2 text-base ">
+              {formData.max_attendance}
             </div>
           </div>
           <Margin top="2" />
@@ -67,53 +94,42 @@ const TeamContent = () => {
           <div className="mt-4">
             <div className="text-sm font-semibold mb-1">모임 시간</div>
             <div className="flex space-x-2">
-              <div
-                className="w-[100px] h-[40px]  p-2 text-base "
-              >
-                {formData.month || '3월'}
+              <div className="text-base" style={{ whiteSpace: "nowrap" }}>
+                {formData.frequency}
               </div>
-              <div
-                className="w-[100px] h-[40px] p-2 text-base "
-              >
-                {formData.dayOfMonth || '2일'}
+              <div className="text-base" style={{ whiteSpace: "nowrap" }}>
+                {formData.week} 주
               </div>
-              <div
-                className="w-[100px] h-[40px]  p-2 text-base "
-              >
-                {formData.dayOfWeek || '14시'}
+              <div className="text-base" style={{ whiteSpace: "nowrap" }}>
+                {formData.day}
               </div>
             </div>
           </div>
 
-          <Margin   plustailwind="h-10" />
-       
+          <Margin plustailwind="h-4" />
+
           <div className="w-full h-[40px] flex items-end  justify-between">
-            <div className='flex'>
-            <div className="self-end  w-24">모임 생성일</div>
-            <div
-              className="self-end "
-            >
-              2020.03.01
+            <div className="flex">
+              <div className="text-sm font-semibold mb-1">모임 시작일</div>
+              <div className="self-end ml-4 mb-4">{formData.start_time || ""}</div>
             </div>
-            </div>
-            <div className='flex'>
-            <Margin left="4" />
-            <Link to="/recruits/1">
-            <DynamicColorButton
-         
-              text="모집글가기"
-              btnstyle="py-2 px-2 self-end"
-              onClick={handleRegister}
-            />
+          </div>
+          <div className="flex w-full  justify-end items-center">
+            <Link to={`/recruits/${id}`}>
+              <DynamicColorButton
+                text="모집글가기"
+                btnstyle="py-2 px-2 self-end mr-2"
+                onClick={handleRegister}
+              />
             </Link>
-            <Margin left="4" />
+            {/* <Link to={`/chatrooms/${id}/`}> */}
             <DynamicColorButton
               color="blue"
               text="채팅방입장"
               btnstyle="py-2 px-2 self-end"
               onClick={handleSave}
             />
-            </div>
+            {/* </Link> */}
           </div>
         </div>
       </div>

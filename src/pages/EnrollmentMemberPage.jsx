@@ -4,6 +4,7 @@ import Margin from '../components/Margin';
 import Contour from '../components/ui/Contour';
 
 import EnrollTeamBox from '../components/EnrollTeamBox';
+import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 
 function EnrollmentMemberPage() {
   const profileDataList = [
@@ -36,30 +37,34 @@ function EnrollmentMemberPage() {
   ];
 
   return (
-    <div className="flex items-center justify-center bg-gray-100">
-      <div className='w-[65vw] bg-white rounded-md shadow-md p-6 '>
-        <div className='w-full'>
-          <Margin top="3" />
-          <div className='m-3'>
-            <div className='flex'>
-            <div className='  text-2xl font-bold '> 신청 요청 관리</div>
-            </div>
-            <Contour />
-            <Margin top="2" plustailwind="h-3" />
-            <Margin top="3" plustailwind="h-3" />
-            <div className='border p-2 flex flex-col rounded-md'>
-              {profileDataList.map((profileData, index) => (
-                <div key={index}>
-                  <EnrollTeamBox profileData={profileData} />
-                  <Margin top="3" plustailwind="h-3" />
-                </div>
-              ))}
-            </div>
-            <Margin top="2" plustailwind="h-4" />
-            <Contour />
-            <Margin top="2" />
-            <div className='flex justify-center items-center'>
-              1,2,3,4
+    <div className="flex">
+      <TeamLeftMenu></TeamLeftMenu>
+      <div className="flex items-center justify-center bg-gray-100">
+        <div className='w-[65vw] bg-white rounded-md shadow-md p-6 '>
+          <div className='w-full'>
+            
+            <Margin top="3" />
+            <div className='m-3'>
+              <div className='flex'>
+              <div className='  text-2xl font-bold '> 신청 요청 관리</div>
+              </div>
+              <Contour />
+              <Margin top="2" plustailwind="h-3" />
+              <Margin top="3" plustailwind="h-3" />
+              <div className='border p-2 flex flex-col rounded-md'>
+                {profileDataList.map((profileData, index) => (
+                  <div key={index}>
+                    <EnrollTeamBox profileData={profileData} />
+                    <Margin top="3" plustailwind="h-3" />
+                  </div>
+                ))}
+              </div>
+              <Margin top="2" plustailwind="h-4" />
+              <Contour />
+              <Margin top="2" />
+              <div className='flex justify-center items-center'>
+                1,2,3,4
+              </div>
             </div>
           </div>
         </div>

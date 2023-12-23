@@ -162,7 +162,7 @@ function CenterPanel({ bgColor, roomID}) {
             { Array.isArray(messages) && messages.map((msg, index) => (
                 <MessageBubble
                 key={index}
-                isOwnMessage={msg.sender === userID}
+                isOwnMessage={msg.sender == userID}
                 >
                 {`${msg.sender}: ${msg.message}`}
                 </MessageBubble>
