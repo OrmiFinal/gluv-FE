@@ -6,6 +6,7 @@ import Contour from '../components/ui/Contour';
 import TitleComponent from '../components/PostListPage/TitleComponent';
 
 import EnrollTeamBox2 from '../components/EnrollTeamBox2';
+import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 
 function UnEnrollmentMemberPage() {
   const profileDataList = [
@@ -38,9 +39,12 @@ function UnEnrollmentMemberPage() {
   ];
 
   return (
-    <div className="flex items-center justify-center bg-gray-100">
+    <div className="flex">
+      <TeamLeftMenu></TeamLeftMenu>
+      <div className="flex items-center justify-center bg-gray-100">
       <div className='w-[65vw] bg-white rounded-md shadow-md p-6 '>
         <div className='w-full'>
+          
           <Margin top="3" />
           <div className='m-3'>
             <div className='flex'>
@@ -67,6 +71,8 @@ function UnEnrollmentMemberPage() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import TeamDetailContentPage from '../components/TeamDetailPage/TeamDetailContentPage'
-import TeamDetailLeftMenuPage from '../components/TeamDetailPage/TeamDetailLeftMenuPage'
+import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 
 function TeamDetailPage() {
   return (
     <div className='flex'>
-    <TeamDetailLeftMenuPage></TeamDetailLeftMenuPage>
+    <TeamLeftMenu></TeamLeftMenu>
     <TeamDetailContentPage></TeamDetailContentPage>
     </div>
   )
