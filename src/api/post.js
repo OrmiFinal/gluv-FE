@@ -93,7 +93,7 @@ export const FetchPostData = async ({id}) => {
 
 
 
-export const FetchDelectData = async ({id}) => {
+export const FetchDelete = async ({id}) => {
     try {
         const user = JSON.parse(localStorage.getItem("user"));
         const accessToken = user?.access_token || "";
