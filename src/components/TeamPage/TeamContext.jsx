@@ -23,11 +23,13 @@ const TeamContextProvider = ({ children }) => {
         start_time : '',
         end_time : '',
         recruit_id : 0,
+        introduce : '',
     });
 
     const fetchTeamData = async () => {
         try {
             const teamData = await FetchTeam({ id });
+            console.log(teamData)
             if (teamData) {
                 setTeamData({
                     id: teamData.id,
@@ -45,6 +47,7 @@ const TeamContextProvider = ({ children }) => {
                     start_time : teamData.start_time,
                     end_time : teamData.end_time,
                     recruit_id : teamData.recruit_id,
+                    introduce : teamData.introduce,
                 });
             }
         } catch (error) {
@@ -55,10 +58,6 @@ const TeamContextProvider = ({ children }) => {
     useEffect(() => {
         fetchTeamData();
     }, [id]);
-
-    useEffect(() => {
-        fetchTeamData();
-    }, []);
 
     return (
         <TeamContext.Provider value={{ teamData }}>
