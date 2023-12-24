@@ -25,12 +25,20 @@ function TeamRegistrationManagement() {
       try {
         const members = await getTeamMembers({ id: id });
         setTeamMembers(members);
+        console.log("members")
+        console.log("members")
+        console.log("members")
+        console.log("members")    
+         console.log("members")
+        console.log(members)
+        console.log(members)
+        console.log(members)
       } catch (error) {
         console.error('Fetching team members failed:', error.message);
       }
     };
 
-   
+
     const decodedToken = getDecodedToken();
     if (decodedToken) {
       const user_id = decodedToken.user_id;
@@ -66,6 +74,7 @@ console.log(pageReload)
            
             {teamMembers &&  teamMembers
               .filter(member => !member.is_approved   )
+              .filter(member => member.is_leader == false)
               .map((member, index) => (
                 <div key={index}>
                   {!member.is_approved && IamLeader && (

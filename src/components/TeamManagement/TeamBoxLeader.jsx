@@ -9,7 +9,7 @@ import { async } from 'rxjs';
 function TeamBoxLeader({ profileData,  postiId,setPageReload }) {
   const { profilePicture,  is_leader, user ,nickname} = profileData;
 
-  // is_leader true 일때  파티장 변경 ??? 할줄모르겠어요 -> 새로운파티장 넣기 -> 파티장삭제요청
+  
   const AcceptanceBtn = async() => {
   
     try {
@@ -35,21 +35,19 @@ function TeamBoxLeader({ profileData,  postiId,setPageReload }) {
   };
   
 
-  // Define a dynamic class for the profile image style
-  const profileImageStyle = is_leader ? '프로필_이미지_스타일_leader' : '프로필_이미지_스타일_member';
 
   return (
-    <div className={`flex ${is_leader ? 'bg-red-100' : 'bg-blue-100'}`}>
-      <div className={`relative overflow-hidden rounded-full ${is_leader ? 'bg-red-500' : 'bg-blue-500'} h-20 w-20`}>
+    <div className={`flex bg-blue-100 `}>
+      <div className={`relative overflow-hidden rounded-full  bg-blue-500 h-20 w-20`}>
         <img
-          src={profilePicture ? profilePicture : is_leader ? leader : crew}
+          src={profilePicture ? profilePicture  : crew}
           alt='프로필 사진'
-          className={profileImageStyle}
+
         />
       </div>
       <Margin left='3' plustailwind='w-3' />
-      <div className={` w-72 rounded-lg h-20 flex justify-center items-center ${is_leader ? 'border-red-200 border-2' : 'border-blue-200 border-2'}`}>
-        {nickname}{is_leader ? '현재 팀장입니다' : '팀원 입니다'}
+      <div className={` w-72 rounded-lg h-20 flex justify-center items-center border-blue-200 border-2`}>
+        {nickname}{'팀원 입니다'}
       </div>
       <Margin left='3' plustailwind='w-6' />
       <div className='flex flex-col justify-center items-center'>
