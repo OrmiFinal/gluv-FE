@@ -3,7 +3,7 @@ import axios from "axios";
 import { FetchAllContext } from "../api/post";
 
 export const ModelContext = createContext();
-
+// 모달 에 들어가는 정보를 받는 훅입니다.
 export const ModelContextProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState({
     category: '공지사항',

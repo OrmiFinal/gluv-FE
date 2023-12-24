@@ -4,7 +4,7 @@ import { FetchTeam } from "../api/team";
 
 
 const TeamContext = createContext();
-
+/** 모든 팀컨텐트를 받아와서 FetchTeam 을 호출합니다. */
 const TeamContextProvider = ({ children }) => {
     const { id } = useParams();
 

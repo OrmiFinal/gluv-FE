@@ -33,7 +33,7 @@ function SubCategoryPage({Category}) {
                         title={subcategory}
                         isFontBold={"fontBold"}
                         plustailwind="text-lg font-roboto"
-                        onClick={() => SubCategory(subcategory)}
+                        onClick={() => SubCategoryPage(subcategory)}
                     />
                                 <Margin left="2" />
                     </React.Fragment>

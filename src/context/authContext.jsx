@@ -4,7 +4,7 @@ import axios from "axios";
 import {jwtDecode} from 'jwt-decode';
 
 export const AuthContext = createContext();
-
+/** 회원인증에 관련된 훅입니다. */
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(() => {
     const user = localStorage.getItem("user");

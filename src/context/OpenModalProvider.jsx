@@ -9,7 +9,7 @@ import LoginRegister from "../components/Login/LoginRegister.jsx";
 import AlertFormMain from  "../components/Login/AlertFormMain";
 import ProfleForm from "../components/Login/ProfleForm.jsx";
 export const OpenModalContext = createContext();
-
+/** 어떤 모달창을 보여줄지 포탈패턴과 함께사용합니다. */
 export const OpenModalProvider = ({ children }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 

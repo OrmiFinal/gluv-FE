@@ -4,13 +4,14 @@ import DynamicColorButton from '../DynamicColorButton';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import useWindowSize from '../../hooks/useWindowSzie';
+
 import Contour from '../ui/Contour';
 import TitleComponent from '../RecruitmentPage/TitleComponent'; // Adjust the path as needed
 import BulletinBoard from '../RecruitmentPage/BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider';
 import { SendAuthRequest } from '../../api/post';
 import { useLocation } from 'react-router-dom';
+import useWindowSize from '../../context/useWindowSize';
 
 function Content({ category }) {
     const { screenSize } = useWindowSize();
