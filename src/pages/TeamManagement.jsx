@@ -13,7 +13,7 @@ import TeamBoxLeader from '../components/TeamManagement/TeamBoxLeader';
 
 import { AuthContext } from '../context/AuthContext';
 
-import TeamManagementFooter from '../components/TeamManagement/TeamManagementFooter';
+
 import TeamBoxCrew from '../components/TeamManagement/TeamBoxCrew';
 import { TeamContextProvider } from '../components/TeamPage/TeamContext';
 
@@ -31,6 +31,14 @@ function TeamManagement() {
     const fetchTeamMembers = async () => {
       try {
         const members = await getTeamMembers({ id: id });
+        console.log("members")
+        console.log("members")
+        console.log("members")
+        console.log("members")    
+         console.log("members")
+        console.log(members)
+        console.log(members)
+        console.log(members)
         setTeamMembers(members);
       } catch (error) {
         console.error('Fetching team members failed:', error.message);
@@ -69,9 +77,15 @@ function TeamManagement() {
             
               <Margin top='2' plustailwind='h-3' />
               <Margin top='3' plustailwind='h-3' />
-      
-    {teamMembers && teamMembers.length > 0 && teamMembers
+
+              {/* {teamMembers &&  teamMembers
+              .filter(member => !member.is_approved   )
+              .map((member, index) => ( */}
+
+
+    {teamMembers  && teamMembers
       .filter(member => member.is_approved)
+      .filter(member => member.is_leader == false)
       .map((member, index) => (
         <div key={index}>
           {member.is_approved ? (
@@ -102,7 +116,7 @@ function TeamManagement() {
       </div>
       
     </TeamContextProvider>
-<TeamManagementFooter></TeamManagementFooter>
+
   
     </div>
   );
