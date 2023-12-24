@@ -165,7 +165,7 @@ export const kickTeamMember = async ({ id, userId }) => {
       return null;
     }
    
-    const apiUrl = `http://localhost:8000/teams/${id}/kick/`;
+    const apiUrl = `${baseURL}/teams/${id}/kick/`;
 
     const res = await axios.delete(apiUrl, {
       headers: {
@@ -195,7 +195,7 @@ export const changeTeamLeader = async ({ id, newLeaderId }) => {
    
 
     const response = await axios.patch(
-      `http://localhost:8000/teams/${id}/leader/`,
+      `${baseURL}/teams/${id}/leader/`,
       { user: newLeaderId },
       {
         headers: {
