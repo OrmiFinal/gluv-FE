@@ -5,44 +5,30 @@ import DynamicColorButton from '../components/DynamicColorButton.jsx';
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
-import { FetchPostData ,FetchDelectData} from '../api/post.js';
+import { FetchPostData ,FetchDelete} from '../api/post.js';
 import { Link ,useNavigate} from "react-router-dom"; 
 import { checkIfLike, likePost, unlikePost } from '../api/likes.js';
 import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
 import { submitReport } from '../api/report.js';
-function PostDetailPage() {
 
+function PostDetailPage() {
   const { id } = useParams();
   const [data, setData] = useState(null);
-  const [comments, setComments] = useState([
-    { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
-    // Add other comments as needed
-  ]);
-
-  const [inserComment, setInserComment] = useState('');
-
-  const handleInputChange = (event) => {
-    setInserComment(event.target.value);
-  };
-
-  const [Count, setCount] = useState(1);
-
+  const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  
-
-
   const [isLiked, setIsLiked] = useState(false);
-  const postId =id;  // Replace with the actual post ID
+  const [insertComment, setInsertComment] = useState('');
+  const [selectedCommentUser, setSelectedCommentUser] = useState(null);
 
-  useEffect(() => {
-    // Check if the post is liked when the component mounts
-    checkIfLiked();
-  }, []);
-
-
-
-
-
+  const postId = id; 
+  const navigate = useNavigate();
+  
+  // 댓글 입력 핸들러
+  const handleInputChange = (event) => {
+    setInsertComment(event.target.value);
+  };
+  
+  // 추천 상태 확인
   const checkIfLiked = async () => {
     try {
       const liked = await checkIfLike(postId);
@@ -50,15 +36,20 @@ function PostDetailPage() {
     } catch (error) {
       console.error('Error checking if liked:', error);
     }
-    
   };
 
+  // 댓글 태그 기능 핸들러
+  const handleCommentClick = (commentUser) => {
+    setSelectedCommentUser(commentUser);
+  };
+
+  // 댓글 리스트 조회
   const commentFetch =async()=>{
     let a = await FetchAllCommentsData({id:id,page:currentPage});
     setComments({a})
-    setCount(a.count)
   }
-  const navigate = useNavigate();
+
+  
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -68,47 +59,18 @@ function PostDetailPage() {
         console.error('Error fetching post data:', error);
       }
     };
-
-   
     commentFetch()
-
     getPost();
-   
-  }, [currentPage]);
-
-  useEffect(() => {
-   
-   
-    commentFetch()
-
-   
-   
-  }, [currentPage]);
-
-
-
-
-
- 
-
-  const [selectedCommentUser, setSelectedCommentUser] = useState(null);
-
-  // Define the click handler
-  const handleCommentClick = (commentUser) => {
-    console.log(commentUser);
-    // Set the selected comment user using the state setter
-    setSelectedCommentUser(commentUser);
-  };
+    checkIfLiked();
+  }, [currentPage, isLiked]);
 
 
 
 const CreatComment = async (e) => {
-
-  console.log("asd")
   try {
     await FetchCreateComments({
       post_id: id,
-      content: inserComment,
+      content: insertComment,
       to_user: selectedCommentUser || ''
     });
     await commentFetch(); // Fetch and update comments after creating a new comment
@@ -146,17 +108,17 @@ const CreatComment = async (e) => {
     setCurrentPage(page+1);
   };
 
-  const delectPost = async () => {
+  const deletePost = async () => {
     try {
-      const postData = await FetchDelectData({ id });
+      const postData = await FetchDelete({ id });
       setData(postData);
     } catch (error) {
       console.error('Error fetching post data:', error);
     }
   };
 
-const delectClick = async()=>{
-  delectPost({id});
+const deleteClick = async()=>{
+  deletePost({id});
   navigate('/posts/notices/')
 }
 
@@ -233,20 +195,18 @@ const delectClick = async()=>{
               <div className='flex w-1/2'>
                 {isLiked ? (
                     <DynamicColorButton
+                    className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
+                    onClick={handleUnlikeClick}
+                    text="좋아요 취소"
+                    color="red"
+                  />
+                  ) : (
+                  <DynamicColorButton
                     color="blue"
                     text="좋아요"
                     btnstyle="py-2 px-4"
-                    onClick={handleUnlikeClick}
-                  />
-                  ) : (
-                    <DynamicColorButton
-                    className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
                     onClick={handleLikeClick}
-                    text="좋아요 취소"
-                    color="red"
-                  >
-                  
-                  </DynamicColorButton>
+                  />
                 )}
               <DynamicColorButton
                 color="red"
@@ -260,7 +220,7 @@ const delectClick = async()=>{
                   <DynamicColorButton
                     color="red"
                     text="삭제하기"
-                    onClick = {delectClick}
+                    onClick = {deleteClick}
                     btnstyle="py-1 px-2 flex-shrink-0"
                   />
                 </div>
@@ -289,7 +249,7 @@ const delectClick = async()=>{
                 <input
                   className='border p-3 grow rounded-md'
                   placeholder='댓글 입력...'
-                  value={inserComment}
+                  value={insertComment}
                   onChange={handleInputChange}
                 />
                 <DynamicColorButton
