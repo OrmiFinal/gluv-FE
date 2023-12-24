@@ -76,15 +76,14 @@ function LeftMenu() {
       <Contour />
       <div className='w-48 h-32 flex flex-col justify-start'>
         <div className='text-lg font-semibold mt-2'>활동</div>
-        <div className="flex flex-col mt-4"> 
+        <div className="flex-row flex-col mt-4"> 
           <div className='flex justify-between'>
             <div  className=''>작성 게시글</div>
-            {/* 작성한 게시글 수와 댓글 수를 유저 모델에 추가한 뒤 트랜젝션 필요 */}
             <div  className=''>{profileData?.getUsersPostCnt || '0'}명</div>
+          </div>
           <div className='flex justify-between'>
             <div className=''>받은 좋아요</div>
             <div className=''>{profileData?.getUsersCommentCnt || '0'}명</div>
-          </div>
           </div>
        
         </div>
