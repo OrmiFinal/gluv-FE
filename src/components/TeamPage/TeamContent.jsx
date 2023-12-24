@@ -40,7 +40,7 @@ const TeamContent = () => {
             <div className="px-2 mx-2">
               <Contour></Contour>
             </div>
-            <div className="flex p-1 text-center justify-items-center m-1">
+            <div className="flex p-1 text-center justify-items-center items-center text-center m-1">
               <div className="flex-1 p-2">
                 <div className="font-semibold">지역</div>
                 <div className="text-base">
@@ -49,10 +49,19 @@ const TeamContent = () => {
               </div>
               <div className="flex-1 p-2">
                 <div className="font-semibold">일정</div>
-                <div className="text-base" style={{ whiteSpace: "nowrap" }}>
-                  {teamContext.teamData.frequency === '매일' ? '매일' : teamContext.teamData.frequency}
-                  {teamContext.teamData.frequency === '매일' ? '' : ' '}
-                  {teamContext.teamData.frequency === '매일' ? '' : teamContext.teamData.week === '무관' || teamContext.teamData.week === '' ? teamContext.teamData.day : teamContext.teamData.week}
+                <div className="flex justify-center">
+                  <div className="text-base px-1" style={{ whiteSpace: "nowrap" }}>
+                    {teamContext.teamData.frequency}
+                  </div>
+                  <div className="text-base" style={{ whiteSpace: "nowrap" }}>
+                    {teamContext.teamData.frequency === '매월' ? 
+                      teamContext.teamData.week : '' }
+                  </div>
+                  <div className="text-base px-1" style={{ whiteSpace: "nowrap" }}>
+                  {teamContext.teamData.frequency === '매일' ? 
+                    '' : teamContext.teamData.day }
+                  </div>
+
                 </div>
               </div>
               <div className="flex-1 p-2">
