@@ -10,7 +10,6 @@ import { createRecruitsPost } from '../api/recruits';
 
 function RecruitmentPostEntryPage() {
   const [formData, setFormData] = useState({
-
     author: '',
     title: '',
     content: '',
@@ -20,23 +19,15 @@ function RecruitmentPostEntryPage() {
     day: '',
     category: '',
     maxAttendance: '',
-
   });
 
   const handleContentChange = (newContent) => {
-    setFormData({ ...formData, content: newContent });
-    // You can perform additional actions with the new content if needed
+    setFormData((prevData) => ({ ...prevData, content: newContent }));
   };
 
   const handleChange = (e, field) => {
-    setFormData({ ...formData, [field]: e.target.value });
-    console.log(formData);
+    setFormData((prevData) => ({ ...prevData, [field]: e.target.value }));
   };
-
-
-  const regions = [
-    '서울', '경기', '충남', '충북', '강원', '경남', '경북', '제주', '전남', '전북'
-  ];
 
   const formatDateInfo = (date) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
@@ -45,25 +36,13 @@ function RecruitmentPostEntryPage() {
   };
 
   const handleDateChange = (date) => {
-    console.log("Selected date:", date);
     const formattedInfo = formatDateInfo(date);
-    console.log("Formatted info:", formattedInfo);
-  
-    setFormData({
-      ...formData,
-      date: formattedInfo.date,
-    });
-  
-    console.log("Updated formData:", formData);
+    setFormData((prevData) => ({ ...prevData, date: formattedInfo.date }));
   };
-  
 
   const handleSave = async () => {
-    console.log('Save clicked. Form data:', formData);
-
     try {
       const postData = {
-
         author: formData.author,
         title: formData.title,
         content: formData.content,
@@ -76,106 +55,118 @@ function RecruitmentPostEntryPage() {
       };
 
       const response = await createRecruitsPost(postData);
-
+      
       console.log("Recruits post created successfully:", response);
+      console.log("formData" ,formData)
     } catch (error) {
       console.error("Posting recruits failed:", error.message);
     }
   };
 
   const handleCategorySelect = (selectedCategory) => {
-    setFormData({ ...formData, category: selectedCategory });
+    setFormData((prevData) => ({ ...prevData, category: selectedCategory }));
   };
 
   const handleRegionSelect = (region) => {
-    setFormData({
-      ...formData,
-      region: region,
-    });
+    setFormData((prevData) => ({ ...prevData, region: region }));
   };
-  const handleFrequencySelect = (selectedValue, type) => {
-    console.log(selectedValue);
-    setFormData({ ...formData, [type]: selectedValue });
-  };
-  
 
-  const handleBack = () => {
-    console.log('Register clicked. Form data:', formData);
+  const handleFrequencySelect = (selectedValue, type) => {
+    if (selectedValue === "주기없음") {
+      setFormData((prevData) => ({ ...prevData, week: "", day: "" }));
+    }
+    setFormData((prevData) => ({ ...prevData, [type]: selectedValue }));
   };
+
+  const regions = [
+    '서울', '경기', '충남', '충북', '강원', '경남', '경북', '제주', '전남', '전북'
+  ];
 
   return (
     <div className="flex items-center justify-center bg-gray-100">
       <div className="w-[80vw] bg-white rounded-md shadow-md p-6">
         <Margin top="1" />
-        <div className="w-full border-[1px] border-black ">
+        <div className="w-full border-[1px] border-black">
           <Margin top="3" />
           <div className="m-3">
             <div className="text-xl font-bold mb-4">기본정보</div>
 
             <div className="w-full border p-4 mb-4">
               <div className="grid grid-cols-2 gap-4">
-              
-             
-                <InputField label="최대인원" id="maxAttendance" value={formData.maxAttendance} onChange={handleChange} />
+                <InputField label="최대인원" id="maxAttendance" value={formData.maxAttendance} onChange={(e) => handleChange(e, 'maxAttendance')} />
                 <div>
                   <Margin plustailwind="h-1" />
                   <SelectButton
                     className="text-sm text-left"
                     btnTitle="카테고리 선택"
                     btnoptions={[
-                     
-                    '독서모임',
-                    '합평모임',
-                    '책집필모임',
-
-                
+                      '독서모임',
+                      '합평모임',
+                      '책집필모임',
                     ]}
                     onOptionSelect={handleCategorySelect}
                   />
                 </div>
-               
-
-
               </div>
             </div>
 
             <div>
-              <div className="flex  justify-around   mb-4">
-              <SelectButton
-                className="text-sm text-left"
-                btnTitle={'주기없음'}
-                title="주기"
-                btnoptions={['주기없음', '매일', '매주', '매월']}
-                size="w-[30vw]"
-                onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "frequency")}
-              />
+              <div className="flex justify-around mb-4">
+                <SelectButton
+                  className="text-sm text-left"
+                  btnTitle={'주기없음'}
+                  title="주기"
+                  btnoptions={['주기없음', '매일', '매주', '매월']}
+                  size="w-[30vw]"
+                  text_center={true}
+                  onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "frequency")}
+                />
+                {formData.frequency === "주기없음" ? (
+                  <div className='flex flex-col justify-center items-center text-center'>
+                    <div>{"주기없음"}</div>
+                    <div className="mt-2 bg-white border inline-flex rounded-md h-10 py-3 px-4 justify-center items-center ">
+                      <div>{"주기를 설정 하여 주세요"}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <SelectButton
+                      className="text-sm text-left"
+                      btnTitle={'첫번째'}
+                      title="주"
+                      btnoptions={['첫번째', '두번째', '세번째', '네번째', '다섯번째']}
+                      size="w-[30vw]"
+                      text_center={true}
+                      onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "week")}
+                    />
+                  </>
+                )}
 
-              <SelectButton
-                className="text-sm text-left"
-                btnTitle={'첫번째'}
-                title="주"
-                btnoptions={['첫번째', '두번째', '세번째', '네번째', '다섯번째']}
-                size="w-[30vw]"
-                onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "week")}
-                disabled={formData.frequency === '주기없음'}
-              />
-
-              <SelectButton
-                className="text-sm text-left"
-                btnTitle={'월요일'}
-                title="요일"
-                btnoptions={['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']}
-                size="w-[30vw]"
-                onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "day")}
-                disabled={formData.frequency === '주기없음'}
-              />
-
-          
+                {formData.frequency === "주기없음" ? (
+                  <div className='flex flex-col justify-center items-center text-center'>
+                    <div>{"주기없음"}</div>
+                    <div className="mt-2 bg-white border inline-flex rounded-md h-10 py-3 px-4 justify-center items-center ">
+                      <div>{"주기를 설정 하여 주세요"}</div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <SelectButton
+                      className="text-sm text-left"
+                      btnTitle={'월요일'}
+                      title="요일"
+                      btnoptions={['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']}
+                      size="w-[30vw]"
+                      text_center={true}
+                      onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "day")}
+                    />
+                  </>
+                )}
               </div>
             </div>
 
             <div className="w-full p-4 mb-4">
-            <div className='text-xl font-bold w-[120px] mb-4'>글제목 </div>
+              <div className='text-xl font-bold w-[120px] mb-4'>글제목 </div>
               <input
                 className='w-full border-b p-2 mb-4 rounded-md'
                 value={formData.title}
@@ -191,7 +182,7 @@ function RecruitmentPostEntryPage() {
             </div>
 
             <div className="w-full p-4 flex justify-end items-end">
-              <DynamicColorButton color="red" text="취소" btnstyle=" " onClick={handleBack} />
+              {/* <DynamicColorButton color="red" text="취소" btnstyle="" onClick={handleBack} /> */}
               <Margin left="2"></Margin>
               <DynamicColorButton color="blue" text="작성" btnstyle="" onClick={handleSave} />
             </div>

@@ -4,7 +4,7 @@ import DynamicColorButton from '../components/DynamicColorButton.jsx';
 
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams ,useNavigate} from 'react-router-dom';
 import { FetchPostData } from '../api/post.js';
 import { FetchDelectRecruits, FetchRecruits } from '../api/recruits.js';
 import { FetchAllReqCommentsData, FetchCreateComments } from '../api/comment.js';
@@ -35,7 +35,8 @@ function RecruitmentDetailPage() {
   };
   const postId = id
 
-  
+
+  const navigate = useNavigate();
 
   const RecruitApplication = async () => {
     try {
@@ -116,7 +117,14 @@ function RecruitmentDetailPage() {
   }
 
  const RecruitDelectBtn=async()=>{
-  FetchDelectRecruits(id)
+  try{
+
+    await FetchDelectRecruits({id})
+    navigate('/recruits')
+  }catch{
+
+  }
+
 }
 
 const gotoListBtn = () => {

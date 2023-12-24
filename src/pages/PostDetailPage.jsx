@@ -157,7 +157,7 @@ const CreatComment = async (e) => {
 
 const delectClick = async()=>{
   delectPost({id});
-  navigate('/posts')
+  navigate('/posts/notices/')
 }
 
 

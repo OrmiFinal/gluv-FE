@@ -37,8 +37,6 @@ console.log("applyTeamBtn")
  
   }
 
-  // Define a dynamic class for the profile image style
-  const profileImageStyle = is_leader ? '프로필_이미지_스타일_leader' : '프로필_이미지_스타일_member';
 
   return (
     <div className={`flex ${is_leader ? 'bg-red-100' : 'bg-blue-100'}`}>
@@ -46,7 +44,7 @@ console.log("applyTeamBtn")
         <img
           src={profilePicture ? profilePicture : is_leader ? leader : crew}
           alt='프로필 사진'
-          className={profileImageStyle}
+  
         />
       </div>
       <Margin left='3' plustailwind='w-3' />
