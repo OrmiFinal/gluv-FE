@@ -13,7 +13,7 @@ import Margin from '../Margin';
  * @param {function} props.onOptionSelect - 옵션 선택 시 호출되는 콜백 함수
  * @returns {JSX.Element} SelectButton 컴포넌트
  */
-const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size }) => {
+const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size,text_center }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(btnTitle);
 
@@ -40,7 +40,8 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size }) => {
 
   return (
     <div className=''>
-      <div className='text-sm text-left'> {title==undefined?"카테고리":title}</div>
+<div className={`text-sm ${text_center === undefined ? 'text-left' : 'text-center'}`}>
+  {title==undefined?"카테고리":title}</div>
       <Margin plustailwind="h-2" />
       <div className={`relative flex flex-col ${size ? `w-${size}` : 'w-60' } `}>
       

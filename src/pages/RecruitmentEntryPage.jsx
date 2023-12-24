@@ -93,9 +93,11 @@ function RecruitmentPostEntryPage() {
       region: region,
     });
   };
-  const handleFrequencySelect = (frequency) => {
-    setFormData({ ...formData, frequency: frequency });
+  const handleFrequencySelect = (selectedValue, type) => {
+    console.log(selectedValue);
+    setFormData({ ...formData, [type]: selectedValue });
   };
+  
 
   const handleBack = () => {
     console.log('Register clicked. Form data:', formData);
@@ -131,35 +133,44 @@ function RecruitmentPostEntryPage() {
                     onOptionSelect={handleCategorySelect}
                   />
                 </div>
-                <SelectButton
-                  btnTitle={  '지역 선택'}
-                  btnoptions={regions}
-                  onOptionSelect={handleRegionSelect}
-                  title="지역 선택"
-                  size="w-[30vw]"
-                />
+               
+
+
               </div>
             </div>
 
             <div>
-              <div className="flex mb-4">
+              <div className="flex  justify-around   mb-4">
               <SelectButton
-                    className="text-sm text-left"
-                    btnTitle= { '주기' }
-                    title='주기'
-                    btnoptions={[
-                     
-                    '주기없음',
-                    '매일',
-                    '매주',
-                    '매월',
-                
-                    ]}
-                    size="w-[30vw]"
-                    onOptionSelect={handleFrequencySelect}
-                    />
-                <InputField label="주" id="week" value={formData.week} onChange={handleChange} />
-                <InputField label="요일" id="day" value={formData.day} onChange={handleChange} />
+                className="text-sm text-left"
+                btnTitle={'주기없음'}
+                title="주기"
+                btnoptions={['주기없음', '매일', '매주', '매월']}
+                size="w-[30vw]"
+                onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "frequency")}
+              />
+
+              <SelectButton
+                className="text-sm text-left"
+                btnTitle={'첫번째'}
+                title="주"
+                btnoptions={['첫번째', '두번째', '세번째', '네번째', '다섯번째']}
+                size="w-[30vw]"
+                onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "week")}
+                disabled={formData.frequency === '주기없음'}
+              />
+
+              <SelectButton
+                className="text-sm text-left"
+                btnTitle={'월요일'}
+                title="요일"
+                btnoptions={['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']}
+                size="w-[30vw]"
+                onOptionSelect={(selectedValue) => handleFrequencySelect(selectedValue, "day")}
+                disabled={formData.frequency === '주기없음'}
+              />
+
+          
               </div>
             </div>
 

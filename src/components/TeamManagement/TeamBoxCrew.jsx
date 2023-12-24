@@ -14,7 +14,7 @@ function TeamBoxCrew({ profileData,  postiId,isMe }) {
   const RefuseBtn = async () => {
     try{
     await TeamLeave({id:postiId})
-    window.location.reload();
+
   
     setPageReload((prev)=>{prev+1})}
     catch{}

@@ -15,20 +15,24 @@ function TeamApply({ profileData,  postiId,isMe,setPageReload }) {
 
     try{
     applyToTeam({  id:postiId ,userId:user})
-    window.location.reload();
+
     setPageReload((prev)=>{prev+1})
+
   }
     catch{}
   }
   
   const kickTeamBtn = async()=>{
   
-    try{
-    kickTeamMember({  id:postiId ,userId:user})
-    // window.location.reload();
-    setPageReload((prev)=>{prev+1})
-  }
-    catch{}
+    try {
+      await kickTeamMember({ id: postiId, userId: user });
+      
+      // window.location.reload();
+      setPageReload((prev)=>{prev+1})
+    } catch (error) {
+      console.error('Failed to kick the team member:', error.message);
+    }
+ 
   }
 
   // Define a dynamic class for the profile image style
