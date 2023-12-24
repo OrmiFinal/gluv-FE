@@ -10,8 +10,7 @@ httpClient.interceptors.response.use(
   },
   async error => {
     if (error.response && error.response.status === 401) {
-      // 401 응답이면 토큰 갱신 시도
-      console.log("401 에러 발생");
+      // 401 응답일 때만 토큰 갱신
       try {
         const newTokenData = await AutoRefreshToken();
         // 갱신된 토큰으로만 업데이트
@@ -38,8 +37,7 @@ httpClient.interceptors.response.use(
 
 async function AutoRefreshToken() {
   try {
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    // 로컬 스토리지에서 저장된 사용자 정보 가져오기
+
     const user = JSON.parse(localStorage.getItem('user'));
     const refreshToken = user?.refresh_token;
 
