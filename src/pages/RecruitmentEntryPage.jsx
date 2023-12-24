@@ -85,7 +85,6 @@ function RecruitmentPostEntryPage() {
 
   const handleCategorySelect = (selectedCategory) => {
     setFormData({ ...formData, category: selectedCategory });
-    console.log('Selected formData:', formData);
   };
 
   const handleRegionSelect = (region) => {
@@ -93,6 +92,9 @@ function RecruitmentPostEntryPage() {
       ...formData,
       region: region,
     });
+  };
+  const handleFrequencySelect = (frequency) => {
+    setFormData({ ...formData, frequency: frequency });
   };
 
   const handleBack = () => {
@@ -120,9 +122,9 @@ function RecruitmentPostEntryPage() {
                     btnTitle="카테고리 선택"
                     btnoptions={[
                      
-'독서모임',
-'합평모임',
-'책집필모임',
+                    '독서모임',
+                    '합평모임',
+                    '책집필모임',
 
                 
                     ]}
@@ -136,33 +138,33 @@ function RecruitmentPostEntryPage() {
                   title="지역 선택"
                   size="w-[30vw]"
                 />
-                <InputField label="지역" id="region" value={formData.region} onChange={handleChange} />
               </div>
             </div>
 
             <div>
-              <div className="mr-4">모임 날짜
-                <div>
-                <input
-  type="date"
-  value={formData.date}
-  onChange={(e) => handleDateChange(new Date(e.target.value))}
-  className="border p-2 w-[150px] rounded-md ml-2 text-sm"
-/>
-
-                  {formData.date && (
-                    <p>Selected Date: {formData.date}</p>
-                  )}
-                </div>
-              </div>
               <div className="flex mb-4">
-                <InputField label="frequency" id="frequency" value={formData.frequency} onChange={handleChange} />
-                <InputField label="day" id="day" value={formData.day} onChange={handleChange} />
-                <InputField label="week" id="week" value={formData.week} onChange={handleChange} />
+              <SelectButton
+                    className="text-sm text-left"
+                    btnTitle= { '주기' }
+                    title='주기'
+                    btnoptions={[
+                     
+                    '주기없음',
+                    '매일',
+                    '매주',
+                    '매월',
+                
+                    ]}
+                    size="w-[30vw]"
+                    onOptionSelect={handleFrequencySelect}
+                    />
+                <InputField label="주" id="week" value={formData.week} onChange={handleChange} />
+                <InputField label="요일" id="day" value={formData.day} onChange={handleChange} />
               </div>
             </div>
 
             <div className="w-full p-4 mb-4">
+            <div className='text-xl font-bold w-[120px] mb-4'>글제목 </div>
               <input
                 className='w-full border-b p-2 mb-4 rounded-md'
                 value={formData.title}
