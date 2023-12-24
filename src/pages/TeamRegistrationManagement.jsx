@@ -71,21 +71,25 @@ console.log(pageReload)
             <Margin top='2' plustailwind='h-3' />
             <Margin top='3' plustailwind='h-3' />
 
-           
-            {teamMembers &&  teamMembers
-              .filter(member => !member.is_approved   )
-              .filter(member => member.is_leader == false)
+            {teamMembers &&
+            teamMembers
+              .filter(member => !member.is_approved)
+              .filter(member => !member.is_leader)
               .map((member, index) => (
-                <div key={index}>
-                  {!member.is_approved && IamLeader && (
+                !member.is_approved && IamLeader ? (
+                  <div key={index}>
                     <TeamApply
                       profileData={member}
                       postiId={id}
                       setPageReload={setPageReload}
                     />
-                  )}
-                </div>
-              ))}
+                  </div>
+                ) : null
+              ))
+          }
+
+
+
 
             <Margin top='3' plustailwind='h-3' />
             <Margin top='2' plustailwind='h-4' />
