@@ -92,7 +92,7 @@ const pages = [
 
   // 모집 게시글
   // 모집 게시글 목록
-  { path: "/recruits/", component: RecruitmentListPage, layoutType: "Profile" },
+  { path: "/recruits/", component: RecruitmentListPage, layoutType: "Non" },
   // 모집 게시글 작성 페이지 (폼에 문제 있습니다)
   { path: "/recruits/create/", component: RecruitmentEntryPage, layoutType: "Non" },
   // 모집 게시글 상세 페이지
