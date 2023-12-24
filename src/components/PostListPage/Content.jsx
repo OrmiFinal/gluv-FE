@@ -97,7 +97,7 @@ function Content() {
 
     return (
         <div className="flex items-center justify-center bg-gray-100">
-            <div className='w-[65vw] bg-white rounded-md shadow-md p-6'>
+            <div className='w-[60vw] bg-white rounded-md shadow-md p-6'>
                 <div className='w-full'>
                     <Header Category={selectedCategory.category}></Header>
                     <SubCategoryPage></SubCategoryPage>
