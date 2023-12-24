@@ -64,11 +64,10 @@ function TeamLeftMenu() {
         <div>
           <div className="relative overflow-hidden rounded-full bg-black h-28 w-28">
             <img
-              src="프로필사진의_이미지_경로.jpg"
+              src={teamContext.teamData.image}
               alt="프로필 사진"
               className="프로필_이미지_스타일 rounded-full"
             />
-            asdasd
           </div>
           <Margin top="3" />
           <div className=" font-bold">{teamContext.teamData.category}</div>
@@ -81,7 +80,7 @@ function TeamLeftMenu() {
         {/* 모집 정보 */}
         <div className="w-48">
           <div className="text-lg font-bold pb-4">
-            모집 중 {teamContext.teamData.is_closed ? "" : "✔️"}
+            모집 중 {teamContext.teamData.is_closed ? "❌" : "✔️"}
           </div>
           <div className="flex flex-col">
             <div className="flex justify-between">
@@ -109,7 +108,7 @@ function TeamLeftMenu() {
         <Margin top="1" />
         <Contour />
         <Link to={`/teams/${teamContext.teamData.id}/`}>
-          <div className="menu-item cursor-pointer m-1">팀 상세 정보</div>
+          <div className="menu-item cursor-pointer m-1">모임 상세 정보</div>
         </Link>
         <Contour />
         <Link to={`/teams/${teamContext.teamData.id}/edit/`}>
@@ -124,10 +123,7 @@ function TeamLeftMenu() {
           <div className="menu-item  cursor-pointer m-1">신청인원 관리</div>
         </Link>
         <Contour />
-        {/* <Link to="/teams/:id/delete"> */}
-        {/* 확인페이지를 만들어서 Link하거나, 공수가 안된다면 여기서 바로 삭제하겠습니다. */}
         <div className="menu-item  cursor-pointer m-1" onClick={teamDelete}>모임 삭제</div>
-        {/* </Link> */}
         <Contour />
         <div className="menu-item cursor-pointer m-1" onClick={teamLeave}>모임 탈퇴</div>
         <Contour />

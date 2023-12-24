@@ -41,14 +41,14 @@ function Navbar() {
   };
 
   const gotoLogin = () => {
-    openForm("loginForm"); // Replace "loginForm" with the desired form category
+    openForm("loginForm");
   };
 
   const gotoAlertForm = () => {
-    openForm("alertForm"); // Replace "loginForm" with the desired form category
+    openForm("alertForm");
   };
   const gotoProfleForm = () => {
-    openForm("profleForm"); // Replace "loginForm" with the desired form category
+    openForm("profleForm");
   };
 
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
@@ -101,26 +101,24 @@ function Navbar() {
             )}
         </div>
     </div>
-        {/* Submenus */}
         <div className="flex w-full pb-4">
           <Link to="/posts/notices/" className="font-bold text-lg px-3 bold">
             공지사항 
           </Link>
-          <Link to="/posts/?category=qna" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=qna" className="font-bold text-lg px-3">
             질문·답변
           </Link>
-          <Link to="/posts/?category=comm" className="font-medium text-lg px-3">
+          <Link to="/posts/?category=comm" className="font-bold text-lg px-3">
             자유 게시판
           </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
-          <Link to="/posts/?category=creation" className="font-medium text-lg px-3">
-            <span className="font-bold">창작 게시판</span>
+          <Link to="/posts/?category=creation" className="font-bold text-lg px-3">
+            창작 게시판
           </Link>
           <span className="mx-2 border-r-2 h-6 self-center"></span>
-          <Link to="/recruits/" className="font-medium text-lg px-3">
-            <span className="font-bold">모임 모집 게시판</span>
+          <Link to="/recruits/" className="font-bold text-lg px-3">
+            모임 모집 게시판
           </Link>
-          {/* Add additional submenus here as needed */}
         </div>
         <hr className="border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
         <Margin plustailwind="h-1"></Margin>
