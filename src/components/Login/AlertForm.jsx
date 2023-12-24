@@ -46,7 +46,7 @@ function AlertForm() {
   tabIndex={0}
   className='text-black pt-2 flex self-end rounded-md transition duration-300 text-sm justify-end'
 >
-  <div className='border p-2 rounded-sm mt-4' onClick={gotoAlertFormMain}>전체로이동</div>
+  <div className='border p-2 rounded-sm mt-4' onClick={gotoAlertFormMain}>전체 알림</div>
 </div>
           </div>
           
