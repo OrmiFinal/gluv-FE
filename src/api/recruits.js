@@ -168,3 +168,13 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
     return res.data;
   }
 };
+
+export  const feetchHotRecruits =()=>{
+  const data =   fetch('http://127.0.0.1:8000/posts/hot/');
+  if (!response.ok) {
+      throw new Error('Failed to fetch book data');
+  }
+  
+ return data.json();
+
+} 

@@ -9,7 +9,7 @@ export default {
       fontFamily: {
         sans: ['Spoqa Han Sans Neo', 'Open Sans', 'Helvetica', 'Arial', 'sans-serif'],
         serif: ['Merriweather', 'serif'],
-        mono: ['Inconsolata', 'monospace'],
+       
         custom: ['YourSelectedFont', 'sans'],
         montserrat: ['Montserrat', 'sans'],
         lato: ['Lato', 'sans'],
