@@ -12,6 +12,7 @@ function MainContents() {
   const [nextPage, setNextPage] = useState([]);
   const [prevPage, setPrevPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const baseURL = import.meta.env.VITE_APP_API_KEY;
 
   const handlePageChange = async (pageUrl) => {
     try {
@@ -38,10 +39,11 @@ function MainContents() {
       console.error("Fetching data failed:", error.message);
     }
   };
-      // fetch 수정
+  
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
+        
         const user = JSON.parse(localStorage.getItem("user"));
         const accessToken = user?.access_token || "";
         if (!accessToken) {
@@ -49,7 +51,7 @@ function MainContents() {
           return null;
         }
         const response = await axios.get(
-          "http://127.0.0.1:8000/teams/myappliedteams/",
+          `${baseURL}/teams/myappliedteams/`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

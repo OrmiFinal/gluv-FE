@@ -18,7 +18,7 @@ function Content({ category }) {
     const [postData, setPostData] = useState([]);
 
     useEffect(() => {
-      // fetch 수정
+     
         const fetchPost = async () => {
             const location = useLocation();
             const queryParams = new URLSearchParams(location.search);

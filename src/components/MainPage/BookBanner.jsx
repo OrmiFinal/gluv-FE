@@ -4,11 +4,16 @@ import React, { useState, useEffect } from 'react';
 
 const BookBanner = () => {
     const [bookData, setBookData] = useState([]);
-      // fetch 수정
+     
+    
+    const baseURL = import.meta.env.VITE_APP_API_KEY;
+
+
+    
     useEffect(() => {
         const fetchBookData = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/books/recent/');
+                const response = await fetch(`${baseURL}/books/recent/`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch book data');
                 }

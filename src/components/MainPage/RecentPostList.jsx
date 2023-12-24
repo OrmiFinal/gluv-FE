@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function RecentPostList ({ category, endPoint }){
   const [postData, setPost] = useState([]);
   const baseURL = import.meta.env.VITE_APP_API_KEY;
-      // fetch 수정
+   
     useEffect(() => {
         const fetchPost = async () => {
             try {

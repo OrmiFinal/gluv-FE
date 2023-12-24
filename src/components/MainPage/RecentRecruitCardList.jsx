@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function RecentRecruitCardList()  {
   const [recruitData, setRecruitData] = useState([]);
   const baseURL = import.meta.env.VITE_APP_API_KEY;
-      // fetch 수정
+   
   useEffect(() => {
     const fetchRecruitData = async () => {
         try {

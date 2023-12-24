@@ -3,7 +3,7 @@ import {  fetchHotRecruits } from '../../api/recruits';
 
 function HotRecruitmentList ({ category }){
     const [postData, setPost] = useState([]);
-      // fetch 수정
+     
     useEffect(() => {
         const fetchRecruits = async () => {
             try {

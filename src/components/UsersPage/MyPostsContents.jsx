@@ -7,7 +7,7 @@ import BulletinBoard from "../PostListPage/BulletinBoard";
 
 function MainContents() {
   const [postDataList, setPostDataList] = useState([]);
-      // fetch 수정
+  
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
@@ -18,7 +18,7 @@ function MainContents() {
           return null;
         }
         const response = await axios.get(
-          "http://127.0.0.1:8000/teams/myteams/",
+          `${baseURL}/teams/myteams/`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

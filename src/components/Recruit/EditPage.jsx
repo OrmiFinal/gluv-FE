@@ -20,7 +20,7 @@ const EditPage = () => {
       if(!teamContext.teamData.recruit_id){
         return
       }
-      // fetch 수정
+     
       try {
         const response = await Request('get', `/recruits/${teamContext.teamData.recruit_id}/`, {}, {}, {})
   
