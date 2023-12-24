@@ -14,10 +14,12 @@ function TeamApply({ profileData,  postiId,isMe,setPageReload }) {
   const applyTeamBtn = async()=>{
 
     try{
-    applyToTeam({  id:postiId ,userId:user})
+   await applyToTeam({  id:postiId ,userId:user})
 
     setPageReload((prev)=>{prev+1})
-
+console.log("applyTeamBtn")
+console.log("applyTeamBtn")
+console.log("applyTeamBtn")
   }
     catch{}
   }

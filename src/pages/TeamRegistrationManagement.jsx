@@ -18,7 +18,7 @@ function TeamRegistrationManagement() {
   const [teamMembers, setTeamMembers] = useState([]);
   const { getDecodedToken } = useContext(AuthContext);
   const [userId, setUserId] = useState(null);
-  const [pageReload, setPageReload] = useState(false);
+  const [pageReload, setPageReload] = useState(0);
 
   useEffect(() => {
     const fetchTeamMembers = async () => {
@@ -36,7 +36,7 @@ function TeamRegistrationManagement() {
       const user_id = decodedToken.user_id;
       setUserId(user_id);
     }
-
+console.log(pageReload)
     fetchTeamMembers();
   }, [id, getDecodedToken,pageReload]);
 
@@ -64,7 +64,7 @@ function TeamRegistrationManagement() {
             <Margin top='3' plustailwind='h-3' />
 
            
-            {teamMembers && teamMembers.length > 0 && teamMembers
+            {teamMembers &&  teamMembers
               .filter(member => !member.is_approved   )
               .map((member, index) => (
                 <div key={index}>
