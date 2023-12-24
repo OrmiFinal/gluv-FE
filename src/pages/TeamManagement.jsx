@@ -13,7 +13,7 @@ import TeamBoxLeader from '../components/TeamManagement/TeamBoxLeader';
 
 import { AuthContext } from '../context/AuthContext';
 
-import TeamManagementFooter from '../components/TeamManagement/TeamManagementFooter';
+
 import TeamBoxCrew from '../components/TeamManagement/TeamBoxCrew';
 import { TeamContextProvider } from '../components/TeamPage/TeamContext';
 
@@ -102,7 +102,7 @@ function TeamManagement() {
       </div>
       
     </TeamContextProvider>
-<TeamManagementFooter></TeamManagementFooter>
+
   
     </div>
   );

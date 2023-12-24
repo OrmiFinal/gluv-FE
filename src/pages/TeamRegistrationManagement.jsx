@@ -9,7 +9,7 @@ import TeamManagementBackDesin from '../components/TeamManagement/TeamManagement
 
 import { AuthContext } from '../context/AuthContext';
 
-import TeamManagementFooter from '../components/TeamManagement/TeamManagementFooter';
+
 import TeamApply from '../components/TeamManagement/TeamApply';
 import { TeamContextProvider } from '../components/TeamPage/TeamContext';
 
@@ -87,7 +87,7 @@ console.log(pageReload)
       </div>
     </div>
     </TeamContextProvider>
-    <TeamManagementFooter></TeamManagementFooter>
+   
     </div>
   );
 }
