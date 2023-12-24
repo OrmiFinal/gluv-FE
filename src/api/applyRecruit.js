@@ -4,9 +4,11 @@ import axios from 'axios';
 
 const user = JSON.parse(localStorage.getItem("user"));
 const accessToken = user?.access_token || "";
+const baseURL = import.meta.env.VITE_APP_API_KEY;
+
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8000',  // Replace with your API base URL
+  baseURL: baseURL,  // Replace with your API base URL
   headers: {
     Authorization: `Bearer ${accessToken}`,
   },

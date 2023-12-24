@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from 'react';
 import Contour from '../ui/Contour'
 import Margin from '../Margin'
 import { AuthContext } from '../../context/AuthContext';
+import DynamicColorButton from '../DynamicColorButton';
+import { Link } from 'react-router-dom';
 
 function TopMenu() {
   const [profileData, setProfileData] = useState({
@@ -59,18 +61,9 @@ function TopMenu() {
 <Contour></Contour>
 <div className='m-3 flex justify-around'>
       {/* 게시물 */}
-      <div className='rounded border border-gray-400 bg-gray-200
-      hover:bg-gray-300 text-gray-700 hover:text-gray-800
-        justify-center align-middle min-w-max p-2'>
-        내 게시물
-      </div>
-
-      {/* 댓글 버튼  */}
-      <div className='rounded border border-gray-400 bg-gray-200
-      hover:bg-gray-300 text-gray-700 hover:text-gray-800
-      justify-center align-middle min-w-max p-2'>
-        내 댓글
-      </div>
+ <Link to="/users/myteams/" className='w-full'>
+      <DynamicColorButton color="black" text="활동중인 모임" btnstyle="w-full" />
+      </Link>
     </div>
     </div>
   </div></div>

@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <ModelContextProvider>
           <BottomMenuProvider>
           <OpenModalProvider>
-            <ReactQueryDevtools initialIsOpen={true} position='bottom' />
+           
             <App />
             </OpenModalProvider>
             </BottomMenuProvider>

@@ -1,4 +1,6 @@
 import axios from 'axios';
+const baseURL = import.meta.env.VITE_APP_API_KEY;
+
 
 // Function to create a recruit post
 export const createRecruitsPost = async ({
@@ -26,7 +28,7 @@ export const createRecruitsPost = async ({
 
 
     const response = await axios.post(
-       "http://localhost:8000/recruits/",
+       `${baseURL}/recruits/`,
       {
         team,
         author,
@@ -74,7 +76,7 @@ export const FetchRecruitsPost = async ({ page = 1, search = "", category = "", 
       }
     
       const queryString = `?page=${page}&search=${search}&category=${category}&order_by=${order_by}&order=${order}&region=${region}`;
-      const apiUrl = `http://localhost:8000/recruits/${queryString}`;
+      const apiUrl = `${baseURL}/recruits/${queryString}`;
 
       const res = await axios.get(apiUrl, {
           headers: {
@@ -101,7 +103,7 @@ export const FetchRecruits = async ({id}) => {
           return null;
       }
  
-      const res = await axios.get(`http://localhost:8000/recruits/${id}/`, {
+      const res = await axios.get(`${baseURL}/recruits/${id}/`, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
           },
@@ -127,7 +129,7 @@ export const FetchDelectRecruits = async ({id}) => {
           return null;
       }
  
-      const res = await axios.delete(`http://localhost:8000/recruits/${id}/`, {
+      const res = await axios.delete(`${baseURL}/recruits/${id}/`, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
           },
@@ -152,7 +154,7 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
       return null;
     }
 
-    const res = await axios.get(`http://localhost:8000/recruits/${id}/apply/`, {
+    const res = await axios.get(`${baseURL}/recruits/${id}/apply/`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -164,5 +166,19 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
     console.error("Fetching notice failed:", error.message);
     const res = { data: []};
     return res.data;
+  }
+};
+
+export const fetchHotRecruits = async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/recruits/hot/');
+    const data = await response.json();
+
+    console.log("data", data);
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching hot recruits:", error);
+    throw error; // You might want to handle the error appropriately in your application
   }
 };
