@@ -1,6 +1,9 @@
 import axios from "axios";
+const baseURL = import.meta.env.VITE_APP_API_KEY;
 
-const reportUrl = "http://localhost:8000/reports/"; // Replace with your actual API endpoint
+
+
+const reportUrl = `${baseURL}/reports/`; // Replace with your actual API endpoint
 
 export const submitReport = async ({ user_id, content }) => {
   try {

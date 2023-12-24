@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Request } from "./api";
+const baseURL = import.meta.env.VITE_APP_API_KEY;
+
 
 export const FetchNoticeData = async (page) => {
     let params = {}
@@ -37,7 +39,7 @@ export const FetchCreatePost = async ({ title, content, category }) => {
         }
    
 
-        const res = await axios.post("http://localhost:8000/posts/", {
+        const res = await axios.post(`${baseURL}/posts/`, {
             title: title,
             content: content,
             category: category
@@ -73,7 +75,7 @@ export const FetchPostData = async ({id}) => {
             return null;
         }
    
-        const res = await axios.get(`http://localhost:8000/posts/${id}/`, {
+        const res = await axios.get(`${baseURL}/posts/${id}/`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -100,7 +102,7 @@ export const FetchDelectData = async ({id}) => {
             return null;
         }
    
-        const res = await axios.delete(`http://localhost:8000/posts/${id}/`, {
+        const res = await axios.delete(`${baseURL}/posts/${id}/`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
