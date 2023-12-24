@@ -2,6 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import {jwtDecode} from 'jwt-decode';
+import {httpClient} from '../api/interceptor';
 
 export const AuthContext = createContext();
 
@@ -56,7 +57,7 @@ export const AuthContextProvider = ({ children }) => {
   
       try {
         // 유저 프로필 정보 api
-        const response = await axios.get(`${apiURL}/users/${userId}/profile`, {
+        const response = await httpClient.get(`${apiURL}/users/${userId}/profile`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
