@@ -18,8 +18,7 @@ function MainPage() {
           <div className="w-full max-w-screen mx-auto rounded-lg overflow-hidden relative">
           <h2 className="font-bold text-black px-4 mt-2 mb-0 flex items-center md:px-0 md:mb-0 w-full">
           {/*타이틀*/}
-          <div className='flex justify-between w-full'>
-            <Margin left="3"></Margin>
+          <div className='flex w-full'>
           <span className="font-bold w-32">신간 도서</span>  
           </div>
           </h2>
