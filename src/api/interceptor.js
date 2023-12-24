@@ -13,7 +13,7 @@ httpClient.interceptors.response.use(
       // 401 응답일 때 토큰 갱신
       try {
         const newTokenData = await AutoRefreshToken();
-        // 갱신된 토큰으로만 업데이트
+        // 갱신된 토큰으로 업데이트
         if (newTokenData.access_token) {
           // 갱신된 토큰으로 이전 요청을 다시 시도
           return httpClient.request({
@@ -32,9 +32,10 @@ httpClient.interceptors.response.use(
     } else if(error.response && error.response.status === 500){
       window.location.href = baseURL+'/error/500/';
   
+    }else{
+      window.location.href=baseURL+'/error/404/'
     }
-    window.location.href=baseURL+'/error/404/'
-
+    
     return Promise.reject(error);
   }
 );
