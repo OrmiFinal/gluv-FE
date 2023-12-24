@@ -7,7 +7,7 @@ function RecentRecruitCardList()  {
   useEffect(() => {
     const fetchRecruitData = async () => {
         try {
-            const response = await fetch(`${baseURL}/recruits/hot/`);
+            const response = await fetch(`${baseURL}/recruits/recent/`);
             if (!response.ok) {
                 throw new Error('Failed to fetch book data');
             }
