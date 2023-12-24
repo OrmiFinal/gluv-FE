@@ -83,7 +83,7 @@ const TeamContent = () => {
                 btnstyle="py-2 px-2 self-end mr-2"
               />
             </Link>
-            <Link to={`/chatroom/${id}/`}>
+            <Link to={`/chatroom/${teamContext.teamData.chatroom_id}/`}>
             <DynamicColorButton
               color="blue"
               text="채팅방입장"
