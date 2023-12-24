@@ -33,7 +33,7 @@ function CenterPanel({ bgColor, roomID}) {
         setSocket(connection);
 
         connection.onopen = (event) => {
-        console.log("WebSocket 연결 성공");
+            console.log("WebSocket 연결 성공");
         };
 
         connection.onmessage = (event) => {
@@ -45,7 +45,7 @@ function CenterPanel({ bgColor, roomID}) {
             setCurrentUsers(data.users);
         }
         else{
-            appendMessage(data.message, data.sender);
+            appendMessage(data.message, data.sender, data.nickname);
         }
         };
 
@@ -95,7 +95,7 @@ function CenterPanel({ bgColor, roomID}) {
             }));
 
             setMessageInput('');
-            appendMessage(messageInput, userID.toString());
+            appendMessage(messageInput, userID.toString(), '');
         }
     };
     
@@ -107,8 +107,8 @@ function CenterPanel({ bgColor, roomID}) {
         }));
     }
 
-    const appendMessage = (message, sender) => {
-        setMessages(prevMessages => [...prevMessages, { message, sender }]);
+    const appendMessage = (message, sender, nickname) => {
+        setMessages(prevMessages => [...prevMessages, { message, sender, nickname }]);
     };
     
     const handleScroll = () => {
@@ -121,7 +121,7 @@ function CenterPanel({ bgColor, roomID}) {
 
     window.addEventListener('scroll', handleScroll);
 
-    const MessageBubble = ({ isOwnMessage, children }) => (
+    const MessageBubble = ({ isOwnMessage, nickname, children }) => (
         <div
             className={`flex mb-2 mx-2 ${
             isOwnMessage ? 'justify-end' : 'justify-start'
@@ -134,7 +134,7 @@ function CenterPanel({ bgColor, roomID}) {
                 : ' bg-slate-200 text-black rounded'
             }`}
             >
-            {children}
+            {`${isOwnMessage ? '' : nickname + ' : ' } ${children}`}
             </div>
         </div>
     );
@@ -163,8 +163,9 @@ function CenterPanel({ bgColor, roomID}) {
                 <MessageBubble
                 key={index}
                 isOwnMessage={msg.sender == userID}
+                nickname = {msg.nickname}
                 >
-                {`${msg.sender}: ${msg.message}`}
+                {`${msg.message}`}
                 </MessageBubble>
             ))}
         </div>

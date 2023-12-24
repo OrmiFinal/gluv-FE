@@ -24,6 +24,7 @@ const TeamContextProvider = ({ children }) => {
         end_time : '',
         recruit_id : 0,
         introduce : '',
+        chatroom_id : 0,
     });
 
     const fetchTeamData = async () => {
@@ -48,6 +49,7 @@ const TeamContextProvider = ({ children }) => {
                     end_time : teamData.end_time,
                     recruit_id : teamData.recruit_id,
                     introduce : teamData.introduce,
+                    chatroom_id : teamData.chatroom_id,
                 });
             }
         } catch (error) {
