@@ -53,7 +53,7 @@ console.log("applyTeamBtn")
       </div>
       <Margin left='3' plustailwind='w-6' />
       <div className='flex flex-col justify-center items-center'>
-<DynamicColorButton btnstyle='w-24 h-8 mt-2' color='blue' text='팀 등록' onClick={applyTeamBtn}></DynamicColorButton>
+<DynamicColorButton btnstyle='w-24 h-8 mt-2' color='blue' text='신청 수락' onClick={applyTeamBtn}></DynamicColorButton>
 <DynamicColorButton btnstyle='w-24 h-8 mt-2' color='red' text='신청 거절' onClick={kickTeamBtn}></DynamicColorButton>
 
       </div>
