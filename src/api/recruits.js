@@ -169,12 +169,16 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
   }
 };
 
-export  const feetchHotRecruits =()=>{
-  const data =   fetch('http://127.0.0.1:8000/posts/hot/');
-  if (!response.ok) {
-      throw new Error('Failed to fetch book data');
-  }
-  
- return data.json();
+export const fetchHotRecruits = async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/recruits/hot/');
+    const data = await response.json();
 
-} 
+    console.log("data", data);
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching hot recruits:", error);
+    throw error; // You might want to handle the error appropriately in your application
+  }
+};
