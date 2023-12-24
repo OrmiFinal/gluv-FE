@@ -10,6 +10,8 @@ import { FetchAllTeamData } from '../api/team';
 
 import { FetchRecruitsPost } from '../api/recruits';
 import { Link } from 'react-router-dom';
+import TopMenu from '../components/PostListPage/TopMenu';
+import HotRecruitmentList from '../components/PostListPage/HotRecruitmentList';
 
 
 const sampleData = [
@@ -106,6 +108,12 @@ console.log(Count)
     .join(' ');
  
   return (
+    <div className='flex'>
+      <div className='flex flex-col items-center justify-around '>
+      <TopMenu />
+      <HotRecruitmentList />
+    </div>
+      
     <div className="flex items-center justify-center bg-gray-100">
       <div className="w-[65vw] bg-white rounded-md shadow-md p-6">
         <div className="w-full">
@@ -246,6 +254,7 @@ console.log(Count)
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
