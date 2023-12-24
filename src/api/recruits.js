@@ -169,9 +169,10 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
   }
 };
 
+
 export const fetchHotRecruits = async () => {
   try {
-    const response = await fetch('http://127.0.0.1:8000/recruits/hot/');
+    const response = await fetch(`${baseURL}/recruits/hot/`);
     const data = await response.json();
 
     console.log("data", data);

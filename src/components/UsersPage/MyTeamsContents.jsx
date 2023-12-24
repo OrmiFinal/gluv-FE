@@ -46,8 +46,12 @@ function MainContents() {
           console.error("Access token not available");
           return null;
         }
+        const baseURL = import.meta.env.VITE_APP_API_KEY;
+    
+       
+
         const response = await axios.get(
-          "http://127.0.0.1:8000/teams/myteams/",
+          `${baseURL}/teams/myteams/`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

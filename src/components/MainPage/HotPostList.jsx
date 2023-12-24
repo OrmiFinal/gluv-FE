@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 function HotPostList ({ category }){
     const [postData, setPost] = useState([]);
 
+
+    const baseURL = import.meta.env.VITE_APP_API_KEY;
+
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:8000/posts/hot/');
+                const response = await fetch(`${baseURL}/posts/hot/`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch book data');
                 }
