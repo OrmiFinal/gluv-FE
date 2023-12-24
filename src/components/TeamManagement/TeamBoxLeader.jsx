@@ -25,9 +25,9 @@ function TeamBoxLeader({ profileData,  postiId,setPageReload }) {
   const RefuseBtn = async () => {
 
     try {
-      await kickTeamMember({ postid: postiId, userId: user });
+      await kickTeamMember({ id: postiId, userId: user });
       
-      window.location.reload();
+    
       setPageReload((prev)=>{prev+1})
     } catch (error) {
       console.error('Failed to kick the team member:', error.message);

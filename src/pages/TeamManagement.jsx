@@ -45,6 +45,10 @@ function TeamManagement() {
 
     fetchTeamMembers();
   }, [id, getDecodedToken,pageReload]);
+  // useEffect(() => {
+  //   window.location.reload();
+
+  // },[]);
 
   const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
   {/* 단순 확인용 버튼 나중에 지워야합니다! */}

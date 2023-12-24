@@ -18,6 +18,7 @@ function TeamRegistrationManagement() {
   const [teamMembers, setTeamMembers] = useState([]);
   const { getDecodedToken } = useContext(AuthContext);
   const [userId, setUserId] = useState(null);
+  const [pageReload, setPageReload] = useState(false);
 
   useEffect(() => {
     const fetchTeamMembers = async () => {
@@ -37,7 +38,7 @@ function TeamRegistrationManagement() {
     }
 
     fetchTeamMembers();
-  }, [id, getDecodedToken]);
+  }, [id, getDecodedToken,pageReload]);
 
   const IamLeader = teamMembers && teamMembers.some(member => member.user === userId && member.is_leader);
 
@@ -71,6 +72,7 @@ function TeamRegistrationManagement() {
                     <TeamApply
                       profileData={member}
                       postiId={id}
+                      setPageReload={setPageReload}
                     />
                   )}
                 </div>
