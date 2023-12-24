@@ -1,4 +1,5 @@
 import axios from "axios";
+import {httpClient} from './interceptor';
 
 export const Request = async (method, endPoint, headers, params, data) => {
     const baseURL = import.meta.env.VITE_APP_API_KEY;
@@ -10,7 +11,7 @@ export const Request = async (method, endPoint, headers, params, data) => {
             headers.Authorization = `Bearer ${accessToken}`;
         }
         
-        const instance = axios.create({
+        const instance = httpClient.create({
             baseURL,
             headers: {
                 ...headers,
