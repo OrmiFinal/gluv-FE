@@ -10,12 +10,11 @@ httpClient.interceptors.response.use(
   },
   async error => {
     if (error.response && error.response.status === 401) {
-      // 401 응답일 때만 토큰 갱신
+      // 401 응답일 때 토큰 갱신
       try {
         const newTokenData = await AutoRefreshToken();
         // 갱신된 토큰으로만 업데이트
         if (newTokenData.access_token) {
-          console.log(newTokenData);
           // 갱신된 토큰으로 이전 요청을 다시 시도
           return httpClient.request({
             ...error.config,
@@ -30,8 +29,13 @@ httpClient.interceptors.response.use(
         window.location.href = '/users/login';
         return Promise.reject(refreshError);
       }
+    } else if(error.response && error.response.status === 500){
+      window.location.href = baseURL+'/error/500/';
+  
     }
-    return Promise.reject(error);  // 401 이외의 오류는 그대로 반환
+    window.location.href=baseURL+'/error/404/'
+
+    return Promise.reject(error);
   }
 );
 

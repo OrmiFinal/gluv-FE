@@ -1,5 +1,6 @@
 import axios from "axios";
 const baseURL = import.meta.env.VITE_APP_API_KEY;
+import {httpClient} from './interceptor';
 
 
 export const FetchAllCommentsData = async ({id,page=1}) => {
@@ -11,7 +12,7 @@ export const FetchAllCommentsData = async ({id,page=1}) => {
             return null;
         }
      
-        const res = await axios.get(`${baseURL}/comments/?post_id=${id}&page=${page}`, {
+        const res = await httpClient.get(`${baseURL}/comments/?post_id=${id}&page=${page}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -36,7 +37,7 @@ export const FetchAllReqCommentsData = async ({id,page=1}) => {
             return null;
         }
     
-        const res = await axios.get(`${baseURL}/comments/?recruits=${id}&page=${page}`, {
+        const res = await httpClient.get(`${baseURL}/comments/?recruits=${id}&page=${page}`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
@@ -65,7 +66,7 @@ export const FetchCreateComments = async ({ post_id, recruits, content, to_user 
       // post_id를 숫자로 변환
       const numericPostId = Number(post_id);
       const numericRecuritId= Number(recruits);
-      const res = await axios.post(`${baseURL}/comments/`, {
+      const res = await httpClient.post(`${baseURL}/comments/`, {
         "post_id": numericPostId,
         "recruits": numericRecuritId,  // recruits가 이미 숫자라면 변환 필요 없음
         "content": content,

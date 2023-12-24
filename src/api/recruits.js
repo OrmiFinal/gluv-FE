@@ -1,6 +1,6 @@
 import axios from 'axios';
 const baseURL = import.meta.env.VITE_APP_API_KEY;
-
+import {httpClient} from './interceptor';
 
 // Function to create a recruit post
 export const createRecruitsPost = async ({
@@ -27,7 +27,7 @@ export const createRecruitsPost = async ({
     }
 
 
-    const response = await axios.post(
+    const response = await httpClient.post(
        `${baseURL}/recruits/`,
       {
         team,
@@ -78,7 +78,7 @@ export const FetchRecruitsPost = async ({ page = 1, search = "", category = "", 
       const queryString = `?page=${page}&search=${search}&category=${category}&order_by=${order_by}&order=${order}&region=${region}`;
       const apiUrl = `${baseURL}/recruits/${queryString}`;
 
-      const res = await axios.get(apiUrl, {
+      const res = await httpClient.get(apiUrl, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
           },
@@ -103,7 +103,7 @@ export const FetchRecruits = async ({id}) => {
           return null;
       }
  
-      const res = await axios.get(`${baseURL}/recruits/${id}/`, {
+      const res = await httpClient.get(`${baseURL}/recruits/${id}/`, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
           },
@@ -129,7 +129,7 @@ export const FetchDelectRecruits = async ({id}) => {
           return null;
       }
  
-      const res = await axios.delete(`${baseURL}/recruits/${id}/`, {
+      const res = await httpClient.delete(`${baseURL}/recruits/${id}/`, {
           headers: {
               Authorization: `Bearer ${accessToken}`,
           },
@@ -154,7 +154,7 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
       return null;
     }
 
-    const res = await axios.get(`${baseURL}/recruits/${id}/apply/`, {
+    const res = await httpClient.get(`${baseURL}/recruits/${id}/apply/`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
