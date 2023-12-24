@@ -40,8 +40,7 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size,text_cen
 
   return (
     <div className=''>
-<div className={`text-sm ${text_center === undefined ? 'text-left' : 'text-center'}`}>
-  {title==undefined?"카테고리":title}</div>
+<div className={`text-sm ${text_center === undefined ? 'text-left' : 'text-center'}`}>{title==undefined?"카테고리":title}</div>
       <Margin plustailwind="h-2" />
       <div className={`relative flex flex-col ${size ? `w-${size}` : 'w-60' } `}>
       

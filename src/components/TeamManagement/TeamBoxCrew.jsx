@@ -5,19 +5,22 @@ import crew from '../../assets/crew.png';
 import leader from '../../assets/leader.png';
 import { TeamLeave, applyToTeam, kickTeamMember } from '../../api/team';
 
-function TeamBoxCrew({ profileData,  postiId,isMe }) {
+
+function TeamBoxCrew({ profileData,  postiId,isMe ,setPageReload}) {
   const { profilePicture, user,nickname } = profileData;
 
 
 
   // 나가기버튼
-  const RefuseBtn = async () => {
+  const RefuseBtn =  async () => {
     try{
-    await TeamLeave({id:postiId})
+      await TeamLeave({id:postiId})
 
   
-    setPageReload((prev)=>{prev+1})}
-    catch{}
+     setPageReload((prev)=>{prev+1})
+  }
+    catch{  setPageReload((prev)=>{prev+1})}
+
   };
   
 
