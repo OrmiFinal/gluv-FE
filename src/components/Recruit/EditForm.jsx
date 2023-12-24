@@ -15,6 +15,7 @@ const EditForm = ({recruitPost, scheduleID}) => {
     const [teamMaxAttenDance, setTeamMaxAttenDance] = useState(null)
     const [frequency, setFrequency] = useState(null)
     const [selectedDays, setSelectedDays] = useState(null)
+    const [selectedWeeks, setSelectedWeeks] = useState(null)
     // const [scheduleID, setScheduleID] = useState(null)
 
     useEffect(() => {
@@ -38,6 +39,7 @@ const EditForm = ({recruitPost, scheduleID}) => {
             setTeamMaxAttenDance(response.max_attendance)
             setFrequency(response.frequency)
             setSelectedDays(response.day)
+            setSelectedWeeks(response.week)
         } catch (error) {
             console.error('Error fetching TeamInfo:', error.message);
         }
@@ -92,6 +94,7 @@ const EditForm = ({recruitPost, scheduleID}) => {
                 {
                     frequency : frequency,
                     day : selectedDays,
+                    week : selectedWeeks,
                 }
             );
             console.log('일정 업데이트 요청 결과 : ', response);
@@ -194,6 +197,20 @@ const EditForm = ({recruitPost, scheduleID}) => {
                         <option value="매주">매주</option>
                         <option value="매월">매월</option>
                     </select>
+
+                    <select type="text" 
+                        value={selectedWeeks || ''}
+                        className="font-semibold mb-1 bg-white border-2 rounded-md w-full p-2 ml-2" 
+                        onChange={(e) => setSelectedWeeks(e.target.value)}>
+                        <option value="" disabled hidden>
+                        주를 선택해주세요.
+                        </option>
+                        <option value="1주">1주</option>
+                        <option value="2주">2주</option>
+                        <option value="3주">3주</option>
+                        <option value="4주">4주</option>
+                    </select>
+
                     <select type="text" 
                         value={selectedDays || ''}
                         className="font-semibold mb-1 bg-white border-2 rounded-md w-full p-2 ml-2" 
