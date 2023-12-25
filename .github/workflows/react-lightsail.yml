@@ -35,7 +35,10 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-        
+            # GluveFront 폴더 확인 후 없으면 생성
+            if [ ! -d "/GluveFront" ]; then
+              mkdir /GluveFront
+            fi
             
             cd /GluveFront || exit
             
