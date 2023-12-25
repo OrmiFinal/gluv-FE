@@ -1,6 +1,6 @@
 import axios from "axios";
 const baseURL = import.meta.env.VITE_APP_API_KEY;
-
+import {httpClient} from './interceptor';
 
 
 const reportUrl = `${baseURL}/reports/`; // Replace with your actual API endpoint
@@ -15,7 +15,7 @@ export const submitReport = async ({ user_id, content }) => {
       return null;
     }
 
-    const response = await axios.post(
+    const response = await httpClient.post(
       reportUrl,
       {
         user_id: user_id,
