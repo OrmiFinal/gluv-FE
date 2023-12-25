@@ -16,19 +16,22 @@ jobs:
       - name: Node.js 설정
         uses: actions/setup-node@v3
         with:
-          node-version: '19'
+          node-version: '14'
 
       - name: 의존성 설치
         run: |
           npm install
-        
 
-      - name: React 앱 빌드
+      - name: Vite 앱 빌드
         run: |
           npm run build
           ls
 
-      - name: 서버로 배포
+      - name: 저장소에 빌드된 파일 복사
+        run: |
+          mv dist /GluveFront/
+
+      - name: 서버로 복사
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -39,10 +42,6 @@ jobs:
             if [ ! -d "/GluveFront/dist" ]; then
               sudo mkdir -p /GluveFront/dist
             fi
-            
-            cd /GluveFront || exit
 
-            ls
             # 빌드된 작업물만 복사
-            sudo rsync dist/ /GluveFront/dist/
-
+            cp -r /GluveFront/dist/* /GluveFront/dist/
