@@ -36,12 +36,12 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # GluveFront 폴더 확인 후 없으면 생성
-            if [ ! -d "/GluveFront" ]; then
-              mkdir /GluveFront
+            if [ ! -d "/GluveFront/build" ]; then
+              sudo mkdir -p /GluveFront/build
             fi
             
             cd /GluveFront || exit
             
-           
             # 빌드된 작업물만 복사
-            rsync -r --delete-after /dist/ /GluveFront/build/
+            rsync -r --delete-after build/ /GluveFront/build/
+
