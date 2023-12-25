@@ -18,6 +18,12 @@ jobs:
         with:
           node-version: '19'
 
+      - name: Create env file
+        run: |
+          touch .env
+          echo VITE_APP_API_KEY=포트번호 
+          cat .env
+
       - name: 의존성 설치
         run: |
           npm install
@@ -34,14 +40,5 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            # GluveFront 폴더 확인 후 없으면 생성
-            if [ ! -d "/GluveFront" ]; then
-              mkdir /GluveFront
-            fi
-            
-            cd /GluveFront || exit
-            
-           
-            # 빌드된 작업물만 복사
-            rsync -r --delete-after /dist/ /GluveFront/build/
+        env:
+          SOURCE_DIR: "dist"
