@@ -1,4 +1,4 @@
-name: Deploy Frontend
+name: 프론트엔드 배포
 
 on:
   push:
@@ -10,31 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: 저장소 체크아웃
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
+      - name: Node.js 설정
         uses: actions/setup-node@v3
         with:
           node-version: '19'
 
-      - name: Install Dependencies
+      - name: 의존성 설치
         run: |
           npm install
           # 또는 yarn install
 
-      - name: Build React App
+      - name: React 앱 빌드
         run: |
           npm run build
           # 또는 yarn build
 
-      - name: Deploy to Server
+      - name: 서버로 배포
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/remote/directory
+            # GluveFront 폴더 확인 후 없으면 생성
+            if [ ! -d "/GluveFront" ]; then
+              mkdir /GluveFront
+            fi
+
+            cd /GluveFront
             git pull origin main
-  
+
+            # 빌드된 작업물만 복사
+            rsync -r --delete-after ./build/ /GluveFront/build/
