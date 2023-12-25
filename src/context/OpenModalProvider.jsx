@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 
 import LoginForm from "../components/Login/LoginForm";
 import AlertForm from "../components/Login/AlertForm";
-import NotifyForm from "../components/Login/notifyForm";
+import NotifyForm from "../components/Login/NotifyForm";
 import PasswordChangeForm from "../components/Login/PasswordChageForm.jsx";
 import LoginRegister from "../components/Login/LoginRegister.jsx";
 import AlertFormMain from  "../components/Login/AlertFormMain";
