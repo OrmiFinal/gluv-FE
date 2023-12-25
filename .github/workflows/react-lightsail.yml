@@ -43,6 +43,5 @@ jobs:
             cd /GluveFront || exit
             
            
-            
             # 빌드된 작업물만 복사
             rsync -r --delete-after ./build/ /GluveFront/build/
