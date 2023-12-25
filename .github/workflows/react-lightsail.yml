@@ -35,11 +35,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            if [ ! -d "/path/to/GluveFront" ]; then
-              mkdir /path/to/GluveFront
-            fi
-            
-            cd /path/to/GluveFront
+        
+            mkdir /path/to/GluveFront
+            cd /path/to/GluveFront || exit
             
             # Check if the directory is a Git repository before attempting to pull
             if [ -d .git ]; then
