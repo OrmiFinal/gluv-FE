@@ -16,15 +16,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  
+          node-version: '20'
 
       - name: Install Dependencies
         run: |
           npm install
+          # 또는 yarn install
 
       - name: Build React App
         run: |
           npm run build
+          # 또는 yarn build
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
@@ -36,3 +38,4 @@ jobs:
           script: |
             cd /path/to/remote/directory
             git pull origin main
+  

@@ -1,5 +1,5 @@
 // api.js
-import {httpClient} from './interceptor';
+
 import axios from 'axios';
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -7,7 +7,7 @@ const accessToken = user?.access_token || "";
 const baseURL = import.meta.env.VITE_APP_API_KEY;
 
 
-const axiosInstance = httpClient.create({
+const axiosInstance = axios.create({
   baseURL: baseURL,  // Replace with your API base URL
   headers: {
     Authorization: `Bearer ${accessToken}`,
@@ -16,7 +16,7 @@ const axiosInstance = httpClient.create({
 
 export const applyForRecruit = async (recruitId) => {
   try {
-    const response = await httpClient.post(`/recruits/${recruitId}/apply/`);
+    const response = await axiosInstance.post(`/recruits/${recruitId}/apply/`);
     return response.data;
   } catch (error) {
     console.error('Error applying for recruit:', error);
@@ -26,7 +26,7 @@ export const applyForRecruit = async (recruitId) => {
 
 export const cancelRecruitApplication = async (recruitId) => {
   try {
-    const response = await httpClient.delete(`/recruits/${recruitId}/apply/`);
+    const response = await axiosInstance.delete(`/recruits/${recruitId}/apply/`);
     return response.data;
   } catch (error) {
     console.error('Error canceling recruit application:', error);
@@ -36,7 +36,7 @@ export const cancelRecruitApplication = async (recruitId) => {
 
 export const checkRecruitApplication = async (recruitId) => {
   try {
-    const response = await httpClient.get(`/recruits/${recruitId}/apply/`);
+    const response = await axiosInstance.get(`/recruits/${recruitId}/apply/`);
     return response.data;
   } catch (error) {
     console.error('Error checking recruit application:', error);

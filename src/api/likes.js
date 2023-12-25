@@ -2,12 +2,12 @@
 
 import axios from 'axios';
 const baseURL = import.meta.env.VITE_APP_API_KEY;
-import {httpClient} from './interceptor';
+
 
 const user = JSON.parse(localStorage.getItem("user"));
 const accessToken = user?.access_token || "";
 
-const axiosInstance = httpClient.create({
+const axiosInstance = axios.create({
   baseURL: baseURL,  // Replace with your API base URL
   headers: {
     Authorization: `Bearer ${accessToken}`,
