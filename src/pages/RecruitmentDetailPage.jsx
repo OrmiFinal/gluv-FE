@@ -60,7 +60,7 @@ function RecruitmentDetailPage() {
     checkLike()
   }, [isLiked]);
 
-
+  const [firstFetchCompleted, setFirstFetchCompleted] = useState(false);
 
   useEffect(() => {
     const getPost = async () => {
@@ -70,15 +70,17 @@ function RecruitmentDetailPage() {
           ...prev,
           ...postData,
         }));
+        setFirstFetchCompleted(true);
       } catch (error) {
         console.error('Error fetching post data:', error);
       }
     };
 
-   
+    getPost();
+  }, [currentPage]);
 
-  
-    const getTeam = async () => {
+  useEffect(() => {
+    const getTeam = async ({ id }) => {
       try {
         const teamData = await FetchTeam({ id });
         setData((prev) => ({
@@ -89,12 +91,21 @@ function RecruitmentDetailPage() {
         console.error('Error fetching team data:', error);
       }
     };
-    commentFetch()
-    getPost();
-    getTeam();
-    RecruitApplication()
-  }, [currentPage]);
-  
+
+    if (firstFetchCompleted) {
+      if (data == null) {
+        console.log("데이터가 없습니다.");
+      } else if (data.team != null) {
+        const teamId = data.team;
+        console.log(teamId);
+        getTeam({ id:teamId });
+      }
+    }
+  }, [firstFetchCompleted]);
+
+
+
+
   const AmIReClikc=()=>{
     RecruitApplication()
 
