@@ -7,7 +7,7 @@ import Contour from '../components/ui/Contour';
 
 import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
 
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContextProvider';
 
 
 import TeamApply from '../components/TeamManagement/TeamApply';

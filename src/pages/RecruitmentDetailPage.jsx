@@ -28,7 +28,7 @@ function RecruitmentDetailPage() {
   
   const [inserComment, setInserComment] = useState('');
   const [AmIRecruit, setAmIRecruit] = useState('');
-  const [AmIView, setAmIView] = useState(1);
+  const [TeamID, setTeamID] = useState(0);
 
   const handleInputChange = (event) => {
     setInserComment(event.target.value);
@@ -66,8 +66,9 @@ function RecruitmentDetailPage() {
     const getPost = async () => {
       try {
         const postData = await FetchRecruits({ id });
+        console.log(postData)
         setData((prev) => ({
-          ...prev,
+        
           ...postData,
         }));
       } catch (error) {
@@ -78,9 +79,22 @@ function RecruitmentDetailPage() {
    
 
   
-    const getTeam = async () => {
+ 
+    commentFetch()
+    getPost();
+
+    RecruitApplication()
+    setTeamID((prev)=>{prev+1})
+  }, []);
+  
+
+
+  useEffect(() => {
+    const getTeam = async (teamId) => {
       try {
-        const teamData = await FetchTeam({ id });
+        const teamData = await FetchTeam({ id: teamId });
+        console.log("teamData", teamData);
+  
         setData((prev) => ({
           ...prev,
           ...teamData,
@@ -89,12 +103,21 @@ function RecruitmentDetailPage() {
         console.error('Error fetching team data:', error);
       }
     };
-    commentFetch()
-    getPost();
-    getTeam();
-    RecruitApplication()
-  }, [currentPage]);
   
+    if (data !== null) {
+      const teamId = data.team;
+  
+      // Ensure teamId is valid (not null or undefined) before calling getTeam
+      if (teamId) {
+        console.log("teamId", teamId);
+        getTeam(teamId);
+      }
+    }
+  
+  }, [data]); // Re-run the effect whenever data changes
+  
+
+
   const AmIReClikc=()=>{
     RecruitApplication()
 

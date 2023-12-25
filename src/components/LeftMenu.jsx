@@ -4,7 +4,7 @@ import Margin from './Margin'
 import DynamicColorButton from './DynamicColorButton'
 import Contour from './ui/Contour'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext.jsx';
+import { AuthContext } from '../context/AuthContextProvider.jsx';
 
 function LeftMenu() {
   // 사용되는 페이지 = /users/myteams/, /recruits/

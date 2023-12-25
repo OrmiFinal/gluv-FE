@@ -11,7 +11,7 @@ import Contour from '../components/ui/Contour';
 import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
 import TeamBoxLeader from '../components/TeamManagement/TeamBoxLeader';
 
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../context/AuthContextProvider';
 
 
 import TeamBoxCrew from '../components/TeamManagement/TeamBoxCrew';
