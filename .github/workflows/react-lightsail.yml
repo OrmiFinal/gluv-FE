@@ -1,40 +1,32 @@
-name: Deploy static content to Pages
+name: Deploy Frontend
 
 on:
   push:
-    branches: ['development']
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Set up Node
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: 'npm'
+          node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Dependencies
+        run: |
+          sudo npm install
+          
 
-      - name: Build
-        run: npm run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: dist
+      - name: Build React App
+        run: |
+          sudo npm run build
+          
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
@@ -45,5 +37,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /path/to/remote/directory
-            git fetch origin development
-            git reset --hard origin/development
+            git pull origin main
+  
