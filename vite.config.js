@@ -17,9 +17,5 @@ export default defineConfig({
       }
     },
   },
-  resolve: {
-    alias: {
-      '@context': '/home/runner/work/gluv-FE/gluv-FE/src/context',
-    },
-  },
+
 });
