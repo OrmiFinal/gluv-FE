@@ -21,12 +21,12 @@ jobs:
       - name: 의존성 설치
         run: |
           npm install
-          # 또는 yarn install
+        
 
       - name: React 앱 빌드
         run: |
           npm run build
-          # 또는 yarn build
+          ls
 
       - name: 서버로 배포
         uses: appleboy/ssh-action@master
@@ -41,7 +41,8 @@ jobs:
             fi
             
             cd /GluveFront || exit
-            
+
+            ls
             # 빌드된 작업물만 복사
             sudo rsync dist/ /GluveFront/dist/
 
