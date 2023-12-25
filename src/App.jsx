@@ -32,7 +32,6 @@ import LeftMenu2 from "./components/LeftMenu2.jsx";
 import LeftMenu3 from "./components/LeftMenu3.jsx";
 import Error404Page from "./components/Error/Error404Page.jsx";
 import Error500Page from "./components/Error/Error500Page.jsx";
-import { AuthContextProvider } from "./context/AuthContext.jsx";
 
 
 
@@ -175,9 +174,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="app">
-            <AuthContextProvider>
+          
       <RouterProvider router={router} />
-      </AuthContextProvider>
+      
     </div>
   );
 }
