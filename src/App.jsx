@@ -38,7 +38,6 @@ import { AuthContextProvider } from "./context/AuthContext.jsx";
 
 const SiteLayout = () => {
   return (
-    
     <div>
       <Navbar />
       <Outlet />
