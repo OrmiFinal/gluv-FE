@@ -66,7 +66,7 @@ function RecruitmentDetailPage() {
     const getPost = async () => {
       try {
         const postData = await FetchRecruits({ id });
-        console.log(postData)
+   
         setData((prev) => ({
         
           ...postData,
@@ -93,7 +93,7 @@ function RecruitmentDetailPage() {
     const getTeam = async (teamId) => {
       try {
         const teamData = await FetchTeam({ id: teamId });
-        console.log("teamData", teamData);
+      
   
         setData((prev) => ({
           ...prev,
@@ -109,7 +109,7 @@ function RecruitmentDetailPage() {
   
       // Ensure teamId is valid (not null or undefined) before calling getTeam
       if (teamId) {
-        console.log("teamId", teamId);
+    
         getTeam(teamId);
       }
     }
@@ -186,11 +186,9 @@ const gotoListBtn = () => {
 
   };
   const ReportClick = async()=>{
-    console.log("data")
-    console.log("data")
-    console.log(data)
+ 
     let a=await submitReport({user_id:data.author,content:`모집글${id}를 신고 당했습니다.`})
-    console.log(a)
+
   }
 
 
@@ -199,7 +197,7 @@ const gotoListBtn = () => {
 
   // Define the click handler
   const handleCommentClick = (commentUser) => {
-    console.log(commentUser);
+
     // Set the selected comment user using the state setter
     setSelectedCommentUser(commentUser);
   };
@@ -208,7 +206,7 @@ const gotoListBtn = () => {
 
 const CreatComment = async (e) => {
 
-  console.log("asd")
+  
   try {
     await FetchCreateComments({
       post_id: id,
