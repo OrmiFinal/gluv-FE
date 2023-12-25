@@ -1,18 +1,11 @@
-# GitHub Pages에 정적 콘텐츠를 배포하기 위한 간단한 워크플로우
 name: Deploy static content to Pages
 
 on:
-  # 기본 브랜치에 대한 푸시 이벤트 발생 시 실행
   push:
     branches: ['development']
-
-  # Actions 탭에서 수동으로 워크플로우를 실행할 수 있도록 구성
   workflow_dispatch:
 
-
-
 jobs:
-  # 단순히 배포만 수행하기에 하나의 잡으로만 구성
   deploy:
     environment:
       name: github-pages
@@ -21,23 +14,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set up Node
+
+      - name: Set up Node and Yarn
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+          cache: 'yarn'
+
       - name: Install dependencies
-        run: sudo npm install
+        run: yarn install
+
       - name: Build
-        run: sudo npm run build
+        run: yarn build
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
-          # dist 디렉터리 업로드
-          path: './dist'
-     
+          name: dist
+          path: dist
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
@@ -48,5 +45,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /path/to/remote/directory
-            git fetch origin main
-            git reset --hard origin/main
+            git fetch origin development
+            git reset --hard origin/development
