@@ -36,8 +36,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
         
-            mkdir /path/to/GluveFront
-            cd /path/to/GluveFront || exit
+            
+            cd /GluveFront || exit
             
             # Check if the directory is a Git repository before attempting to pull
             if [ -d .git ]; then
@@ -51,4 +51,4 @@ jobs:
             fi
             
             # 빌드된 작업물만 복사
-            rsync -r --delete-after ./build/ /path/to/GluveFront/build/
+            rsync -r --delete-after ./build/ /GluveFront/build/
