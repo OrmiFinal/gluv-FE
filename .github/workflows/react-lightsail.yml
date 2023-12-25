@@ -24,7 +24,7 @@ jobs:
 
       - name: React 앱 빌드
         run: |
-          sudonpm run build
+          sudo npm run build
           ls
 
       - name: 저장소에 빌드된 파일 복사
