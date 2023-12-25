@@ -7,7 +7,7 @@ import { ModelContextProvider } from "./context/ModelContextProvider";
 import { BottomMenuProvider } from "./context/BottomMenu";
 import "./index.css";
 import { OpenModalProvider } from "./context/OpenModalProvider";
-import { AuthContextProvider } from "./context/AuthContext";
+import { AuthContextProvider } from "./context/AuthContext.jsx";
 
 const queryClient = new QueryClient();
 
