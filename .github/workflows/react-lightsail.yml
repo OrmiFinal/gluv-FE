@@ -1,0 +1,51 @@
+name: 프론트엔드 배포
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v2
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+
+      - name: 의존성 설치
+        run: |
+          sudo npm install
+
+      - name: React 앱 빌드
+        run: |
+          sudo npm run build
+          ls
+
+      - name: 저장소에 빌드된 파일 복사
+        run: |
+          cp -r dist/* $GITHUB_WORKSPACE
+
+  
+
+      - name: 서버로 복사
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # GluveFront 폴더 확인 후 없으면 생성
+            if [ ! -d "/GluveFront/dist" ]; then
+              sudo mkdir -p /GluveFront/dist
+            fi
+
+            # 빌드된 작업물만 복사
+            cp -r $GITHUB_WORKSPACE/* /GluveFront/dist/
+
+
