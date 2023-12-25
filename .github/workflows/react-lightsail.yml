@@ -42,16 +42,7 @@ jobs:
             
             cd /GluveFront || exit
             
-            # Check if the directory is a Git repository before attempting to pull
-            if [ -d .git ]; then
-              git pull origin main
-            else
-              # If not a Git repository, initialize a new one and set up tracking
-              git init
-              git remote add origin <repository-url>
-              git fetch origin main
-              git checkout -b main --track origin/main
-            fi
+           
             
             # 빌드된 작업물만 복사
             rsync -r --delete-after ./build/ /GluveFront/build/
