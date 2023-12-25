@@ -12,21 +12,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21'
+          node-version: '16'  # Node.js 버전을 16으로 업데이트
 
       - name: Install Dependencies
         run: |
-          sudo npm install
-          
+          npm install
 
       - name: Build React App
         run: |
-          sudo npm run build
-          
+          npm run build
+
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
@@ -37,4 +36,3 @@ jobs:
           script: |
             cd /path/to/remote/directory
             git pull origin main
-  
