@@ -20,13 +20,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install
-          # 또는 yarn install
+          sudo npm install
+          
 
       - name: Build React App
         run: |
-          npm run build
-          # 또는 yarn build
+          sudo npm run build
+          
 
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
