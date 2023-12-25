@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContextProvider } from "./context/AuthContextProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ModelContextProvider } from "./context/ModelContextProvider";
-import { BottomMenuProvider } from "./context/BottomMenu";
+import { BottomMenuProvider } from "./context/BottomMenuProvider";
 import "./index.css";
 import { OpenModalProvider } from "./context/OpenModalProvider";
 
