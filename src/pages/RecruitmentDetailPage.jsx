@@ -39,6 +39,7 @@ function RecruitmentDetailPage() {
   const navigate = useNavigate();
 
   const RecruitApplication = async () => {
+    console.log("inRecruitApplication")
     try {
       const IRecruit = await checkRecruitApplication(id );
       setAmIRecruit((prev) => ({
@@ -120,7 +121,7 @@ function RecruitmentDetailPage() {
 
   const AmIReClikc=()=>{
     RecruitApplication()
-
+console.log(AmIRecruit)
     const isUserInArray = AmIRecruit.IRecruit.some(item => item.user = 2);
 
     let a = isUserInArray ? "신청중입니다": "신청 상태가 없는 상태 입니다" ;
@@ -209,7 +210,7 @@ const CreatComment = async (e) => {
   
   try {
     await FetchCreateComments({
-      post_id: id,
+      recruits: id,
       content: inserComment,
       to_user: selectedCommentUser || ''
     });
