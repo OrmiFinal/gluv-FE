@@ -6,7 +6,7 @@ import PortalBg from '../ui/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import DynamicColorButton from '../DynamicColorButton';
 import LoginInput from './LoginInput'; // Import the new component
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContextProvider';
 
 function LoginForm() {
   const { closeForm, openForm } = useContext(OpenModalContext);

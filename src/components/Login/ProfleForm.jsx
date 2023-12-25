@@ -4,7 +4,7 @@ import PortalBgRight from '../ui/PortalBgRight';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContextProvider';
 import { useNavigate } from 'react-router-dom';
 
 function ProfileForm() {
