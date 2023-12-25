@@ -7,6 +7,7 @@ import { ModelContextProvider } from "./context/ModelContextProvider";
 import { BottomMenuProvider } from "./context/BottomMenu";
 import "./index.css";
 import { OpenModalProvider } from "./context/OpenModalProvider";
+import { AuthContextProvider } from 'src/context/AuthContext';
 
 
 const queryClient = new QueryClient();
@@ -14,7 +15,7 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-
+      <AuthContextProvider>
         <ModelContextProvider>
           <BottomMenuProvider>
           <OpenModalProvider>
@@ -23,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             </OpenModalProvider>
             </BottomMenuProvider>
         </ModelContextProvider>
-
+      </AuthContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
