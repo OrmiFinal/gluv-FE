@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+
+import { createRecruitsPost } from '../api/recruits';
+
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import EditorComponent from '../components/ui/EditorComponent';
 import InputField from '../components/InputField';
 import SelectButton from '../components/ui/SelectButton';
-import { createRecruitsPost } from '../api/recruits';
 
+import 'react-datepicker/dist/react-datepicker.css';
 function RecruitmentPostEntryPage() {
   const [formData, setFormData] = useState({
     author: '',

@@ -1,12 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
+import { TeamContext } from './TeamContext';
+
 import Margin from "../Margin";
 import DynamicColorButton from "../DynamicColorButton";
 import Contour from "../ui/Contour";
+import "react-datepicker/dist/react-datepicker.css";
 import { Link, useParams } from "react-router-dom";
 
-import { TeamContext } from './TeamContext';
+
 
 const TeamContent = () => {
   const teamContext = useContext(TeamContext);

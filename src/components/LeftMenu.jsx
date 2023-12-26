@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+
+import { AuthContext } from '../context/AuthContextProvider.jsx';
+
 import Margin from './Margin'
 import DynamicColorButton from './DynamicColorButton'
 import Contour from './ui/Contour'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContextProvider.jsx';
 
 function LeftMenu() {
   // 사용되는 페이지 = /users/myteams/, /recruits/

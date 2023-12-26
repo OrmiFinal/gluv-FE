@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
+
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import { Request } from '../../api/api';
+
+import ModalPortal from '../ui/ModalPortal';
+import PortalBg from '../ui/PortalBg';
 import Contour from '../ui/Contour'
 import Pagination from './Pagination';
 

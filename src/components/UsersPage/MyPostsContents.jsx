@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
-import "react-datepicker/dist/react-datepicker.css";
+
 import Margin from "../Margin";
 import DynamicColorButton from "../DynamicColorButton";
 import BulletinBoard from "../PostListPage/BulletinBoard";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function MainContents() {
   const [postDataList, setPostDataList] = useState([]);

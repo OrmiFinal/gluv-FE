@@ -24,7 +24,6 @@ import Chatting from './pages/Chatting.jsx';
 import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
 import Error500 from './components/Error/Error500Page.jsx';
 import Error404 from './components/Error/Error404Page.jsx';
-
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component

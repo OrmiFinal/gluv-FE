@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
+
+import { AuthContext } from '../../context/AuthContextProvider';
+
 import Contour from '../ui/Contour'
 import Margin from '../Margin'
-import { AuthContext } from '../../context/AuthContextProvider';
 import DynamicColorButton from '../DynamicColorButton';
 import { Link } from 'react-router-dom';
 

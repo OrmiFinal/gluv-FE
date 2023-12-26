@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+
+
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
-
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 const TeamDetailContentPage = () => {

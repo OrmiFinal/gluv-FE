@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
+
+import { NotificationAPI } from '../../api/notification';
+
+import { OpenModalContext } from '../../context/OpenModalProvider';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBgRight from '../ui/PortalBgRight';
-import { OpenModalContext } from '../../context/OpenModalProvider';
-import { NotificationAPI } from '../../api/notification';
-import { Request } from '../../api/api';
 
 function AlertForm() {
   const { closeForm ,openForm} = useContext(OpenModalContext);

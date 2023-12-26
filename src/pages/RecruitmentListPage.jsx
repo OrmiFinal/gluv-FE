@@ -1,14 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 
+import { FetchRecruitsPost } from '../api/recruits';
+
 import TitleComponent from '../components/PostListPage/TitleComponent';
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import Contour from '../components/ui/Contour';
 import RecruitmentList from '../components/RecruitmentList';
 import SelectButton from '../components/ui/SelectButton';
-import { FetchAllTeamData } from '../api/team';
-
-import { FetchRecruitsPost } from '../api/recruits';
 import { Link } from 'react-router-dom';
 import TopMenu from '../components/PostListPage/TopMenu';
 import HotRecruitmentList from '../components/PostListPage/HotRecruitmentList';

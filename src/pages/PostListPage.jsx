@@ -1,4 +1,5 @@
 import {React, useState} from 'react'
+
 import Content from '../components/PostListPage/Content'
 import RecruitmentLeftMenu from '../components/PostListPage/RecruitmentLeftMenu'
 

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Margin from '../components/Margin.jsx';
-import DynamicColorButton from '../components/DynamicColorButton.jsx';
 
-import CommentList from '../components/CommentList.jsx';
-import Contour from '../components/ui/Contour.jsx';
-import { useParams } from 'react-router-dom';
-import { FetchPostData ,FetchDelete} from '../api/post.js';
-import { Link ,useNavigate} from "react-router-dom"; 
+import { FetchPostData ,FetchDelete} from '../api/post.js'; 
 import { checkIfLike, likePost, unlikePost } from '../api/likes.js';
 import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
 import { submitReport } from '../api/report.js';
+
+import Margin from '../components/Margin.jsx';
+import DynamicColorButton from '../components/DynamicColorButton.jsx';
+import CommentList from '../components/CommentList.jsx';
+import Contour from '../components/ui/Contour.jsx';
+import { useParams } from 'react-router-dom';
+import { Link ,useNavigate} from "react-router-dom";
+
 
 function PostDetailPage() {
   const { id } = useParams();

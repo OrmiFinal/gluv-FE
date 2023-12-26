@@ -1,13 +1,16 @@
 // LoginRegister.js
 
 import React, { useContext, useState } from 'react';
+
+import { AuthContext } from '../../context/AuthContextProvider';
+
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
-import { OpenModalContext } from '../../context/OpenModalProvider';
 import DynamicColorButton from '../DynamicColorButton';
 import LoginInput from './LoginInput';
 import SelectButton from '../../components/ui/SelectButton';
-import { AuthContext } from '../../context/AuthContextProvider';
+import { OpenModalContext } from '../../context/OpenModalProvider';
+
 
 function LoginRegister() {
   const { closeForm, openForm } = useContext(OpenModalContext);

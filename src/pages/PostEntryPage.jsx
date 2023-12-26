@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+
+import { FetchCreatePost } from '../api/post';
+
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import EditorComponent from '../components/ui/EditorComponent';
 import SelectButton from '../components/ui/SelectButton';
-import { FetchCreatePost } from '../api/post';
 import { Link } from 'react-router-dom';
 
 function PostEntryPage() {

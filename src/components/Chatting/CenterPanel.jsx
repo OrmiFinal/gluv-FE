@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { jwtDecode } from "jwt-decode";
+
 import Contour from '../ui/Contour';
+
+import { jwtDecode } from "jwt-decode";
 
 function CenterPanel({ bgColor, roomID}) {
     const baseURL = import.meta.env.VITE_APP_API_KEY;

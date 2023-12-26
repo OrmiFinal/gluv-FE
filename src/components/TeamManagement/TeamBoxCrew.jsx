@@ -1,9 +1,12 @@
 import React from 'react';
+
+import { TeamLeave, applyToTeam, kickTeamMember } from '../../api/team';
+
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 import crew from '../../assets/crew.png';
 import leader from '../../assets/leader.png';
-import { TeamLeave, applyToTeam, kickTeamMember } from '../../api/team';
+
 
 
 function TeamBoxCrew({ profileData,  postiId,isMe ,setPageReload}) {
