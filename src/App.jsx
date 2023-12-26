@@ -81,11 +81,6 @@ const pages = [
   // 공지사항 페이지 
   { path: "/posts/notices/", component: PostListPage, layoutType: "Non" },
 
-  // // 필요 없는 듯 합니다
-  // { path: "/MyPostPage", component: MyPostPage, layoutType: "My" },
-  // { path: "/MyTeamPage", component: MyTeamPage, layoutType: "My" },
-
-  
   // 자유게시판(커뮤니티) 게시글
   // 게시글 목록
   { path: "/posts/", component: PostListPage, layoutType: "Non" },
@@ -104,7 +99,7 @@ const pages = [
 
   // 유저 프로필 수정
   { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Non" },
-  // { path: "/users/profile/edit", component: ProfileEditingPage, layoutType: "Non" },
+
   // 활동 중인 모임
   { path: "/users/myteams/", component: MyTeamsPage, layoutType: "Profile" },
   // 신청 중인 모임
@@ -115,7 +110,7 @@ const pages = [
   // 유저 정보 수정페이지
   { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
 
-  // 모임 상세 페이지 (UI 문제 있습니다)
+  // 모임 상세 페이지 
   { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
   
   // 모임 정보 수정(리더만 가능)

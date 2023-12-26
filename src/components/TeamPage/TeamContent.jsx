@@ -11,7 +11,7 @@ import { TeamContext } from './TeamContext';
 const TeamContent = () => {
   const teamContext = useContext(TeamContext);
   const { id } = useParams();
-
+  
   return (
     <div className="flex items-center justify-center w-full m-3 mt-0 h-full">
       <div className="mt-4 w-full p-6 rounded-md border shadow-md">
@@ -86,7 +86,7 @@ const TeamContent = () => {
           </div>
           <Margin plustailwind="h-4" />
           <div className="flex w-full  justify-end items-center">
-            <Link to={`/recruits/${id}`}>
+            <Link to={`/recruits/${teamContext.teamData.recruit_id}`}>
               <DynamicColorButton
                 text="모집글가기"
                 btnstyle="py-2 px-2 self-end mr-2"

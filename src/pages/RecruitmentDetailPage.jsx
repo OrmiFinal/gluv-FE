@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import Margin from '../components/Margin.jsx';
 import DynamicColorButton from '../components/DynamicColorButton.jsx';
 
@@ -13,6 +13,7 @@ import { submitReport } from '../api/report.js';
 import { checkIfReLike, likeRecruit, unlikeRecruit } from '../api/likes.js';
 import { checkRecruitApplication } from '../api/applyRecruit';
 import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
+import { AuthContext } from '../context/AuthContextProvider.jsx';
 
 function RecruitmentDetailPage() {
 
@@ -28,8 +29,12 @@ function RecruitmentDetailPage() {
   
   const [inserComment, setInserComment] = useState('');
   const [AmIRecruit, setAmIRecruit] = useState('');
+  const [AmIRecruitChange, setAmIRecruitChange] = useState(1);
   const [TeamID, setTeamID] = useState(0);
-
+  const [cachedData, setCachedData] = useState(false);
+ 
+  const { getUserInfo } = useContext(AuthContext);
+ 
   const handleInputChange = (event) => {
     setInserComment(event.target.value);
   };
@@ -37,21 +42,26 @@ function RecruitmentDetailPage() {
 
 
   const navigate = useNavigate();
-
+  useEffect(() => {
   const RecruitApplication = async () => {
+    console.log("inRecruitApplication")
     try {
       const IRecruit = await checkRecruitApplication(id );
       setAmIRecruit((prev) => ({
 
         IRecruit,
       }));
-
+      console.log("IRecruit")
+      console.log("IRecruit")
+      console.log(IRecruit)
 
     } catch (error) {
       console.error('Error fetching post data:', error);
     }
+
   };
-  
+  RecruitApplication()
+}, [AmIRecruitChange]);
   useEffect(() => {
     const checkLike = async () => {
       const liked = await checkIfReLike(id);
@@ -66,7 +76,7 @@ function RecruitmentDetailPage() {
     const getPost = async () => {
       try {
         const postData = await FetchRecruits({ id });
-        console.log(postData)
+   
         setData((prev) => ({
         
           ...postData,
@@ -83,7 +93,7 @@ function RecruitmentDetailPage() {
     commentFetch()
     getPost();
 
-    RecruitApplication()
+    setAmIRecruitChange((prev)=>prev+1)
     setTeamID((prev)=>{prev+1})
   }, []);
   
@@ -92,13 +102,20 @@ function RecruitmentDetailPage() {
   useEffect(() => {
     const getTeam = async (teamId) => {
       try {
+        if(cachedData === false){
+
+          console.log("asd")
         const teamData = await FetchTeam({ id: teamId });
-        console.log("teamData", teamData);
+      
   
         setData((prev) => ({
           ...prev,
           ...teamData,
         }));
+        
+        setCachedData(true)
+      
+      }
       } catch (error) {
         console.error('Error fetching team data:', error);
       }
@@ -109,7 +126,7 @@ function RecruitmentDetailPage() {
   
       // Ensure teamId is valid (not null or undefined) before calling getTeam
       if (teamId) {
-        console.log("teamId", teamId);
+    
         getTeam(teamId);
       }
     }
@@ -117,9 +134,11 @@ function RecruitmentDetailPage() {
   }, [data]); // Re-run the effect whenever data changes
   
 
+ 
 
   const AmIReClikc=()=>{
-    RecruitApplication()
+    setAmIRecruitChange((prev)=>prev+1)
+console.log(AmIRecruit)
 
     const isUserInArray = AmIRecruit.IRecruit.some(item => item.user = 2);
 
@@ -131,12 +150,15 @@ function RecruitmentDetailPage() {
   }
 
  const RecruitBtn=async()=>{
-    applyForRecruit(id)
-    RecruitApplication()
+   await applyForRecruit(id)
+   setAmIRecruitChange((prev)=>prev+1)
   }
   const UnRecruitBtn=async()=>{
-    cancelRecruitApplication(id)
-    RecruitApplication()
+    console.log("id")
+    console.log("id")
+    console.log(id)
+    await cancelRecruitApplication(id)
+    setAmIRecruitChange((prev)=>prev+1)
   }
 
  const RecruitDelectBtn=async()=>{
@@ -186,11 +208,9 @@ const gotoListBtn = () => {
 
   };
   const ReportClick = async()=>{
-    console.log("data")
-    console.log("data")
-    console.log(data)
+ 
     let a=await submitReport({user_id:data.author,content:`모집글${id}를 신고 당했습니다.`})
-    console.log(a)
+
   }
 
 
@@ -199,7 +219,7 @@ const gotoListBtn = () => {
 
   // Define the click handler
   const handleCommentClick = (commentUser) => {
-    console.log(commentUser);
+
     // Set the selected comment user using the state setter
     setSelectedCommentUser(commentUser);
   };
@@ -208,10 +228,10 @@ const gotoListBtn = () => {
 
 const CreatComment = async (e) => {
 
-  console.log("asd")
+  
   try {
     await FetchCreateComments({
-      post_id: id,
+      recruits: id,
       content: inserComment,
       to_user: selectedCommentUser || ''
     });
