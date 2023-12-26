@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 import Contour from '../ui/Contour';
 
 function CenterPanel({ bgColor, roomID}) {
-    const baseURL = import.meta.env.VITE_APP_API_KEY;
+    const baseURL = import.meta.env.VITE_WS_URL;
 
     const [socket, setSocket] = useState(null);
     const [chatRoomName, setChatRoomName] = useState('');
@@ -27,7 +27,7 @@ function CenterPanel({ bgColor, roomID}) {
 
     
     const setupWebSocket = () => {
-        const wsUrl = `ws://${removeProtocolFromUrl(baseURL)}/chatrooms/${roomID}/`;
+        const wsUrl = `${baseURL}/chatrooms/${roomID}/`;
         const connection = new WebSocket(wsUrl);
 
         setSocket(connection);
