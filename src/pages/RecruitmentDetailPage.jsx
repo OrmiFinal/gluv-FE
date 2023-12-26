@@ -31,7 +31,7 @@ function RecruitmentDetailPage() {
   const [AmIRecruit, setAmIRecruit] = useState('');
   const [AmIRecruitChange, setAmIRecruitChange] = useState(1);
   const [TeamID, setTeamID] = useState(0);
-  
+  const [cachedData, setCachedData] = useState(false);
  
   const { getUserInfo } = useContext(AuthContext);
  
@@ -102,6 +102,9 @@ function RecruitmentDetailPage() {
   useEffect(() => {
     const getTeam = async (teamId) => {
       try {
+        if(cachedData === false){
+
+          console.log("asd")
         const teamData = await FetchTeam({ id: teamId });
       
   
@@ -109,6 +112,10 @@ function RecruitmentDetailPage() {
           ...prev,
           ...teamData,
         }));
+        
+        setCachedData(true)
+      
+      }
       } catch (error) {
         console.error('Error fetching team data:', error);
       }
