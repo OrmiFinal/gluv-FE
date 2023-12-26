@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
+
+import { FetchPostData ,FetchDelete} from '../api/post.js';
+import { checkIfLike, likePost, unlikePost } from '../api/likes.js';
+import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
+
 import Margin from '../components/Margin.jsx';
 import DynamicColorButton from '../components/DynamicColorButton.jsx';
-
 import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
-import { FetchPostData ,FetchDelete} from '../api/post.js';
-import { Link ,useNavigate} from "react-router-dom"; 
-import { checkIfLike, likePost, unlikePost } from '../api/likes.js';
-import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
+import { Link ,useNavigate} from "react-router-dom";
 import { submitReport } from '../api/report.js';
+const baseURL = import.meta.env.VITE_APP_API_KEY;
 
 function PostDetailPage() {
   const { id } = useParams();
@@ -18,7 +20,7 @@ function PostDetailPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
   const [insertComment, setInsertComment] = useState('');
-  const [selectedCommentUser, setSelectedCommentUser] = useState(null);
+  const [selectedCommentUser, setSelectedCommentUser] = useState({id:'',nickname:''});
 
   const postId = id; 
   const navigate = useNavigate();
@@ -36,11 +38,15 @@ function PostDetailPage() {
     } catch (error) {
       console.error('Error checking if liked:', error);
     }
+
+ 
+    
   };
 
   // 댓글 태그 기능 핸들러
   const handleCommentClick = (commentUser) => {
-    setSelectedCommentUser(commentUser);
+    console.log(commentUser)
+    setSelectedCommentUser({id:commentUser.id,nickname:commentUser.nickname});
   };
 
   // 댓글 리스트 조회
@@ -62,6 +68,7 @@ function PostDetailPage() {
     commentFetch()
     getPost();
     checkIfLiked();
+  
   }, [currentPage, isLiked]);
 
 
@@ -71,7 +78,7 @@ const CreatComment = async (e) => {
     await FetchCreateComments({
       post_id: id,
       content: insertComment,
-      to_user: selectedCommentUser || ''
+      to_user: selectedCommentUser.id || ''
     });
     await commentFetch(); // Fetch and update comments after creating a new comment
   } catch (error) {
@@ -84,6 +91,12 @@ const CreatComment = async (e) => {
     try {
       await likePost(postId);
       setIsLiked(true);
+      console.log("data")
+      console.log("data")
+      console.log("data")
+      console.log(data)
+      console.log(data)
+      console.log(data)
     } catch (error) {
       console.error('Error liking the post:', error);
     }
@@ -144,7 +157,13 @@ const deleteClick = async()=>{
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
-                <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
+              
+                <img
+                src={data.author_info.profile_image}
+                alt="포스트 사진"
+                className="bg-black w-8 h-8 rounded-full mr-2"
+              />
+               
                 <div className='font-bold text-lg'>{data.author}</div>
                 <Margin left="1"  plustailwind="w-3" />
                 <div className='text-sm  text-gray-600  ' >{NowformatDate(data.created_at)}</div>
@@ -240,7 +259,7 @@ const deleteClick = async()=>{
               
             </div>
             <div>
-              {selectedCommentUser? selectedCommentUser +"님을 선택을 하였습니다":""}
+              {selectedCommentUser? selectedCommentUser.nickname +"님을 선택을 하였습니다":""}
               <Margin top="4" />
               <Contour />
               <div className='flex items-center justify-center'>
