@@ -14,6 +14,15 @@ function CenterPanel({ bgColor, roomID}) {
     const [hideScroll, setHideScroll] = useState(false);
     const [currentUsers, setCurrentUsers] = useState([]);
 
+    // 엔터키 눌러서 푸쉬
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          sendMessage(userID);
+        }
+      };
+
+
     function removeProtocolFromUrl(url) {
     const protocols = ["http://", "https://"];
         for (const protocol of protocols) {
@@ -180,7 +189,9 @@ function CenterPanel({ bgColor, roomID}) {
                 onChange={(e) => setMessageInput(e.target.value)}
                 className="flex-1 rounded-l-md p-2"
             />
-            <button onClick={() => sendMessage(userID)} className="bg-blue-500 text-white rounded-r-md p-2">Send</button>
+            <button 
+            onKeyDown={handleKeyPress}
+            onClick={() => sendMessage(userID)} className="bg-blue-500 text-white rounded-r-md p-2">Send</button>
         </div>
     </div>
     );
