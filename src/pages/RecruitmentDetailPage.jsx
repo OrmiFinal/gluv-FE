@@ -209,6 +209,7 @@ const gotoListBtn = () => {
       console.error('Error unliking the post:', error);
     }
 
+    console.log(data)
   };
   const ReportClick = async()=>{
  
@@ -272,7 +273,7 @@ const CreatComment = async (e) => {
                 alt="모집글 사진"
                 className="bg-black w-8 h-8 rounded-full mr-2"
               />
-                <div className='font-bold text-lg'>{data.author}</div>
+                   <div className='font-bold text-lg'>{data.author_info.nickname}</div>
                 <Margin left="1"  plustailwind="w-3" />
                 <div className='text-sm  text-gray-600 '>{NowformatDate(data.created_at)}</div>
               </div>

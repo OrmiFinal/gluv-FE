@@ -41,7 +41,7 @@ const TeamDetailContentPage = () => {
               alt='프로필 사진'
               className='프로필_이미지_스타일 rounded-full'
             />
-            asdasd
+    
           </div>
 
 

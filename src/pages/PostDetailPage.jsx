@@ -165,7 +165,8 @@ const deleteClick = async()=>{
                 className="bg-black w-8 h-8 rounded-full mr-2"
               />
                
-                <div className='font-bold text-lg'>{data.author}</div>
+               <div className='font-bold text-lg'>{data.author_info.nickname}</div>
+
                 <Margin left="1"  plustailwind="w-3" />
                 <div className='text-sm  text-gray-600  ' >{NowformatDate(data.created_at)}</div>
               </div>
