@@ -21,7 +21,7 @@ const CommentList = ({ comments, onCommentClick }) => {
            <img
             src={comment.user.profile_image}
             alt='프로필 사진'
-            className='프로필_이미지_스타일 rounded-full'
+            className='bg-black w-8 h-8 rounded-full mr-2'
           />
 
 
