@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_APP_API_KEY;
+const ReactURL = import.meta.env.VITE_React_API_KEY;
 
 export const httpClient = axios.create();
 
