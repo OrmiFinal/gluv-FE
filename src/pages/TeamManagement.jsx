@@ -31,14 +31,7 @@ function TeamManagement() {
     const fetchTeamMembers = async () => {
       try {
         const members = await getTeamMembers({ id: id });
-        console.log("members")
-        console.log("members")
-        console.log("members")
-        console.log("members")    
-         console.log("members")
-        console.log(members)
-        console.log(members)
-        console.log(members)
+      
         setTeamMembers(members);
       } catch (error) {
         console.error('Fetching team members failed:', error.message);
