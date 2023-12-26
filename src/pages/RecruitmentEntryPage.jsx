@@ -7,9 +7,11 @@ import DynamicColorButton from '../components/DynamicColorButton';
 import EditorComponent from '../components/ui/EditorComponent';
 import InputField from '../components/InputField';
 import SelectButton from '../components/ui/SelectButton';
+import { Link, useNavigate} from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
 function RecruitmentPostEntryPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     author: '',
     title: '',
@@ -58,7 +60,7 @@ function RecruitmentPostEntryPage() {
       const response = await createRecruitsPost(postData);
       
       console.log("Recruits post created successfully:", response);
-      console.log("formData" ,formData)
+      navigate(-1);
     } catch (error) {
       console.error("Posting recruits failed:", error.message);
     }
