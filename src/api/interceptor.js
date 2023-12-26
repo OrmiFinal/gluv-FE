@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { Request } from "./api";
 
-const ReactURL = import.meta.env.VITE_React_API_KEY;
+const baseURL = import.meta.env.VITE_APP_API_KEY;
 
 export const httpClient = axios.create();
 
@@ -45,14 +46,14 @@ async function AutoRefreshToken() {
 
     const user = JSON.parse(localStorage.getItem('user'));
     const refreshToken = user?.refresh_token;
-
-    const response = await axios.post(baseURL + '/token/refresh/', {
+    
+    const response = await Request("post", baseURL + '/token/refresh/', {}, {}, {
       refresh: refreshToken,
     });
 
     // 새로운 액세스 토큰과 리프레시 토큰 가져오기
-    const newAccessToken = response.data.access;
-    const newRefreshToken = response.data.refresh;
+    const newAccessToken = response.access;
+    const newRefreshToken = response.refresh;
 
     // 새로운 토큰 정보를 사용자 정보에 업데이트
     const userTokens = {
