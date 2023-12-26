@@ -265,7 +265,7 @@ const deleteClick = async()=>{
               <Contour />
               <div className='flex items-center justify-center'>
                 <div className='text-2xl font-bold px-2'></div>
-                <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
+               
                 <input
                   className='border p-3 grow rounded-md'
                   placeholder='댓글 입력...'
