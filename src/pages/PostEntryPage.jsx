@@ -6,17 +6,17 @@ import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import EditorComponent from '../components/ui/EditorComponent';
 import SelectButton from '../components/ui/SelectButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 function PostEntryPage() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     introduction: '', //제목
     targetAudience: '', // 어떤게시판이지
     content: '', // 내용
     selectedCategory: '' // 새로운 state 추가
   });
-
-
 
   const handleContentChange = (newContent) => {
     setFormData({ ...formData, content: newContent });
@@ -37,6 +37,7 @@ function PostEntryPage() {
     
     if (response) {
       console.log('Post created successfully:', response);
+      navigate(-1);
       // Additional actions upon successful creation
     } else {
       console.error('Failed to create post');
