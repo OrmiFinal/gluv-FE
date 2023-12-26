@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import TeamBox from "../TeamBox";
 import Margin from "../Margin";
 import Contour from "../ui/Contour";
+
+import { Link } from "react-router-dom";
 
 function MainContents() {
   const [teamDataList, setTeamDataList] = useState([]);
@@ -76,14 +78,17 @@ function MainContents() {
     <div>
       <div className="border p-2 flex flex-col rounded-md h-[520px]">
         <div className="m-8 ml-6">
-          {teamDataList.map((teamData) => (
+          {teamDataList==undefined?(
+             teamDataList.map((teamData) => (
             <Link to={`/teams/${teamData.id}`} key={teamData.id}>
               <div>
                 <TeamBox teamData={teamData} />
                 <Margin top="3" plustailwind="h-3" />
               </div>
             </Link>
-          ))}
+          ))
+          ):(<></>)
+         }
         </div>
       </div>
       <Margin top="2" plustailwind="h-4" />
