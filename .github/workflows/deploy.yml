@@ -1,0 +1,36 @@
+name: Build and Deploy Vite App
+
+on:
+  push:
+    branches: [ "main" ]
+    
+jobs:
+  setup-server:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '19'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Vite App
+        run: |
+          echo "VITE_APP_API_KEY=http://${{ secrets.SERVER_HOST }}/api/v1" > .env
+          echo "VITE_WS_URL=ws://${{ secrets.SERVER_HOST }}/ws/v1" >> .env
+          npm run build
+      - name: 코드 배포
+        run: |
+           mkdir -p ~/.ssh
+            echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -t rsa ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+            chmod 644 ~/.ssh/known_hosts
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }} 'mkdir -p ~/gluv_front/dist'
+            scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r ./dist/* ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }}:~/gluv_front/dist/
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }} 'sudo cp -r ~/gluv_front/dist/* /var/www/html'
