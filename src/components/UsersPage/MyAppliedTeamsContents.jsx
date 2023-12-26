@@ -60,6 +60,7 @@ function MainContents() {
             },
           }
         );
+        console.log(response.data["results"])
         setTeamDataList(response.data["results"]);
         if (response.data["next"]) setNextPage(response.data["next"]);
         else setNextPage(null);
@@ -73,19 +74,23 @@ function MainContents() {
       }
     };
     fetchTeamData();
+  
   }, []);
   return (
     <div>
       <div className="border p-2 flex flex-col rounded-md h-[520px]">
         <div className="m-8 ml-6">
-          {teamDataList.map((teamData) => (
+          {teamDataList !== undefined?(
+             teamDataList.map((teamData) => (
             <Link to={`/teams/${teamData.id}`} key={teamData.id}>
               <div>
                 <TeamBox teamData={teamData} />
                 <Margin top="3" plustailwind="h-3" />
               </div>
             </Link>
-          ))}
+          ))
+          ):(<></>)
+         }
         </div>
       </div>
       <Margin top="2" plustailwind="h-4" />
