@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 import Contour from '../ui/Contour';
-
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 function Header({Category}) {
     const location = useLocation();

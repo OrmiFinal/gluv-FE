@@ -1,7 +1,7 @@
 import axios from "axios";
-const baseURL = import.meta.env.VITE_APP_API_KEY;
 import {httpClient} from './interceptor';
 
+const baseURL = import.meta.env.VITE_APP_API_KEY;
 
 export const FetchAllCommentsData = async ({id,page=1}) => {
     try {
@@ -18,7 +18,7 @@ export const FetchAllCommentsData = async ({id,page=1}) => {
             },
         });
 
-        // rest of the code...
+      
         return res.data;
     } catch (error) {
         console.error("Fetching notice failed:", error.message);
@@ -77,7 +77,7 @@ export const FetchCreateComments = async ({ post_id, recruits, content, to_user 
         }
       });
   
-      // rest of the code...
+ 
       return res.data;
     } catch (error) {
       console.error("Fetching Create failed:", error.message);

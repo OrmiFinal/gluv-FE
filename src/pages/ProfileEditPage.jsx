@@ -1,9 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import 'react-datepicker/dist/react-datepicker.css';
-import { AuthContext } from '../context/AuthContextProvider.jsx';
-import editImage from '../assets/editImage.png';
-import axios from "axios";
+
 import { Request } from '../api/api.js';
+import { AuthContext } from '../context/AuthContextProvider.jsx';
+
+import editImage from '../assets/editImage.png';
+import 'react-datepicker/dist/react-datepicker.css';
+
+
 
 
 function ProfileEditPage() {

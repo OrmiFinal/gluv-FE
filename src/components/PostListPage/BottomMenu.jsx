@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
+
 import { Link } from 'react-router-dom'
 
-import SelectButton from '../ui/SelectButton';
-import { FetchAllContext } from '../../api/post';
 
 function BottomMenu() {
   const [expandedBoards, setExpandedBoards] = useState([]);

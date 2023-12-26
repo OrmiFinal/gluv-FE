@@ -1,9 +1,10 @@
 import React from "react";
+
 import BookBanner from "../components/MainPage/BookBanner";
 import RecentRecruitCardList from "../components/MainPage/RecentRecruitCardList";
 import RecentPostList from "../components/MainPage/RecentPostList";
 import HotPostList from "./../components/MainPage/HotPostList";
-import Margin from "../components/Margin";
+
 
 function MainPage() {
   console.log(import.meta.env.BASE_URL);

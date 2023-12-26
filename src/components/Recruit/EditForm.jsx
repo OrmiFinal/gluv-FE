@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+import { Request } from '../../api/api';
+
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
-import { Request } from '../../api/api';
 
 const EditForm = ({recruitPost, scheduleID}) => {
     const [teamName, setTeamName] = useState('');

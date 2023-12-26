@@ -1,6 +1,7 @@
 // LoginButton.js
 
 import React from 'react';
+
 import { FaSignInAlt } from 'react-icons/fa';
 
 const LoginButton = ({ onClick }) => {

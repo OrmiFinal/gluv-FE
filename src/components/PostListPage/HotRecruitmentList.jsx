@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import {  fetchHotRecruits } from '../../api/recruits';
 
 function HotRecruitmentList ({ category }){

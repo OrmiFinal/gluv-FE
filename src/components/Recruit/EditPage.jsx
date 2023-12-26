@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Contour from '../ui/Contour';
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
-import { Request } from '../../api/api';
-import EditForm from './EditForm';
 import { FetchTeam } from "../../api/team";
 import { TeamContext } from '../TeamPage/TeamContext';
+import { Request } from '../../api/api';
+
+import EditForm from './EditForm';
 
 const EditPage = () => {
   const teamContext = useContext(TeamContext);

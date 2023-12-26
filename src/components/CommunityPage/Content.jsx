@@ -1,15 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
+
+
+import { SendAuthRequest } from '../../api/post';
+
+import { ModelContext } from '../../context/ModelContextProvider';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
-
-import 'react-datepicker/dist/react-datepicker.css';
-
 import useWindowSize from '../../hooks/useWindowSzie';
 import Contour from '../ui/Contour';
 import TitleComponent from '../RecruitmentPage/TitleComponent'; // Adjust the path as needed
 import BulletinBoard from '../RecruitmentPage/BulletinBoard';
-import { ModelContext } from '../../context/ModelContextProvider';
-import { SendAuthRequest } from '../../api/post';
+
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Content({ category }) {
     const { screenSize } = useWindowSize();

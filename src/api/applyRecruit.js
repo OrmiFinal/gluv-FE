@@ -1,16 +1,16 @@
-import { httpClient } from './interceptor';
 import axios from 'axios';
+import { httpClient } from './interceptor';
 
-// Retrieve the user and access token from local storage
+
+
 const user = JSON.parse(localStorage.getItem("user"));
 const accessToken = user?.access_token || "";
 
-// Replace 'YOUR_API_BASE_URL' with your actual API base URL
 const baseURL = import.meta.env.VITE_APP_API_KEY;
 
 
 
-// Create an instance of Axios with the provided configuration
+
 const axiosInstance = httpClient.create({
   baseURL: baseURL,
   headers: {
@@ -18,7 +18,7 @@ const axiosInstance = httpClient.create({
   },
 });
 
-// Function to apply for recruit
+
 export const applyForRecruit = async (recruitId) => {
   try {
     const numericRecruitId = parseInt(recruitId, 10);
@@ -32,7 +32,7 @@ export const applyForRecruit = async (recruitId) => {
   }
 };
 
-// Function to cancel recruit application
+
 export const cancelRecruitApplication = async (recruitId) => {
   try {
   
@@ -46,7 +46,7 @@ export const cancelRecruitApplication = async (recruitId) => {
 };
 
 
-// Function to check recruit application
+
 export const checkRecruitApplication = async (recruitId) => {
   try {
     const numericRecruitId = parseInt(recruitId, 10);

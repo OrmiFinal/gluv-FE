@@ -1,12 +1,14 @@
 // LoginForm.js
 
 import React, { useContext, useState } from 'react';
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
+
+import { AuthContext } from '../../context/AuthContextProvider';
 import { OpenModalContext } from '../../context/OpenModalProvider';
+
 import DynamicColorButton from '../DynamicColorButton';
 import LoginInput from './LoginInput'; // Import the new component
-import { AuthContext } from '../../context/AuthContextProvider';
+import ModalPortal from '../ui/ModalPortal';
+import PortalBg from '../ui/PortalBg';
 
 function LoginForm() {
   const { closeForm, openForm } = useContext(OpenModalContext);

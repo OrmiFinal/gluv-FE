@@ -1,4 +1,5 @@
 import React from 'react'
+
 import TeamDetailContentPage from '../components/TeamDetailPage/TeamDetailContentPage'
 import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 

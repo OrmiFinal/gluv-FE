@@ -6,8 +6,8 @@ import { AuthContextProvider } from "./context/AuthContextProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ModelContextProvider } from "./context/ModelContextProvider";
 import { BottomMenuProvider } from "./context/BottomMenu";
-import "./index.css";
 import { OpenModalProvider } from "./context/OpenModalProvider";
+import "./index.css";
 
 const queryClient = new QueryClient();
 

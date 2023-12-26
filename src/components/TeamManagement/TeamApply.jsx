@@ -1,9 +1,12 @@
 import React from 'react';
+
+import { applyToTeam, kickTeamMember } from '../../api/team';
+
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 import crew from '../../assets/crew.png';
 import leader from '../../assets/leader.png';
-import { applyToTeam, kickTeamMember } from '../../api/team';
+
 
 function TeamApply({ profileData,  postiId,isMe,setPageReload }) {
   const { profilePicture,  is_leader, user ,nickname} = profileData;
