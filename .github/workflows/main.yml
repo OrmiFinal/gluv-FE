@@ -1,0 +1,21 @@
+name: Setup and Deploy Server
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  setup-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+            
+      - name: Setup Server and Deploy Server
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r ./* ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }}:~/
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }} 'sudo cp ~/nginx-config/nginx.config /etc/nginx/sites-enabled/default'
