@@ -13,15 +13,28 @@ const CommentList = ({ comments, onCommentClick }) => {
           <div
             key={index}
             className='flex items-start  my-3 py-1'
-            onClick={() => onCommentClick(comment.user_id)}
+            onClick={() => onCommentClick({id:comment.user_id,nickname:comment.nickname})}
             style={{ cursor: 'pointer' }}
           >
-            <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
+
+            {/* 아래는 유저의 사진정보  */}
+           <img
+            src={comment.user.profile_image}
+            alt='프로필 사진'
+            className='프로필_이미지_스타일 rounded-full'
+          />
+
+
             <div>
               <strong className='font-semibold'>{comment.nickname}님</strong>
               <Margin left='3' plustailwind='w-3'></Margin>
               <strong className='font-semibold'>
-                {comment.to_user ? comment.to_user + '에게' : ''}
+
+                   {/* 아래는 to_user 의 닉네임 이있으면  사진정보를 보여줌 */}
+
+                   {comment.to_user_info ? comment.to_user_info.nickname + '에게' : ''}
+
+
               </strong>
               <p className=''>{comment.content}</p>
             </div>

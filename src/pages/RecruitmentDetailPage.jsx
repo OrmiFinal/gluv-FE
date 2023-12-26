@@ -36,7 +36,8 @@ function RecruitmentDetailPage() {
   const [cachedData, setCachedData] = useState(false);
  
   const { getUserInfo } = useContext(AuthContext);
- 
+ const [selectedCommentUser, setSelectedCommentUser] = useState({id:'',nickname:''});
+
   const handleInputChange = (event) => {
     setInserComment(event.target.value);
   };
@@ -216,9 +217,7 @@ const gotoListBtn = () => {
   }
 
 
-
-  const [selectedCommentUser, setSelectedCommentUser] = useState(null);
-
+ 
   // Define the click handler
   const handleCommentClick = (commentUser) => {
 
@@ -235,7 +234,7 @@ const CreatComment = async (e) => {
     await FetchCreateComments({
       recruits: id,
       content: inserComment,
-      to_user: selectedCommentUser || ''
+      to_user: selectedCommentUser.id || ''
     });
     await commentFetch(); // Fetch and update comments after creating a new comment
   } catch (error) {
@@ -268,7 +267,11 @@ const CreatComment = async (e) => {
 
             <div className='flex items-center justify-between'>
               <div className='flex items-center'>
-                <div className='bg-black w-8 h-8 rounded-full mr-2'></div>
+                 <img
+                src={data.image}
+                alt="모집글 사진"
+                className="bg-black w-8 h-8 rounded-full mr-2"
+              />
                 <div className='font-bold text-lg'>{data.author}</div>
                 <Margin left="1"  plustailwind="w-3" />
                 <div className='text-sm  text-gray-600 '>{NowformatDate(data.created_at)}</div>
@@ -400,7 +403,7 @@ const CreatComment = async (e) => {
             </div>
 
             <div>
-            {selectedCommentUser? selectedCommentUser +"님을 선택을 하였습니다":""}
+            {selectedCommentUser? selectedCommentUser.nickname +"님을 선택을 하였습니다":""}
               <Margin top="4" />
               <div className='text-2xl font-bold mb-4'>댓글</div>
               

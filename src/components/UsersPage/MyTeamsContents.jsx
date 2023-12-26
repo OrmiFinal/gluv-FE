@@ -57,6 +57,8 @@ function MainContents() {
             },
           }
         );
+
+
         setTeamDataList(response.data["results"]);
         if (response.data["next"]) setNextPage(response.data["next"]);
         else setNextPage(null);
