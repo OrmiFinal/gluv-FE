@@ -47,8 +47,6 @@ function MainContents() {
       try {
 
         const response = await Request('get', `${baseURL}/teams/myappliedteams/`, {}, {}, {})
-        
-        console.log(response)
         setTeamDataList(response.results);
 
         if (response.data["next"]) setNextPage(response.data["next"]);

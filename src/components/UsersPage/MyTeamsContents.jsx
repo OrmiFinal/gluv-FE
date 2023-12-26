@@ -48,8 +48,6 @@ function MainContents() {
           return null;
         }
         const baseURL = import.meta.env.VITE_APP_API_KEY;
-    
-       
 
         const response = await axios.get(
           `${baseURL}/teams/myteams/`,
