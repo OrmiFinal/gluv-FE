@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
+
+import { TeamContext } from './TeamContext';
+import {  TeamLeave, TeamDelete } from "../../api/team";
+import { FetchCheckRecruitsApplied } from "../../api/recruits";
+
 import Margin from "../Margin";
-import DynamicColorButton from "../DynamicColorButton";
 import Contour from "../ui/Contour";
 import { Link, useParams } from "react-router-dom";
-import { FetchTeam, TeamLeave, TeamDelete } from "../../api/team";
-import { FetchCheckRecruitsApplied } from "../../api/recruits";
-import { TeamContext } from './TeamContext';
+
+
 
 function TeamLeftMenu() {
   const teamContext = useContext(TeamContext);

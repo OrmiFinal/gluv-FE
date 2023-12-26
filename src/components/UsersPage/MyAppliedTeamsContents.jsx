@@ -7,6 +7,7 @@ import Margin from "../Margin";
 import Contour from "../ui/Contour";
 
 import { Link } from "react-router-dom";
+import { Request } from "../../api/api";
 
 function MainContents() {
   const [teamDataList, setTeamDataList] = useState([]);
@@ -44,24 +45,10 @@ function MainContents() {
   useEffect(() => {
     const fetchTeamData = async () => {
       try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const accessToken = user?.access_token || "";
-        if (!accessToken) {
-          console.error("Access token not available");
-          return null;
-        }
-  
-        
-        const response = await axios.get(
-          `${baseURL}teams/myappliedteams/`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        console.log(response.data["results"])
-        setTeamDataList(response.data["results"]);
+
+        const response = await Request('get', `${baseURL}/teams/myappliedteams/`, {}, {}, {})
+        setTeamDataList(response.results);
+
         if (response.data["next"]) setNextPage(response.data["next"]);
         else setNextPage(null);
         if (response.data["previous"]) setPrevPage(response.data["previous"]);

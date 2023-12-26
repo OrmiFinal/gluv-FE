@@ -2,10 +2,7 @@ import React, { useEffect, useState,useContext } from 'react';
 import Margin from '../components/Margin.jsx';
 import DynamicColorButton from '../components/DynamicColorButton.jsx';
 
-import CommentList from '../components/CommentList.jsx';
-import Contour from '../components/ui/Contour.jsx';
-import { Link, useParams ,useNavigate} from 'react-router-dom';
-import { FetchPostData } from '../api/post.js';
+
 import { FetchDelectRecruits, FetchRecruits } from '../api/recruits.js';
 import { FetchAllReqCommentsData, FetchCreateComments } from '../api/comment.js';
 import { FetchTeam } from '../api/team.js';
@@ -14,6 +11,11 @@ import { checkIfReLike, likeRecruit, unlikeRecruit } from '../api/likes.js';
 import { checkRecruitApplication } from '../api/applyRecruit';
 import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
 import { AuthContext } from '../context/AuthContextProvider.jsx';
+
+import CommentList from '../components/CommentList.jsx';
+import Contour from '../components/ui/Contour.jsx';
+import { Link, useParams ,useNavigate} from 'react-router-dom';
+
 
 function RecruitmentDetailPage() {
 

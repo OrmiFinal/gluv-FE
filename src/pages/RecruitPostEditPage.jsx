@@ -1,9 +1,9 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+
+import {TeamContextProvider} from '../components/TeamPage/TeamContext';
 
 import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 import EditPage from '../components/Recruit/EditPage'
-import {TeamContextProvider} from '../components/TeamPage/TeamContext';
 
 function RecruitPostEditPage() {
     return (

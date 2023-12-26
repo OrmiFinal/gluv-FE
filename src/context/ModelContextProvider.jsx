@@ -1,6 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
-import { FetchAllContext } from "../api/post";
 
 export const ModelContext = createContext();
 

@@ -1,6 +1,7 @@
 // LogoutButton.js
 
 import React from 'react';
+
 import { FaSignOutAlt } from 'react-icons/fa';
 
 const LogoutButton = ({ onClick }) => {

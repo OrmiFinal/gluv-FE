@@ -1,4 +1,5 @@
 import React from "react";
+
 import Margin from "./Margin";
 import { Link } from "react-router-dom";
 
@@ -14,7 +15,7 @@ function TeamBox({ teamData }) {
       <Link to={`/teams/${id}`} key={id}>
         <div className="relative overflow-hidden rounded-full h-20 w-20 mr-2">
           <img
-            src={baseURL+image}
+            src={image}
             alt="모임 사진"
             className="모임_이미지_스타일 rounded-full"
           />

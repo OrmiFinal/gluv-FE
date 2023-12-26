@@ -1,19 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import 'react-datepicker/dist/react-datepicker.css';
-import { useSearchParams } from 'react-router-dom';
 
-import { FetchAllContext,FetchPost } from '../../api/post';
-import { Link } from 'react-router-dom';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import { FetchPost } from '../../api/post';
 
 import Header from './Header.jsx';
 import SubCategoryPage from './SubCategoryPage.jsx'
-import { ModelContext } from '../../context/ModelContextProvider'
 import Pagination from './Pagination.jsx';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 import useWindowSize from '../../hooks/useWindowSize';
 import BulletinBoard from './BulletinBoard';
+import { ModelContext } from '../../context/ModelContextProvider'
+import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Content() {
     const [searchParams, setSearchParams]=useSearchParams();

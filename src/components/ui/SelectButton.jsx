@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+
+import Margin from '../Margin';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { motion, useAnimation } from 'framer-motion';
-import Margin from '../Margin';
 
 
 /**
