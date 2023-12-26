@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import Margin from '../components/Margin.jsx';
 import DynamicColorButton from '../components/DynamicColorButton.jsx';
 
@@ -13,6 +13,7 @@ import { submitReport } from '../api/report.js';
 import { checkIfReLike, likeRecruit, unlikeRecruit } from '../api/likes.js';
 import { checkRecruitApplication } from '../api/applyRecruit';
 import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
+import { AuthContext } from '../context/AuthContextProvider.jsx';
 
 function RecruitmentDetailPage() {
 
@@ -28,8 +29,12 @@ function RecruitmentDetailPage() {
   
   const [inserComment, setInserComment] = useState('');
   const [AmIRecruit, setAmIRecruit] = useState('');
+  const [AmIRecruitChange, setAmIRecruitChange] = useState(1);
   const [TeamID, setTeamID] = useState(0);
-
+  
+ 
+  const { getUserInfo } = useContext(AuthContext);
+ 
   const handleInputChange = (event) => {
     setInserComment(event.target.value);
   };
@@ -37,7 +42,7 @@ function RecruitmentDetailPage() {
 
 
   const navigate = useNavigate();
-
+  useEffect(() => {
   const RecruitApplication = async () => {
     console.log("inRecruitApplication")
     try {
@@ -46,13 +51,17 @@ function RecruitmentDetailPage() {
 
         IRecruit,
       }));
-
+      console.log("IRecruit")
+      console.log("IRecruit")
+      console.log(IRecruit)
 
     } catch (error) {
       console.error('Error fetching post data:', error);
     }
+
   };
-  
+  RecruitApplication()
+}, [AmIRecruitChange]);
   useEffect(() => {
     const checkLike = async () => {
       const liked = await checkIfReLike(id);
@@ -84,7 +93,7 @@ function RecruitmentDetailPage() {
     commentFetch()
     getPost();
 
-    RecruitApplication()
+    setAmIRecruitChange((prev)=>prev+1)
     setTeamID((prev)=>{prev+1})
   }, []);
   
@@ -118,10 +127,12 @@ function RecruitmentDetailPage() {
   }, [data]); // Re-run the effect whenever data changes
   
 
+ 
 
   const AmIReClikc=()=>{
-    RecruitApplication()
+    setAmIRecruitChange((prev)=>prev+1)
 console.log(AmIRecruit)
+
     const isUserInArray = AmIRecruit.IRecruit.some(item => item.user = 2);
 
     let a = isUserInArray ? "신청중입니다": "신청 상태가 없는 상태 입니다" ;
@@ -132,12 +143,15 @@ console.log(AmIRecruit)
   }
 
  const RecruitBtn=async()=>{
-    applyForRecruit(id)
-    RecruitApplication()
+   await applyForRecruit(id)
+   setAmIRecruitChange((prev)=>prev+1)
   }
   const UnRecruitBtn=async()=>{
-    cancelRecruitApplication(id)
-    RecruitApplication()
+    console.log("id")
+    console.log("id")
+    console.log(id)
+    await cancelRecruitApplication(id)
+    setAmIRecruitChange((prev)=>prev+1)
   }
 
  const RecruitDelectBtn=async()=>{
