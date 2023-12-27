@@ -68,7 +68,7 @@ function TeamLeftMenu() {
           <div className="relative overflow-hidden rounded-full bg-black h-28 w-28">
           <Margin plustailwind='h-10 w-3' />
             <img
-              src={teamContext.teamData.image || "twed"}
+              src={teamContext.teamData.image || "/media/defalut_team.png"}
               alt="프로필 사진"
               className="w-32 h-32 rounded-full"
             />
