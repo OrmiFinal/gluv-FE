@@ -44,7 +44,7 @@ function HotPostList({ category }) {
         <h3 className="text-gray-900 text-subtitle font-bold">화제의 게시물</h3>
         <a
           className="ml-auto text-gray-600 font-medium text-body1"
-          href="/posts/?order_by=views"
+          href="/posts/notices/"
         >
           더보기
         </a>
