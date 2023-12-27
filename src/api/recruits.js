@@ -145,7 +145,7 @@ export const FetchDelectRecruits = async ({id}) => {
 };
 
 
-export const FetchCheckRecruitsApplied = async ({ id }) => {
+export const CheckRecruitsApplied = async (recruit_id) => {
   try {
     const user = JSON.parse(localStorage.getItem("user"));
     const accessToken = user?.access_token || "";
@@ -154,7 +154,7 @@ export const FetchCheckRecruitsApplied = async ({ id }) => {
       return null;
     }
 
-    const res = await httpClient.get(`${baseURL}/recruits/${id}/apply/`, {
+    const res = await httpClient.get(`${baseURL}/recruits/${recruit_id}/apply/`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

@@ -32,7 +32,6 @@ const TeamContextProvider = ({ children }) => {
     const fetchTeamData = async () => {
         try {
             const teamData = await FetchTeam({ id });
-            console.log(teamData)
             if (teamData) {
                 setTeamData({
                     id: teamData.id,
@@ -49,7 +48,7 @@ const TeamContextProvider = ({ children }) => {
                     applied_member : teamData.applied_member,
                     start_time : teamData.start_time,
                     end_time : teamData.end_time,
-                    recruit_id : teamData.recruit_id,
+                    recruit_id : teamData.recruit_id || 0,
                     introduce : teamData.introduce,
                     chatroom_id : teamData.chatroom_id,
                 });

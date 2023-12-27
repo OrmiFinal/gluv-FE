@@ -22,7 +22,6 @@ function LeftMenu() {
 
 
   useEffect(() => {
-    console.log("나는 레프트 매뉴 3이다")
     const fetchData = async () => {
       try {
         const data = await getUserInfo();
