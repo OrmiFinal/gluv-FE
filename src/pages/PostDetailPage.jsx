@@ -67,7 +67,7 @@ function PostDetailPage() {
     const getPost = async () => {
       try {
         const postData = await FetchPostData({ id });
-        checkIsAuthor(JSON.stringify(postData.id));
+        checkIsAuthor(JSON.stringify(postData.author_info.id));
         setData(postData);
     
       } catch (error) {
