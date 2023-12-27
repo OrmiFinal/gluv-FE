@@ -58,7 +58,6 @@ const EditForm = ({ recruitPost, scheduleID }) => {
   const fetchTeamInfo = async (team_id) => {
     try {
       const response = await Request('get', `/teams/${team_id}/`, {}, {}, {});
-      console.log(response);
 
       setTeamInfo(response);
       setTeamMaxAttenDance(response.max_attendance);
@@ -78,7 +77,6 @@ const EditForm = ({ recruitPost, scheduleID }) => {
         content: postContent,
         region: selectedRegion,
       });
-      console.log('게시글 업데이트 요청 결과 : ', response);
     } catch (error) {
       console.error('게시글 업데이트 중 에러 발생 : ', error.message);
     }
@@ -100,7 +98,6 @@ const EditForm = ({ recruitPost, scheduleID }) => {
         formData.append('day', selectedDays);
 
       const response = await Request('patch', `/teams/${teamID}/`, {}, {}, formData);
-      console.log('팀 업데이트 요청 결과 : ', response);
     } catch (error) {
       console.error('팀 업데이트 중 에러 발생 : ', error.message);
     }
@@ -113,7 +110,6 @@ const EditForm = ({ recruitPost, scheduleID }) => {
         day: selectedDays,
         week: selectedWeeks,
       });
-      console.log('일정 업데이트 요청 결과 : ', response);
     } catch (error) {
       console.error('일정 업데이트 중 에러 발생 : ', error.message);
     }
