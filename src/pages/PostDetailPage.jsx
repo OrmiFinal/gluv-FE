@@ -208,7 +208,7 @@ const deleteClick = async()=>{
             <Contour />
             
             <Margin top="3" plustailwind="h-3 w-1"  />
-            <div className="h-[400px] w-full flex   z-10">
+            <div className="min-h-[400px] w-full flex   z-10">
       <div dangerouslySetInnerHTML={{ __html: data.content }} /></div>
 
             <Margin top="4" />
