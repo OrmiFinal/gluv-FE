@@ -23,8 +23,6 @@ export const applyForRecruit = async (recruitId) => {
   try {
     const numericRecruitId = parseInt(recruitId, 10);
     const response = await axiosInstance.post(`recruits/${numericRecruitId}/apply/`);
-    console.log("responseget")
-    console.log(response)
     return response.data;
   } catch (error) {
     console.error('Error applying for recruit:', error);
@@ -37,7 +35,6 @@ export const cancelRecruitApplication = async (recruitId) => {
   try {
   
     const response = await axiosInstance.delete(`recruits/${recruitId}/apply/`);
-    console.log(response)
     return response.data;
   } catch (error) {
     console.error('Error canceling recruit application:', error);
@@ -51,7 +48,6 @@ export const checkRecruitApplication = async (recruitId) => {
   try {
     const numericRecruitId = parseInt(recruitId, 10);
     const response = await axiosInstance.get(`recruits/${numericRecruitId}/apply/`);
-    console.log(response)
     return response.data;
   } catch (error) {
     console.error('Error checking recruit application:', error);

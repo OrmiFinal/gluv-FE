@@ -54,9 +54,6 @@ function RecruitmentDetailPage() {
 
         IRecruit,
       }));
-      console.log("IRecruit")
-      console.log("IRecruit")
-      console.log(IRecruit)
 
     } catch (error) {
       console.error('Error fetching post data:', error);
@@ -106,8 +103,6 @@ function RecruitmentDetailPage() {
     const getTeam = async (teamId) => {
       try {
         if(cachedData === false){
-
-          console.log("asd")
         const teamData = await FetchTeam({ id: teamId });
       
   
