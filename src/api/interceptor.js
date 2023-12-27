@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { Request } from "./api";
-import { useHistory } from 'react-router-dom';
 
 const baseURL = import.meta.env.VITE_APP_API_KEY;
-const history = useHistory();
 
 export const httpClient = axios.create();
 
@@ -29,14 +27,14 @@ httpClient.interceptors.response.use(
         }
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);
-        history.push(baseURL+'/');
+        window.location.href = '/users/login';
         return Promise.reject(refreshError);
       }
     } else if(error.response && error.response.status === 500){
-      history.push(baseURL+'/error/500/');
+      window.location.href = baseURL+'/error/500/';
   
     }else{
-      history.push(baseURL+'/error/404/');
+      window.location.href=baseURL+'/error/404/'
     }
     
     return Promise.reject(error);
