@@ -61,15 +61,16 @@ function TeamLeftMenu() {
     <div className="w-72 h-full flex justify-center items-center">
       <div className="mt-4 w-64 h-full mx-4 bg-gray-100 flex flex-col items-center text-center rounded-lg ">
         {/* 상단 여백 적용 */}
-        <Margin top="5" />
+        <Margin plustailwind='h-10 w-3' />
 
         {/* 프로필 정보 */}
         <div>
           <div className="relative overflow-hidden rounded-full bg-black h-28 w-28">
+          <Margin plustailwind='h-10 w-3' />
             <img
-              src={teamContext.teamData.image}
+              src={teamContext.teamData.image || "twed"}
               alt="프로필 사진"
-              className="프로필_이미지_스타일 rounded-full"
+              className="w-32 h-32 rounded-full"
             />
           </div>
           <Margin top="3" />
