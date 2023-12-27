@@ -162,7 +162,7 @@ const deleteClick = async()=>{
                 <img
                 src={data.author_info.profile_image}
                 alt="포스트 사진"
-                className="bg-black w-8 h-8 rounded-full mr-2"
+                className="w-8 h-8 rounded-full mr-2"
               />
                
                <div className='font-bold text-lg'>{data.author_info.nickname}</div>

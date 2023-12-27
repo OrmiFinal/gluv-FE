@@ -123,7 +123,7 @@ const EditForm = ({recruitPost, scheduleID}) => {
                             onChange={(e) => setTeamName(e.target.value)}>
                         </input>
                     </div>
-                    <div className=' mx-auto overflow-hidden rounded-full bg-black h-28 w-28'>
+                    <div className=' mx-auto overflow-hidden rounded-full h-28 w-28'>
                         <img
                         src='모임_이미지_경로.jpg'
                         alt='모임_이미지'
