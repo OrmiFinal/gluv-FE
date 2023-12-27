@@ -319,7 +319,7 @@ const CreatComment = async (e) => {
             </div>
             
             <Margin top="3" plustailwind="h-3 w-1"  />
-            <div className='border p-2 w-full h-[350px] overflow-scroll rounded-md'>
+            <div className='border p-2 w-full min-h-[400px]  overflow-scroll rounded-md'>
             <div dangerouslySetInnerHTML={{ __html: data.content }} />
             </div>
             

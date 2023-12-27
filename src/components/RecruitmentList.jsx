@@ -25,13 +25,13 @@ const RecruitmentList = ({ data }) => {
         <div key={index} className="flex mb-4">
           {chunk.map((recruitment) => (
             <Link key={recruitment.id} to={`/recruits/${recruitment.id}`} className="w-full">
-              <div className="bg-white rounded-lg shadow-lg p-6 mr-4">
+              <div className="bg-white rounded-lg shadow-lg p-6 mr-4 max-h-[150px] ">
                 <div className="flex justify-between">
                   <div className="font-bold text-sm mb-2">{recruitment.title}</div>
                   <img src={recruitment.imageUrl} alt="팀" className="mb-2 rounded-full" style={{ maxWidth: "100%" }} />
                 </div>
                 <div className="text-gray-700 text-sm mb-2">
-                  <div dangerouslySetInnerHTML={{ __html: recruitment.content }} />
+                  <div className="overflow-clip max-h-[30px]" dangerouslySetInnerHTML={{ __html: recruitment.content }} />
                 </div>
 
                 <Contour />
