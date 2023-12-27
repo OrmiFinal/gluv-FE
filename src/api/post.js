@@ -8,14 +8,15 @@ export const FetchNoticeData = async (page) => {
     params.page = page
     return await Request('get', '/posts/notices/', {}, params, {})
 };
-
 export const FetchPost = async (endPoint, params) => {
 
     if(endPoint === '/posts/notices/'){
         return await Request('get', endPoint, {}, params, {})   
     }
-  
-    if (params.category.slice(-1) === '/') {
+
+
+
+    if (params.category && params.category.slice(-1) === '/') {
         params.category = params.category.slice(0, -1);
     }
 
@@ -28,6 +29,7 @@ export const FetchPost = async (endPoint, params) => {
     }
     return await Request('get', '/posts/', {}, params, {})
 };
+
 
 export const FetchCreatePost = async ({ title, content, category }) => {
     try {
@@ -50,7 +52,7 @@ export const FetchCreatePost = async ({ title, content, category }) => {
         });
 
   
-        // rest of the code...
+     
         return res.data;
     } catch (error) {
         console.error("Fetching Create failed:", error.message);

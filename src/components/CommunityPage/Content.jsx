@@ -55,8 +55,7 @@ function Content({ category }) {
         subcategorie: url,
         }));
         fetchData()
-    console.log(fetchData())
-
+   
     };
 
     const combinedClasses = Object.entries(inputClasses)

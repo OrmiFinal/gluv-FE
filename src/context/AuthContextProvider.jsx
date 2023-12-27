@@ -103,7 +103,7 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (currentUser && currentUser.access) {
-      console.log(currentUser)
+
       localStorage.setItem("user", JSON.stringify({
         access_token: currentUser.access,
         refresh_token: currentUser.refresh,

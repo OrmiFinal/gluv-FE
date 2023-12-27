@@ -152,9 +152,7 @@ console.log(AmIRecruit)
    setAmIRecruitChange((prev)=>prev+1)
   }
   const UnRecruitBtn=async()=>{
-    console.log("id")
-    console.log("id")
-    console.log(id)
+    
     await cancelRecruitApplication(id)
     setAmIRecruitChange((prev)=>prev+1)
   }

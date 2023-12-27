@@ -29,7 +29,6 @@ export const submitReport = async ({ user_id, content }) => {
       }
     );
 
-    console.log("Report submitted successfully:", response.data);
     return response.data;
   } catch (error) {
     console.error("Reporting failed:", error.message);

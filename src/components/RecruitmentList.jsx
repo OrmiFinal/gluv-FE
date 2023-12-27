@@ -17,6 +17,7 @@ const RecruitmentList = ({ data }) => {
   for (let i = 0; i < data.length; i += 2) {
     const chunk = data.slice(i, i + 2);
     splitData.push(chunk);
+  
   }
 
   return (
@@ -28,7 +29,7 @@ const RecruitmentList = ({ data }) => {
               <div className="bg-white rounded-lg shadow-lg p-6 mr-4 max-h-[150px] ">
                 <div className="flex justify-between">
                   <div className="font-bold text-sm mb-2">{recruitment.title}</div>
-                  <img src={recruitment.imageUrl} alt="팀" className="mb-2 rounded-full" style={{ maxWidth: "100%" }} />
+                  {/* <img src={recruitment.author_info.profile_image} alt="팀" className="mb-2 rounded-full" style={{ maxWidth: "100%" }} /> */}
                 </div>
                 <div className="text-gray-700 text-sm mb-2">
                   <div className="overflow-clip max-h-[30px]" dangerouslySetInnerHTML={{ __html: recruitment.content }} />
