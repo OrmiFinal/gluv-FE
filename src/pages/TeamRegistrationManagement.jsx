@@ -34,7 +34,7 @@ function TeamRegistrationManagement() {
       const user_id = decodedToken.user_id;
       setUserId(user_id);
     }
-console.log(pageReload)
+
     fetchTeamMembers();
   }, [id, getDecodedToken,pageReload]);
 

@@ -29,11 +29,9 @@ function TeamLeftMenu() {
   const fetchTeamInfo = async () => {
     try {
 
-   console.log(teamContext.teamData)
+   
       const response = await Request('get', `/teams/${teamContext.teamData.id}/`, {}, {}, {});
-      console.log("response")
-      console.log("response")
-      console.log(response)
+    
 
       setTeamImage(response.image);
     } catch (error) {
@@ -70,7 +68,7 @@ function TeamLeftMenu() {
     }
 };
   const teamDelete = async () => {
-    console.log("teamDelete");
+
     try {
         const result = await TeamDelete({ id });
         window.location.href = "/users/myteams/";

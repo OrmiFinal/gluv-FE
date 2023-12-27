@@ -14,7 +14,7 @@ export const FetchPost = async (endPoint, params) => {
         return await Request('get', endPoint, {}, params, {})   
     }
 
-    console.log(params.category)
+
 
     if (params.category && params.category.slice(-1) === '/') {
         params.category = params.category.slice(0, -1);
@@ -52,7 +52,7 @@ export const FetchCreatePost = async ({ title, content, category }) => {
         });
 
   
-        // rest of the code...
+     
         return res.data;
     } catch (error) {
         console.error("Fetching Create failed:", error.message);

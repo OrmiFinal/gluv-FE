@@ -46,7 +46,7 @@ function PostDetailPage() {
 
   // 댓글 태그 기능 핸들러
   const handleCommentClick = (commentUser) => {
-    console.log(commentUser)
+
     setSelectedCommentUser({id:commentUser.id,nickname:commentUser.nickname});
   };
 
