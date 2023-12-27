@@ -3,6 +3,7 @@ import { Request } from '../../api/api';
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
+import {getPlainTextFromHtml} from '../../../utils/ParseString'
 
 
 const EditForm = ({ recruitPost, scheduleID }) => {
@@ -25,7 +26,7 @@ const EditForm = ({ recruitPost, scheduleID }) => {
     fetchTeamInfo(recruitPost.team);
     setTeamName(recruitPost.name);
     setPostTitle(recruitPost.title);
-    setPostContent(recruitPost.content);
+    setPostContent(getPlainTextFromHtml(recruitPost.content));
     setSelectedRegion(recruitPost.region);
   }, [recruitPost]);
 
@@ -64,7 +65,7 @@ const EditForm = ({ recruitPost, scheduleID }) => {
       setFrequency(response.frequency);
       setSelectedDays(response.day);
       setSelectedWeeks(response.week);
-      setTeamImage(response.image); // 이미지 경로 설정
+      setTeamImage(response.image);
     } catch (error) {
       console.error('Error fetching TeamInfo:', error.message);
     }
@@ -91,7 +92,6 @@ const EditForm = ({ recruitPost, scheduleID }) => {
           formData.append('image', imageInput.files[0]);
         }
 
-        // 다른 폼 데이터 추가
         formData.append('name', teamName);
         formData.append('max_attendance', teamMaxAttenDance);
         formData.append('frequency', frequency);
@@ -136,9 +136,9 @@ const EditForm = ({ recruitPost, scheduleID }) => {
           </div>
           <div className='mx-auto overflow-hidden rounded-full h-28 w-28'>
             <img
-              src={teamImage} // 이미지 경로 설정
+              src={teamImage || '/media/default_team.png'}
               alt='모임_이미지'
-              className='모임_이미지_스타일 rounded-full object-cover h-full w-full'
+              className='rounded-full object-cover h-full w-full'
             />
           </div>
           <div className="flex items-center justify-center">
