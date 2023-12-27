@@ -1,136 +1,151 @@
 import React, { useState, useEffect } from 'react';
-
 import { Request } from '../../api/api';
-
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
+import {getPlainTextFromHtml} from '../../../utils/ParseString'
 
-const EditForm = ({recruitPost, scheduleID}) => {
-    const [teamName, setTeamName] = useState('');
-    const [postTitle, setPostTitle] = useState('');
-    const [postContent, setPostContent] = useState('');
-    const [selectedRegion, setSelectedRegion] = useState(''); 
-    const [teamID, setTeamID] = useState('')
-    const [teamInfo, setTeamInfo] = useState(null)
-    const [teamMaxAttenDance, setTeamMaxAttenDance] = useState(null)
-    const [frequency, setFrequency] = useState(null)
-    const [selectedDays, setSelectedDays] = useState(null)
-    const [selectedWeeks, setSelectedWeeks] = useState(null)
-    // const [scheduleID, setScheduleID] = useState(null)
 
-    useEffect(() => {
-        if(!recruitPost)
-            return 
+const EditForm = ({ recruitPost, scheduleID }) => {
+  const [teamName, setTeamName] = useState('');
+  const [postTitle, setPostTitle] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('');
+  const [teamID, setTeamID] = useState('');
+  const [teamInfo, setTeamInfo] = useState(null);
+  const [teamMaxAttenDance, setTeamMaxAttenDance] = useState(null);
+  const [frequency, setFrequency] = useState(null);
+  const [selectedDays, setSelectedDays] = useState(null);
+  const [selectedWeeks, setSelectedWeeks] = useState(null);
+  const [teamImage, setTeamImage] = useState(null);
 
-        setTeamID(recruitPost.team)
-        fetchTeamInfo(recruitPost.team)
-        setTeamName(recruitPost.name)
-        setPostTitle(recruitPost.title)
-        setPostContent(recruitPost.content)
-        setSelectedRegion(recruitPost.region)
-    }, [recruitPost]);
+  useEffect(() => {
+    if (!recruitPost) return;
 
-    const fetchTeamInfo = async (team_id) => {
-        try {
-            const response = await Request('get', `/teams/${team_id}/`, {}, {}, {})
-            console.log(response)
+    setTeamID(recruitPost.team);
+    fetchTeamInfo(recruitPost.team);
+    setTeamName(recruitPost.name);
+    setPostTitle(recruitPost.title);
+    setPostContent(getPlainTextFromHtml(recruitPost.content));
+    setSelectedRegion(recruitPost.region);
+  }, [recruitPost]);
 
-            setTeamInfo(response);
-            setTeamMaxAttenDance(response.max_attendance)
-            setFrequency(response.frequency)
-            setSelectedDays(response.day)
-            setSelectedWeeks(response.week)
-        } catch (error) {
-            console.error('Error fetching TeamInfo:', error.message);
-        }
-    };
 
-    const savePost = async () => {
-        try {
-            const response = await Request(
-                'patch',
-                `/recruits/${recruitPost.id}/`,
-                {},
-                {},
-                {
-                    title: postTitle,
-                    content: postContent,
-                    region: selectedRegion,
-                }
-            );
-            console.log('게시글 업데이트 요청 결과 : ', response);
-        } catch (error) {
-            console.error('게시글 업데이트 중 에러 발생 : ', error.message);
-        }
+  const handleImageChange = (e) => {
+    const files = e.target.files;
+  
+    if (!files || files.length === 0) {
+      // 사용자가 파일을 선택하지 않은 경우
+      return;
     }
 
-    const saveTeam = async () => {
-        try {
-            const response = await Request(
-                'patch',
-                `/teams/${teamID}/`,
-                {},
-                {},
-                {
-                    name: teamName,
-                    max_attendance: teamMaxAttenDance,
-                    frequency : frequency,
-                    day : selectedDays,
-                }
-            );
-            console.log('팀 업데이트 요청 결과 : ', response);
-        } catch (error) {
-            console.error('팀 업데이트 중 에러 발생 : ', error.message);
-        }
-    }
+    const file = files[0];
 
-    const saveSchedule = async () => {
-        try {
-            const response = await Request(
-                'patch',
-                `/schedules/${scheduleID}/change/`,
-                {},
-                {},
-                {
-                    frequency : frequency,
-                    day : selectedDays,
-                    week : selectedWeeks,
-                }
-            );
-            console.log('일정 업데이트 요청 결과 : ', response);
-        } catch (error) {
-            console.error('일정 업데이트 중 에러 발생 : ', error.message);
-        }
+    if (!isImageFile(file)) {
+      alert('올바른 이미지 파일을 선택해주세요.');
+      // 파일 선택 창 비우기
+      e.target.value = null;
+      return;
     }
+   
+  };
 
+  const isImageFile = (file) => {
+    const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+    const extension = file.name.split('.').pop().toLowerCase();
+    return allowedExtensions.includes(extension);
+  };
 
-    const handleSave = async () => {
-        savePost()
-        saveTeam()
-        saveSchedule()
+  const fetchTeamInfo = async (team_id) => {
+    try {
+      const response = await Request('get', `/teams/${team_id}/`, {}, {}, {});
+
+      setTeamInfo(response);
+      setTeamMaxAttenDance(response.max_attendance);
+      setFrequency(response.frequency);
+      setSelectedDays(response.day);
+      setSelectedWeeks(response.week);
+      setTeamImage(response.image);
+    } catch (error) {
+      console.error('Error fetching TeamInfo:', error.message);
     }
+  };
+
+  const savePost = async () => {
+    try {
+      const response = await Request('patch', `/recruits/${recruitPost.id}/`, {}, {}, {
+        title: postTitle,
+        content: postContent,
+        region: selectedRegion,
+      });
+    } catch (error) {
+      console.error('게시글 업데이트 중 에러 발생 : ', error.message);
+    }
+  };
+
+  const saveTeam = async () => {
+    try {
+        const formData = new FormData();
     
-    return (
-        <div className="mt-9 p-6 rounded-md w-[800px]">
-            {
-                recruitPost? (<>
-                    <div className='text-center'>
-                        <input 
-                            placeholder="모임 명을 입력해주세요."
-                            value={teamName}
-                            className="text-4xl font-bold mb-3 text-center border-2 p-2 rounded-full"
-                            onChange={(e) => setTeamName(e.target.value)}>
-                        </input>
-                    </div>
-                    <div className=' mx-auto overflow-hidden rounded-full bg-black h-28 w-28'>
-                        <img
-                        src='모임_이미지_경로.jpg'
-                        alt='모임_이미지'
-                        className='모임_이미지_스타일 rounded-full'
-                        />
-                    </div>
-                    <Contour></Contour>
+        const imageInput = document.querySelector('input[type="file"]');
+        if (imageInput.files.length > 0) {
+          formData.append('image', imageInput.files[0]);
+        }
+
+        formData.append('name', teamName);
+        formData.append('max_attendance', teamMaxAttenDance);
+        formData.append('frequency', frequency);
+        formData.append('day', selectedDays);
+
+      const response = await Request('patch', `/teams/${teamID}/`, {}, {}, formData);
+    } catch (error) {
+      console.error('팀 업데이트 중 에러 발생 : ', error.message);
+    }
+  };
+
+  const saveSchedule = async () => {
+    try {
+      const response = await Request('patch', `/schedules/${scheduleID}/change/`, {}, {}, {
+        frequency: frequency,
+        day: selectedDays,
+        week: selectedWeeks,
+      });
+    } catch (error) {
+      console.error('일정 업데이트 중 에러 발생 : ', error.message);
+    }
+  };
+
+  const handleSave = async () => {
+    savePost();
+    saveTeam();
+    saveSchedule();
+    
+  };
+
+  return (
+    <div className="mt-9 p-6 rounded-md w-[800px]">
+      {recruitPost ? (
+        <>
+          <div className='text-center'>
+            <input
+              placeholder="모임 명을 입력해주세요."
+              value={teamName}
+              className="text-4xl font-bold mb-3 text-center border-2 p-2 rounded-full"
+              onChange={(e) => setTeamName(e.target.value)}
+            />
+          </div>
+          <div className='mx-auto overflow-hidden rounded-full h-28 w-28'>
+            <img
+              src={teamImage || '/media/default_team.png'}
+              alt='모임_이미지'
+              className='rounded-full object-cover h-full w-full'
+            />
+          </div>
+          <div className="flex items-center justify-center">
+            <input type="file" onChange={handleImageChange} />
+          </div>
+
+          <Contour></Contour>
                     <div className="w-full border-[1px] p-4 rounded-md">
                 <div className="mt-4">
                     <div className="text-lg font-semibold mb-1">

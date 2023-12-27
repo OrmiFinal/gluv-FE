@@ -48,7 +48,7 @@ function TopMenu() {
       {/* 프로필 정보 */}
         <div className='flex self-start mx-3 my-4'>
           <div className='flex items-center'>
-            <div className='relative overflow-hidden rounded-full bg-black h-12 w-12'>
+            <div className='relative overflow-hidden rounded-full h-12 w-12'>
               <img src={profileData.profile_image}
                 alt='프로필 사진'
                 className='h-16 w-16 rounded-full'/>

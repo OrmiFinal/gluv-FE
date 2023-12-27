@@ -35,7 +35,7 @@ const TeamDetailContentPage = () => {
       <div className="mt-9   p-6 rounded-md w-[600px]">
         <div className="text-4xl ml-2 font-bold mb-3">모임 정보</div>
 
-        <div className=' mx-auto overflow-hidden rounded-full bg-black h-28 w-28'>
+        <div className=' mx-auto overflow-hidden rounded-full h-28 w-28'>
             <img
               src='프로필사진의_이미지_경로.jpg'
               alt='프로필 사진'

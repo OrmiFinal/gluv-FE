@@ -65,7 +65,7 @@ function TeamLeftMenu() {
 
         {/* 프로필 정보 */}
         <div>
-          <div className="relative overflow-hidden rounded-full bg-black h-28 w-28">
+          <div className="relative overflow-hidden rounded-full h-28 w-28">
           <Margin plustailwind='h-10 w-3' />
             <img
               src={teamContext.teamData.image || "/media/defalut_team.png"}

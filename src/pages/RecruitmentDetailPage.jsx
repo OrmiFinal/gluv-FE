@@ -270,7 +270,7 @@ const CreatComment = async (e) => {
                  <img
                 src={data.author_info.profile_image}
                 alt="프로필 사진"
-                className="bg-black w-8 h-8 rounded-full mr-2"
+                className="w-8 h-8 rounded-full mr-2"
               />
                    <div className='font-bold text-lg'>{data.author_info.nickname}</div>
                 <Margin left="1"  plustailwind="w-3" />
