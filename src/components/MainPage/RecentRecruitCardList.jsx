@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const imageUrl = '/media/default_team.png';
+const imageUrl = '/media/defalut_team.png';
 
 function RecentRecruitCardList()  {
   const [recruitData, setRecruitData] = useState([]);
