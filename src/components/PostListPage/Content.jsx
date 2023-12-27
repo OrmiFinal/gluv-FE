@@ -69,7 +69,7 @@ function Content() {
     const fetchNoticeData = async () => {
       try {
         const params = {
-          category : searchParams.get('category'),
+          category : searchParams.get('category') || '',
           page : currentPage,
           search: inputValue
         }
