@@ -35,3 +35,4 @@ jobs:
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }} 'mkdir -p ~/gluv_front/dist'
             scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa -r ./dist/* ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }}:~/gluv_front/dist/
             ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }} 'sudo cp -r ~/gluv_front/dist/* /var/www/html'
+            ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.AWS_SSH_USER }}@${{ secrets.SERVER_HOST }} 'sudo service nginx restart'
