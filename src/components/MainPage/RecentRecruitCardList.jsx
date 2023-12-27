@@ -49,7 +49,7 @@ function RecentRecruitCardList()  {
             <div key={card.id} className="w-1/4 max-w-sm overflow-hidden flex-shrink-0 px-4">
               <a className="bg-gray-200 mb-2 rounded-lg md:rounded-lg overflow-hidden flex items-center justify-center cursor-pointer relative md:mb-3" href={`/recruits/${card.id}/`}><span>
                 {/* 이미지 URL 추가 필요 */}
-                <img draggable="false" sizes="100vw"  src={`${baseURL}/${card.imageUrl}`} decoding="async" data-nimg="fill" style={{ height: '200px', objectFit: 'cover' }}/>
+                <img draggable="false" sizes="100vw"  src={`${card.imageUrl}`} decoding="async" data-nimg="fill" style={{ height: '200px', objectFit: 'cover' }}/>
                 </span>
               </a>
               <div className="flex flex-col gap-2">
