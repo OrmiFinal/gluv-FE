@@ -236,7 +236,7 @@ console.log(Count)
              
 
               <div className="flex justify-center items-center w-full text-center">
-  {Array.from({ length: Math.ceil(Count ? Count / 5 : 1) }, (_, index) => (
+  {Array.from({ length: Math.ceil(Count ? Count / 6 : 1) }, (_, index) => (
     <span
       key={index}
       className={`cursor-pointer mx-1  text-center ${currentPage === index + 1 ? 'font-bold' : ''}`}
