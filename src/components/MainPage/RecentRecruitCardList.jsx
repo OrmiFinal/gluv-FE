@@ -60,7 +60,7 @@ const extractImageUrl = (htmlContent) => {
               <a className="bg-gray-200 mb-2 rounded-lg md:rounded-lg overflow-hidden flex items-center justify-center cursor-pointer relative md:mb-3" href={`/recruits/${card.id}/`}><span>
                 {/* 이미지 URL 추가 필요 */}
                 <img draggable="false" sizes="100vw" 
-                  src={extractImageUrl(card.content) || `${baseURL}/${imageUrl}`}
+                  src={extractImageUrl(card.content) || imageUrl}
                   decoding="async" data-nimg="fill"
                   style={{ height: '200px', objectFit: 'cover' }}/>
                 </span>
