@@ -19,7 +19,7 @@ function LeftPanel({ chatrooms, bgColor, handleChangeRoomID}) {
         const fetchProfile = async () => {
             try {
             const data = await getUserInfo();
-            // console.log(data)
+
             setProfileData({
                 profile_image: data.profile_image,
                 nickname: data.nickname || '',

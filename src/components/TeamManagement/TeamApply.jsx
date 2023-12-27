@@ -20,9 +20,7 @@ function TeamApply({ profileData,  postiId,isMe,setPageReload }) {
    await applyToTeam({  id:postiId ,userId:user})
 
     setPageReload((prev)=>{prev+1})
-console.log("applyTeamBtn")
-console.log("applyTeamBtn")
-console.log("applyTeamBtn")
+
   }
     catch{}
   }
