@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 
 import { TeamContext } from './TeamContext';
 import {  TeamLeave, TeamDelete } from "../../api/team";
-import { FetchCheckRecruitsApplied } from "../../api/recruits";
+import { CheckRecruitsApplied } from "../../api/recruits";
 
 import Margin from "../Margin";
 import Contour from "../ui/Contour";
@@ -14,6 +14,7 @@ function TeamLeftMenu() {
   const teamContext = useContext(TeamContext);
   useEffect(() => {
     console.log(teamContext)
+    fetchAppliedMemberData();
   }, [teamContext]);
 
   
@@ -23,7 +24,12 @@ function TeamLeftMenu() {
 
   const fetchAppliedMemberData = async () => {
     try {
-      const appliedMemberData = await FetchCheckRecruitsApplied({ id });
+      // 모집글이 없을 경우, 그대로 종료
+      if(teamContext.teamData.recruit_id===0){
+        return
+      }
+      
+      const appliedMemberData = await CheckRecruitsApplied(teamContext.teamData.recruit_id);
 
       if (appliedMemberData) {
         setAppliedMemberData(appliedMemberData.length);
@@ -32,10 +38,6 @@ function TeamLeftMenu() {
       console.error("Error fetching applied member data:", error.message);
     }
   };
-
-  useEffect(() => {
-    fetchAppliedMemberData();
-  }, [id]);
 
   const teamLeave = async () => {
     try {

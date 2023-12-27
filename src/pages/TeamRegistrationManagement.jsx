@@ -23,14 +23,6 @@ function TeamRegistrationManagement() {
       try {
         const members = await getTeamMembers({ id: id });
         setTeamMembers(members);
-        console.log("members")
-        console.log("members")
-        console.log("members")
-        console.log("members")    
-         console.log("members")
-        console.log(members)
-        console.log(members)
-        console.log(members)
       } catch (error) {
         console.error('Fetching team members failed:', error.message);
       }

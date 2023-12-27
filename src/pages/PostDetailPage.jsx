@@ -92,12 +92,6 @@ const CreatComment = async (e) => {
     try {
       await likePost(postId);
       setIsLiked(true);
-      console.log("data")
-      console.log("data")
-      console.log("data")
-      console.log(data)
-      console.log(data)
-      console.log(data)
     } catch (error) {
       console.error('Error liking the post:', error);
     }
