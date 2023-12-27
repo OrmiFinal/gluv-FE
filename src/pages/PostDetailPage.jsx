@@ -67,8 +67,6 @@ function PostDetailPage() {
     const getPost = async () => {
       try {
         const postData = await FetchPostData({ id });
-        
-        console.log(JSON.stringify(postData.id));
         checkIsAuthor(JSON.stringify(postData.id));
         setData(postData);
     
@@ -85,12 +83,9 @@ function PostDetailPage() {
 
 function checkIsAuthor(author) {
   const decodedToken = getDecodedToken();
-  console.log(decodedToken.user_id);
-  console.log(data)
 
   if (decodedToken.user_id == author){
     setIsAuthor(true);
-    console.log(isAuthor)
   }
 }
 
