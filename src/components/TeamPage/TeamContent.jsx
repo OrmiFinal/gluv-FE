@@ -88,12 +88,14 @@ const TeamContent = () => {
           </div>
           <Margin plustailwind="h-4" />
           <div className="flex w-full  justify-end items-center">
-            <Link to={`/recruits/${teamContext.teamData.recruit_id}`}>
-              <DynamicColorButton
-                text="모집글가기"
-                btnstyle="py-2 px-2 self-end mr-2"
-              />
-            </Link>
+            {teamContext.teamData.recruit_id !== 0 && (
+              <Link to={`/recruits/${teamContext.teamData.recruit_id}`}>
+                <DynamicColorButton
+                  text="모집글가기"
+                  btnstyle="py-2 px-2 self-end mr-2"
+                />
+              </Link>
+            )}
             <Link to={`/chatroom/${teamContext.teamData.chatroom_id}/`}>
             <DynamicColorButton
               color="blue"
