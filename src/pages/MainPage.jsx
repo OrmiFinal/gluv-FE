@@ -7,7 +7,7 @@ import HotPostList from "./../components/MainPage/HotPostList";
 
 
 function MainPage() {
-  console.log(import.meta.env.BASE_URL);
+
   const textStyle = {
     fontFamily: "Spoqa Han Sans Neo, sans-serif",
   };

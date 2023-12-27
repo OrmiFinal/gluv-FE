@@ -9,7 +9,7 @@ function HotRecruitmentList ({ category }){
         const fetchRecruits = async () => {
             try {
                 const response = await fetchHotRecruits()
-                console.log(response);
+       
                 setPost(response);
             } catch (error) {
                 console.error('Error fetching book data:', error.message);

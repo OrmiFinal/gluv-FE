@@ -175,7 +175,7 @@ export const fetchHotRecruits = async () => {
     const response = await fetch(`${baseURL}/recruits/hot/`);
     const data = await response.json();
 
-    console.log("data", data);
+
 
     return data;
   } catch (error) {

@@ -7,20 +7,41 @@ import { CheckRecruitsApplied } from "../../api/recruits";
 import Margin from "../Margin";
 import Contour from "../ui/Contour";
 import { Link, useParams } from "react-router-dom";
+import { Request } from "../../api/api";
 
 
 
 function TeamLeftMenu() {
-  const teamContext = useContext(TeamContext);
-  useEffect(() => {
-    console.log(teamContext)
-    fetchAppliedMemberData();
-  }, [teamContext]);
-
   
+  const teamContext = useContext(TeamContext);
+  const [teamImage, setTeamImage] = useState(null);
+
   const [appliedMemberData, setAppliedMemberData] = useState([]);
 
-  const { id } = useParams();
+  useEffect(() => {
+ 
+    fetchAppliedMemberData();
+
+    fetchTeamInfo()
+  }, [teamContext]);
+
+
+  const fetchTeamInfo = async () => {
+    try {
+
+   
+      const response = await Request('get', `/teams/${teamContext.teamData.id}/`, {}, {}, {});
+    
+
+      setTeamImage(response.image);
+    } catch (error) {
+      console.error('Error fetching TeamInfo:', error.message);
+    }
+  };
+
+
+
+
 
   const fetchAppliedMemberData = async () => {
     try {
@@ -30,7 +51,6 @@ function TeamLeftMenu() {
       }
       
       const appliedMemberData = await CheckRecruitsApplied(teamContext.teamData.recruit_id);
-
       if (appliedMemberData) {
         setAppliedMemberData(appliedMemberData.length);
       }
@@ -48,7 +68,7 @@ function TeamLeftMenu() {
     }
 };
   const teamDelete = async () => {
-    console.log("teamDelete");
+
     try {
         const result = await TeamDelete({ id });
         window.location.href = "/users/myteams/";
@@ -70,7 +90,7 @@ function TeamLeftMenu() {
           <div className="relative overflow-hidden rounded-full h-28 w-28">
           <Margin plustailwind='h-10 w-3' />
             <img
-              src={teamContext.teamData.image || "/media/defalut_team.png"}
+              src={teamImage || "/media/defalut_team.png"}
               alt="프로필 사진"
               className="w-32 h-32 rounded-full"
             />
