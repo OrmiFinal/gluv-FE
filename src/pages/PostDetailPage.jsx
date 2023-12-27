@@ -25,10 +25,10 @@ function PostDetailPage() {
   const [insertComment, setInsertComment] = useState('');
   const { getDecodedToken } = useContext(AuthContext);
   const [selectedCommentUser, setSelectedCommentUser] = useState({id:'',nickname:''});
+  const [isAuthor, setIsAuthor] = useState(false);
 
   const postId = id; 
   const navigate = useNavigate();
-  let isAuthor = false;
   
   
   // 댓글 입력 핸들러
@@ -51,7 +51,7 @@ function PostDetailPage() {
 
   // 댓글 태그 기능 핸들러
   const handleCommentClick = (commentUser) => {
-    console.log(commentUser)
+
     setSelectedCommentUser({id:commentUser.id,nickname:commentUser.nickname});
   };
 
@@ -67,8 +67,10 @@ function PostDetailPage() {
     const getPost = async () => {
       try {
         const postData = await FetchPostData({ id });
+        
+        console.log(JSON.stringify(postData.id));
+        checkIsAuthor(JSON.stringify(postData.id));
         setData(postData);
-       
     
       } catch (error) {
         console.error('Error fetching post data:', error);
@@ -77,10 +79,20 @@ function PostDetailPage() {
     commentFetch()
     getPost();
     checkIfLiked();
+    
   
   }, [currentPage, isLiked]);
 
+function checkIsAuthor(author) {
+  const decodedToken = getDecodedToken();
+  console.log(decodedToken.user_id);
+  console.log(data)
 
+  if (decodedToken.user_id == author){
+    setIsAuthor(true);
+    console.log(isAuthor)
+  }
+}
 
 const CreatComment = async (e) => {
   try {
@@ -100,11 +112,6 @@ const CreatComment = async (e) => {
     try {
       await likePost(postId);
       setIsLiked(true);
-      console.log("data")
-      console.log("data")
-      console.log(data)
-      console.log(data)
-      console.log(data)
     } catch (error) {
       console.error('Error liking the post:', error);
     }
