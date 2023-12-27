@@ -22,7 +22,7 @@ function LeftMenu2() {
 
         {/* 프로필 정보 */}
         <div>
-          <div className='relative overflow-hidden rounded-full bg-black h-28 w-28'>
+          <div className='relative overflow-hidden rounded-full h-28 w-28'>
             <img
               src='프로필사진의_이미지_경로.jpg'
               alt='프로필 사진'
