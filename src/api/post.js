@@ -8,22 +8,18 @@ export const FetchNoticeData = async (page) => {
     params.page = page
     return await Request('get', '/posts/notices/', {}, params, {})
 };
-
 export const FetchPost = async (endPoint, params) => {
 
-
-   
     if(endPoint === '/posts/notices/'){
         return await Request('get', endPoint, {}, params, {})   
     }
-  
-    if (params.category.slice(-1) === '/') {
+
+    console.log(params.category)
+
+    if (params.category && params.category.slice(-1) === '/') {
         params.category = params.category.slice(0, -1);
     }
 
-    
-
-   
     if(params.category === 'qna'){
         return await Request('get', '/posts/', {}, params, {})    
     }else if(params.category === 'comm'){
@@ -31,8 +27,9 @@ export const FetchPost = async (endPoint, params) => {
     }else if(params.category === 'creation'){
         return await Request('get', '/posts/', {}, params, {})   
     }
-    return await Request('get', '/posts/', {}, {})
+    return await Request('get', '/posts/', {}, params, {})
 };
+
 
 export const FetchCreatePost = async ({ title, content, category }) => {
     try {
