@@ -32,6 +32,7 @@ import LeftMenu2 from "./components/LeftMenu2.jsx";
 import LeftMenu3 from "./components/LeftMenu3.jsx";
 import Error404Page from "./components/Error/Error404Page.jsx";
 import Error500Page from "./components/Error/Error500Page.jsx";
+import Auth from "./Auth.jsx";
 
 
 
@@ -76,57 +77,57 @@ const Enroll = ({children}) => {
 // 페이지 정보 정의
 const pages = [
   // 메인 페이지
-  { path: "/", component: MainPage, layoutType: "Non" },
+  { path: "/", component: Auth(MainPage), layoutType: "Non" },
 
   // 공지사항 페이지 
-  { path: "/posts/notices/", component: PostListPage, layoutType: "Non" },
+  { path: "/posts/notices/", component: Auth(PostListPage), layoutType: "Non" },
 
   // 자유게시판(커뮤니티) 게시글
   // 게시글 목록
-  { path: "/posts/", component: PostListPage, layoutType: "Non" },
+  { path: "/posts/", component: Auth(PostListPage), layoutType: "Non" },
   // 게시글 작성 페이지
-  { path: "/posts/create/", component: PostEntryPage, layoutType: "Non" },
+  { path: "/posts/create/", component: Auth(PostEntryPage), layoutType: "Non" },
   // 게시글 상세 페이지
-  { path: "/posts/:id/", component: PostDetailPage, layoutType: "Non" },
+  { path: "/posts/:id/", component: Auth(PostDetailPage), layoutType: "Non" },
   // 게시글 수정 페이지
-  { path: "/posts/:id/edit/", component: PostEditPage, layoutType: "Non" },
+  { path: "/posts/:id/edit/", component: Auth(PostEditPage), layoutType: "Non" },
 
   // 모집 게시글
   // 모집 게시글 목록
-  { path: "/recruits/", component: RecruitmentListPage, layoutType: "Non" },
+  { path: "/recruits/", component: Auth(RecruitmentListPage), layoutType: "Non" },
   // 모집 게시글 작성 페이지 (폼에 문제 있습니다)
-  { path: "/recruits/create/", component: RecruitmentEntryPage, layoutType: "Non" },
+  { path: "/recruits/create/", component: Auth(RecruitmentEntryPage), layoutType: "Non" },
   // 모집 게시글 상세 페이지
-  { path: "/recruits/:id/", component: RecruitmentDetailPage, layoutType: "Non" },
+  { path: "/recruits/:id/", component: Auth(RecruitmentDetailPage), layoutType: "Non" },
 
   // 유저 프로필 수정
-  { path: "/users/profile/edit/", component: ProfileEditPage, layoutType: "Non" },
+  { path: "/users/profile/edit/", component: Auth(ProfileEditPage), layoutType: "Non" },
 
   // 활동 중인 모임
-  { path: "/users/myteams/", component: MyTeamsPage, layoutType: "Profile" },
+  { path: "/users/myteams/", component: Auth(MyTeamsPage), layoutType: "Profile" },
   // 신청 중인 모임
-  { path: "/users/myappliedteams/", component: MyAppliedTeamsPage, layoutType: "Profile" },
+  { path: "/users/myappliedteams/", component: Auth(MyAppliedTeamsPage), layoutType: "Profile" },
   // 내가 적은 게시물
-  { path: "/users/myposts/", component: MyPostsPage, layoutType: "Profile" },
+  { path: "/users/myposts/", component: Auth(MyPostsPage), layoutType: "Profile" },
 
   // 유저 정보 수정페이지
-  { path: "/users/edit/", component: ProfileEditPage, layoutType: "Non" },
+  { path: "/users/edit/", component: Auth(ProfileEditPage), layoutType: "Non" },
 
   // 모임 상세 페이지 
-  { path: "/teams/:id/", component: TeamPage, layoutType: "Non" },
+  { path: "/teams/:id/", component: Auth(TeamPage), layoutType: "Non" },
   
   // 모임 정보 수정(리더만 가능)
   // 모임 정보 수정 페이지 
-  { path: "/teams/:id/edit/", component: RecruitPostEditPage, layoutType: "Non" },
+  { path: "/teams/:id/edit/", component: Auth(RecruitPostEditPage), layoutType: "Non" },
 
   // 
-  { path: "/teams/:id/members/", component: TeamManagement, layoutType: "Non" },
+  { path: "/teams/:id/members/", component: Auth(TeamManagement), layoutType: "Non" },
   // 신청 인원 관리
-  { path: "/teams/:id/apply/", component:  TeamRegistrationManagement , layoutType: "Non" },
+  { path: "/teams/:id/apply/", component:  Auth(TeamRegistrationManagement) , layoutType: "Non" },
 
   // 채팅쪽은 확인 필요합니다.
   // 채팅페이지
-  { path: "/chatroom/:room_id/", component: Chatting, layoutType: "Non" },
+  { path: "/chatroom/:room_id/", component: Auth(Chatting), layoutType: "Non" },
 
   // 에러 페이지
   { path: "/error/404/", component: Error404Page, layoutType: "Non" },
