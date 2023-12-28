@@ -29,9 +29,7 @@ function TeamLeftMenu() {
   const fetchTeamInfo = async () => {
     try {
 
-   
-      const response = await Request('get', `/teams/${teamContext.teamData.id}/`, {}, {}, {});
-    
+      const response = await Request('get', `/teams/${JSON.stringify(teamContext.teamData.id)}/`, {}, {}, {});
 
       setTeamImage(response.image);
     } catch (error) {
