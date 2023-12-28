@@ -2,8 +2,8 @@ name: Build and Deploy Vite App
 
 on:
   push:
-    # branches: [ "main" ]
-    branches: [ "development" ]
+    branches: [ "main" ]
+    # branches: [ "development" ]
     
 jobs:
   setup-server:
