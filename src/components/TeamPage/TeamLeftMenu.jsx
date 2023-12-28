@@ -17,7 +17,7 @@ function TeamLeftMenu() {
   const [teamImage, setTeamImage] = useState(null);
 
   const [appliedMemberData, setAppliedMemberData] = useState([]);
-
+  const { id } = useParams();
   useEffect(() => {
  
     fetchAppliedMemberData();
@@ -62,6 +62,7 @@ function TeamLeftMenu() {
   const teamLeave = async () => {
     try {
         const result = await TeamLeave({ id });
+        console.log("TeamLeave")
         window.location.href = "/users/myteams/";
     } catch (error) {
         console.error("Error in teamLeave:", error.message);
@@ -71,6 +72,7 @@ function TeamLeftMenu() {
 
     try {
         const result = await TeamDelete({ id });
+        console.log("TeamDelete")
         window.location.href = "/users/myteams/";
     } catch (error) {
         console.error("Error in teamDelete:", error.message);
