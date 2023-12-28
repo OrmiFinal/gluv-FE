@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import { FetchPostData ,FetchDelete} from '../api/post.js';
 import { checkIfLike, likePost, unlikePost } from '../api/likes.js';
 import { FetchAllCommentsData, FetchCreateComments } from '../api/comment.js';
 import { submitReport } from '../api/report.js';
+import { AuthContext } from '../context/AuthContextProvider.jsx';
 
 import Margin from '../components/Margin.jsx';
 import DynamicColorButton from '../components/DynamicColorButton.jsx';
@@ -11,6 +12,7 @@ import CommentList from '../components/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { Link ,useNavigate} from "react-router-dom";
+
 
 const baseURL = import.meta.env.VITE_APP_API_KEY;
 
@@ -21,10 +23,13 @@ function PostDetailPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
   const [insertComment, setInsertComment] = useState('');
+  const { getDecodedToken } = useContext(AuthContext);
   const [selectedCommentUser, setSelectedCommentUser] = useState({id:'',nickname:''});
+  const [isAuthor, setIsAuthor] = useState(false);
 
   const postId = id; 
   const navigate = useNavigate();
+  
   
   // 댓글 입력 핸들러
   const handleInputChange = (event) => {
@@ -58,10 +63,13 @@ function PostDetailPage() {
 
   
   useEffect(() => {
+  
     const getPost = async () => {
       try {
         const postData = await FetchPostData({ id });
+        checkIsAuthor(JSON.stringify(postData.author_info.id));
         setData(postData);
+    
       } catch (error) {
         console.error('Error fetching post data:', error);
       }
@@ -69,10 +77,17 @@ function PostDetailPage() {
     commentFetch()
     getPost();
     checkIfLiked();
+    
   
   }, [currentPage, isLiked]);
 
+function checkIsAuthor(author) {
+  const decodedToken = getDecodedToken();
 
+  if (decodedToken.user_id == author){
+    setIsAuthor(true);
+  }
+}
 
 const CreatComment = async (e) => {
   try {
@@ -108,7 +123,7 @@ const CreatComment = async (e) => {
   };
   const ReportClick = async()=>{
 
-    let a=await submitReport({user_id:data.author,content:`포스트${id}를 신고 당했습니다.`})
+    let a=await submitReport({user_id:data.author,content:`포스트${id}를 신고했습니다.`})
 
   }
 
@@ -247,12 +262,18 @@ const deleteClick = async()=>{
                     btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
                   />
                   </Link>
+                  {isAuthor && (
+                    <Link to={`/posts/${id}/edit`}>
+                      <DynamicColorButton
+                        color="black"
+                        text="수정하기"
+                        btnstyle="py-1 px-2 flex-shrink-0"
+                      />
+                    </Link>
+                  )}
                 </div>
               </div>
-              
             <Margin left="4" />
-
-              
             </div>
             <div>
               {selectedCommentUser? selectedCommentUser.nickname +"님을 선택을 하였습니다":""}

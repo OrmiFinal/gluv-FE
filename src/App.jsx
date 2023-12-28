@@ -10,6 +10,7 @@ import PostEntryPage from './pages/PostEntryPage.jsx';
 import MyPostsPage from './pages/MyPostsPage.jsx';
 import PostListPage from './pages/PostListPage.jsx';
 import PostDetailPage from './pages/PostDetailPage.jsx';
+import PostEditPage from "./pages/PostEditPage.jsx";
 import RecruitmentEntryPage from './pages/RecruitmentEntryPage.jsx';
 import RecruitmentListPage from './pages/RecruitmentListPage.jsx';
 import MyTeamsPage from './pages/MyTeamsPage.jsx';
@@ -87,6 +88,8 @@ const pages = [
   { path: "/posts/create/", component: PostEntryPage, layoutType: "Non" },
   // 게시글 상세 페이지
   { path: "/posts/:id/", component: PostDetailPage, layoutType: "Non" },
+  // 게시글 수정 페이지
+  { path: "/posts/:id/edit/", component: PostEditPage, layoutType: "Non" },
 
   // 모집 게시글
   // 모집 게시글 목록
